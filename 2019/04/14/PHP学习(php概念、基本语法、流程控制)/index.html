@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> - 且听风吟</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Saying and doing are two different things.,​        没有尝试，没有成功！
+"> 
+    <meta name="author" content="💗zihao"> 
+    <link rel="alternative" href="atom.xml" title="且听风吟" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">且听风吟</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://bealright.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">PHP学习(php概念、基本语法、流程控制)</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">PHP学习(php概念、基本语法、流程控制)</h1>
+        <div class="stuff">
+            <span>四月 14, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、初识PHP脚本"><a href="#一、初识PHP脚本" class="headerlink" title="﻿一、初识PHP脚本"></a>﻿<strong>一、初识PHP脚本</strong></h2><p><strong>1.PHP开始标记</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br></pre></td></tr></table></figure>
+<p><strong>2.PHP结束标记</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p> <strong>3.页面最终是通过HTML，CSS，JS来进行展示的</strong></p>
+<p> <strong>**4.PHP代码可以嵌入</strong>html<strong>代码中，可以嵌入到任意位置，并且可以嵌入多个php代码，必须在php文件中嵌入才生效。**</strong><br> 如果建立的是html文件，中间嵌有php代码，<strong>apache</strong>默认是不会将文件传送到PHP应用服务器，因为建立的是HTML文件，会直接返回给请求方。</p>
+<p><strong>5.文件末尾的？&gt;结束标签可以省略</strong></p>
+<p><strong>6.</strong>指令分隔符<strong>** </strong>；<strong><br>    1.在一些PHP语句的结尾要加上 ；表示一句话的结束。<br>    2.结束标记?&gt;隐含了一个 ；<br>      所以在?&gt;之前的PHP语句可以省略掉 ；
+</strong>7.注释<strong><br>    多行注释<br>    /<em><br>        多行注释
+    </em>/<br>    单行注释<br>    //单行注释
+</strong>8.空白的处理**<br>空格，tab制表符，换行 这些写在PHP代码里是没有影响的<br>可以利用这些来增加代码的可读性。</p>
+<h2 id="二、变量"><a href="#二、变量" class="headerlink" title="二、变量"></a><strong>二、变量</strong></h2><blockquote>
+<p>变量是用于临时存储值的容器</p>
+<h6 id="1-变量的声明"><a href="#1-变量的声明" class="headerlink" title="1.变量的声明"></a><strong>1.变量的声明</strong></h6><p>​    在其他语言中，在使用变量前，事先声明一下！<br>    注意：在PHP程序中，使用变量之前是不需要声明的！（可以直接使用）<br>    变量用于存储 数字、文本字符串 或者数组的！<br>    $变量名=数据（值）</p>
+</blockquote>
+<h6 id="2-变量的销毁"><a href="#2-变量的销毁" class="headerlink" title="2.变量的销毁"></a><strong>2.变量的销毁</strong></h6><p>​        unset($变量名称)  </p>
+<h6 id="3-变量的命令规则"><a href="#3-变量的命令规则" class="headerlink" title="3.变量的命令规则"></a><strong>3.变量的命令规则</strong></h6><p>​        1.变量名称严格区分大小写<br>            <code>$name,$NAME,$Name</code>都是不同的变量<br>        2.字母或者下划线开头<br>        总结：变量名只能包含 字母 数字 下划线并且以字母或者下划线开头！<br>        注意：最好不要用关键字作为变量名称</p>
+<h6 id="4-可变变量"><a href="#4-可变变量" class="headerlink" title="4.可变变量"></a><strong>4.可变变量</strong></h6><p>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">			$a=<span class="string">'b'</span><span class="comment">//定义一个变量a储存值b</span></span><br><span class="line">			$$a=<span class="string">'c'</span><span class="comment">//$b='c'</span></span><br><span class="line">			<span class="keyword">echo</span> $b;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c</span><br></pre></td></tr></table></figure></p>
+<h6 id="5-变量的引用赋值"><a href="#5-变量的引用赋值" class="headerlink" title="5.变量的引用赋值"></a><strong>5.变量的引用赋值</strong></h6><p>引用赋值相当于给变量加了一个别名</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">		$b=&amp;$a;<span class="comment">//相当于给$a起了一个别名</span></span><br><span class="line">		$b=<span class="number">20</span>;</span><br><span class="line">		<span class="keyword">echo</span> $a;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20</span><br></pre></td></tr></table></figure></p>
+<h4 id="三、变量类型"><a href="#三、变量类型" class="headerlink" title="三、变量类型"></a><strong>三、变量类型</strong></h4><blockquote>
+<p>PHP是一种弱语言<br>    概述：变量类型是指保存在该变量中的数据类型</p>
+</blockquote>
+<h6 id="1-变量类型简介"><a href="#1-变量类型简介" class="headerlink" title="1.变量类型简介"></a><strong>1.变量类型简介</strong></h6><p>​        bool（布尔型）<br>        在变量里存true 或 false 那么这个变量就是布尔类型<br>        以下值被认为是false，其他值都是被认为是true<br>            布尔值 false<br>            0<br>            浮点型0.0<br>            空白字符串和字符串0//指的是直接一对单引号或者双引号，里面没有如何内容<br>        例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var_dump((bool)<span class="string">""</span>)或var_dump((bool)<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p>没有成员的数组<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var_dump((bool)<span class="keyword">array</span>());</span><br></pre></td></tr></table></figure></p>
+<p>NULL<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var_dump((bool)<span class="keyword">NULL</span>);</span><br></pre></td></tr></table></figure></p>
+<p>输出结果 都为：</p>
+<pre><code>bool(false)
+</code></pre><p>int（整形）<br>在变量里面存整数，那么这个变量就是整形变量.</p>
+<p>float（浮点型，也称double）<br>在变量里面存小数，那么这个变量就是浮点型数据.</p>
+<p>string（字符串）<br>需要加单引号或者双引号<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">				$a=<span class="string">'t'</span>;</span><br><span class="line">				var_dump($a);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>var_dump($变量名)//将变量值和类型一起输出</p>
+<p>单引号<br>PHP不会解析单引号之间的变量</p>
+<p>双引号<br>其中的变量名会被变量值代替，即PHP会解析双引号之间的变量<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">			$b=<span class="number">100</span>;</span><br><span class="line">			$a=<span class="string">"te&#123;$b&#125;st"</span>;</span><br><span class="line">			var_dump($a);</span><br><span class="line">			<span class="keyword">echo</span> $a;</span><br><span class="line">		<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输入结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string te100st</span><br><span class="line">te100xt</span><br></pre></td></tr></table></figure></p>
+<p>定界符<br>&lt;&lt;&lt;名字 </p>
+<p>名字；<br>定界符可以包含单引号、双引号、也可以解析变量<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">		$b=<span class="number">200</span>;</span><br><span class="line">		$a=&lt;&lt;&lt;abc;</span><br><span class="line">		wwwww&#123;$b&#125;w</span><br><span class="line">		abc;</span><br><span class="line">		var_dump($a)</span><br><span class="line">		<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string wwwww200w</span><br></pre></td></tr></table></figure></p>
+<p>array(数组)<br>objec（对象）<br>resource（资源）<br>NULL<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">		$a=<span class="keyword">null</span>;</span><br><span class="line">		var_dump($a);</span><br><span class="line">		<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">null</span><br></pre></td></tr></table></figure></p>
+<h6 id="二、变量类型相互转化"><a href="#二、变量类型相互转化" class="headerlink" title="二、变量类型相互转化"></a><strong>二、变量类型相互转化</strong></h6><p>变量类型强制转化<br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">		$a=<span class="string">'www'</span>;</span><br><span class="line">		$b=(int)$a;</span><br><span class="line">		var_dump($b);</span><br><span class="line">		<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int 0</span><br></pre></td></tr></table></figure></p>
+<h4 id="四、常量"><a href="#四、常量" class="headerlink" title="四、常量"></a><strong>四、常量</strong></h4><blockquote>
+<p>常量是用于临时（只有在我们的程序的运行过程中才存在）存储值（数据）的容器</p>
+</blockquote>
+<p><strong>定义和使用</strong><br>define(‘常量名称’，常量值)或者define(“常量名称”，常量值)<br>例如:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">			define(<span class="string">'WWW'</span>,<span class="number">10</span>)</span><br><span class="line">			<span class="keyword">echo</span> WWW</span><br><span class="line">		<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br>10</p>
+<h6 id="常量的命名："><a href="#常量的命名：" class="headerlink" title="常量的命名："></a><strong>常量的命名：</strong></h6><blockquote>
+<p>1.和变量一样 只能包含字母、数字、下划线 并且必须以字母或下划线开头。<br>         2.按照惯例常量的名称总是大写的。<br>         3.自定义常量总是严格区分大小写的！</p>
+</blockquote>
+<h6 id="常量和变量的区别"><a href="#常量和变量的区别" class="headerlink" title="常量和变量的区别"></a><strong>常量和变量的区别</strong></h6><blockquote>
+<p>1.常量前面没有没有符号$<br>        2.常量只能用define()函数来定义，不能通过赋值语句来定义<br>        3.常量可以不用理会变量范围的规则而在任何地方定义和使用<br>        4.常量一旦被定义就不能重新定义或者取消定义<br>        5.常量的值只能是bool,int,float,string类型</p>
+</blockquote>
+<h6 id="预定义常量"><a href="#预定义常量" class="headerlink" title="预定义常量"></a><strong>预定义常量</strong></h6><blockquote>
+<p>预定义常量是PHP已经定好了的常量<br>        有的预定义常量是以_开头，这些预定义常量叫做魔术常量<br>        代码所在的位置不同 值也是不同的。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">例如：</span><br><span class="line">	_LINE_</span><br><span class="line">	_FILE_<span class="comment">//这些都是魔术常量</span></span><br><span class="line">预定义常量是不区分大小写的</span><br></pre></td></tr></table></figure>
+<h4 id="五、运算符"><a href="#五、运算符" class="headerlink" title="五、运算符"></a><strong>五、运算符</strong></h4><blockquote>
+<p>概述：<br>    运算符是对一个或者多个操作数（变量或者数值）执行某种运算的符号，也称操作符！</p>
+</blockquote>
+<h6 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a><strong>算术运算符</strong></h6><p>1 .<code>+</code><br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">		$a=<span class="number">1</span>;</span><br><span class="line">		$b=<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">echo</span> $a+$b;</span><br><span class="line">		<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出结果：<br>3</p>
+<ol start="2">
+<li><code>-</code><br>第一个意思：减号<pre><code>第二个意思：取反
+</code></pre><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">				$a=<span class="number">1</span>;</span><br><span class="line">				-$a;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输出结果：<br>-1<br>取反并不会影响到被取反变量本身的值！</p>
+<ol start="3">
+<li><code>*</code><br>例如：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">			&amp;a=<span class="number">1</span>;</span><br><span class="line">			&amp;b=<span class="number">2</span>;</span><br><span class="line">			$c=$a*$b;</span><br><span class="line">			<span class="keyword">echo</span> $c;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输出结果：<br>2</p>
+<ol start="4">
+<li><code>/</code><br>例如：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">		$a=<span class="number">10</span>;</span><br><span class="line">		$b=<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">echo</span> $a/$b;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输出结果：<br>5</p>
+<p>5.<code>%</code><br>取模（取余）<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">		$a=<span class="number">10</span>;</span><br><span class="line">		$b=<span class="number">3</span>;</span><br><span class="line">		<span class="keyword">echo</span> $a%$b;</span><br><span class="line">		<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>1
+</code></pre><p>6.<code>++</code><br>自增<br>例如:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">			$a=<span class="number">1</span>;</span><br><span class="line">			++$a;</span><br><span class="line">			<span class="keyword">echo</span> $a;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>2
+</code></pre><p>如果 ++在变量之后<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">			$a=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">echo</span> $a++;</span><br><span class="line">		<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果:</p>
+<pre><code>1
+</code></pre><p>7.<code>--</code> 自减<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">			$a=<span class="number">10</span>;</span><br><span class="line">			$a--;</span><br><span class="line">			<span class="keyword">echo</span> $a;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>9
+</code></pre><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">			$a=<span class="number">10</span>;</span><br><span class="line">			<span class="keyword">echo</span> $a--;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<pre><code>10
+</code></pre><p>注意：自增自减是对变量来说的！</p>
+<h6 id="字符串运算符"><a href="#字符串运算符" class="headerlink" title="字符串运算符"></a><strong>字符串运算符</strong></h6><p>1    <code>.</code>  连接运算符<br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">				$a=<span class="string">'i'</span>;</span><br><span class="line">				$b=<span class="string">'is'</span>;</span><br><span class="line">				$c=<span class="string">'hacker'</span>;</span><br><span class="line">				<span class="keyword">echo</span> $a.$b.$c;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<pre><code>iamhacker
+</code></pre><p>2    <code>=</code> 赋值运算符</p>
+<p>注意：赋值运算符整个语句是有值的，所以整个语句就是一个表达式，所以我们也可以怎么写：</p>
+<pre><code>$a=$b=2;相当于$a=($b=2)
+</code></pre><p>把右边的值赋给左边的变量</p>
+<h6 id="二元运算符"><a href="#二元运算符" class="headerlink" title="二元运算符"></a><strong>二元运算符</strong></h6><p><code>+=</code>运算符</p>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">				$a=<span class="number">1</span>;</span><br><span class="line">				$b=<span class="number">2</span>;</span><br><span class="line">				$a+=$b;</span><br><span class="line">				<span class="keyword">echo</span> $a;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>3
+</code></pre><p><code>-=</code>运算符<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">				$a=<span class="number">2</span>;</span><br><span class="line">				$b=<span class="number">1</span>;</span><br><span class="line">				$a-=$b;</span><br><span class="line">				<span class="keyword">echo</span> $a;</span><br><span class="line">			<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>1
+</code></pre><p>除此之外，赋值运算符还有</p>
+<pre><code>*=
+/=
+%=
+.=
+</code></pre><h6 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a><strong>比较运算符</strong></h6><blockquote>
+<p>PHP中规定：<br>                使用echo输出布尔类型值的时候<br>                    echo true;它在页面中会输出1<br>                    echo false;它会在页面中什么都不输出<br>                    需要输出布尔类型值的时候最好使用var_dump()这个函数来输出<br>            对操作数（按照比较运算符的要求，规则）进行比较<br>                如果比较出的结果满足比较运算符的要求那么结果就是true（真，成立），否则就是false(假，不成立)</p>
+</blockquote>
+<p>1.<code>==</code><br>比较左右两边数的值是否相等<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					$a=<span class="number">1</span>;</span><br><span class="line">					$b=<span class="number">1</span>;</span><br><span class="line">					var_dump($a==$b);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(true)</span><br></pre></td></tr></table></figure></p>
+<p>2.<code>===</code><br>全等（值要相等，类型也要相等）<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					$a=<span class="number">11</span>;</span><br><span class="line">					$b=<span class="string">'11'</span>;</span><br><span class="line">					var_dump($a===$b);</span><br><span class="line">				<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>bool(false) 
+</code></pre><p>3.<code>!=</code><br> 比较值是否不相等<br> 例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					$a=<span class="number">1</span>;</span><br><span class="line">					$b=<span class="number">11</span>;</span><br><span class="line">					var_dump($a!=$b);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>bool(true)
+</code></pre><p>4.<code>&lt;&gt;</code> 比较值是否不相等<br>5.<code>!==</code>不全等<br>如果两边的操作数不全等那么就是true, 否则就是false</p>
+<h6 id="php会自动转化类型"><a href="#php会自动转化类型" class="headerlink" title="php会自动转化类型"></a>php会自动转化类型</h6><p>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">				$a=<span class="number">11</span>;</span><br><span class="line">				$b=<span class="string">'11'</span>;</span><br><span class="line">				var_dump($a!=$b);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(false)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">				$a=<span class="number">11</span>;</span><br><span class="line">				$b=<span class="string">'11'</span>;</span><br><span class="line">				var_dump($a!==$b);</span><br><span class="line">			<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(true)</span><br></pre></td></tr></table></figure></p>
+<p>因为类型不一样</p>
+<p>6.<code>&lt;</code> 小于<br>比较两边的操作数<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					$a=<span class="number">1</span>;</span><br><span class="line">					$b=<span class="number">1</span>;</span><br><span class="line">					var_dump($a&lt;$b);</span><br><span class="line">				<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(false)</span><br></pre></td></tr></table></figure></p>
+<pre><code>7.&gt;  大于
+8.     &lt;=   小于等于
+9.     &gt;=         大于等于
+</code></pre><h6 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a><strong>逻辑运算符</strong></h6><blockquote>
+<p>概念：             对表达式进行逻辑运算，运算出的结果是布尔类型的值(true,false)<br>            要求：<br>                参与逻辑运算的表达式的值是布尔类型的值，如果不是布尔类型的值会被PHP自动转化成布尔类型的值，然后参与运算。</p>
+</blockquote>
+<p>1.逻辑与</p>
+<pre><code>and 或者 &amp;&amp;
+</code></pre><p>左右两边的表达式的值都为true时，运算结果为true。只要其中有一个false，结果就是false。<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					$a=<span class="keyword">true</span>;</span><br><span class="line">					$b=<span class="keyword">true</span>;</span><br><span class="line">					var_dump( $a &amp;&amp; $b);</span><br><span class="line">				<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(true)</span><br></pre></td></tr></table></figure></p>
+<p>短路问题：<br>                语言规定：<br>                    只要有逻辑运算符（逻辑与、逻辑或）那么运算结果就是一个true或false<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">						$a=<span class="keyword">false</span>;</span><br><span class="line">						$b=<span class="number">1</span>;</span><br><span class="line">						$a &amp;&amp; ++$b;</span><br><span class="line">						<span class="keyword">echo</span> $b;</span><br><span class="line">					<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>1            
+</code></pre><p>2.逻辑或</p>
+<pre><code>or 或者 ||
+</code></pre><p>左右两边的表达式的值有一个为true，运算的结果就是true<br>                ,只有当两边的值都是false的时候，结果才会是false。   </p>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					$a=<span class="keyword">true</span>;</span><br><span class="line">					$b=<span class="keyword">false</span>;</span><br><span class="line">					var_dump($a || $b)</span><br><span class="line">				<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(true)</span><br></pre></td></tr></table></figure></p>
+<p>短路问题：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">				$a=<span class="keyword">true</span>;</span><br><span class="line">				$b=<span class="number">1</span>;</span><br><span class="line">				&amp;a || $ ++b;</span><br><span class="line">				<span class="keyword">echo</span> $b;</span><br><span class="line">				<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>1
+</code></pre><p>3.逻辑异或</p>
+<pre><code>xor
+</code></pre><p>运算规则：左右两边表达式的值不一样的时候结果就是true，如果一样那么结果就是false<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">						$a=<span class="keyword">false</span>;</span><br><span class="line">						$b=<span class="keyword">true</span>;</span><br><span class="line">						var_dump($a <span class="keyword">xor</span> $b);</span><br><span class="line">					<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(true)</span><br></pre></td></tr></table></figure></p>
+<p>4.逻辑非</p>
+<pre><code>！
+</code></pre><p>运算规则：将原来的表达式的值否定掉，原来是true，那么结果就是false<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					$a=<span class="keyword">false</span>;</span><br><span class="line">					var_dump(!$a);</span><br><span class="line">				<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(true)</span><br></pre></td></tr></table></figure>
+<p>5.其他运算符<br>1.<code>？：</code><br>三元运算符<br>格式： 表达式1?表达式2:表达式3：<br>如果表达式1的值为true，那么就执行表达式2，否则就执行表达式3<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					$a=<span class="keyword">true</span> ? <span class="number">10</span> : <span class="number">20</span>;</span><br><span class="line">					<span class="keyword">echo</span> $a;</span><br><span class="line">				<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10</span><br></pre></td></tr></table></figure></p>
+<p>2.<code>@</code><br>屏蔽表达式可能发送错误；在表达式前面加上@</p>
+<p>6.运算符的优先级<br>优先级的概念：<br>                谁的优先级别高，就先执行谁<br>            结合方向<br>                规定了从那个方向开始算的问题<br>            优先级归纳：<br>            1)[结合方向：无]递增递减<br>            2)[右]逻辑非!<br>            3)[左]乘，除，取余<br>            4)[左]加，减，字符串连接符<br>            5)[无]包含大于号或者小于号的比较运算符<br>            6)[无]不包含大于号或者小于号的比较运算符<br>            7)[左]逻辑与&amp;&amp;<br>            8)[左]逻辑或||<br>            9)[左]? :<br>            10)[右]赋值运算符<br>            12)[左 ]逻辑异或xor</p>
+<p>园括号的作用：<br>            用圆括号可以将表达式里面的某一块看成一个整体<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					$a=(<span class="number">1</span>+<span class="number">5</span>)*<span class="number">3</span></span><br><span class="line">					<span class="keyword">echo</span> $a;</span><br><span class="line">				<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">18</span><br></pre></td></tr></table></figure></p>
+<p>另外使用括号可以增强代码的可读性</p>
+<h6 id="流程控制【1】-if语句："><a href="#流程控制【1】-if语句：" class="headerlink" title="流程控制【1】-if语句："></a><strong>流程控制【1】-if语句：</strong></h6><p>1.顺序执行<br>                 自上而下执行即可<br>                 对执行过程没有控制<br>2.分支执行<br>分支执行可以根据条件是否满足来选择某些代码，PHP的分支执行主要是通过两种语句（if\switch）来实现</p>
+<p>1.<code>if语句</code>：<br>1)单向条件<br>if（表达式） 语句；<br>                        表达式的值为true，那么就执行语句1，否则就不执行！<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">							$a=<span class="number">400</span>;</span><br><span class="line">							$b=<span class="number">40</span>;</span><br><span class="line">							<span class="keyword">if</span>($a&gt;$b) <span class="keyword">echo</span> <span class="string">"1"</span>;</span><br><span class="line">							<span class="keyword">echo</span> <span class="string">"2"</span>;</span><br><span class="line">						<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12</span><br></pre></td></tr></table></figure></p>
+<h6 id="流程控制【2】-switch语句："><a href="#流程控制【2】-switch语句：" class="headerlink" title="流程控制【2】-switch语句："></a><strong>流程控制【2】-switch语句：</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(表达式)&#123;</span><br><span class="line">								<span class="keyword">case</span> 值 <span class="number">1</span>:<span class="comment">//case相当于==</span></span><br><span class="line">									语句块<span class="number">1</span>;</span><br><span class="line">									<span class="keyword">break</span>;</span><br><span class="line">								<span class="keyword">case</span> 值 <span class="number">2</span>:</span><br><span class="line">									语句块<span class="number">2</span>;</span><br><span class="line">									<span class="keyword">break</span>;</span><br><span class="line">								.......</span><br><span class="line">								<span class="keyword">default</span>:</span><br><span class="line">									语句块n</span><br><span class="line">								&#125;</span><br></pre></td></tr></table></figure>
+<p>循环语句：1.while语句<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(表达式)&#123;</span><br><span class="line">									各种语句....</span><br><span class="line">								&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="2-do…while语句"><a href="#2-do…while语句" class="headerlink" title="2.do…while语句"></a>2.do…while语句</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">									各种语句</span><br><span class="line">								&#125;<span class="keyword">while</span>(表达式);</span><br></pre></td></tr></table></figure>
+<h6 id="3-for语句"><a href="#3-for语句" class="headerlink" title="3.for语句"></a>3.for语句</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(表达式a;表达式b;表达式c)&#123;</span><br><span class="line">									各种语句</span><br><span class="line">								&#125;</span><br></pre></td></tr></table></figure>
+<p>特殊的流程控制语句<br>1.break语句<br>                2.continue语句<br>                3.exit()语句 作用：结束当前整个程序的执行！</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="/music/逃跑计划 - 一万次悲伤.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、初识PHP脚本"><span class="toc-number">1.</span> <span class="toc-text">﻿一、初识PHP脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、变量"><span class="toc-number">2.</span> <span class="toc-text">二、变量</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-变量的声明"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">1.变量的声明</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-变量的销毁"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">2.变量的销毁</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-变量的命令规则"><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">3.变量的命令规则</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-可变变量"><span class="toc-number">2.0.0.0.4.</span> <span class="toc-text">4.可变变量</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-变量的引用赋值"><span class="toc-number">2.0.0.0.5.</span> <span class="toc-text">5.变量的引用赋值</span></a></li></ol></li></ol><li class="toc-item toc-level-4"><a class="toc-link" href="#三、变量类型"><span class="toc-number">2.0.1.</span> <span class="toc-text">三、变量类型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-变量类型简介"><span class="toc-number">2.0.1.0.1.</span> <span class="toc-text">1.变量类型简介</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#二、变量类型相互转化"><span class="toc-number">2.0.1.0.2.</span> <span class="toc-text">二、变量类型相互转化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、常量"><span class="toc-number">2.0.2.</span> <span class="toc-text">四、常量</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#常量的命名："><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">常量的命名：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#常量和变量的区别"><span class="toc-number">2.0.2.0.2.</span> <span class="toc-text">常量和变量的区别</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#预定义常量"><span class="toc-number">2.0.2.0.3.</span> <span class="toc-text">预定义常量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、运算符"><span class="toc-number">2.0.3.</span> <span class="toc-text">五、运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#算术运算符"><span class="toc-number">2.0.3.0.1.</span> <span class="toc-text">算术运算符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#字符串运算符"><span class="toc-number">2.0.3.0.2.</span> <span class="toc-text">字符串运算符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#二元运算符"><span class="toc-number">2.0.3.0.3.</span> <span class="toc-text">二元运算符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#比较运算符"><span class="toc-number">2.0.3.0.4.</span> <span class="toc-text">比较运算符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#php会自动转化类型"><span class="toc-number">2.0.3.0.5.</span> <span class="toc-text">php会自动转化类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#逻辑运算符"><span class="toc-number">2.0.3.0.6.</span> <span class="toc-text">逻辑运算符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#流程控制【1】-if语句："><span class="toc-number">2.0.3.0.7.</span> <span class="toc-text">流程控制【1】-if语句：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#流程控制【2】-switch语句："><span class="toc-number">2.0.3.0.8.</span> <span class="toc-text">流程控制【2】-switch语句：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-do…while语句"><span class="toc-number">2.0.3.0.9.</span> <span class="toc-text">2.do…while语句</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-for语句"><span class="toc-number">2.0.3.0.10.</span> <span class="toc-text">3.for语句</span></a></li></ol></li>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
