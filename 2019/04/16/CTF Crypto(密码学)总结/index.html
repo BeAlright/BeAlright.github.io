@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> - 且听风吟</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Saying and doing are two different things.,​        努力吧，少年！！！
+"> 
+    <meta name="author" content="💗zihao"> 
+    <link rel="alternative" href="atom.xml" title="且听风吟" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">且听风吟</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://bealright.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">CTF Crypto(密码学)总结</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">CTF Crypto(密码学)总结</h1>
+        <div class="stuff">
+            <span>四月 16, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p><strong>最近接触了一些密码学的题，感觉特别有意思，写下博客来记录一下，以免忘记</strong></p>
+<h3 id="一：哈夫曼树"><a href="#一：哈夫曼树" class="headerlink" title="一：哈夫曼树"></a><strong>一：哈夫曼树</strong></h3><p><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/1%20(2" alt="哈夫曼树">.png?raw=true)<br>哈夫曼树（也称为最优二叉树），虽然（目前）没学，但是百度、谷歌大法无敌。<br>查查原理，再去做题。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/2.png?raw=true" alt="在这里插入图片描述"><br>经过一番查找，懂了原理，就总结了一下<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/3.jpg?raw=true" alt="在这里插入图片描述"><br>简单说：<br>叶子结点：权值<br>a :  4<br>d ：9<br>g :  1<br>f  :  5<br>l  :  1<br>0 :  7<br>5 :      9<br>{  :      1<br>}  :      1</p>
+<p>画图时最上面的是根，而最优二叉树的规则则是需要权值大的尽量放在上面<br>例如：<br>叶子结点：权值<br>a 7<br>b 5<br>c 2<br>d 4<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/4.jpg?raw=true" alt="在这里插入图片描述"><br>搞懂了这个，但是这个题中还给了我们一堆数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11000111000001010010010101100110110101111101110101011110111111100001000110010110101111001101110001000110</span><br></pre></td></tr></table></figure></p>
+<p>这些代表上面意思那？？经过查找发现<br>发现原来这是<strong>哈夫曼树编码</strong><a href="https://www.cnblogs.com/wuyuankun/p/3982216.html" target="_blank" rel="noopener">详细的介绍</a></p>
+<p>那我们先来完成第一步，画树。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/5.jpg?raw=true" alt="在这里插入图片描述"><br>一开始没画对，画了三四遍，才算画出来，不过不太熟练，还得练。<br>画的时候最好从下到上画，先把权值小的画出来，一步一步往上画。</p>
+<p>既然画出来了，那就用哈夫曼树编码来把每个数字或字符用编码的方式表示出来。<br>通过画也发现在同一分支中，哪个权值大，那么哪个就是1。<br>例如:<br>17下的d（权值为9）和权值为8的相比，那么d的路径就表示为1.</p>
+<p>接下来就是安装这样的方法把那么字符都用编码表示出来</p>
+<pre><code>f:110
+l:00111
+a:000
+g:00101
+.....
+</code></pre><p>下面都这样表示<br>接下来就开始进行比对<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11000111000001010010010101100110110101111101110101011110111111100001000110010110101111001101110001000110</span><br></pre></td></tr></table></figure></p>
+<p>一般CTF题的提交格式都是<strong>flag{……}</strong><br>所以我们这里就首先看第一个是不是<strong>f</strong><br>110  恰好对应 <strong>f</strong><br>00111     恰好对应  <strong>l</strong><br>000        恰好对应        <strong>a</strong><br>00101    恰好对应        <strong>g</strong><br>前面对应了几乎就没啥子问题了，但是还有一点比较坑的有的因为权值相等，需要在转换的时候看是否应该换一下位置。<br>例如：<br><strong>{</strong> 和 <strong>}</strong> 权值相等，在转化时看是否需要进行换位置。</p>
+<p>我们再观察我们上面画的图，其中<strong>5</strong>和<strong>d</strong>的权值也相同，所以如果提交的答案不对的话，就尝试一下换下位置。<br>这道题是西湖论剑的题，下面有进入决赛大佬的WP。<br><a href="https://www.cnblogs.com/Yuuki-/p/10668580.html" target="_blank" rel="noopener">关于西湖题的wp</a></p>
+<h3 id="二：传统知识-古典密码"><a href="#二：传统知识-古典密码" class="headerlink" title="二：传统知识+古典密码"></a><strong>二：传统知识+古典密码</strong></h3><p><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/6.png?raw=true" alt="在这里插入图片描述"><br>在实验吧上做了一道很有意思的题目。<br>首先就想了解一下传统知识吧<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/7.jpg?raw=true" alt="在这里插入图片描述"><br>在百度上找到六十甲子顺序表，就先对应着把数字写出来。</p>
+<p>辛卯28，癸巳30，丙戌23，辛未8，庚辰17，癸酉10，己卯16，癸巳30。<br>“+甲子60”<br>（这里有一个疑问，按图来说甲子不应该是1吗？？？ 为什么会+60。。。其实这里面还是对传统文化的不熟悉，查查百度，如果还晕的话，记住就行了）<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/8.png?raw=true" alt="在这里插入图片描述"><br>处理完之后的数<br>88,90,83,68,77,70,76,90<br>转换一下ASCII码看看<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/9.jpg?raw=true" alt="在这里插入图片描述"><br>XZSDMFLZ<br>没思路了。。。<br>看看题目咋提示的<br>古典密码<br>古典密码一般涉及的就是<strong>替换</strong>或<strong>移位</strong><br>就先用栅栏密码试试了<br>一共8位： 可以分为2个字一组，也可以是4个字一组，都试试。<br>先用2个字为一组的，解出来<a href="https://www.qqxiuzi.cn/bianma/zhalanmima.php" target="_blank" rel="noopener">栅栏密码在线解密</a><br>XMZFSLDZ<br>再用凯撒密码解密<a href="http://www.zjslove.com/3.decode/kaisa/index.html" target="_blank" rel="noopener">凯撒在线解密</a><br>发现有一串字母好像是有点意义的，拿出来试试。<br>shuangyu<br>改为大写，因为我们输入的就是大写。<br>SHUANGYU<br>CTF{SHUANGYU}<br>提交结果正确，就不用再往下试了。<br>这个题有很多好玩的地方，需要了解传统的甲子表，需要了解栅栏密码，要了解凯撒密码。<br><a href="https://ctf-wiki.github.io/ctf-wiki/crypto/classical/introduction/" target="_blank" rel="noopener">wiki大佬关于密码学的WP</a><br><a href="https://www.tuicool.com/articles/2E3INnm" target="_blank" rel="noopener">各种加密方式</a></p>
+<h3 id="三、滴答滴答"><a href="#三、滴答滴答" class="headerlink" title="三、滴答滴答"></a><strong>三、滴答滴答</strong></h3><p><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/10.png?raw=true" alt="在这里插入图片描述"><br>下载起来，打开后是这样的<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/11.png?raw=true" alt="在这里插入图片描述"><br>看过柯南的都应该知道这个是摩斯密码，所以拿去解一下密，看看会出现什么？<br><a href="http://www.atool88.com/morse.php" target="_blank" rel="noopener">摩斯密码解密</a><br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/12.png?raw=true" alt="在这里插入图片描述"><br>后面的一堆C和D，但是前面我看到了MORSE（摩斯）后面的应该有意义，百度翻译看一下吧<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/13.png?raw=true" alt="在这里插入图片描述"><br>培根？？？，查一下。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/14.png?raw=true" alt="在这里插入图片描述"><br>了解培根加密之后，我们就知道那一堆C和D有啥用处了<br>首先，我们先把C转化为A，D转化为B。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/15.png?raw=true" alt="在这里插入图片描述"><br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/16.png?raw=true" alt="在这里插入图片描述"><br>转化完成后，进行解密<br><a href="http://rumkin.com/tools/cipher/baconian.php" target="_blank" rel="noopener">培根加密解密</a><br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/17.png?raw=true" alt="在这里插入图片描述"><br>结果出来了，百度翻译一下。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/18.png?raw=true" alt="在这里插入图片描述"><br>当时在这里卡了，猛的一下不知道啥意思。。。还是太菜。经过学长提醒。。。<br>是<strong>栅栏密码</strong>，猛的一下明白了，原来<strong>ZGIAHYANAUOZNXWI</strong>这个就是密文，而且也提示了四道栅栏，所以每组四个字。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/20.png?raw=true" alt="在这里插入图片描述"><br>章鱼小丸子<br>至于提交就有点坑了，不用flag{}格式，直接提交就行。不过这道题确实很有意思，了解了摩斯密码，培根密码，栅栏密码。不过还得练，还是太菜，有的时候就是想不到。。。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/CTF%20%E5%AF%86%E7%A0%81%E5%AD%A6/21.jpeg?raw=true" alt="在这里插入图片描述"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="/music/逃跑计划 - 一万次悲伤.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一：哈夫曼树"><span class="toc-number">1.</span> <span class="toc-text">一：哈夫曼树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二：传统知识-古典密码"><span class="toc-number">2.</span> <span class="toc-text">二：传统知识+古典密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、滴答滴答"><span class="toc-number">3.</span> <span class="toc-text">三、滴答滴答</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
