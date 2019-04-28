@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>web安全学习—Http协议基础 - 且听风吟</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Saying and doing are two different things.,今天在安全龙网站上听老师讲了Http协议基础，有的东西不是一遍就可以记住的，就先记录一下，方便以后自己看(截图都是转载于安全龙网站)。
+1、超文本包含有超链接(link)和各种多媒体元素标记(Mar,"> 
+    <meta name="author" content="💗zihao"> 
+    <link rel="alternative" href="atom.xml" title="且听风吟" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">且听风吟</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://bealright.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">web安全-XSS攻击（一）</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">web安全-XSS攻击（一）</h1>
+        <div class="stuff">
+            <span>四月 27, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p><strong>XSS攻击和SQL注入都是web安全中很常见的攻击方式，最近先学习XSS攻击，待到XSS学完后再去学习SQL注入，哇（感慨一番），这些知识真的太有趣了。</strong></p>
+<p><strong>在开始之前，有必要了解一下概念</strong><br>1、XSS跨站脚本攻击定义</p>
+<blockquote>
+<p>跨站脚本攻击是指攻击者利用网站程序对用户输入过滤不足，输入可以显示在页面上对其他用户造成影响的HTML代码，从而盗取用户资料、利用用户身份进行某种动作或者访问者进行病毒侵害的一种攻击方式。为了与层叠样式表的缩写CSS区分开，跨站脚本攻击通常简写为XSS。</p>
+</blockquote>
+<p>2、XSS类型<br>1)反射型XSS</p>
+<blockquote>
+<p>反射型XSS只是简单地将用户输入的数据直接或未经完善的安全过滤就在浏览器中进行输出，导致输出的数据中存在可被浏览器执行的代码数据。由于此种类型的跨站代码存在于URL中，所以黑客通常需要通过诱骗或加密变形等方式将存在恶意代码的链接发给用户，只有用户点击以后才能使得攻击成功实施。</p>
+</blockquote>
+<p>2)存储型XSS</p>
+<blockquote>
+<p>存储型XSS脚本攻击是指由于Web应用程序对用户输入数据的不严格，导致Web应用程序将黑客输入的恶意跨站攻击数据信息保存在服务端的数据库或其他文件形式中，当网页进行数据查询展示时，会从数据库中获取数据内容，并将数据内容在网页中进行输出展示，进而导致跨站脚本代码的执行。</p>
+</blockquote>
+<p>3)DOM Based XSS</p>
+<blockquote>
+<p>基于DOM的XSS跨站脚本攻击是通过修改页面。DOM节点数据信息而形成的XSS跨站脚本攻击。不同于反射型XSS和存储型XSS，基于DOM的XSS跨站脚本攻击往往需要针对具体的Javascript DOM代码进行分析，并根据实际情况进行XSS跨站脚本攻击的利用。</p>
+</blockquote>
+<p>3、XSS攻击</p>
+<blockquote>
+<p>1.XSS盗取用户信息<br>    2.XSS盗取Cookie<br>    3.XSS钓鱼攻击<br>    4.XSS蠕虫攻击</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20190425152610287.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>了解完这些概念之后，就来实战。</p>
+<p><strong>一、在DVWA漏洞靶场练习</strong><br><strong>一、反射型XSS</strong><br>进行DVWA环境中，选择安全等级，这里就按照从低到高的顺序进行。<br><img src="https://img-blog.csdnimg.cn/20190425153203612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>选择XSS(Reflected),查看一下源代码。<br><img src="https://img-blog.csdnimg.cn/20190425153353306.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>观察代码可以发现，这里没有任何过滤。那就输入最常用的语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>输入完之后便会出现这个弹窗了<br><img src="https://img-blog.csdnimg.cn/20190425153707151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>Medium</strong><br>接下来，切换到中级( Medium)<br>如果还输入刚才我们输入的语句会出现什么结果，试试看。<br><img src="https://img-blog.csdnimg.cn/20190425154650738.png" alt="在这里插入图片描述"><br>没有出现弹窗，看一下源代码。<br><img src="https://img-blog.csdnimg.cn/20190425154746344.png" alt="在这里插入图片描述"><br>发现前面的<code>&lt;script&gt;</code>没有了，那就看看源代码中有什么过滤方式把<code>&lt;script&gt;</code>给过滤掉了<br>查看源代码<br><img src="https://img-blog.csdnimg.cn/2019042515403290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里代码中用到了str_replace() 函数。<br><strong>str_replace() 函数的作用：替换字符串中的一些字符（区分大小写）。</strong><br>所以这里是把<code>&lt;script&gt;</code>给替换掉了，但是这个函数其实有个漏洞，区分大小写。。。<br>那我输入这样的语句（大小写语句）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ScRipt&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://img-blog.csdnimg.cn/20190425155414113.png" alt="在这里插入图片描述"><br>这里代码只过滤了 <code>&lt;script&gt;</code>，那就换其他弹窗语句，也可以绕过。（body语句）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=alert(/hacker/)&gt;</span><br></pre></td></tr></table></figure></p>
+<p>还可以采用双写绕过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;sc&lt;script&gt;ript&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://img-blog.csdnimg.cn/20190425155730368.png" alt="在这里插入图片描述"><br>可以看到str_replace() 函数把包裹在外层的 <code>&lt;script&gt;</code>给过滤掉了，但是里面的并不会过滤掉，这样形成的还是一个完整的可执行的语句。</p>
+<p><strong>接下来，尝试高级的(high)</strong><br>拿<code>&lt;script&gt;alert(/hacker/)&lt;/script&gt;</code>这句来试试<br><img src="https://img-blog.csdnimg.cn/2019042516033352.png" alt="在这里插入图片描述"><br>过滤完了，只剩下了一个&gt;<br>那就看看源代码是如何过滤的<br><img src="https://img-blog.csdnimg.cn/20190425160448487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>preg_replace 函数执行一个正则表达式的搜索和替换。</strong><br>这里就了解一下正则表达式：</p>
+<blockquote>
+<p>正则表达式(regularexpression)描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。</p>
+</blockquote>
+<p>那这里就可以理解为代码将&lt;script全给替换了，那如何绕过。。。那我换一个语句弹窗不就行了。。。<br>这里可以用body标签来弹框。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=alert(/hacker/)&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://img-blog.csdnimg.cn/20190425161030788.png" alt="在这里插入图片描述"><br>这就就出现弹窗了。</p>
+<p>二、储存型XSS<br> 储存型和反射型最大的区别便是持久型，下面就从low到high练习，就可以清除的明白这两种类型的区别了。<br> <strong>low</strong><br>先看源代码<br><img src="https://img-blog.csdnimg.cn/2019042516175462.png" alt="在这里插入图片描述"><br>代码很长，但我们只看最后输入结果那部分代码，发现stripslashes() 函数，查一下，发现这个函数的用法：删除由 addslashes() 函数添加的反斜杠。所以没有如何过滤，直接最常用的语句就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但是这里有字数限制，没有办法输入了<br><img src="https://img-blog.csdnimg.cn/2019042516204244.png" alt="在这里插入图片描述"><br>那就打开F12改一下<br><img src="https://img-blog.csdnimg.cn/20190425162514588.png" alt="在这里插入图片描述"><br>改为之后输入<br><img src="https://img-blog.csdnimg.cn/20190425162525723.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>成功，下面看看有啥区别，先跳转到其他页面去，再打开这个页面，会发现。。。<br><img src="https://img-blog.csdnimg.cn/20190425162645391.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>又给我们弹出了这个页面，这就是储存型XSS。每当你登陆这个界面，就会弹出这个弹框。</p>
+<p><strong>Medium</strong><br><strong>接下来，看一下中级的。</strong><br>还是先输入一下常见的语句<br><img src="https://img-blog.csdnimg.cn/20190425175738548.png" alt="在这里插入图片描述"><br>可以看到<code>&lt;script&gt;</code>被过滤掉了。<br>看一下源代码<br><img src="https://img-blog.csdnimg.cn/20190425175912142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>和反射型XSS的Medium一样，所以可以用这两个语句绕过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=alert(/hacker/)&gt;</span><br><span class="line">&lt;sc&lt;script&gt;ript&gt;alert(/hacker/)&lt;/script&gt;</span><br><span class="line">&lt;ScRipt&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这里我们把三种语句都注入，再次点击这个页面会出现三次弹窗<br><img src="https://img-blog.csdnimg.cn/20190425180311969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>high</strong><br><img src="https://img-blog.csdnimg.cn/2019042518043760.png" alt="在这里插入图片描述"><br>正则表达式，用之前的语句就可以直接绕过。</p>
+<p>通过这些练习，可以了解就反射型的XSS攻击时间短，例如弹窗只弹出一次，而存储型的XSS攻击则直接储存在数据库中，只要用户访问就可以弹出。</p>
+<p><strong>将安全等级调至impossible</strong><br>安全等级调至到impossible，即不可绕过。<br>就以反射型的XSS来说吧<br>先以最常用的语句来攻击<br>结果：<br><img src="https://img-blog.csdnimg.cn/20190425181117491.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190425181205729.png" alt="在这里插入图片描述"><br>发现&lt;和&gt;都被转换了，我们就去看一下源代码<br><img src="https://img-blog.csdnimg.cn/20190425181326573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现了这样的一个函数<code>PHP htmlspecialchars()</code> 函数，htmlspecialchars() 函数把一些预定义的字符转换为 HTML 实体。<br>预定义的字符是：</p>
+<pre><code>&amp; （和号）成为 &amp;amp;
+&quot; （双引号）成为 &amp;quot;
+&apos; （单引号）成为 &apos;
+&lt; （小于）成为 &amp;lt;
+&gt; （大于）成为 &amp;gt;
+</code></pre><p>所以这个函数就把我们输入的&lt;和&gt;给过滤掉了，所以这是一种防护手段，防止恶意的XSS攻击。</p>
+<p><strong>下面看一下存储型XSS的impossible</strong><br>还是先用常用的攻击一下<br>显示结果：<br><img src="https://img-blog.csdnimg.cn/20190425231742488.png" alt="在这里插入图片描述"><br>这就不需要再看后台源码了，这直接就显示&lt;和&gt;已经被过滤了.<br>我们就看一下源代码<br><img src="https://img-blog.csdnimg.cn/20190425231940487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现在输出那有一个htmlspecialchars() 函数，所以这个原理就和反射型XSS攻击一样。这样DVWA练习就结束了。</p>
+<p>感悟：果然只有动手去操作了，才会了解一些概念和一些攻击方式，有很多很好的平台供自己去学习，合天、安全龙、漏洞银行等等，只要自己想要去学，这些东西都可以学到，接下来就去XSS通关平台和谨灵实验室继续练习。</p>
+<p>努力吧，少年！！！</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="/music/逃跑计划 - 一万次悲伤.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>web安全学习—Http协议基础 - 且听风吟</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Saying and doing are two different things.,今天在安全龙网站上听老师讲了Http协议基础，有的东西不是一遍就可以记住的，就先记录一下，方便以后自己看(截图都是转载于安全龙网站)。
+1、超文本包含有超链接(link)和各种多媒体元素标记(Mar,"> 
+    <meta name="author" content="💗zihao"> 
+    <link rel="alternative" href="atom.xml" title="且听风吟" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">且听风吟</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://bealright.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">web安全学习—Http协议基础</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">web安全学习—Http协议基础</h1>
+        <div class="stuff">
+            <span>四月 22, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p>今天在<strong>安全龙网站</strong>上听老师讲了Http协议基础，有的东西不是一遍就可以记住的，就先记录一下，方便以后自己看(<strong>截图都是转载于安全龙网站</strong>)。</p>
+<h6 id="1、超文本"><a href="#1、超文本" class="headerlink" title="1、超文本"></a><strong>1、超文本</strong></h6><p>包含有超链接(link)和各种多媒体元素标记(Markup)的文本，这些超文本文件彼此链接，形成网状 (web),因此又被称为网页(Web Page).这些链接使用URL表示。最常见的超文本格式是超文本标记语言HTML。<br><img src="https://img-blog.csdnimg.cn/2019042121014631.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="2、URL"><a href="#2、URL" class="headerlink" title="2、URL"></a><strong>2、URL</strong></h6><p>URL即统一资源定位符,用来唯一地标识万维网的某一个文档。URL由协议、主机和端口(默认为80)以及文件名三部分构成。<br><img src="https://img-blog.csdnimg.cn/2019042121032034.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="3、HTTP报文结构"><a href="#3、HTTP报文结构" class="headerlink" title="3、HTTP报文结构"></a><strong>3、HTTP报文结构</strong></h6><p>1、请求报文<br>            即从客户端（浏览器）向Web服务器发送的请求报文。报文的所有字段都是ASCII码。<br>            <img src="https://img-blog.csdnimg.cn/20190422205621310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2、响应报文<br>即从Web服务器到客户机(浏览器)的应当。报文的所有字段都是ASCII码。<br><img src="https://img-blog.csdnimg.cn/20190422205646475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3、请求报文中的方法<br>方法是对所请求对象所进行的操作，也就是一些命令。请求报文中的操作有:<br><img src="https://img-blog.csdnimg.cn/20190422205705254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4、响应报文中的状态码<br>状态码是响应报文状态行包括的一个3位数字，指名特定的请求是否被满足，如果没有满足，原因是什么。<br><img src="https://img-blog.csdnimg.cn/20190422205722731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5、首部字段或消息头<br><img src="https://img-blog.csdnimg.cn/20190422205746505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>6、HTTP代理<br>HTTP代理又称web缓存或代理服务器，是一种网络实体，能代表浏览器发出HTTP请求，并将最近的一些请求和响应暂存在本地本地磁盘中，当请求的Web页面先前暂存过，则直接将暂存的页面发给客户端（浏览器），无须再次访问Internet。<br><img src="https://img-blog.csdnimg.cn/20190422205814242.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>基本上也就是这些了，需要多回顾多看！</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="/music/逃跑计划 - 一万次悲伤.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#1、超文本"><span class="toc-number">1.</span> <span class="toc-text">1、超文本</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2、URL"><span class="toc-number">2.</span> <span class="toc-text">2、URL</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3、HTTP报文结构"><span class="toc-number">3.</span> <span class="toc-text">3、HTTP报文结构</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>web安全学习—Http协议基础 - 且听风吟</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Saying and doing are two different things.,今天在安全龙网站上听老师讲了Http协议基础，有的东西不是一遍就可以记住的，就先记录一下，方便以后自己看(截图都是转载于安全龙网站)。
+1、超文本包含有超链接(link)和各种多媒体元素标记(Mar,"> 
+    <meta name="author" content="💗zihao"> 
+    <link rel="alternative" href="atom.xml" title="且听风吟" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">且听风吟</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://bealright.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">PHP学习总结(会话控制)</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">PHP学习总结(会话控制)</h1>
+        <div class="stuff">
+            <span>四月 22, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p><strong>最近刚做完一个简易的登陆注册小项目，当时做的时候匆忙，现在来详细的了解一下PHP会话控制这方面的知识。</strong></p>
+<h6 id="cookie和seesion技术出现的原因："><a href="#cookie和seesion技术出现的原因：" class="headerlink" title="cookie和seesion技术出现的原因："></a>cookie和seesion技术出现的原因：</h6><blockquote>
+<p>当一个用户请求一个页面时，再请求同一个网站上的另外一个页面时，HTTP协议不能告诉我们两个请求是否来自同一个用户，也不能将两次访问联系到一起！所有出现了cookie和seesion.</p>
+</blockquote>
+<h6 id="一、cookie"><a href="#一、cookie" class="headerlink" title="一、cookie"></a><strong>一、cookie</strong></h6><p>cookie是用来将网站的资料记录在客户端的技术，让web服务器将一些资料存放在客户端（用户的电脑中）。</p>
+<p>1、向客户端电脑中设置cookie<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setcookie();</span><br></pre></td></tr></table></figure></p>
+<p>2、在服务器端上读取cookie内容<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$_COOKIE</span><br></pre></td></tr></table></figure></p>
+<p>3、将多维数组应用于cookie中<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setcookie(<span class="string">"member[name]"</span>,<span class="string">'www'</span>,time()+<span class="number">3600</span>);</span><br><span class="line">setcookie(<span class="string">"member[email]"</span>,<span class="string">'1111'</span>,time()+<span class="number">3600</span>);</span><br></pre></td></tr></table></figure></p>
+<p>4、删除cookie<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">setcookie(<span class="string">"member[name]"</span>,<span class="string">''</span>,time()<span class="number">-3600</span>);</span><br><span class="line">setcookie(<span class="string">"member[email]"</span>,<span class="string">''</span>,time()<span class="number">-3600</span>);</span><br><span class="line"><span class="comment">//也可以采用遍历的方法</span></span><br><span class="line"><span class="keyword">foreach</span> ($_COOKIE[<span class="string">'member'</span>] <span class="keyword">as</span> $key=&gt;$val)&#123;</span><br><span class="line">		var_dump(setcookie(<span class="string">"member[&#123;$key&#125;]"</span>,<span class="string">''</span>,time()<span class="number">-3600</span>));</span><br><span class="line">		&#125;</span><br><span class="line"><span class="comment">//注意点：</span></span><br><span class="line">		使用setcookie删除cookie的时候，需要与当初设置cookie的时候参数一致！</span><br></pre></td></tr></table></figure></p>
+<h6 id="二、session"><a href="#二、session" class="headerlink" title="二、session"></a><strong>二、session</strong></h6><p>session与cookie最大的不同就是,session是把具体信息保存在服务器端。</p>
+<p>1、开启session<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">session_start();</span><br><span class="line">$_SESSION[<span class="string">'name'</span>]=<span class="string">'www'</span>;</span><br><span class="line">$_SESSION[<span class="string">'email'</span>]=<span class="string">'sss'</span>;</span><br><span class="line">$_SESSION[<span class="string">'url'</span>]=<span class="string">'zzz'</span>;</span><br><span class="line">/再另一个PHP文件中访问的时候必须加上</span><br></pre></td></tr></table></figure></p>
+<p>2、打开已存在的seesion<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">session_start();</span><br><span class="line">var_dump($_SESSION);/注意打开之前一定要先开启seesion</span><br></pre></td></tr></table></figure></p>
+<p>3、注销变量与销毁session<br>先开启session<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">session_start();</span><br><span class="line">		session_unset();/释放所有变量</span><br><span class="line">		session_destroy();/销毁一个会话中的所有数据</span><br><span class="line">		setcookie(<span class="string">''</span>)/名字可以在设置session时，使用var_dump($_COOKIE)来获取cookie的名字</span><br><span class="line">		/也可以使用这样的方法</span><br><span class="line">		setcookie(session_name(),<span class="string">''</span>,time()<span class="number">-3600</span>);<span class="comment">//销毁保存在客户端的cookie</span></span><br><span class="line">		/但这样的方法删除的不干净</span><br><span class="line">		/可以采用这样的方法删除干净</span><br><span class="line">		setcookie(session_name(),<span class="string">''</span>,time()+<span class="number">3600</span>,<span class="string">'/'</span>);<span class="string">'/'</span>表示设置cookie的根目录</span><br></pre></td></tr></table></figure></p>
+<h6 id="三、基于session和cookie的登陆模块"><a href="#三、基于session和cookie的登陆模块" class="headerlink" title="三、基于session和cookie的登陆模块"></a><strong>三、基于session和cookie的登陆模块</strong></h6><p>简易的用cookie来判断登陆<br>login.php(登陆文件)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">				header(<span class="string">'Content-type:text/html;charset=utf-8'</span>);</span><br><span class="line">				<span class="keyword">if</span> (<span class="keyword">isset</span>($_COOKIE[<span class="string">'username'</span>]) &amp;&amp; $_COOKIE[<span class="string">'username'</span>]===<span class="string">'QTFY'</span>) &#123;</span><br><span class="line">					<span class="keyword">exit</span>(<span class="string">'您已经登录请不要重复登录'</span>);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">					<span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'username'</span>])&amp;&amp; <span class="keyword">isset</span>($_POST[<span class="string">'password'</span>]) &amp;&amp; $_POST[<span class="string">'username'</span>]===<span class="string">'QTFY'</span> &amp;&amp; $_POST[<span class="string">'password'</span>]===<span class="string">'123'</span>)&#123;</span><br><span class="line">						<span class="keyword">if</span>(setcookie(<span class="string">'username'</span>,$_POST[<span class="string">'username'</span>],time()+<span class="number">3600</span>))&#123;</span><br><span class="line">							header(<span class="string">'Location:login.php'</span>);</span><br><span class="line">						&#125;</span><br><span class="line">					<span class="keyword">else</span>&#123;</span><br><span class="line">						<span class="keyword">echo</span> <span class="string">'cookie设置失败！'</span>;</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					&#123;</span><br><span class="line">						header(<span class="string">'Location:skip.php?url=login.php&amp;info=用户名或密码输入错误'</span>);</span><br><span class="line">						<span class="comment">//应用跳转页面</span></span><br><span class="line">						&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="meta">?&gt;</span></span><br><span class="line">			&lt;!DOCTYPE html&gt;</span><br><span class="line">			&lt;html lang=<span class="string">"zh-CN"</span>&gt;</span><br><span class="line">			&lt;head&gt;</span><br><span class="line">			&lt;meta charset=<span class="string">"utf-8"</span> /&gt;</span><br><span class="line">			&lt;title&gt;请登录&lt;/title&gt;</span><br><span class="line">			&lt;/head&gt;</span><br><span class="line">			&lt;body&gt;</span><br><span class="line">			&lt;form method=<span class="string">"post"</span> action=<span class="string">"login.php"</span>&gt;</span><br><span class="line">				姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span> /&gt;</span><br><span class="line">				密码：&lt;input type=<span class="string">"password"</span> name=<span class="string">"password"</span> /&gt;</span><br><span class="line">				&lt;input type=<span class="string">"submit"</span> name=<span class="string">"submit"</span> value=<span class="string">"登录"</span> /&gt;</span><br><span class="line">			&lt;/form&gt;</span><br><span class="line">			&lt;/body&gt;</span><br><span class="line">			&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>index.php(判断是否有cookie以此来进行识别用户身份)<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">			header(<span class="string">'Content-type:text/html;charset=utf-8'</span>);</span><br><span class="line">			<span class="keyword">if</span>(<span class="keyword">isset</span>($_COOKIE[<span class="string">'username'</span>]) &amp;&amp; $_COOKIE[<span class="string">'username'</span>]===<span class="string">'QTFY'</span>)&#123;</span><br><span class="line">				<span class="keyword">echo</span>	<span class="string">"&#123;$_COOKIE['username']&#125;你好，欢迎回来!"</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">echo</span> <span class="string">"&lt;a href='login.php'&gt;请重新登陆&lt;/a&gt;"</span>;</span><br><span class="line">		<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样就可以做一个简易的登陆页面（带判断）<br>skip.php(简单的跳转页面)<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">					header(<span class="string">'Content-type:text/html;charset=utf-8'</span>);</span><br><span class="line">					<span class="keyword">if</span>(!<span class="keyword">isset</span>($_GET[<span class="string">'url'</span>])|| !<span class="keyword">isset</span>($_GET[<span class="string">'info'</span>]))&#123;</span><br><span class="line">					<span class="keyword">exit</span>();</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="meta">?&gt;</span></span><br><span class="line">				&lt;!DOCTYPE html&gt;</span><br><span class="line">				&lt;html lang=<span class="string">"zh-CN"</span>&gt;</span><br><span class="line">				&lt;head&gt;</span><br><span class="line">				&lt;meta charset=<span class="string">"utf-8"</span> /&gt;</span><br><span class="line">				&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"3;URL=&lt;?php	echo $_GET['url']?&gt;"</span>/&gt;<span class="comment">//3秒</span></span><br><span class="line">				&lt;title&gt;正在跳转&lt;/title&gt;</span><br><span class="line">				&lt;/head&gt;</span><br><span class="line">				&lt;body&gt;</span><br><span class="line">						&lt;div style=<span class="string">"text-align:center;font-size:20px;"</span>&gt;<span class="meta">&lt;?php</span> <span class="keyword">echo</span> $_GET[<span class="string">'info'</span>] <span class="meta">?&gt;</span>,三秒后自动跳转&lt;/div&gt;</span><br><span class="line">						/info提示信息</span><br><span class="line">				&lt;/body&gt;</span><br><span class="line">				&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>loginout(注销功能页面)<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">				header(<span class="string">'Content-type:text/html;charset=utf-8'</span>);</span><br><span class="line">				<span class="keyword">if</span> (<span class="keyword">isset</span>($_COOKIE[<span class="string">'username'</span>]) &amp;&amp; $_COOKIE[<span class="string">'username'</span>]===<span class="string">'QTFY'</span>) &#123;</span><br><span class="line">					<span class="keyword">if</span>(setcookie(<span class="string">'username'</span>,$_POST[<span class="string">'username'</span>],time()<span class="number">-3600</span>))&#123;</span><br><span class="line">						header(<span class="string">'Location:skip.php?url=index.php&amp;info=注销成功，正在跳转中！'</span>);</span><br><span class="line">					&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">						header(<span class="string">'Location:skip.php?url=index.php&amp;info=注销失败，请稍后重试！'</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样基于cookie的登陆页面就基本实现了<br>session与cookie基本相同<br>要注意：用session时，首先开启session。</p>
+<p>这里就不演示了，具体的看之前做的登陆注册页面。这里又学到了一个跳转页面，之前都不知道如何用。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="/music/逃跑计划 - 一万次悲伤.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#cookie和seesion技术出现的原因："><span class="toc-number">1.</span> <span class="toc-text">cookie和seesion技术出现的原因：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#一、cookie"><span class="toc-number">2.</span> <span class="toc-text">一、cookie</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#二、session"><span class="toc-number">3.</span> <span class="toc-text">二、session</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#三、基于session和cookie的登陆模块"><span class="toc-number">4.</span> <span class="toc-text">三、基于session和cookie的登陆模块</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
