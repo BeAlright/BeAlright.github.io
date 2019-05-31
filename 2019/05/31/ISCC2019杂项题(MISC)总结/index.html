@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> - 且听风吟</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Saying and doing are two different things.,努力吧，少年！！！
+"> 
+    <meta name="author" content="💗zihao"> 
+    <link rel="alternative" href="atom.xml" title="且听风吟" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">且听风吟</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://bealright.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">ISCC2019杂项题(MISC)总结</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">ISCC2019杂项题(MISC)总结</h1>
+        <div class="stuff">
+            <span>五月 31, 2019</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p>ISCC2019刚刚结束，作为一个萌新我是真的菜，真心菜不过也会几道杂项题，就总结一下做题思路。</p>
+<p><strong>Aesop’s secret</strong><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/0.png?raw=true" alt="在这里插入图片描述"><br>下载附件，打开一张gif图<img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/1.png?raw=true" alt="在这里插入图片描述"><br>用PS打开,可以得到一张完整的图<img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/2.png?raw=true" alt="在这里插入图片描述"><br>做到这里没思路了，就回去看题目提示。<br>Aesop’s chest and key lie within .to find it<br>（伊索的胸膛和钥匙都在里面。为了找到它 ）<br>还是一脸懵，用winhex打开我们得到的完整图和gif的图看看会有什么出现。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/3.png?raw=true" alt="在这里插入图片描述"><br>在gif图中发现下面感觉像base64，试试吧<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/4.png?raw=true" alt="在这里插入图片描述"><br>发现前面有一个单词，百度翻译（盐），一般这些都是有密钥的加密密文，取在线网站挨个解下，看看那个可以，密钥当然就是ISCC了。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/5.png?raw=true" alt="在这里插入图片描述"><br>发现这段密文是AES加密，但结果还是base64解码，但还是解不开，那就用<strong>这个结果</strong>再来一次AES解密试试。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/6.png?raw=true" alt="在这里插入图片描述"><br>flag用了两次AES加密，需要解两次才能得到。</p>
+<p><strong>Keyes’ secret</strong><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/7.png?raw=true" alt="在这里插入图片描述"><br>下载附件，得到<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/8.png?raw=true" alt="在这里插入图片描述"><br>一开始无从下手，毫无思路，不过还好有谷歌百度，经过查询，发现应该是键盘密码。<br><img src="https://img-blog.csdnimg.cn/20190527192258969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/10.png?raw=true" alt="在这里插入图片描述"><br>这里虽然字符多，奈何我视力好，发现了<code>{}</code>，按照常理，里面就应该是答案，试试吧。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/11.png?raw=true" alt="在这里插入图片描述"><br>手动分离，还需要耐心，认真，否则很容易搞错。我就直接画了一张图，把QAZ,WSX。。。画在同一竖直方向，这样我们画的时候不至于乱。提交的格式一般是flag，这道题应该是不会在提交格式为难我们，应该就是<code>flag{...}</code>,果然，得出flag.<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/12.png?raw=true" alt="在这里插入图片描述"></p>
+<p><strong>Welcome</strong><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/13.png?raw=true" alt="在这里插入图片描述"><br>打开附件，繁体字，一开始以为繁体字加密？？？，但感觉不用，不可能是这样做的。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/14.png?raw=true" alt="在这里插入图片描述"><br>毫无思路。。。用sublime打开看看。这里格式编码的问题，懒得改了。但可以发现这些空格是有规律的，有的地方是一个，有的地方是两个，这里把一个空格替换为0，两个空格替换为1。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/15.png?raw=true" alt="在这里插入图片描述"><br>得出一段二进制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">011001100110110001100001011001110111101101001001010100110100001101000011010111110101011101000101010011000100001101001111010011010100010101111101</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/16.png?raw=true" alt="在这里插入图片描述"><br>十六进制转换为ASCII即可得出flag<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/17.png?raw=true" alt="在这里插入图片描述"><br><a href="https://www.wishingstarmoye.com/tools/ascii" target="_blank" rel="noopener">转换网站</a></p>
+<p><strong>倒立屋</strong><br>这题LSB隐写，用神器Stegsolve打开选最低位，这里需要注意flag是倒过来的。。。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/18.png?raw=true" alt="在这里插入图片描述"><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/19.png?raw=true" alt="在这里插入图片描述"></p>
+<p><strong>他们能在一起吗？</strong><br>做个题都能被。。。 唉不说了，做题吧<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/20.png?raw=true" alt="在这里插入图片描述"><br>给我们一张二维码，扫吧。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/21.png?raw=true" alt="在这里插入图片描述"><br>扫出<code>UEFTUyU3QjBLX0lfTDBWM19ZMHUlMjElN0Q=</code>，base64解码<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/22.png?raw=true" alt="在这里插入图片描述"><br>这里在线网站有问题，应该是<code>PASS{0K_I_L0V3_Y0u!}</code><br>这肯定不会是答案，再回去研究二维码，用winhex打开，发现后面藏着一个txt文件,提取出来。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/23.png?raw=true" alt="在这里插入图片描述"><br>小明要凉。。。<br>得出flag<img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/24.png?raw=true" alt="在这里插入图片描述"></p>
+<p><strong>无法执行的exe</strong><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/25.png?raw=true" alt="在这里插入图片描述"><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/26.png?raw=true" alt="在这里插入图片描述"><br>不会修复。。。用winhex打开exe文件，观察观察。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/27.png?raw=true" alt="在这里插入图片描述"><br>这个格式不就是base64转图片那个格式？？？，试试看，在线网站不行，用一下大佬的脚本，<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/28.png?raw=true" alt="在这里插入图片描述"><br>得出一张图片<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/29.png?raw=true" alt="在这里插入图片描述"><br>常见问题了，修改png格式即可了。</p>
+<p><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/30.png?raw=true" alt="在这里插入图片描述"><br>扫描得出<code>IScC_2019</code></p>
+<p><strong>隐藏的信息</strong><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/31.png?raw=true" alt="在这里插入图片描述"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0126 062 0126 0163 0142 0103 0102 0153 0142 062 065 0154 0111 0121 0157 0113 0111 0105 0132 0163 0131 0127 0143 066 0111 0105 0154 0124 0121 060 0116 067 0124 0152 0102 0146 0115 0107 065 0154 0130 062 0116 0150 0142 0154 071 0172 0144 0104 0102 0167 0130 063 0153 0167 0144 0130 060 0113</span><br></pre></td></tr></table></figure></p>
+<p> 八进制转为十六再转位ascll即可。这里得自己写一个脚本，网上在线工具不能用。</p>
+<p><strong>Misc-01</strong><br>下载附件，打开<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/32.png?raw=true" alt="在这里插入图片描述"><br>用winhex打开，参照Jpg图片文件包括2字节：<code>FF D8</code>，改下即可修好。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/33.png?raw=true" alt="在这里插入图片描述"><br>但我却在winhex里看到了很多png图<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/34.png?raw=true" alt="在这里插入图片描述"><br>binwalk一下<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/35.png?raw=true" alt="在这里插入图片描述"><br>。。。无语，扫一下吧。<br>第一张<br>remake:最危险的地方就是最安全的地方+1<br>其他也类似，不过第50张不同，他加的是10086.。。。<br>再联系一下提示<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/36.png?raw=true" alt="在这里插入图片描述"><br>果然，base64一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;15cC9012&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Misc-02</strong><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/37.png?raw=true" alt="在这里插入图片描述"><br>Png图片文件包括8字节：<code>89 50 4E 47 0D 0A 1A 0A</code>，对照修改一下就可修复好<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/38.png?raw=true" alt="在这里插入图片描述"><br>一个二维码，扫一扫</p>
+<pre><code>中口由羊口中中大中中中井
+</code></pre><p>当铺密码，解密一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">201902252228</span><br></pre></td></tr></table></figure></p>
+<p>这道题和前面那道类似，图片中还藏有东西，binwalk一下。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/39.png?raw=true" alt="在这里插入图片描述"><br>一首<code>让世界为你转身</code>的歌。。。，我竟然还听出来了。<br>那么这道题应该就是音频隐写了，利用神器<code>MP3Stego</code><br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/40.png?raw=true" alt="在这里插入图片描述"><br>密码即刚才破解的，破解出一个txt文件<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/41.png?raw=true" alt="在这里插入图片描述"><br>Unicode解码，即可得出flag.<br><img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/42.png?raw=true" alt="在这里插入图片描述"></p>
+<p><strong>Score_List</strong><br> 下载附件，打开zip，发现有一个加密的exe文件<br> <img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/43.5.png?raw=true" alt="在这里插入图片描述"><br> 没什么思路，打开winhex看一下<br> <img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/43.png?raw=true" alt="在这里插入图片描述"><br> 这里还隐藏一个exe文件，binwalk分离出来<br> <img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/44.5.png?raw=true" alt="在这里插入图片描述"><br> <img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/44.png?raw=true" alt="在这里插入图片描述"><br> 不知道用户名和密码。。。之前学长好像出过这种题，逆向的，试试吧。<br> <img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/45.png?raw=true" alt="在这里插入图片描述"><br> <img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/46.png?raw=true" alt="在这里插入图片描述"><br> <img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/47.png?raw=true" alt="在这里插入图片描述"><br> <img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/48.png?raw=true" alt="在这里插入图片描述"><br> 发现了用户名和密码，结果也就得了出来了。<br> <img src="https://github.com/bealright/bealright.github.io/blob/master/ISCC/49.png?raw=true" alt="在这里插入图片描述"></p>
+<p> 虽然做出了几道题，不过还是太菜，继续努力吧。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="/music/4.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
