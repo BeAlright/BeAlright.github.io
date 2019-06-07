@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="💗zihao">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="💗zihao">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="Saying and doing are two different things.">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>[PHP] (数据库概念、DDL语句、DML语句) · 且听风吟|博客</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">且听风吟</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">[PHP] (数据库概念、DDL语句、DML语句)</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">且听风吟</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            [PHP] (数据库概念、DDL语句、DML语句)
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+                Record my learning process of PHP.
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3.6k</span>阅读时长: <span class="post-count reading-time">17 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/22</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><strong>自从做完一个简单的登陆注册页面，发现数据库知识真的很重要，所以要详细的学习一下数据库的知识。</strong></p>
+<h3 id="一、数据库基本概念"><a href="#一、数据库基本概念" class="headerlink" title="一、数据库基本概念"></a><strong>一、数据库基本概念</strong></h3><p>数据库可以理解为用来存储信息的仓库</p>
+<p>表:表是数据的矩阵，在一个数据库中的表看起来像一个简单的电子表格。<br>列: 一列(数据元素) 包含了相同的数据, 例如邮政编码的数据。<br>行：一行（=元组，或记录）是一组相关的数据，例如一条用户订阅的数据。<br>冗余：存储两倍数据，冗余降低了性能，但提高了数据的安全性。<br>主键：主键是唯一的。一个数据表中只能包含一个主键,可以使用主键来查询据。<br>表头(header): 每一列的名称;<br>基本概念可以在菜鸟教程中学习<br><a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">菜鸟教程</a><br><img src="https://img-blog.csdnimg.cn/20190424194838427.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="二、DDL语句"><a href="#二、DDL语句" class="headerlink" title="二、DDL语句"></a><strong>二、DDL语句</strong></h3><p>对数据库的操作</p>
+<h6 id="1-创建数据库"><a href="#1-创建数据库" class="headerlink" title="1).创建数据库"></a><strong>1).创建数据库</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库名;</span><br></pre></td></tr></table></figure>
+<p>例如:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">use</span> <span class="title">bss</span>;/使用这个名为bss的数据库</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure></p>
+<h6 id="2-选择要操作的数据库"><a href="#2-选择要操作的数据库" class="headerlink" title="2)选择要操作的数据库"></a><strong>2)选择要操作的数据库</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 数据库名;</span><br></pre></td></tr></table></figure>
+<h6 id="3-查看数据库中所有的数据表"><a href="#3-查看数据库中所有的数据表" class="headerlink" title="3)查看数据库中所有的数据表"></a><strong>3)查看数据库中所有的数据表</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show tables;</span><br></pre></td></tr></table></figure>
+<h6 id="4-删除数据库"><a href="#4-删除数据库" class="headerlink" title="4)删除数据库"></a><strong>4)删除数据库</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database 数据库名称;</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database xiao;</span><br><span class="line">Query OK, <span class="number">1</span> row affected (<span class="number">0.00</span> sec)/这样就新建一个数据库，我们也可以在查看一下。</span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| bss                |</span><br><span class="line">| myhtml             |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| score              |</span><br><span class="line">| test               |</span><br><span class="line">| xiao               |</span><br><span class="line">+--------------------+</span><br><span class="line"><span class="number">8</span> rows in set (<span class="number">0.00</span> sec)/这样数据库中便有了这个xiao数据库，接下来再删除它。</span><br><span class="line">mysql&gt; drop database xiao;</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">1.85</span> sec)</span><br><span class="line">/这样xiao数据库就被删除了。</span><br></pre></td></tr></table></figure></p>
+<p><strong>对表的操作</strong></p>
+<h6 id="1）创建表"><a href="#1）创建表" class="headerlink" title="1）创建表"></a><strong>1）创建表</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(</span><br><span class="line">					字段1名 字段1类型  列的约束条件(可加可不加),</span><br><span class="line">					字段2名 字段2类型  列的约束条件,</span><br><span class="line">					);</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create table Q(id1 int,id2 int);</span><br><span class="line">/这样就创建好一个名为Q的表</span><br></pre></td></tr></table></figure></p>
+<h6 id="2）查看表"><a href="#2）查看表" class="headerlink" title="2）查看表"></a><strong>2）查看表</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">show tables;</span><br><span class="line">//查看表数据</span><br><span class="line">desc 表名;</span><br><span class="line">//查看表结构</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; desc user;/查看表结构</span><br><span class="line">+-------+-------------+------+-----+---------+-------+</span><br><span class="line">| Field | Type        | <span class="keyword">Null</span> | Key | <span class="keyword">Default</span> | Extra |</span><br><span class="line">+-------+-------------+------+-----+---------+-------+</span><br><span class="line">| id    | int(<span class="number">11</span>)     | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">| pass  | varchar(<span class="number">30</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">| name  | varchar(<span class="number">30</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">| ttt   | varchar(<span class="number">40</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">| sss   | varchar(<span class="number">20</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">+-------+-------------+------+-----+---------+-------+</span><br><span class="line"><span class="number">5</span> rows in set (<span class="number">0.01</span> sec)</span><br><span class="line">mysql&gt; show tables;/查看表数据</span><br><span class="line">+---------------+</span><br><span class="line">| Tables_in_bss |</span><br><span class="line">+---------------+</span><br><span class="line">| user          |</span><br><span class="line">| zzh           |</span><br><span class="line">+---------------+</span><br><span class="line"><span class="number">2</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h6 id="3）查看创建表的SQL语句"><a href="#3）查看创建表的SQL语句" class="headerlink" title="3）查看创建表的SQL语句"></a><strong>3）查看创建表的SQL语句</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show create table 表名 \G</span><br><span class="line">show create table 表名；</span><br><span class="line">//第一种相较于第二种更直观一些</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show create table user;<span class="comment">//查看建表命令</span></span><br><span class="line">+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| Table | Create Table                                                                                                                                                                                                                     |</span><br><span class="line">+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| user  | CREATE TABLE `user` (</span><br><span class="line">  `id` int(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `pass` varchar(<span class="number">30</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `name` varchar(<span class="number">30</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `ttt` varchar(<span class="number">40</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `sss` varchar(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span></span><br><span class="line">) ENGINE=MyISAM <span class="keyword">DEFAULT</span> CHARSET=utf8 |</span><br><span class="line">+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line"><span class="number">1</span> row in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h6 id="4-删除表"><a href="#4-删除表" class="headerlink" title="4)删除表"></a><strong>4)删除表</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table 表名;</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table hello(id int,you varchar(<span class="number">30</span>),me varchar(<span class="number">30</span>));</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">1.78</span> sec)/接下来我们查看一下</span><br><span class="line">mysql&gt; show tables;</span><br><span class="line">+---------------+</span><br><span class="line">| Tables_in_bss |</span><br><span class="line">+---------------+</span><br><span class="line">| hello         |</span><br><span class="line">| user          |</span><br><span class="line">| zzh           |</span><br><span class="line">+---------------+</span><br><span class="line"><span class="number">3</span> rows in set (<span class="number">0.00</span> sec)/这样bbs数据库中便有这个hello的数据表了</span><br><span class="line">mysql&gt; drop table hello;</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">0.00</span> sec)</span><br><span class="line">mysql&gt; show tables;</span><br><span class="line">+---------------+</span><br><span class="line">| Tables_in_bss |</span><br><span class="line">+---------------+</span><br><span class="line">| user          |</span><br><span class="line">| zzh           |</span><br><span class="line">+---------------+</span><br><span class="line"><span class="number">2</span> rows in set (<span class="number">0.00</span> sec)</span><br><span class="line">/这样就删除了刚才所创建的数据表</span><br></pre></td></tr></table></figure></p>
+<h6 id="5-修改表的字段类型"><a href="#5-修改表的字段类型" class="headerlink" title="5)修改表的字段类型"></a><strong>5)修改表的字段类型</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 modify 字段名 字段类型;</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table Q modify id1 varchar;</span><br></pre></td></tr></table></figure></p>
+<h6 id="6-增加表字段"><a href="#6-增加表字段" class="headerlink" title="6)增加表字段"></a><strong>6)增加表字段</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 add 字段名 字段类型;</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table Q add id3 int;</span><br></pre></td></tr></table></figure></p>
+<h6 id="7-删除表字段"><a href="#7-删除表字段" class="headerlink" title="7)删除表字段"></a><strong>7)删除表字段</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 drop 字段名;</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table user drop pass;</span><br><span class="line">Query OK, <span class="number">3</span> rows affected (<span class="number">1.81</span> sec)</span><br><span class="line">Records: <span class="number">3</span>  Duplicates: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">mysql&gt; desc user;/再次查询</span><br><span class="line">+----------+--------------+------+-----+---------+----------------+</span><br><span class="line">| Field    | Type         | <span class="keyword">Null</span> | Key | <span class="keyword">Default</span> | Extra          |</span><br><span class="line">+----------+--------------+------+-----+---------+----------------+</span><br><span class="line">| Id       | int(<span class="number">11</span>)      | NO   | PRI | <span class="keyword">NULL</span>    | auto_increment |</span><br><span class="line">| username | varchar(<span class="number">255</span>) | YES  |     | <span class="keyword">NULL</span>    |                |</span><br><span class="line">| password | varchar(<span class="number">255</span>) | YES  |     | <span class="keyword">NULL</span>    |                |</span><br><span class="line">+----------+--------------+------+-----+---------+----------------+</span><br><span class="line"><span class="number">3</span> rows in set (<span class="number">0.01</span> sec)</span><br><span class="line">/这样的话就将新建的pass字段给删除了</span><br></pre></td></tr></table></figure></p>
+<h6 id="8-字段改名"><a href="#8-字段改名" class="headerlink" title="8)字段改名"></a><strong>8)字段改名</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 change 旧字段名 新字段名 字段类型;</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; desc zzh;</span><br><span class="line">+-------+-------------+------+-----+---------+-------+</span><br><span class="line">| Field | Type        | <span class="keyword">Null</span> | Key | <span class="keyword">Default</span> | Extra |</span><br><span class="line">+-------+-------------+------+-----+---------+-------+</span><br><span class="line">| id    | int(<span class="number">11</span>)     | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">| he    | varchar(<span class="number">20</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">| me    | varchar(<span class="number">40</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">+-------+-------------+------+-----+---------+-------+</span><br><span class="line"><span class="number">3</span> rows in set (<span class="number">0.01</span> sec)</span><br><span class="line">/这里我们想把字段he改为you</span><br><span class="line">mysql&gt; alter table zzh change he you varchar(<span class="number">20</span>);</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">0.37</span> sec)</span><br><span class="line">Records: <span class="number">0</span>  Duplicates: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br><span class="line">/再次进行查询</span><br><span class="line">mysql&gt; desc zzh;</span><br><span class="line">+-------+-------------+------+-----+---------+-------+</span><br><span class="line">| Field | Type        | <span class="keyword">Null</span> | Key | <span class="keyword">Default</span> | Extra |</span><br><span class="line">+-------+-------------+------+-----+---------+-------+</span><br><span class="line">| id    | int(<span class="number">11</span>)     | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">| you   | varchar(<span class="number">20</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">| me    | varchar(<span class="number">40</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">+-------+-------------+------+-----+---------+-------+</span><br><span class="line"><span class="number">3</span> rows in set (<span class="number">0.01</span> sec)</span><br><span class="line">/可以看到he已经改为了you</span><br></pre></td></tr></table></figure></p>
+<h6 id="9-修改字段排列排序"><a href="#9-修改字段排列排序" class="headerlink" title="9)修改字段排列排序"></a><strong>9)修改字段排列排序</strong></h6><p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table Q modify id2 tinyint first;</span><br><span class="line">alter table Q modify id2 tinyint after id1;</span><br></pre></td></tr></table></figure>
+<h6 id="10-更改表名"><a href="#10-更改表名" class="headerlink" title="10)更改表名"></a><strong>10)更改表名</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 rename 新的表名;</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">use</span> <span class="title">bss</span>;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; show tables;</span><br><span class="line">+---------------+</span><br><span class="line">| Tables_in_bss |</span><br><span class="line">+---------------+</span><br><span class="line">| user          |</span><br><span class="line">| zzh           |</span><br><span class="line">+---------------+</span><br><span class="line"><span class="number">2</span> rows in set (<span class="number">0.00</span> sec)</span><br><span class="line">/接下来我们把数据表user的名字改为username</span><br><span class="line">mysql&gt; alter table user rename username;</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">1.75</span> sec)</span><br><span class="line">/这些便实现了改表名称</span><br><span class="line">mysql&gt; show tables;</span><br><span class="line">+---------------+</span><br><span class="line">| Tables_in_bss |</span><br><span class="line">+---------------+</span><br><span class="line">| username      |</span><br><span class="line">| zzh           |</span><br><span class="line">+---------------+</span><br><span class="line"><span class="number">2</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h4 id="DML语句"><a href="#DML语句" class="headerlink" title="DML语句"></a><strong>DML语句</strong></h4><p>这里我使用test数据库中的welcome表来进行练习</p>
+<h6 id="1-查询语句"><a href="#1-查询语句" class="headerlink" title="1)查询语句"></a><strong>1)查询语句</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名;</span><br></pre></td></tr></table></figure>
+<h6 id="2-插入记录"><a href="#2-插入记录" class="headerlink" title="2)插入记录"></a><strong>2)插入记录</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名(字段1,字段2,字段3,...,字段n)  values(值1,值2,值3,...,值n);</span><br></pre></td></tr></table></figure>
+<p>注意：values后面的顺序应该和字段的排序一致<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert into welcome(username,password) values(<span class="string">'WMM'</span>,<span class="number">123</span>);</span><br><span class="line">		Query OK, <span class="number">1</span> row affected (<span class="number">0.00</span> sec)</span><br><span class="line">/注意values中有字符的话，用单引号括起来。</span><br><span class="line">mysql&gt;  insert into welcome(username,password) values(<span class="number">2</span>,<span class="number">123</span>);</span><br><span class="line">		Query OK, <span class="number">1</span> row affected (<span class="number">0.31</span> sec)</span><br><span class="line">/这里插入两条数据</span><br><span class="line">mysql&gt; select * from welcome;/查询语句</span><br><span class="line">		+----------+----------+</span><br><span class="line">		| username | password |</span><br><span class="line">		+----------+----------+</span><br><span class="line">		| QTFY     | <span class="number">123</span>      |</span><br><span class="line">		| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">		| WMM      | <span class="number">123</span>      |</span><br><span class="line">		+----------+----------+</span><br><span class="line">		<span class="number">3</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h6 id="3-一次插入多条记录"><a href="#3-一次插入多条记录" class="headerlink" title="3)一次插入多条记录"></a>3)一次插入多条记录</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名(字段1,字段2,字段3,...,字段n)</span><br><span class="line">				 values</span><br><span class="line">				 (值1,值2,值3,...,值n),</span><br><span class="line">				 (值1,值2,值3,...,值n),</span><br><span class="line">				 (值1,值2,值3,...,值n);</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert into welcome(username,password) values</span><br><span class="line">		-&gt; (<span class="number">1</span>,<span class="number">123</span>),</span><br><span class="line">		-&gt; (<span class="number">2</span>,<span class="number">123</span>),</span><br><span class="line">		-&gt; (<span class="number">3</span>,<span class="number">123</span>),</span><br><span class="line">		-&gt; (<span class="number">4</span>,<span class="number">123</span>);</span><br><span class="line">		Query OK, <span class="number">4</span> rows affected (<span class="number">0.00</span> sec)</span><br><span class="line">		Records: <span class="number">4</span>  Duplicates: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br><span class="line">		mysql&gt; select * from welcome;</span><br><span class="line">		+----------+----------+</span><br><span class="line">		| username | password |</span><br><span class="line">		+----------+----------+</span><br><span class="line">		| QTFY     | <span class="number">123</span>      |</span><br><span class="line">		| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">		| WMM      | <span class="number">123</span>      |</span><br><span class="line">		| <span class="number">1</span>        | <span class="number">123</span>      |</span><br><span class="line">		| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">		| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">		| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">		+----------+----------+</span><br><span class="line">		<span class="number">7</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h6 id="4-更新记录"><a href="#4-更新记录" class="headerlink" title="4)更新记录"></a><strong>4)更新记录</strong></h6><p>1.更新一个表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 字段1=值1,字段2=值2,...字段n=值n [where 条件];</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;  update welcome set password=<span class="number">1234</span> where username=<span class="string">'QTFY'</span>;</span><br><span class="line">			Query OK, <span class="number">1</span> row affected (<span class="number">0.00</span> sec)</span><br><span class="line">			Rows matched: <span class="number">1</span>  Changed: <span class="number">1</span>  Warnings: <span class="number">0</span></span><br><span class="line">			mysql&gt; select * from welcome;</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| username | password |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| QTFY     | <span class="number">1234</span>     |</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| WMM      | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">1</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			<span class="number">7</span> rows in set (<span class="number">0.00</span> sec)</span><br><span class="line">			/可以看到QTFY的密码已经从<span class="number">123</span>改为<span class="number">1234</span></span><br></pre></td></tr></table></figure></p>
+<p>2.更新多个表中数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表1,表2,...表n set 表1.字段1=表达式1,表n.字段n=表达式n [where 条件];</span><br></pre></td></tr></table></figure></p>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/首先再创建一个表Q</span><br><span class="line">mysql&gt; create table Q(id int,age int);</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">0.08</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; desc Q;</span><br><span class="line">+-------+---------+------+-----+---------+-------+</span><br><span class="line">| Field | Type    | <span class="keyword">Null</span> | Key | <span class="keyword">Default</span> | Extra |</span><br><span class="line">+-------+---------+------+-----+---------+-------+</span><br><span class="line">| id    | int(<span class="number">11</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">| age   | int(<span class="number">11</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">+-------+---------+------+-----+---------+-------+</span><br><span class="line"><span class="number">2</span> rows in set (<span class="number">0.02</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into Q(id,age) values(<span class="number">1</span>,<span class="number">20</span>);</span><br><span class="line">Query OK, <span class="number">1</span> row affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from Q;</span><br><span class="line">+------+------+</span><br><span class="line">| id   | age  |</span><br><span class="line">+------+------+</span><br><span class="line">|    <span class="number">1</span> |   <span class="number">20</span> |</span><br><span class="line">+------+------+</span><br><span class="line"><span class="number">1</span> row in set (<span class="number">0.00</span> sec)</span><br><span class="line">/更新语句</span><br><span class="line">mysql&gt; update welcome,Q set welcome.password=<span class="number">2000</span>,Q.age=<span class="number">2000</span> where welcome.username=<span class="string">'QTFY'</span> <span class="keyword">and</span> Q.age=<span class="number">20</span>;</span><br><span class="line">Query OK, <span class="number">2</span> rows affected (<span class="number">0.00</span> sec)</span><br><span class="line">Rows matched: <span class="number">2</span>  Changed: <span class="number">2</span>  Warnings: <span class="number">0</span></span><br><span class="line">/更新结果：</span><br><span class="line">| QTFY     | <span class="number">2000</span></span><br><span class="line"><span class="number">1</span> | <span class="number">2000</span> |</span><br></pre></td></tr></table></figure></p>
+<h6 id="5-删除记录"><a href="#5-删除记录" class="headerlink" title="5)删除记录"></a><strong>5)删除记录</strong></h6><p>1.删除单表中的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 [where 条件];</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from welcome;</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| username | password |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| QTFY     | <span class="number">2000</span>     |</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| WMM      | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">1</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			<span class="number">7</span> rows in set (<span class="number">0.00</span> sec)</span><br><span class="line">			/这里删除WMM记录</span><br><span class="line">			mysql&gt; delete from welcome where username=<span class="string">'WMM'</span>;</span><br><span class="line">			Query OK, <span class="number">1</span> row affected (<span class="number">0.00</span> sec)</span><br><span class="line">			/删除成功了</span><br><span class="line">			mysql&gt; select * from welcome;</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| username | password |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| QTFY     | <span class="number">2000</span>     |</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">1</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			<span class="number">6</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>2.删除多个表中的数据、<br>delete 表1,表2,…表n from 表1,表2,…表n [where 条件];<br>不管是单表还是多表，不加where条件将会把表中的所有记录删除，所以操作时一定要小心。<br>这里的操作和更新多表大致一样。</p>
+<h6 id="6-查询记录"><a href="#6-查询记录" class="headerlink" title="6)查询记录"></a><strong>6)查询记录</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名;</span><br><span class="line">// 查询所有纪录</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select  字段名 from 表名；</span><br><span class="line">		//查询某个字段的记录</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; desc welcome;</span><br><span class="line">		+----------+--------------+------+-----+---------+-------+</span><br><span class="line">		| Field    | Type         | <span class="keyword">Null</span> | Key | <span class="keyword">Default</span> | Extra |</span><br><span class="line">		+----------+--------------+------+-----+---------+-------+</span><br><span class="line">		| username | varchar(<span class="number">255</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">		| password | varchar(<span class="number">255</span>) | YES  |     | <span class="keyword">NULL</span>    |       |</span><br><span class="line">		+----------+--------------+------+-----+---------+-------+</span><br><span class="line">		<span class="number">2</span> rows in set (<span class="number">1.75</span> sec)</span><br><span class="line">		/这里查username字段的记录</span><br><span class="line">		mysql&gt; select username from welcome;</span><br><span class="line">		+----------+</span><br><span class="line">		| username |</span><br><span class="line">		+----------+</span><br><span class="line">		| QTFY     |</span><br><span class="line">		| <span class="number">2</span>        |</span><br><span class="line">		| <span class="number">1</span>        |</span><br><span class="line">		| <span class="number">2</span>        |</span><br><span class="line">		| <span class="number">3</span>        |</span><br><span class="line">		| <span class="number">4</span>        |</span><br><span class="line">		+----------+</span><br><span class="line">		<span class="number">6</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h6 id="7-查询不重复的记录"><a href="#7-查询不重复的记录" class="headerlink" title="7)查询不重复的记录"></a><strong>7)查询不重复的记录</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> select distinct field1,field2 from 表名;</span><br><span class="line">//只要field1,field2任何一个字段有不同就会被选择！</span><br><span class="line">//一般使用distinct,只筛选一个字段!</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select username from welcome;</span><br><span class="line">			+----------+</span><br><span class="line">			| username |</span><br><span class="line">			+----------+</span><br><span class="line">			| QTFY     |</span><br><span class="line">			| <span class="number">2</span>        |</span><br><span class="line">			| <span class="number">1</span>        |</span><br><span class="line">			| <span class="number">2</span>        |</span><br><span class="line">			| <span class="number">3</span>        |</span><br><span class="line">			| <span class="number">4</span>        |</span><br><span class="line">			+----------+</span><br><span class="line">			<span class="number">6</span> rows in set (<span class="number">0.00</span> sec)</span><br><span class="line">			/采用查询不重复记录语句</span><br><span class="line">			mysql&gt; select distinct username from welcome;</span><br><span class="line">			+----------+</span><br><span class="line">			| username |</span><br><span class="line">			+----------+</span><br><span class="line">			| QTFY     |</span><br><span class="line">			| <span class="number">2</span>        |</span><br><span class="line">			| <span class="number">1</span>        |</span><br><span class="line">			| <span class="number">3</span>        |</span><br><span class="line">			| <span class="number">4</span>        |</span><br><span class="line">			+----------+</span><br><span class="line">			<span class="number">5</span> rows in set (<span class="number">1.63</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h6 id="8-条件查询"><a href="#8-条件查询" class="headerlink" title="8)条件查询"></a><strong>8)条件查询</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">= &lt; &gt; &gt;= &lt;= != 比较运算符</span><br><span class="line">//多个条件之间可以使用or and等</span><br><span class="line">//select * from 表名 where 条件</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from welcome where username=<span class="number">4</span>;</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| username | password |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			<span class="number">1</span> row in set, <span class="number">1</span> warning (<span class="number">0.00</span> sec)</span><br><span class="line">			/ <span class="keyword">or</span>的用法</span><br><span class="line">			mysql&gt;  select * from welcome where username=<span class="number">4</span> <span class="keyword">or</span> username=<span class="number">3</span>;</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| username | password |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			<span class="number">2</span> rows in set, <span class="number">2</span> warnings (<span class="number">0.00</span> sec)</span><br><span class="line">			/<span class="keyword">and</span>的用法</span><br><span class="line">			mysql&gt; select * from welcome where username&gt;<span class="number">1</span> <span class="keyword">and</span> username&lt;<span class="number">4</span> ;</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| username | password |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			<span class="number">3</span> rows in set, <span class="number">1</span> warning (<span class="number">0.00</span> sec)</span><br><span class="line">			mysql&gt; select * from welcome where username&gt;=<span class="number">1</span> <span class="keyword">and</span> username&lt;=<span class="number">4</span> ;</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| username | password |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">1</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">			| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">			+----------+----------+</span><br><span class="line">			<span class="number">5</span> rows in set, <span class="number">1</span> warning (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h6 id="9-排序和限制"><a href="#9-排序和限制" class="headerlink" title="9)排序和限制"></a><strong>9)排序和限制</strong></h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">排序:</span><br><span class="line">				asc:由低到高</span><br><span class="line">					select * from 表名 order by 字段名 asc;	</span><br><span class="line">				desc:由高到底</span><br><span class="line">					select * from 表名 order by 字段名 desc;</span><br><span class="line">				多个字段排序</span><br><span class="line">					select * from 表名 order by 字段名 desc,字段名 desc;</span><br></pre></td></tr></table></figure>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">/asc:由低到高</span><br><span class="line">mysql&gt; select * from welcome order by username asc;</span><br><span class="line">+----------+----------+</span><br><span class="line">| username | password |</span><br><span class="line">+----------+----------+</span><br><span class="line">| <span class="number">1</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">| QTFY     | <span class="number">2000</span>     |</span><br><span class="line">+----------+----------+</span><br><span class="line"><span class="number">6</span> rows in set (<span class="number">1.69</span> sec)</span><br><span class="line">/desc:由高到底</span><br><span class="line">mysql&gt; select * from welcome order by username desc;</span><br><span class="line">+----------+----------+</span><br><span class="line">| username | password |</span><br><span class="line">+----------+----------+</span><br><span class="line">| QTFY     | <span class="number">2000</span>     |</span><br><span class="line">| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">1</span>        | <span class="number">123</span>      |</span><br><span class="line">+----------+----------+</span><br><span class="line"><span class="number">6</span> rows in set (<span class="number">0.00</span> sec)</span><br><span class="line">/多个字段排序</span><br><span class="line">mysql&gt; select * from welcome order by username desc,password desc;</span><br><span class="line">+----------+----------+</span><br><span class="line">| username | password |</span><br><span class="line">+----------+----------+</span><br><span class="line">| QTFY     | <span class="number">2000</span>     |</span><br><span class="line">| <span class="number">4</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">3</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">2</span>        | <span class="number">123</span>      |</span><br><span class="line">| <span class="number">1</span>        | <span class="number">123</span>      |</span><br><span class="line">+----------+----------+</span><br><span class="line"><span class="number">6</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>限制:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在语句的最后面 加上limit 数字1,数字2 来进行查询数量的限制。</span><br><span class="line">limit 数字1,数字2 	数字1代表从第几条记录开启取(是从0开始的)，数字2代表取几条！</span><br></pre></td></tr></table></figure></p>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/从<span class="number">0</span>条开始取一条</span><br><span class="line">mysql&gt;  select * from welcome order by username desc limit <span class="number">0</span>,<span class="number">1</span></span><br><span class="line">	-&gt; ;</span><br><span class="line">+----------+----------+</span><br><span class="line">| username | password |</span><br><span class="line">+----------+----------+</span><br><span class="line">| QTFY     | <span class="number">2000</span>     |</span><br><span class="line">+----------+----------+</span><br><span class="line"><span class="number">1</span> row in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h6 id="10-聚合"><a href="#10-聚合" class="headerlink" title="10)聚合"></a><strong>10)聚合</strong></h6><p>sum求和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(字段名) from 表名;</span><br></pre></td></tr></table></figure>
+<p>例如;<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select sum(password) from welcome;</span><br><span class="line">					+---------------+</span><br><span class="line">					| sum(password) |</span><br><span class="line">					+---------------+</span><br><span class="line">					|          <span class="number">2615</span> |</span><br><span class="line">					+---------------+</span><br><span class="line">					<span class="number">1</span> row in set (<span class="number">1.66</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>count记录总数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*|字段名) from 表名;</span><br></pre></td></tr></table></figure></p>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select count(*) from welcome;</span><br><span class="line">	+----------+</span><br><span class="line">	| count(*) |</span><br><span class="line">	+----------+</span><br><span class="line">	|        <span class="number">6</span> |</span><br><span class="line">	+----------+</span><br><span class="line">	<span class="number">1</span> row in set (<span class="number">1.56</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>max最大值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select max(字段名) from 表名;</span><br></pre></td></tr></table></figure></p>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select max(password) from welcome;</span><br><span class="line">					+---------------+</span><br><span class="line">					| max(password) |</span><br><span class="line">					+---------------+</span><br><span class="line">					| <span class="number">2000</span>          |</span><br><span class="line">					+---------------+</span><br><span class="line">					<span class="number">1</span> row in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<p>min最小值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select min(字段名) from 表名;</span><br></pre></td></tr></table></figure></p>
+<p>GROUP BY分类聚合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select department,sum(字段名) from 表名 group by 字段名;</span><br></pre></td></tr></table></figure></p>
+<p>WITH ROLLUP分类聚合后的结果进行再汇总<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sum(字段名) from 表名 group by 字段名 with rollup;</span><br></pre></td></tr></table></figure></p>
+<p>HAVING</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">注意：having和where的区别在于，having是对聚合后的结果进行条件过滤，而where是在聚合前就对记录进行过滤 ，应该尽可能的对记录进行先过滤！</span><br><span class="line">select sum(字段名) from 表名 group by 字段名 having sum(字段名)&gt;1000;</span><br></pre></td></tr></table></figure>
+<h6 id="11-表连接"><a href="#11-表连接" class="headerlink" title="11)表连接"></a><strong>11)表连接</strong></h6><p>显示多个表中的字段的时候即可使用表连接<br>内连接：选取两张表中相互匹配的记录<br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这样的语句可以把两张表中互相匹配的记录放在一起</span></span><br><span class="line">					mysql&gt; select * from welcome,Q where welcome.username=Q.id;</span><br><span class="line">					+----------+----------+------+------+</span><br><span class="line">					| username | password | id   | age  |</span><br><span class="line">					+----------+----------+------+------+</span><br><span class="line">					| <span class="number">1</span>        | <span class="number">6</span>        |    <span class="number">1</span> |    <span class="number">6</span> |</span><br><span class="line">					| <span class="number">2</span>        | <span class="number">5</span>        |    <span class="number">2</span> |    <span class="number">5</span> |</span><br><span class="line">					| <span class="number">3</span>        | <span class="number">4</span>        |    <span class="number">3</span> |    <span class="number">4</span> |</span><br><span class="line">					| <span class="number">4</span>        | <span class="number">3</span>        |    <span class="number">4</span> |    <span class="number">3</span> |</span><br><span class="line">					| <span class="number">5</span>        | <span class="number">2</span>        |    <span class="number">5</span> |    <span class="number">2</span> |</span><br><span class="line">					| <span class="number">6</span>        | <span class="number">1</span>        |    <span class="number">6</span> |    <span class="number">1</span> |</span><br><span class="line">					+----------+----------+------+------+</span><br><span class="line">					<span class="number">6</span> rows in set (<span class="number">1.65</span> sec)</span><br><span class="line">					mysql&gt; select welcome.username,Q.id from welcome,Q where welcome.username=Q.id;</span><br><span class="line">					+----------+------+</span><br><span class="line">					| username | id   |</span><br><span class="line">					+----------+------+</span><br><span class="line">					| <span class="number">1</span>        |    <span class="number">1</span> |</span><br><span class="line">					| <span class="number">2</span>        |    <span class="number">2</span> |</span><br><span class="line">					| <span class="number">3</span>        |    <span class="number">3</span> |</span><br><span class="line">					| <span class="number">4</span>        |    <span class="number">4</span> |</span><br><span class="line">					| <span class="number">5</span>        |    <span class="number">5</span> |</span><br><span class="line">					| <span class="number">6</span>        |    <span class="number">6</span> |</span><br><span class="line">					+----------+------+</span><br><span class="line">					<span class="number">6</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">内连接：select 表.字段名,....  from 表1名,表2名,...  where 表1.字段=表2.字段;</span><br></pre></td></tr></table></figure>
+<p>外连接：<br>                    仅仅选取两张相互匹配的记录，并且会选出其他不匹配的记录<br>左连接<br>                    概念：包含左边表中的所有记录(包括右表中没有和它匹配的记录)<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from welcome left join Q on welcome.username=Q.id;</span><br><span class="line">						+----------+----------+------+------+</span><br><span class="line">						| username | password | id   | age  |</span><br><span class="line">						+----------+----------+------+------+</span><br><span class="line">						| <span class="number">1</span>        | <span class="number">6</span>        |    <span class="number">1</span> |    <span class="number">6</span> |</span><br><span class="line">						| <span class="number">6</span>        | <span class="number">1</span>        |    <span class="number">6</span> |    <span class="number">1</span> |</span><br><span class="line">						| <span class="number">5</span>        | <span class="number">2</span>        |    <span class="number">5</span> |    <span class="number">2</span> |</span><br><span class="line">						| <span class="number">2</span>        | <span class="number">5</span>        |    <span class="number">2</span> |    <span class="number">5</span> |</span><br><span class="line">						| <span class="number">3</span>        | <span class="number">4</span>        |    <span class="number">3</span> |    <span class="number">4</span> |</span><br><span class="line">						| <span class="number">4</span>        | <span class="number">3</span>        |    <span class="number">4</span> |    <span class="number">3</span> |</span><br><span class="line">						+----------+----------+------+------+</span><br><span class="line">						<span class="number">6</span> rows in set (<span class="number">0.00</span> sec)</span><br><span class="line">					/查出左边表的所有记录，不管右边有没有相匹配的</span><br></pre></td></tr></table></figure></p>
+<p>右连接<br>                    概念：包含右边表中的所有记录(包括左表中没有和它匹配的记录)<br>                    左连接和右连接是可以相互转换的！<br>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from Q right join welcome on welcome.username=Q.id;</span><br><span class="line">					+------+------+----------+----------+</span><br><span class="line">					| id   | age  | username | password |</span><br><span class="line">					+------+------+----------+----------+</span><br><span class="line">					|    <span class="number">1</span> |    <span class="number">6</span> | <span class="number">1</span>        | <span class="number">6</span>        |</span><br><span class="line">					|    <span class="number">6</span> |    <span class="number">1</span> | <span class="number">6</span>        | <span class="number">1</span>        |</span><br><span class="line">					|    <span class="number">5</span> |    <span class="number">2</span> | <span class="number">5</span>        | <span class="number">2</span>        |</span><br><span class="line">					|    <span class="number">2</span> |    <span class="number">5</span> | <span class="number">2</span>        | <span class="number">5</span>        |</span><br><span class="line">					|    <span class="number">3</span> |    <span class="number">4</span> | <span class="number">3</span>        | <span class="number">4</span>        |</span><br><span class="line">					|    <span class="number">4</span> |    <span class="number">3</span> | <span class="number">4</span>        | <span class="number">3</span>        |</span><br><span class="line">					+------+------+----------+----------+</span><br><span class="line">					<span class="number">6</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h6 id="12-子查询"><a href="#12-子查询" class="headerlink" title="12)子查询"></a><strong>12)子查询</strong></h6><p>一个查询需要另外一个查询的结果参与的时候<br>                    用于子查询的关键字:<br>                        in<br>                        语法：select <em> from  表名 where id in(select 字段名 from 表名);<br>                        in 在..里面<br>                        注意点 in后面的子语句必须只返回一个字段<br>                        若查询结果唯一(只有一条)可以使用=代替in<br>                         not in<br>                        与in相反<br>                         exists<br>                        语法：select语句 where exists(select 语句);<br>                        exists：后面那个子语句有没有查询出记录来，如果查询出记录来返回true,否则就是false<br>                            并且查询出来的记录的具体的值是NULL也是没有关系,也是返回true.<br>                        not exits<br>                            与exists相反<br>                      1)select </em> from 表名 where deptno in(select deptno from 表名);<br>                      2)若查询结果唯一可以使用=代替in<br>                          select * from 表名 where deptno=(select deptno from 表名 limit 限制条件);</p>
+<h6 id="13-记录联合"><a href="#13-记录联合" class="headerlink" title="13)记录联合"></a><strong>13)记录联合</strong></h6><p>​                需要将两个表或者多个表的数据按照一定的查询条件查询出来后，将结果合并到一起显示这是就需要用到记录联合<br>                多个select 语句用<br>                UNION或者UNION ALL隔开即可实现<br>                区别： 前者 会将多个查询结果合并后并且进行去除重复后返回<br>                       后者 则直接合并并不去除重复<br>                联合的条件：查询的列个数要相等<br>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种去除了重复的</span></span><br><span class="line">				mysql&gt; select * from welcome union select * from Q;</span><br><span class="line">				+----------+----------+</span><br><span class="line">				| username | password |</span><br><span class="line">				+----------+----------+</span><br><span class="line">				| <span class="number">1</span>        | <span class="number">6</span>        |</span><br><span class="line">				| <span class="number">6</span>        | <span class="number">1</span>        |</span><br><span class="line">				| <span class="number">5</span>        | <span class="number">2</span>        |</span><br><span class="line">				| <span class="number">2</span>        | <span class="number">5</span>        |</span><br><span class="line">				| <span class="number">3</span>        | <span class="number">4</span>        |</span><br><span class="line">				| <span class="number">4</span>        | <span class="number">3</span>        |</span><br><span class="line">				+----------+----------+</span><br><span class="line">				<span class="number">6</span> rows in set (<span class="number">0.00</span> sec)</span><br><span class="line">				<span class="comment">//第二种没有去掉重复的</span></span><br><span class="line">				mysql&gt; select * from welcome union all select * from Q;</span><br><span class="line">					+----------+----------+</span><br><span class="line">					| username | password |</span><br><span class="line">					+----------+----------+</span><br><span class="line">					| <span class="number">1</span>        | <span class="number">6</span>        |</span><br><span class="line">					| <span class="number">6</span>        | <span class="number">1</span>        |</span><br><span class="line">					| <span class="number">5</span>        | <span class="number">2</span>        |</span><br><span class="line">					| <span class="number">2</span>        | <span class="number">5</span>        |</span><br><span class="line">					| <span class="number">3</span>        | <span class="number">4</span>        |</span><br><span class="line">					| <span class="number">4</span>        | <span class="number">3</span>        |</span><br><span class="line">					| <span class="number">1</span>        | <span class="number">6</span>        |</span><br><span class="line">					| <span class="number">2</span>        | <span class="number">5</span>        |</span><br><span class="line">					| <span class="number">3</span>        | <span class="number">4</span>        |</span><br><span class="line">					| <span class="number">4</span>        | <span class="number">3</span>        |</span><br><span class="line">					| <span class="number">5</span>        | <span class="number">2</span>        |</span><br><span class="line">					| <span class="number">6</span>        | <span class="number">1</span>        |</span><br><span class="line">					+----------+----------+</span><br><span class="line">					<span class="number">12</span> rows in set (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<p>mySQL中的DDL语句和DML语句都是常用的语句，总结下来，多回顾回顾。</p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/04/24/web安全-XSS攻击（一)/" title="[XSS] (XSS理解+练习(一))">
+                    <div class="nextTitle">[XSS] (XSS理解+练习(一))</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/04/20/PHP学习总结(会话控制)/" title="[PHP] (会话控制)">
+                    <div class="prevTitle">[PHP] (会话控制)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、数据库基本概念"><span class="toc-number">1.</span> <span class="toc-text">一、数据库基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、DDL语句"><span class="toc-number">2.</span> <span class="toc-text">二、DDL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-创建数据库"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">1).创建数据库</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-选择要操作的数据库"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">2)选择要操作的数据库</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-查看数据库中所有的数据表"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">3)查看数据库中所有的数据表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-删除数据库"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">4)删除数据库</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1）创建表"><span class="toc-number">2.0.0.5.</span> <span class="toc-text">1）创建表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2）查看表"><span class="toc-number">2.0.0.6.</span> <span class="toc-text">2）查看表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3）查看创建表的SQL语句"><span class="toc-number">2.0.0.7.</span> <span class="toc-text">3）查看创建表的SQL语句</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-删除表"><span class="toc-number">2.0.0.8.</span> <span class="toc-text">4)删除表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-修改表的字段类型"><span class="toc-number">2.0.0.9.</span> <span class="toc-text">5)修改表的字段类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#6-增加表字段"><span class="toc-number">2.0.0.10.</span> <span class="toc-text">6)增加表字段</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#7-删除表字段"><span class="toc-number">2.0.0.11.</span> <span class="toc-text">7)删除表字段</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#8-字段改名"><span class="toc-number">2.0.0.12.</span> <span class="toc-text">8)字段改名</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#9-修改字段排列排序"><span class="toc-number">2.0.0.13.</span> <span class="toc-text">9)修改字段排列排序</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#10-更改表名"><span class="toc-number">2.0.0.14.</span> <span class="toc-text">10)更改表名</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DML语句"><span class="toc-number">2.1.</span> <span class="toc-text">DML语句</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-查询语句"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">1)查询语句</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-插入记录"><span class="toc-number">2.1.0.2.</span> <span class="toc-text">2)插入记录</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-一次插入多条记录"><span class="toc-number">2.1.0.3.</span> <span class="toc-text">3)一次插入多条记录</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-更新记录"><span class="toc-number">2.1.0.4.</span> <span class="toc-text">4)更新记录</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-删除记录"><span class="toc-number">2.1.0.5.</span> <span class="toc-text">5)删除记录</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#6-查询记录"><span class="toc-number">2.1.0.6.</span> <span class="toc-text">6)查询记录</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#7-查询不重复的记录"><span class="toc-number">2.1.0.7.</span> <span class="toc-text">7)查询不重复的记录</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#8-条件查询"><span class="toc-number">2.1.0.8.</span> <span class="toc-text">8)条件查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#9-排序和限制"><span class="toc-number">2.1.0.9.</span> <span class="toc-text">9)排序和限制</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#10-聚合"><span class="toc-number">2.1.0.10.</span> <span class="toc-text">10)聚合</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#11-表连接"><span class="toc-number">2.1.0.11.</span> <span class="toc-text">11)表连接</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#12-子查询"><span class="toc-number">2.1.0.12.</span> <span class="toc-text">12)子查询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#13-记录联合"><span class="toc-number">2.1.0.13.</span> <span class="toc-text">13)记录联合</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 13
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href="/2019/05/31/ISCC2019杂项题(MISC)总结/">[CTF] (ISCC2019-MISC总结)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/CTF 关于ZIP解题过程/">[CTF] (CTF关于ZIP解题思路)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/CTF隐写总结/">[CTF] (CTF隐写总结)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href="/2019/05/08/CTF Crypto(密码学)总结/">[CTF] (CTF密码学总结)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/web安全—XSS攻击(二)/">[XSS] (XSS理解+练习(二))</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href="/2019/04/24/web安全-XSS攻击（一)/">[XSS] (XSS理解+练习(一))</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/PHP学习总结（数据库概念、DDL语句、DML语句）/">[PHP] (数据库概念、DDL语句、DML语句)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/PHP学习总结(会话控制)/">[PHP] (会话控制)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/PHP学习(php概念、基本语法、流程控制)/">[PHP] (php概念、基本语法、流程控制)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/24</span><a class="archive-post-title" href="/2019/03/24/HTML学习总结/">[HTML] (HTML学习总结)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2019/03/20/HTML+CSS+PHP+COOKIE在本地搭建一个简易的登陆注册网页/">[HTML] (本地搭建简易的登陆注册网页)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/CSS学习总结/">[CSS] (CSS学习总结)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/hexo+githup搭建属于自己的博客/">[hexo] (搭建属于自己的博客)</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "💗zihao"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

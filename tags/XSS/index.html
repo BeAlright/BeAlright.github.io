@@ -346,26 +346,30 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/03/20/HTML+CSS+PHP+COOKIE在本地搭建一个简易的登陆注册网页/">
+        <a class="abstract-title" href="/2019/04/28/web安全—XSS攻击(二)/">
             
-                <span>[HTML] (本地搭建简易的登陆注册网页)</span>
+                <span>[XSS] (XSS理解+练习(二))</span>
         </a>
         <div class="abstract-content">
-            昨天晚上看了一叶飘零大佬的直播，大佬说：初学者最好自己先动手去做一些项目，这样能更好的了解原理，恰好学长要求做一个简易的登陆注册系统，利用这个机会再学习一波。
-做了两天，搞懂了很多概念，也遇到了很多问题，但是这个过程特别有意思，记录一下，把那些学到的知识也总结一下。
-一：准备工作打开mySQL打开网站根目录这里我直接放在了WWW目录下，有点乱。这样准备工作就做好了，开始奋斗了。
-开始之前把我写的php文件简单描述一下：login.php（登陆页面)logincookie.php（连接数据库+设置cookie页面）welcome.php  (判断是否有cookie以防绕过+登陆后呈现的页面...
+            练习了DVWA靶场中的XSS了解了一些原理和攻击方式，接下来就用在线XSS平台开始实战一番。
+在线XSS平台地址
+第一关用最常用的攻击语句试试。
+1&lt;script&gt;alert(/hacker/)&lt;/script&gt;
+
+第二关就先把这个最简单的攻击语句放上去看看
+1&lt;script&gt;alert(/hacker/)&lt;/script&gt;
+没有出现弹窗，看下页面源代码。12&lt;input name=keyword  value="&lt;script&gt;alert(/hacker/)&lt;/script&gt;"&gt;&lt;input ty...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/20</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/28</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="HTML">HTML</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
     
 </div>
             
@@ -378,62 +382,30 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/03/18/CSS学习总结/">
+        <a class="abstract-title" href="/2019/04/24/web安全-XSS攻击（一)/">
             
-                <span>[CSS] (CSS学习总结)</span>
+                <span>[XSS] (XSS理解+练习(一))</span>
         </a>
         <div class="abstract-content">
-            CSS学习总结CSS定义及三种引入方式
-CSS是一种层叠样式表直接放在div标签里面
+            XSS攻击和SQL注入都是web安全中很常见的攻击方式，最近先学习XSS攻击，待到XSS学完后再去学习SQL注入，哇（感慨一番），这些知识真的太有趣了。
+在开始之前，有必要了解一下概念
+1、XSS跨站脚本攻击定义
+跨站脚本攻击是指攻击者利用网站程序对用户输入过滤不足，输入可以显示在页面上对其他用户造成影响的HTML代码，从而盗取用户资料、利用用户身份进行某种动作或者访问者进行病毒侵害的一种攻击方式。为了与层叠样式表的缩写CSS区分开，跨站脚本攻击通常简写为XSS。
 
-第一种：内敛样式表12345678910&lt;!DOCTYPE html&gt;&lt;html lang="zh"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;title&gt;CSS&lt;/title&gt;&lt;/head&gt;&lt;body&gt;	&lt;div style="color:red;width:100px;height:100px;"&gt;文本&lt;/div&gt;&lt;/body&gt;&lt;/html&gt...
+2、XSS类型1)反射型XSS
+
+反射型XSS只是简单地将用户输入的数据直接或未经完善的安全过滤就在浏览器中进行输出，导致...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/18</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/24</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="CSS">CSS</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/12/hexo+githup搭建属于自己的博客/">
-            
-                <span>[hexo] (搭建属于自己的博客)</span>
-        </a>
-        <div class="abstract-content">
-            hexo+githup搭建属于自己的博客 第一次搭建博客，遇到不少坑。CSDN、bing、谷歌、百度上都有大神的博客教授如何一步一步搭建属于自己的博客。不过我毕竟属于小白，文字有时给我的感受不是那么的直观，所以我是在B站看视频一步一步做的.话说他们的视频都写无坑视频。。。我却遇到了。。。很多坑，但觉得也很有趣，所以记录一下我的搭建过程。
-
-
-安装node.js
-
-
-官网链接选择10.15.3LTS进行下载。我是一路next,我开始搭的时候不想放入C盘，但后来发现npm命令不能用😂，才发现还要改路径，很麻烦。所以就一路next放进C盘中去。安装好后，打开cmd
-12C:\Users\用户...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="hexo">hexo</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
     
 </div>
             
@@ -441,10 +413,6 @@ CSS是一种层叠样式表直接放在div标签里面
     </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
     
 </main>
             <!-- profile -->
