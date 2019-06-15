@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>tags · Simon&#39;s blog</title>
+    <title>Bugku—MISC题总结 · Simon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Simon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Bugku—MISC题总结</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Simon's blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/1.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            Bugku—MISC题总结
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+                Record my learning process of CTF.
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1k</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/15</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -340,7 +403,28 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <p>前言：MISC考脑洞，也考分析和观察能力，总之比较有趣，就总结一下我的做题过程。</p>
+<h6 id="这是一张单纯的图片"><a href="#这是一张单纯的图片" class="headerlink" title="这是一张单纯的图片"></a><strong>这是一张单纯的图片</strong></h6><p><img src="http://i1.fuimg.com/690112/36c7ee7efc916765.png" alt="在这里插入图片描述"><br>用winhex打开<br><img src="http://i1.fuimg.com/690112/5e3cae5421b59bac.png" alt="在这里插入图片描述"><br> Unicode编码转换ASCII即可得出flag</p>
+<h6 id="隐写"><a href="#隐写" class="headerlink" title="隐写"></a><strong>隐写</strong></h6><p><img src="http://i1.fuimg.com/690112/03e5c4f180db7fac.png" alt="在这里插入图片描述"><br><img src="http://i1.fuimg.com/690112/d3d2da59156c7187.png" alt="在这里插入图片描述"><br>前四位是宽度，后四位是高度。将<code>A4修改位F4</code>即可得出flag</p>
+<h6 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a><strong>telnet</strong></h6><p>winhex打开就可得出flag<br><img src="http://i1.fuimg.com/690112/d9a0c0ce094c5c33.png" alt="在这里插入图片描述"></p>
+<h6 id="眼见非实-ISCCCTF"><a href="#眼见非实-ISCCCTF" class="headerlink" title="眼见非实(ISCCCTF)"></a><strong>眼见非实(ISCCCTF)</strong></h6><p><img src="http://i1.fuimg.com/690112/a057164ac815a7c2.png" alt="在这里插入图片描述"><br>下载之后打不开，根据提示眼见非实，将<code>docx文件改成zip文件</code><br><img src="http://i1.fuimg.com/690112/25382b1bdb327a92.png" alt="在这里插入图片描述"><br><img src="http://i1.fuimg.com/690112/b9520ba57d31e23a.png" alt="在这里插入图片描述"><br>即可得出flag</p>
+<h6 id="啊哒"><a href="#啊哒" class="headerlink" title="啊哒"></a><strong>啊哒</strong></h6><p><img src="http://i1.fuimg.com/690112/9e59e7c5264455b2.png" alt="在这里插入图片描述"><br>用winhex打开，发现隐藏有zip文件，用binwalk进行分离<br><img src="http://i1.fuimg.com/690112/fee5e4d1a2831c0a.png" alt="在这里插入图片描述"><br>得到一个加密文本，开始以为是伪加密，但用winhex打开后查看不是伪加密，因为不知道是否含字符、或是几位数，所以暴力破解也是不可取的，回去查看第一张照片，应该还隐藏有信息。<br><img src="http://i1.fuimg.com/690112/0485c3ba443de942.png" alt="在这里插入图片描述"><br>果然藏有东西，base16解码即可得出密码<code>sdnisc_2018</code>，打开文本即可得出flag</p>
+<h6 id="又一张图片，还单纯吗"><a href="#又一张图片，还单纯吗" class="headerlink" title="又一张图片，还单纯吗"></a><strong>又一张图片，还单纯吗</strong></h6><p><img src="http://i1.fuimg.com/690112/b350e66fbd0cb1f0.png" alt="在这里插入图片描述"><br>第一反应便是winhex打开，结果也没有发现什么，用binwalk分离也分离不出来，但确实能看出里面隐藏有文件。这里就需要一个新的工具<code>foremost-master</code>分离工具。<br>输入命令，提取出文件，即可得出flag</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ foremost -T <span class="number">2.</span>jpg</span><br><span class="line">Processing: <span class="number">2.</span>jpg</span><br><span class="line">|*|</span><br></pre></td></tr></table></figure>
+<p><img src="http://i1.fuimg.com/690112/24996fc6f47ee5d0.png" alt="在这里插入图片描述"></p>
+<h6 id="猜"><a href="#猜" class="headerlink" title="猜"></a><strong>猜</strong></h6><p>百度识图，直接可以识别是谁，至于flag提示中有</p>
+<h6 id="隐写2"><a href="#隐写2" class="headerlink" title="隐写2"></a><strong>隐写2</strong></h6><p><img src="http://i1.fuimg.com/690112/481cb5376b2ab584.png" alt="在这里插入图片描述"><br>winhex查看<br><img src="http://i1.fuimg.com/690112/646babcde7be517f.png" alt="在这里插入图片描述"><br>binwalk进行分离<br><img src="http://i1.fuimg.com/690112/797bce57dd305a89.png" alt="在这里插入图片描述"><br>分离出一个加密的图片，和一个提示，既然都告诉我们了密码是3个数，直接暴力破解密码为<code>871</code>，即可得出flag</p>
+<h6 id="宽带信息泄露"><a href="#宽带信息泄露" class="headerlink" title="宽带信息泄露"></a><strong>宽带信息泄露</strong></h6><p><img src="http://i1.fuimg.com/690112/f6db4f84f3fed777.png" alt="在这里插入图片描述"><br>一开始各种方法都试过，实在没思路，回去看题目，<strong>宽带信息泄露</strong>，用文本打开是乱码，说明被加密了，这里就需要一个工具<code>RouterPassView</code>来帮助做题了<br>又提示<code>flag{宽带用户名}</code>，打开工具直接查找username，即可得出flag。<br><img src="http://i1.fuimg.com/690112/64b37d413b47f5bb.png" alt="在这里插入图片描述"></p>
+<h6 id="多种方法解决"><a href="#多种方法解决" class="headerlink" title="多种方法解决"></a><strong>多种方法解决</strong></h6><p><img src="http://i1.fuimg.com/690112/f4d375a3f0abdf14.png" alt="在这里插入图片描述"><br>用winhex打开后，发现是base64转图片的格式，在线转图片，即可得出flag<br><img src="http://i1.fuimg.com/690112/53d69ce538807d36.png" alt="在这里插入图片描述"></p>
+<h6 id="闪的好快"><a href="#闪的好快" class="headerlink" title="闪的好快"></a><strong>闪的好快</strong></h6><p><img src="http://i1.fuimg.com/690112/e67567421051d89f.png" alt="在这里插入图片描述"><br>得出一个gif二维码，用神器<strong>Stegsolve</strong>即可得出18张二维码图片，扫码即可得出flag</p>
+<h6 id="白哥的鸽子"><a href="#白哥的鸽子" class="headerlink" title="白哥的鸽子"></a><strong>白哥的鸽子</strong></h6><p><img src="http://i1.fuimg.com/690112/55bc0acfb698a3b4.png" alt="在这里插入图片描述"><br>一开始用winhex打开，没有注意到末尾，尝试了其他方法不行才发现末尾的重要信息。<br><img src="http://i1.fuimg.com/690112/886f5b5657890568.png" alt="在这里插入图片描述"><br>这里可以看到<code>flag</code>只是顺序被打乱了，<strong>栅栏加密</strong>，解密即可得出flag<br><img src="http://i1.fuimg.com/690112/a4aafe50fa2b0e0d.png" alt="在这里插入图片描述"><br><code>flag</code>需去除两个@</p>
+<h6 id="隐写3"><a href="#隐写3" class="headerlink" title="隐写3"></a><strong>隐写3</strong></h6><p><img src="http://i1.fuimg.com/690112/18cc27a762ac762d.png" alt="在这里插入图片描述"><br>这道题要敏感，大白怎么可能光一个头，所以应该是改图片的宽高，即可得出flag<br><img src="http://i1.fuimg.com/690112/e329671953b569ba.png" alt="在这里插入图片描述"><br><img src="http://i1.fuimg.com/690112/892d6b45f2627f70.png" alt="在这里插入图片描述"><br>这样才可爱</p>
+<h6 id="爆照-08067CTF"><a href="#爆照-08067CTF" class="headerlink" title="爆照(08067CTF)"></a><strong>爆照(08067CTF)</strong></h6><p><img src="http://i1.fuimg.com/690112/54d6be0fa1e89592.png" alt="在这里插入图片描述"><br>下载图片，用winhex打开后发现隐藏有zip文件，binwalk进行分离。<br><img src="http://i1.fuimg.com/690112/5e8da1385af951e5.png" alt="在这里插入图片描述"><br>给了一堆文件，把后缀名改为jpg,看看能显示出什么<br><img src="http://i1.fuimg.com/690112/c68a577ad7af2e1f.png" alt="在这里插入图片描述"><br>发现其中一个有二维码，扫出<code>bilibili</code><br>再看题目提示答案格式<br><img src="http://i1.fuimg.com/690112/9018e1c6406307a6.png" alt="在这里插入图片描述"><br>我们应该还漏掉有其他答案，再回去查看图片<br><img src="http://i1.fuimg.com/690112/030d90330b26355d.png" alt="在这里插入图片描述"><br>888.jpg发现base64，解密得出<code>silisili</code><br>应该还有一个<br>在8888.jpg中发现隐藏有图片，binwalk一下即可<br><img src="http://i1.fuimg.com/690112/26f94ac389105dba.png" alt="在这里插入图片描述"><br>得出<code>panama</code><br>按照题目提示拼接成falg即可</p>
+<h6 id="神秘的文件"><a href="#神秘的文件" class="headerlink" title="神秘的文件"></a><strong>神秘的文件</strong></h6><p><img src="http://i1.fuimg.com/690112/bfda320e21a54626.png" alt="在这里插入图片描述"><br>flag压缩包中还有一个logo图片<br><img src="http://i1.fuimg.com/690112/a8fe505ec5128607.png" alt="在这里插入图片描述"><br>明文攻击，把外面的logo图片也压缩进flag压缩包中<br><img src="http://i1.fuimg.com/690112/6fc01fd25d04f1c3.png" alt="在这里插入图片描述"><br>接下来爆破口令<br><img src="http://i1.fuimg.com/690112/2171e268e0b50bd0.png" alt="在这里插入图片描述"><br>打开word<br><img src="http://i1.fuimg.com/690112/f2d54d3b4789052d.png" alt="在这里插入图片描述"><br>既然找不到flag，把你变成zip格式看看是否隐藏有<br><img src="http://i1.fuimg.com/690112/7ee4d47e71674099.png" alt="在这里插入图片描述"><br>找到了<br><img src="http://i1.fuimg.com/690112/f6276496fb6bbf9f.png" alt="在这里插入图片描述"><br>base64解密即可得出flag</p>
+<h6 id="细心的大象"><a href="#细心的大象" class="headerlink" title="细心的大象"></a><strong>细心的大象</strong></h6><p><img src="http://i1.fuimg.com/690112/f9c65e005d314546.png" alt="在这里插入图片描述"><br>细心的大象，要细心，看看照片详细信息隐藏有东西没<br><img src="http://i1.fuimg.com/690112/c5f05f38973958bf.png" alt="在这里插入图片描述"><br>果然，这个又是<code>base64</code>加密的<br>接下来，把照片<code>binwalk</code>一下，出来一个压缩包，里面一个加密的图片<br><img src="http://i1.fuimg.com/690112/87da7c4bb9a0acce.png" alt="在这里插入图片描述"><br>上面base64解密后的密码就是这个照片的密码<br><img src="http://i1.fuimg.com/690112/e4c7cefc697cd22c.png" alt="在这里插入图片描述"><br>跟一开始遇到那道题一样，修改宽高即可得出flag</p>
+<h6 id="图穷匕见"><a href="#图穷匕见" class="headerlink" title="图穷匕见"></a><strong>图穷匕见</strong></h6><p><img src="http://i1.fuimg.com/690112/8ccb7f8eba28d5ac.png" alt="在这里插入图片描述"><br>之前做过这种题，打开winhex后发现一堆十六进制，在<code>notepad++</code>打开后转成ascll，再替换成相应的格式即可画图。<br><img src="http://i1.fuimg.com/690112/b9b5b46e9a926dfc.png" alt="在这里插入图片描述"><br><img src="http://i1.fuimg.com/690112/b6431e2c56aff220.png" alt="在这里插入图片描述"><br>具体做法这里就不细说了，之前总结的也做过这个题。</p>
+<p>这次就先总结到这里，另一部分的题写到下一篇博客中。</p>
+
     </article>
     <!-- license  -->
     
@@ -350,6 +434,11 @@
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/06/09/通过sql-labs进行sql注入学习(一)/" title="通过sql-labs进行sql注入学习(一)">
+                    <div class="prevTitle">通过sql-labs进行sql注入学习(一)</div>
+                </a>
             
         </li>
     </ul>
@@ -457,6 +546,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#这是一张单纯的图片"><span class="toc-number">1.</span> <span class="toc-text">这是一张单纯的图片</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#隐写"><span class="toc-number">2.</span> <span class="toc-text">隐写</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#telnet"><span class="toc-number">3.</span> <span class="toc-text">telnet</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#眼见非实-ISCCCTF"><span class="toc-number">4.</span> <span class="toc-text">眼见非实(ISCCCTF)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#啊哒"><span class="toc-number">5.</span> <span class="toc-text">啊哒</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#又一张图片，还单纯吗"><span class="toc-number">6.</span> <span class="toc-text">又一张图片，还单纯吗</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#猜"><span class="toc-number">7.</span> <span class="toc-text">猜</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#隐写2"><span class="toc-number">8.</span> <span class="toc-text">隐写2</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#宽带信息泄露"><span class="toc-number">9.</span> <span class="toc-text">宽带信息泄露</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#多种方法解决"><span class="toc-number">10.</span> <span class="toc-text">多种方法解决</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#闪的好快"><span class="toc-number">11.</span> <span class="toc-text">闪的好快</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#白哥的鸽子"><span class="toc-number">12.</span> <span class="toc-text">白哥的鸽子</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#隐写3"><span class="toc-number">13.</span> <span class="toc-text">隐写3</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#爆照-08067CTF"><span class="toc-number">14.</span> <span class="toc-text">爆照(08067CTF)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#神秘的文件"><span class="toc-number">15.</span> <span class="toc-text">神秘的文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#细心的大象"><span class="toc-number">16.</span> <span class="toc-text">细心的大象</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#图穷匕见"><span class="toc-number">17.</span> <span class="toc-text">图穷匕见</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -822,6 +929,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
