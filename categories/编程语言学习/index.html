@@ -346,92 +346,24 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/05/31/ISCC2019杂项题(MISC)总结/">
+        <a class="abstract-title" href="/2019/06/19/C++学习总结（函数、类与对象）/">
             
-                <span>ISCC2019-MISC总结</span>
+                <span>C++学习总结（函数、类与对象）</span>
         </a>
         <div class="abstract-content">
-            ISCC2019刚刚结束，作为一个萌新我是真的菜，真心菜不过也会几道杂项题，就总结一下做题思路。
-Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张完整的图做到这里没思路了，就回去看题目提示。Aesop’s chest and key lie within .to find it（伊索的胸膛和钥匙都在里面。为了找到它 ）还是一脸懵，用winhex打开我们得到的完整图和gif的图看看会有什么出现。在gif图中发现下面感觉像base64，试试吧发现前面有一个单词，百度翻译（盐），一般这些都是有密钥的加密密文，取在线网站挨个解下，看看那个可以，密钥当然就是ISCC了...
+            前言：时间过的好快，转眼一学期就过去了，期末考试也快到了，所以就复习一遍同时也将自己学习的感悟总结下来。前面几章大多与C语言相似，就不总结了。
+第三章——函数参数传递123456789101112131415161718192021#include &lt;iostream&gt;using namespace std;void swap(int a,int b) &#123;    int t=a;        b=t;        a=b;&#125;int main()&#123;    int x=5,y=10;    cout&lt;&lt;"x= "&lt;&lt;x&l...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/31</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/19</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/18/CTF 关于ZIP解题过程/">
-            
-                <span>CTF关于ZIP解题思路</span>
-        </a>
-        <div class="abstract-content">
-            CTF 关于ZIP解题1.伪加密类型打开之后是两张图片，一张未加密，一张已加密。利用WinHex打开然后在谷歌上找到大佬关于zip格式的介绍接下来进行对比，看是否属于伪加密通过对比，发现确实属于伪加密。所以将09改为00即可。
-
-总结：从50 4B 01 02 开始数十位数便能查看是否是伪加密。
-
-2.CRC32碰撞总结![在这里插入图片描述](https://github.com/bealright/bealright.github.io/blob/master/CTF%20zip/6.png?raw=true)
-这个题是CRC32碰撞，首先有不会的就百度、谷歌。
-通过查找发现需要CR...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/09/CTF隐写总结/">
-            
-                <span>CTF隐写总结</span>
-        </a>
-        <div class="abstract-content">
-            CTF隐写总结一：LSB隐写
- LSB概念    LSB，英文 least significant bit，中文义最低有效位。    对于一个给定的数据串,其最低有效位就是拥有最小单位数值的那一位.
-
-关于LSB隐写的详细介绍                LSB详细介绍关于LSB隐写的详细算法                LSB详细算法关于LSB隐写的总结博客                 LSB隐写总结隐写技巧：PNG文件中的LSB隐写
-打开以后是一张这样的图片题目已经提醒这道题属于LSB隐写，那么就发动查百度、谷歌大法吧。经过查找，会发现需要用这个神器来处理这种题目。但打开这个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="C++">C++</a>
     
 </div>
             
