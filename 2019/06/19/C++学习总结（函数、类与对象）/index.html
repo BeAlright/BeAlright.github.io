@@ -404,32 +404,30 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <p>前言：时间过的好快，转眼一学期就过去了，期末考试也快到了，所以就复习一遍同时也将自己学习的感悟总结下来。前面几章大多与<strong>C语言</strong>相似，就不总结了。</p>
-<p><strong>第三章——函数</strong><br><strong>参数传递</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=a;</span><br><span class="line">        b=t;</span><br><span class="line">        a=b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">5</span>,y=<span class="number">10</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"x= "</span>&lt;&lt;x&lt;&lt;<span class="string">" y= "</span>&lt;&lt;y&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    swap(x,y);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"x= "</span>&lt;&lt;x&lt;&lt;<span class="string">" y= "</span>&lt;&lt;y&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出结果</span></span><br><span class="line">x= <span class="number">5</span> y= <span class="number">10</span></span><br><span class="line">x= <span class="number">5</span> y= <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="第三章——函数"><a href="#第三章——函数" class="headerlink" title="第三章——函数"></a><strong>第三章——函数</strong></h4><h6 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a><strong>参数传递</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=a;</span><br><span class="line">        b=t;</span><br><span class="line">        a=b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">5</span>,y=<span class="number">10</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"x= "</span>&lt;&lt;x&lt;&lt;<span class="string">" y= "</span>&lt;&lt;y&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    swap(x,y);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"x= "</span>&lt;&lt;x&lt;&lt;<span class="string">" y= "</span>&lt;&lt;y&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出结果</span></span><br><span class="line">x= <span class="number">5</span> y= <span class="number">10</span></span><br><span class="line">x= <span class="number">5</span> y= <span class="number">10</span></span><br></pre></td></tr></table></figure>
 <p>通过这个例子，可以看出<strong>形参值的改变对实参是无影响的</strong>，如果是引用传递的话就另当别论了，看下面这个例子。<br><img src="http://i2.tiimg.com/690112/0213f081d1443922.png" alt="在这里插入图片描述"><br>可以看出，如果使用<strong>引用参数的话是可以改变实参的值</strong>，但要注意：</p>
 <ul>
 <li>声明一个引用时，必须同时对它进行初始化，使它指向一个已经存在的对象</li>
 <li>一旦一个引用被初始化后，就不能改为指向其他对象</li>
 </ul>
-<p><strong>内敛函数</strong><br><img src="http://i2.tiimg.com/690112/cf71595bd08b671f.png" alt="在这里插入图片描述"><br>对于内敛函数，我的理解是就相当于<strong>一个类中公有类型的成员函数</strong>，只不过是放在了类外面，需要在函数返回值类型前加上<code>inline</code>,而且内敛函数大多都是调用频率很高，而且代码是相对简单的。</p>
-<p><strong>带默认形参值的函数</strong><br><img src="http://i2.tiimg.com/690112/85f82006408320ea.png" alt="在这里插入图片描述"><br>通过这个代码就会理解<strong>带默认形参值的函数</strong>，但也有几点要注意：</p>
+<h6 id="内敛函数"><a href="#内敛函数" class="headerlink" title="内敛函数"></a><strong>内敛函数</strong></h6><p><img src="http://i2.tiimg.com/690112/cf71595bd08b671f.png" alt="在这里插入图片描述"><br>对于内敛函数，我的理解是就相当于<strong>一个类中公有类型的成员函数</strong>，只不过是放在了类外面，需要在函数返回值类型前加上<code>inline</code>,而且内敛函数大多都是调用频率很高，而且代码是相对简单的。</p>
+<h6 id="带默认形参值的函数"><a href="#带默认形参值的函数" class="headerlink" title="带默认形参值的函数"></a><strong>带默认形参值的函数</strong></h6><p><img src="http://i2.tiimg.com/690112/85f82006408320ea.png" alt="在这里插入图片描述"><br>通过这个代码就会理解<strong>带默认形参值的函数</strong>，但也有几点要注意：</p>
 <ul>
 <li>有默认值的形参必须在形参列表的最后，因为实参与形参是按照从左到右的顺序建立关系的。</li>
 <li>在相同的作用域中，不允许在同一个函数的多个声明中对一个参数的默认值重复定义。</li>
 </ul>
-<p><strong>函数重载</strong><br><img src="http://i2.tiimg.com/690112/6370d311a2eabb7f.png" alt="在这里插入图片描述"><br>说白了，就是同一个函数名，但又不同的功能，这就叫函数重载，也需注意：</p>
+<h6 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a><strong>函数重载</strong></h6><p><img src="http://i2.tiimg.com/690112/6370d311a2eabb7f.png" alt="在这里插入图片描述"><br>说白了，就是同一个函数名，但又不同的功能，这就叫函数重载，也需注意：</p>
 <ul>
 <li>函数重载不以形参名来区分函数</li>
 <li>函数重载不以返回值来区分函数</li>
 </ul>
-<p><strong>第四章——类与对象</strong></p>
-<blockquote>
+<h4 id="第四章——类与对象"><a href="#第四章——类与对象" class="headerlink" title="第四章——类与对象"></a><strong>第四章——类与对象</strong></h4><blockquote>
 <p><strong>类的定义：</strong><br>class 类名称<br>{<br>        public：<br>                外部接口<br>private：<br>私有成员<br>}；<br><strong>对象声明:</strong><br>类名 对象名;<br><strong>对象访问数据成员:</strong><br>对象名<code>.</code>数据成员名<br><strong>对象调用函数成员:</strong><br>对象名<code>.</code>函数成员名（参数表）<br><strong>成员函数的实现:</strong><br> 返回值类型  类名<code>::</code>函数成员名（参数表）<br> {<br>     函数体<br> }</p>
 </blockquote>
 <p> 例如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> Clock::setTime(<span class="keyword">int</span> newH,<span class="keyword">int</span> newM,<span class="keyword">int</span> newS) &#123;</span><br><span class="line">   hour=newH;</span><br><span class="line">   minute=newM;</span><br><span class="line">   second=newS;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Clock::showTime() &#123;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;huor&lt;&lt;<span class="string">":"</span>&lt;&lt;minute&lt;&lt;<span class="string">":"</span>&lt;&lt;seconde&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>到这才算刚接触到C++，这些便是C++访问成员函数或对象的一些方法。</p>
-<p><strong>构造函数</strong><br><img src="http://i2.tiimg.com/690112/74f85e0053d328b0.png" alt="在这里插入图片描述"><br>通过这个代码，感觉构造函数有一般成员函数的特征，但构造函数有一些特殊的特征：<strong>构造函数的函数名与类名相同，而且没有返回值</strong></p>
-<p><strong>复制构造函数</strong></p>
-<blockquote>
+<h6 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a><strong>构造函数</strong></h6><p><img src="http://i2.tiimg.com/690112/74f85e0053d328b0.png" alt="在这里插入图片描述"><br>通过这个代码，感觉构造函数有一般成员函数的特征，但构造函数有一些特殊的特征：<strong>构造函数的函数名与类名相同，而且没有返回值</strong></p>
+<h6 id="复制构造函数"><a href="#复制构造函数" class="headerlink" title="复制构造函数"></a><strong>复制构造函数</strong></h6><blockquote>
 <p>复制构造函数的一般方法<br>class 类名<br>{<br>    public:<br>            类名（形参名）；//构造函数<br>    类名（类名 &amp;对象名）；//复制构造函数<br>…<br>};<br>类名：：类名（类名 &amp;对象名）；//复制构造函数的实现<br>{<br>函数体<br>}</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">point</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    point(<span class="keyword">int</span> xx=<span class="number">0</span>,<span class="keyword">int</span> yy=<span class="number">0</span>) &#123;</span><br><span class="line">        x=xx;</span><br><span class="line">        y=yy;</span><br><span class="line">    &#125;</span><br><span class="line">    point(point &amp;p);</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> x;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> y;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//成员函数实现</span></span><br><span class="line">point::point(point &amp;p) &#123;</span><br><span class="line">        x=p.x;</span><br><span class="line">        y=p.y;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"copy"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//形参为point类对象的函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun1</span><span class="params">(point p)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;p.getX()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回值为point类对象的函数</span></span><br><span class="line"><span class="function">point <span class="title">fun2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">point <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">point <span class="title">a</span><span class="params">(<span class="number">4</span>,<span class="number">5</span>)</span></span>;</span><br><span class="line">    point b=a;<span class="comment">//情况一，用a初始化b.第一次调用复制构造函数</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;b.getX()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    fun1(b);<span class="comment">//情况二，对象b作为fun1的实参。第二次调用复制构造函数</span></span><br><span class="line">    b=fun2();<span class="comment">//情况三，函数返回值是类对象，函数返回时，调用复制构造函数</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;b.getX()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -440,7 +438,7 @@ height:50vh;
 <li>如果函数的形参是类的对象，调用函数时，进行形参和实参的结合时。</li>
 <li>如果函数的返回值是类的对象，函数执行完成返回调用者时。</li>
 </ul>
-<p><strong>析构函数</strong><br>构造对象时，构造函数中分配了资源，动态申请了一些内存单元，在对象消失时需要释放这些内存单元。而<strong>析构函数就用来完成对象被删除前的一些清理工作</strong>。<strong>析构函数是在对象的生产期即将结束的时刻被自动调用的。而且析构函数不接收任何参数</strong>。<br><img src="http://i2.tiimg.com/690112/888b296c92a4d65d.png" alt="在这里插入图片描述"></p>
+<h6 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a><strong>析构函数</strong></h6><p>构造对象时，构造函数中分配了资源，动态申请了一些内存单元，在对象消失时需要释放这些内存单元。而<strong>析构函数就用来完成对象被删除前的一些清理工作</strong>。<strong>析构函数是在对象的生产期即将结束的时刻被自动调用的。而且析构函数不接收任何参数</strong>。<br><img src="http://i2.tiimg.com/690112/888b296c92a4d65d.png" alt="在这里插入图片描述"></p>
 
     </article>
     <!-- license  -->
@@ -579,7 +577,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#第三章——函数"><span class="toc-number">1.</span> <span class="toc-text">第三章——函数</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#参数传递"><span class="toc-number">1.0.1.</span> <span class="toc-text">参数传递</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#内敛函数"><span class="toc-number">1.0.2.</span> <span class="toc-text">内敛函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#带默认形参值的函数"><span class="toc-number">1.0.3.</span> <span class="toc-text">带默认形参值的函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#函数重载"><span class="toc-number">1.0.4.</span> <span class="toc-text">函数重载</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第四章——类与对象"><span class="toc-number">2.</span> <span class="toc-text">第四章——类与对象</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#构造函数"><span class="toc-number">2.0.1.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#复制构造函数"><span class="toc-number">2.0.2.</span> <span class="toc-text">复制构造函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#析构函数"><span class="toc-number">2.0.3.</span> <span class="toc-text">析构函数</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -592,20 +590,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -891,6 +875,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
@@ -902,8 +888,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
-    
-        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -938,11 +922,11 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
+    
         <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
     
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
-    
-        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
