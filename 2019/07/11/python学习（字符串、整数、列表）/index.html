@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>XSS理解+练习(一) · Lemon&#39;s blog</title>
+    <title>python学习（字符串、整数、列表） · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">Lemon&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">XSS理解+练习(一)</a>
+                <a href="#" class="post-name">python学习（字符串、整数、列表）</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            XSS理解+练习(一)
+            python学习（字符串、整数、列表）
             <!-- 404 -->
             
         </h1>
@@ -256,7 +256,7 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                Record my learning process of XSS.
+                Record my learning process of python.
             
             <!-- 404 -->
             
@@ -268,18 +268,18 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/24</span>
+                    <span class="post-intro-time">2019/07/11</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,59 +403,99 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><strong>XSS攻击和SQL注入都是web安全中很常见的攻击方式，最近先学习XSS攻击，待到XSS学完后再去学习SQL注入，哇（感慨一番），这些知识真的太有趣了。</strong></p>
-<p><strong>在开始之前，有必要了解一下概念</strong></p>
-<h6 id="1、XSS跨站脚本攻击定义"><a href="#1、XSS跨站脚本攻击定义" class="headerlink" title="1、XSS跨站脚本攻击定义"></a>1、XSS跨站脚本攻击定义</h6><blockquote>
-<p>跨站脚本攻击是指攻击者利用网站程序对用户输入过滤不足，输入可以显示在页面上对其他用户造成影响的HTML代码，从而盗取用户资料、利用用户身份进行某种动作或者访问者进行病毒侵害的一种攻击方式。为了与层叠样式表的缩写CSS区分开，跨站脚本攻击通常简写为XSS。</p>
-</blockquote>
-<h6 id="2、XSS类型"><a href="#2、XSS类型" class="headerlink" title="2、XSS类型"></a>2、XSS类型</h6><p>1)反射型XSS</p>
+        <p>前言：python语言简洁，而且写web题脚本方便，暑假闲着也无聊，不如学习一些知识。</p>
+<p><strong>一、字符串</strong><br><strong>修改字符串的大小写</strong><br>python中定义字符串用<strong>双引号</strong>或<strong>单引号</strong>都可以<br><img src="http://i2.tiimg.com/690112/51910edd0b651938.png" alt="在这里插入图片描述"><br>python需要提前<strong>定义变量</strong>，这点和C语言一样，而且python中有<strong>方法</strong>，方法中包含一些功能，这里我觉得和<strong>C++中的成员函数</strong>比较相似，就连调用方法也相同，只不过python已经写好了这些功能，我们直接调用即可。<br><img src="http://i2.tiimg.com/690112/81a37636f65ff150.png" alt="在这里插入图片描述"></p>
 <blockquote>
-<p>反射型XSS只是简单地将用户输入的数据直接或未经完善的安全过滤就在浏览器中进行输出，导致输出的数据中存在可被浏览器执行的代码数据。由于此种类型的跨站代码存在于URL中，所以黑客通常需要通过诱骗或加密变形等方式将存在恶意代码的链接发给用户，只有用户点击以后才能使得攻击成功实施。</p>
+<p>title()方法<em>将字符串首字母大写<br>upper()方法</em>将字符串全变成大写<br>lower()方法_将字符串全变成小写</p>
 </blockquote>
-<p>2)存储型XSS</p>
+<p><strong>合并字符串</strong></p>
 <blockquote>
-<p>存储型XSS脚本攻击是指由于Web应用程序对用户输入数据的不严格，导致Web应用程序将黑客输入的恶意跨站攻击数据信息保存在服务端的数据库或其他文件形式中，当网页进行数据查询展示时，会从数据库中获取数据内容，并将数据内容在网页中进行输出展示，进而导致跨站脚本代码的执行。</p>
+<p><code>+</code> 起连接作用</p>
 </blockquote>
-<p>3)DOM Based XSS</p>
+<p><img src="http://i2.tiimg.com/690112/e789c87798217a05.png" alt="在这里插入图片描述"><br>python中合并字符串也很方便，直接一个<code>+</code>号就可以连接前后的字符串。<br><img src="http://i2.tiimg.com/690112/2232056c89d82065.png" alt="在这里插入图片描述"><br>也可以这样表示：<br><img src="http://i2.tiimg.com/690112/497b12faec7c61ba.png" alt="在这里插入图片描述"><br>总之，python的语法是真的简洁，不需要像C语言一般还需要调用函数来完成合并字符串。</p>
+<p><strong>使用制表符和换行符</strong></p>
 <blockquote>
-<p>基于DOM的XSS跨站脚本攻击是通过修改页面。DOM节点数据信息而形成的XSS跨站脚本攻击。不同于反射型XSS和存储型XSS，基于DOM的XSS跨站脚本攻击往往需要针对具体的Javascript DOM代码进行分析，并根据实际情况进行XSS跨站脚本攻击的利用。</p>
+<p>\t 制表符<br>\n 换行符<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"\tpython"</span>)</span><br><span class="line">输出结果：</span><br><span class="line">	python</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>3、XSS攻击</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"ss\ntt\nll\n"</span>)</span><br><span class="line">输出结果：</span><br><span class="line">ss</span><br><span class="line">tt</span><br><span class="line">ll</span><br></pre></td></tr></table></figure>
+<p><strong>删除空白</strong></p>
 <blockquote>
-<p>1.XSS盗取用户信息<br>    2.XSS盗取Cookie<br>    3.XSS钓鱼攻击<br>    4.XSS蠕虫攻击</p>
+<p>rstrip()方法删除字符串末尾的空白<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>language=<span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language</span><br><span class="line"><span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language.rstrip()</span><br><span class="line"><span class="string">'python'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language</span><br><span class="line"><span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br><span class="line">//这样的删除方法删除空白只是暂时的</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/1.jpg?raw=true" alt="在这里插入图片描述"><br>了解完这些概念之后，就来实战。</p>
-<p><strong>一、在DVWA漏洞靶场练习</strong></p>
-<h6 id="一、反射型XSS"><a href="#一、反射型XSS" class="headerlink" title="一、反射型XSS"></a><strong>一、反射型XSS</strong></h6><p>进行DVWA环境中，选择安全等级，这里就按照从低到高的顺序进行。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/2.png?raw=true" alt="在这里插入图片描述"><br>选择XSS(Reflected),查看一下源代码。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/3.png?raw=true" alt="在这里插入图片描述"><br>观察代码可以发现，这里没有任何过滤。那就输入最常用的语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>输入完之后便会出现这个弹窗了<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/4.png?raw=true" alt="在这里插入图片描述"><br><strong>Medium</strong><br>接下来，切换到中级( Medium)<br>如果还输入刚才我们输入的语句会出现什么结果，试试看。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/5.png?raw=true" alt="在这里插入图片描述"><br>没有出现弹窗，看一下源代码。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/6.png?raw=true" alt="在这里插入图片描述"><br>发现前面的<code>&lt;script&gt;</code>没有了，那就看看源代码中有什么过滤方式把<code>&lt;script&gt;</code>给过滤掉了<br>查看源代码<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/7.png?raw=true" alt="在这里插入图片描述"><br>这里代码中用到了str_replace() 函数。<br><strong>str_replace() 函数的作用：替换字符串中的一些字符（区分大小写）。</strong><br>所以这里是把<code>&lt;script&gt;</code>给替换掉了，但是这个函数其实有个漏洞，区分大小写。。。<br>那我输入这样的语句（大小写语句）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ScRipt&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/8.png?raw=true" alt="在这里插入图片描述"><br>这里代码只过滤了 <code>&lt;script&gt;</code>，那就换其他弹窗语句，也可以绕过。（body语句）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=alert(/hacker/)&gt;</span><br></pre></td></tr></table></figure></p>
-<p>还可以采用双写绕过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;sc&lt;script&gt;ript&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/9.png?raw=true" alt="在这里插入图片描述"><br>可以看到str_replace() 函数把包裹在外层的 <code>&lt;script&gt;</code>给过滤掉了，但是里面的并不会过滤掉，这样形成的还是一个完整的可执行的语句。</p>
-<p><strong>接下来，尝试高级的(high)</strong><br>拿<code>&lt;script&gt;alert(/hacker/)&lt;/script&gt;</code>这句来试试<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/10.png?raw=true" alt="在这里插入图片描述"><br>过滤完了，只剩下了一个&gt;<br>那就看看源代码是如何过滤的<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/11.png?raw=true" alt="在这里插入图片描述"><br><strong>preg_replace 函数执行一个正则表达式的搜索和替换。</strong><br>这里就了解一下正则表达式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//永久删除空白，必须将删除操作的结果存回到变量中</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language = <span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language = language.rstrip()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language</span><br><span class="line"><span class="string">'python'</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>正则表达式(regularexpression)描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。</p>
+<p>lstrip()方法删除字符串开头的空白<br>strip()方法同时删除开头和末尾空白</p>
 </blockquote>
-<p>那这里就可以理解为代码将&lt;script全给替换了，那如何绕过。。。那我换一个语句弹窗不就行了。。。<br>这里可以用body标签来弹框。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=alert(/hacker/)&gt;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/12.png?raw=true" alt="在这里插入图片描述"><br>这就出现弹窗了。</p>
-<h6 id="二、储存型XSS"><a href="#二、储存型XSS" class="headerlink" title="二、储存型XSS"></a>二、储存型XSS</h6><p> 储存型和反射型最大的区别便是持久型，下面就从low到high练习，就可以清除的明白这两种类型的区别了。<br> <strong>low</strong><br>先看源代码<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/13.png?raw=true" alt="在这里插入图片描述"><br>代码很长，但我们只看最后输入结果那部分代码，发现stripslashes() 函数，查一下，发现这个函数的用法：删除由 addslashes() 函数添加的反斜杠。所以没有如何过滤，直接最常用的语句就可以了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>但是这里有字数限制，没有办法输入了<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/14.png?raw=true" alt="在这里插入图片描述"><br>那就打开F12改一下<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/15.0.png?raw=true" alt="在这里插入图片描述"><br>改为之后输入<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/16.png?raw=true" alt="在这里插入图片描述"><br>成功，下面看看有啥区别，先跳转到其他页面去，再打开这个页面，会发现。。。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/16.png?raw=true" alt="在这里插入图片描述"><br>又给我们弹出了这个页面，这就是储存型XSS。每当你登陆这个界面，就会弹出这个弹框。</p>
-<p><strong>Medium</strong><br><strong>接下来，看一下中级的。</strong><br>还是先输入一下常见的语句<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/17.png?raw=true" alt="在这里插入图片描述"><br>可以看到<code>&lt;script&gt;</code>被过滤掉了。<br>看一下源代码<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/18.png?raw=true" alt="在这里插入图片描述"><br>和反射型XSS的Medium一样，所以可以用这两个语句绕过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=alert(/hacker/)&gt;</span><br><span class="line">&lt;sc&lt;script&gt;ript&gt;alert(/hacker/)&lt;/script&gt;</span><br><span class="line">&lt;ScRipt&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p>这里我们把三种语句都注入，再次点击这个页面会出现三次弹窗</p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/19.png?raw=true" alt="在这里插入图片描述"></p>
-<p><strong>high</strong><br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/20.png?raw=true" alt="在这里插入图片描述"><br>正则表达式，用之前的语句就可以直接绕过。</p>
-<p>通过这些练习，可以了解就反射型的XSS攻击时间短，例如弹窗只弹出一次，而存储型的XSS攻击则直接储存在数据库中，只要用户访问就可以弹出。</p>
-<p><strong>将安全等级调至impossible</strong><br>安全等级调至到impossible，即不可绕过。<br>就以反射型的XSS来说吧<br>先以最常用的语句来攻击<br>结果：<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/21.png?raw=true" alt="在这里插入图片描述"><br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/22.png?raw=true" alt="在这里插入图片描述"><br>发现&lt;和&gt;都被转换了，我们就去看一下源代码<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/23.png?raw=true" alt="在这里插入图片描述"><br>发现了这样的一个函数<code>PHP htmlspecialchars()</code> 函数，htmlspecialchars() 函数把一些预定义的字符转换为 HTML 实体。<br>预定义的字符是：</p>
-<pre><code>&amp; （和号）成为 &amp;amp;
-&quot; （双引号）成为 &amp;quot;
-&apos; （单引号）成为 &apos;
-&lt; （小于）成为 &amp;lt;
-&gt; （大于）成为 &amp;gt;
-</code></pre><p>所以这个函数就把我们输入的&lt;和&gt;给过滤掉了，所以这是一种防护手段，防止恶意的XSS攻击。</p>
-<p><strong>下面看一下存储型XSS的impossible</strong><br>还是先用常用的攻击一下<br>显示结果：<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/24.png?raw=true" alt="在这里插入图片描述"><br>这就不需要再看后台源码了，这直接就显示&lt;和&gt;已经被过滤了.<br>我们就看一下源代码<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSS/25.png?raw=true" alt="在这里插入图片描述"><br>发现在输出那有一个htmlspecialchars() 函数，所以这个原理就和反射型XSS攻击一样。这样DVWA练习就结束了。</p>
-<p>感悟：果然只有动手去操作了，才会了解一些概念和一些攻击方式，有很多很好的平台供自己去学习，合天、安全龙、漏洞银行等等，只要自己想要去学，这些东西都可以学到，接下来就去XSS通关平台和谨灵实验室继续练习。</p>
-<p>努力吧，少年！！！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>language=<span class="string">' python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language.lstrip()</span><br><span class="line"><span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language.strip()</span><br><span class="line"><span class="string">'python'</span></span><br></pre></td></tr></table></figure>
+<p><strong>二、数字</strong></p>
+<p><strong>整数</strong></p>
+<blockquote>
+<p><code>**</code>两个乘号在python表示乘方运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3</span> ** <span class="number">2</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3</span> ** <span class="number">3</span></span><br><span class="line"><span class="number">27</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>python支持次序运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span>+<span class="number">3</span>*<span class="number">4</span></span><br><span class="line"><span class="number">14</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>(<span class="number">5</span>+<span class="number">1</span>)*<span class="number">3</span></span><br><span class="line"><span class="number">18</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>浮点数</strong></p>
+<blockquote>
+<p>str()函数用来避免类型错误</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age=<span class="number">23</span></span><br><span class="line">message=<span class="string">"happy "</span>+ str(age) +<span class="string">"rd birthday!"</span></span><br><span class="line">print(message)</span><br><span class="line">//输出结果：</span><br><span class="line">happy <span class="number">23</span>rd birthday!</span><br></pre></td></tr></table></figure>
+<p>如果不加str()函数，则会出错，原因是python不知道该如何解读这个值。</p>
+<p><strong>注释</strong></p>
+<blockquote>
+<p>在python中用<code>#</code>来注释</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 学习python</span></span><br><span class="line">print(<span class="string">"hello python people!"</span>)</span><br><span class="line">//输出结果：</span><br><span class="line">hello python people!</span><br></pre></td></tr></table></figure>
+<p>在python终端会话中执行命令<code>import this</code>，浏览一下python的指导原则</p>
+<p><strong>三、列表</strong></p>
+<blockquote>
+<p>在Python中，用方括号（[] ）来表示列表，并用逗号来分隔其中的元素。</p>
+</blockquote>
+<p><img src="http://i2.tiimg.com/690112/91414bda55cc539f.png" alt="在这里插入图片描述"><br>列表与C中的数组较为相似，所以比较好理解。</p>
+<p><strong>修改列表元素</strong><br><img src="http://i2.tiimg.com/690112/f20e05a69b60f3f5.png" alt="在这里插入图片描述"><br><strong>在列表添加元素</strong></p>
+<blockquote>
+<p>append（）方法将元素添加到列表末尾</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'ha'</span>,<span class="string">'ya'</span>,<span class="string">'ss'</span>]</span><br><span class="line">print(message)</span><br><span class="line">message.append(<span class="string">'wangzixu'</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'ha'</span>, <span class="string">'ya'</span>, <span class="string">'ss'</span>]</span><br><span class="line">[<span class="string">'ha'</span>, <span class="string">'ya'</span>, <span class="string">'ss'</span>, <span class="string">'wangzixu'</span>]</span><br></pre></td></tr></table></figure>
+<p><strong>在空列表中直接插入元素</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message=[]</span><br><span class="line">message.append(<span class="string">'a'</span>)</span><br><span class="line">message.append(<span class="string">'b'</span>)</span><br><span class="line">message.append(<span class="string">'c'</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输入结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure></p>
+<p><strong>在列表中插入元素</strong></p>
+<blockquote>
+<p>insert() 方法可在列表的任何位置添加新元素</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">message = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">message.insert(<span class="number">0</span>,<span class="string">'me'</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果:</span></span><br><span class="line">[<span class="string">'me'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure>
+<p><strong>从列表中删除元素</strong></p>
+<blockquote>
+<p>使用del语句进行删除<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">print(message)</span><br><span class="line"><span class="keyword">del</span> message[<span class="number">0</span>]</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输入结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line">[<span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>使用pop()方法删除列表末尾元素<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">message= [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(message)</span><br><span class="line">pop_message=message.pop()</span><br><span class="line">print(message)</span><br><span class="line">print(pop_message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line">d</span><br><span class="line"><span class="comment">#删除的结果会储存到变量pop_message中</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用方法pop（）也可以删除指定位置的元素</span></span><br><span class="line">message= [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(message)</span><br><span class="line">pop_message=message.pop(<span class="number">1</span>)</span><br><span class="line">print(message)</span><br><span class="line">print(pop_message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
+<p>要从列表中删除一个元素，且不再以任何方式使用它，就使用del 语句；如果要在删除元 素后还能继续使用它，就使用方法pop() 。 </p>
+<p><strong>根据值删除元素</strong></p>
+<blockquote>
+<p>只知道元素值的话，可以用remove（）删除元素<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message= [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(message)</span><br><span class="line">message.remove(<span class="string">'c'</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>组织列表</strong></p>
+<blockquote>
+<p>方法sort()能够对列表进行排序，按照字母顺序排序，并且是永久性修改<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'k'</span>,<span class="string">'n'</span>,<span class="string">'d'</span>,<span class="string">'a'</span>]</span><br><span class="line">message.sort()</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'d'</span>, <span class="string">'k'</span>, <span class="string">'n'</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>也可以按照字母反序进行排序，只需要在sort（）中加入参数reverse=True<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'a'</span>,<span class="string">'g'</span>,<span class="string">'d'</span>,<span class="string">'m'</span>]</span><br><span class="line">message.sort(reverse=<span class="literal">True</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'m'</span>, <span class="string">'g'</span>, <span class="string">'d'</span>, <span class="string">'a'</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>函数sorted()对列表进行临时排序，函数sorted() 能够按特定顺序显示列表元素，同时不影响它们在列表中的原始排 列顺序。</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'k'</span>,<span class="string">'c'</span>,<span class="string">'a'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(message)</span><br><span class="line">print(sorted(message))</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'k'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>]</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'k'</span>]</span><br><span class="line">[<span class="string">'k'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>]</span><br></pre></td></tr></table></figure>
+<p><strong>倒着打印列表</strong> </p>
+<blockquote>
+<p>使用方法reverse()反转列表元素的排列顺序,也是永久修改，如果要恢复原来的排列顺序，只需再次调用即可<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'k'</span>,<span class="string">'c'</span>,<span class="string">'a'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(message)</span><br><span class="line">message.reverse()</span><br><span class="line">print(message)</span><br><span class="line">message.reverse()</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'k'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>]</span><br><span class="line">[<span class="string">'d'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'k'</span>]</span><br><span class="line">[<span class="string">'k'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>确实列表的长度</strong></p>
+<blockquote>
+<p>使用函数len()可获悉列表长度<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>message = [<span class="string">'a'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'d'</span>,<span class="string">'f'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>len(message)</span><br><span class="line">&gt;<span class="number">5</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>这次先学习到这里，未完待续。。。。。。</p>
 
     </article>
     <!-- license  -->
@@ -464,17 +504,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/04/28/web安全—XSS攻击(二)/" title="XSS理解+练习(二)">
-                    <div class="nextTitle">XSS理解+练习(二)</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/04/22/PHP学习总结（数据库概念、DDL语句、DML语句）/" title="PHP数据库概念、DDL语句、DML语句">
-                    <div class="prevTitle">PHP数据库概念、DDL语句、DML语句</div>
+                <a href="/2019/07/10/XCTF(攻防世界)—新手web题Write Up/" title="XCTF(攻防世界)—新手web题Write Up">
+                    <div class="prevTitle">XCTF(攻防世界)—新手web题Write Up</div>
                 </a>
             
         </li>
@@ -599,7 +634,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#1、XSS跨站脚本攻击定义"><span class="toc-number">1.</span> <span class="toc-text">1、XSS跨站脚本攻击定义</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2、XSS类型"><span class="toc-number">2.</span> <span class="toc-text">2、XSS类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#一、反射型XSS"><span class="toc-number">3.</span> <span class="toc-text">一、反射型XSS</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#二、储存型XSS"><span class="toc-number">4.</span> <span class="toc-text">二、储存型XSS</span></a></li></ol>
+        
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
