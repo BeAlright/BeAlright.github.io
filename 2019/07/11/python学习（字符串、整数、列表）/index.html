@@ -404,22 +404,19 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <p>前言：python语言简洁，而且写web题脚本方便，暑假闲着也无聊，不如学习一些知识。</p>
-<p><strong>一、字符串</strong><br><strong>修改字符串的大小写</strong><br>python中定义字符串用<strong>双引号</strong>或<strong>单引号</strong>都可以<br><img src="http://i2.tiimg.com/690112/51910edd0b651938.png" alt="在这里插入图片描述"><br>python需要提前<strong>定义变量</strong>，这点和C语言一样，而且python中有<strong>方法</strong>，方法中包含一些功能，这里我觉得和<strong>C++中的成员函数</strong>比较相似，就连调用方法也相同，只不过python已经写好了这些功能，我们直接调用即可。<br><img src="http://i2.tiimg.com/690112/81a37636f65ff150.png" alt="在这里插入图片描述"></p>
+<h3 id="一、字符串"><a href="#一、字符串" class="headerlink" title="一、字符串"></a><strong>一、字符串</strong></h3><h6 id="修改字符串的大小写"><a href="#修改字符串的大小写" class="headerlink" title="修改字符串的大小写"></a><strong>修改字符串的大小写</strong></h6><p>python中定义字符串用<strong>双引号</strong>或<strong>单引号</strong>都可以<br><img src="http://i2.tiimg.com/690112/51910edd0b651938.png" alt="在这里插入图片描述"><br>python需要提前<strong>定义变量</strong>，这点和C语言一样，而且python中有<strong>方法</strong>，方法中包含一些功能，这里我觉得和<strong>C++中的成员函数</strong>比较相似，就连调用方法也相同，只不过python已经写好了这些功能，我们直接调用即可。<br><img src="http://i2.tiimg.com/690112/81a37636f65ff150.png" alt="在这里插入图片描述"></p>
 <blockquote>
 <p>title()方法<em>将字符串首字母大写<br>upper()方法</em>将字符串全变成大写<br>lower()方法_将字符串全变成小写</p>
 </blockquote>
-<p><strong>合并字符串</strong></p>
-<blockquote>
+<h6 id="合并字符串"><a href="#合并字符串" class="headerlink" title="合并字符串"></a><strong>合并字符串</strong></h6><blockquote>
 <p><code>+</code> 起连接作用</p>
 </blockquote>
 <p><img src="http://i2.tiimg.com/690112/e789c87798217a05.png" alt="在这里插入图片描述"><br>python中合并字符串也很方便，直接一个<code>+</code>号就可以连接前后的字符串。<br><img src="http://i2.tiimg.com/690112/2232056c89d82065.png" alt="在这里插入图片描述"><br>也可以这样表示：<br><img src="http://i2.tiimg.com/690112/497b12faec7c61ba.png" alt="在这里插入图片描述"><br>总之，python的语法是真的简洁，不需要像C语言一般还需要调用函数来完成合并字符串。</p>
-<p><strong>使用制表符和换行符</strong></p>
-<blockquote>
+<h6 id="使用制表符和换行符"><a href="#使用制表符和换行符" class="headerlink" title="使用制表符和换行符"></a><strong>使用制表符和换行符</strong></h6><blockquote>
 <p>\t 制表符<br>\n 换行符<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"\tpython"</span>)</span><br><span class="line">输出结果：</span><br><span class="line">	python</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"ss\ntt\nll\n"</span>)</span><br><span class="line">输出结果：</span><br><span class="line">ss</span><br><span class="line">tt</span><br><span class="line">ll</span><br></pre></td></tr></table></figure>
-<p><strong>删除空白</strong></p>
-<blockquote>
+<h6 id="删除空白"><a href="#删除空白" class="headerlink" title="删除空白"></a><strong>删除空白</strong></h6><blockquote>
 <p>rstrip()方法删除字符串末尾的空白<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>language=<span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language</span><br><span class="line"><span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language.rstrip()</span><br><span class="line"><span class="string">'python'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language</span><br><span class="line"><span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br><span class="line">//这样的删除方法删除空白只是暂时的</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//永久删除空白，必须将删除操作的结果存回到变量中</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language = <span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language = language.rstrip()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language</span><br><span class="line"><span class="string">'python'</span></span><br></pre></td></tr></table></figure>
@@ -427,44 +424,37 @@ height:50vh;
 <p>lstrip()方法删除字符串开头的空白<br>strip()方法同时删除开头和末尾空白</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>language=<span class="string">' python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language.lstrip()</span><br><span class="line"><span class="string">'python '</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>language.strip()</span><br><span class="line"><span class="string">'python'</span></span><br></pre></td></tr></table></figure>
-<p><strong>二、数字</strong></p>
-<p><strong>整数</strong></p>
-<blockquote>
+<h3 id="二、数字"><a href="#二、数字" class="headerlink" title="二、数字"></a><strong>二、数字</strong></h3><h6 id="整数"><a href="#整数" class="headerlink" title="整数"></a><strong>整数</strong></h6><blockquote>
 <p><code>**</code>两个乘号在python表示乘方运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3</span> ** <span class="number">2</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3</span> ** <span class="number">3</span></span><br><span class="line"><span class="number">27</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
 <p>python支持次序运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span>+<span class="number">3</span>*<span class="number">4</span></span><br><span class="line"><span class="number">14</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>(<span class="number">5</span>+<span class="number">1</span>)*<span class="number">3</span></span><br><span class="line"><span class="number">18</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p><strong>浮点数</strong></p>
-<blockquote>
+<h6 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a><strong>浮点数</strong></h6><blockquote>
 <p>str()函数用来避免类型错误</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age=<span class="number">23</span></span><br><span class="line">message=<span class="string">"happy "</span>+ str(age) +<span class="string">"rd birthday!"</span></span><br><span class="line">print(message)</span><br><span class="line">//输出结果：</span><br><span class="line">happy <span class="number">23</span>rd birthday!</span><br></pre></td></tr></table></figure>
 <p>如果不加str()函数，则会出错，原因是python不知道该如何解读这个值。</p>
-<p><strong>注释</strong></p>
-<blockquote>
+<h6 id="注释"><a href="#注释" class="headerlink" title="注释"></a><strong>注释</strong></h6><blockquote>
 <p>在python中用<code>#</code>来注释</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 学习python</span></span><br><span class="line">print(<span class="string">"hello python people!"</span>)</span><br><span class="line">//输出结果：</span><br><span class="line">hello python people!</span><br></pre></td></tr></table></figure>
 <p>在python终端会话中执行命令<code>import this</code>，浏览一下python的指导原则</p>
-<p><strong>三、列表</strong></p>
-<blockquote>
+<h3 id="三、列表"><a href="#三、列表" class="headerlink" title="三、列表"></a><strong>三、列表</strong></h3><blockquote>
 <p>在Python中，用方括号（[] ）来表示列表，并用逗号来分隔其中的元素。</p>
 </blockquote>
 <p><img src="http://i2.tiimg.com/690112/91414bda55cc539f.png" alt="在这里插入图片描述"><br>列表与C中的数组较为相似，所以比较好理解。</p>
-<p><strong>修改列表元素</strong><br><img src="http://i2.tiimg.com/690112/f20e05a69b60f3f5.png" alt="在这里插入图片描述"><br><strong>在列表添加元素</strong></p>
-<blockquote>
+<h6 id="修改列表元素"><a href="#修改列表元素" class="headerlink" title="修改列表元素"></a><strong>修改列表元素</strong></h6><p><img src="http://i2.tiimg.com/690112/f20e05a69b60f3f5.png" alt="在这里插入图片描述"></p>
+<h6 id="在列表添加元素"><a href="#在列表添加元素" class="headerlink" title="在列表添加元素"></a><strong>在列表添加元素</strong></h6><blockquote>
 <p>append（）方法将元素添加到列表末尾</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'ha'</span>,<span class="string">'ya'</span>,<span class="string">'ss'</span>]</span><br><span class="line">print(message)</span><br><span class="line">message.append(<span class="string">'wangzixu'</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'ha'</span>, <span class="string">'ya'</span>, <span class="string">'ss'</span>]</span><br><span class="line">[<span class="string">'ha'</span>, <span class="string">'ya'</span>, <span class="string">'ss'</span>, <span class="string">'wangzixu'</span>]</span><br></pre></td></tr></table></figure>
-<p><strong>在空列表中直接插入元素</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message=[]</span><br><span class="line">message.append(<span class="string">'a'</span>)</span><br><span class="line">message.append(<span class="string">'b'</span>)</span><br><span class="line">message.append(<span class="string">'c'</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输入结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure></p>
-<p><strong>在列表中插入元素</strong></p>
-<blockquote>
+<h6 id="在空列表中直接插入元素"><a href="#在空列表中直接插入元素" class="headerlink" title="在空列表中直接插入元素"></a><strong>在空列表中直接插入元素</strong></h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message=[]</span><br><span class="line">message.append(<span class="string">'a'</span>)</span><br><span class="line">message.append(<span class="string">'b'</span>)</span><br><span class="line">message.append(<span class="string">'c'</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输入结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure>
+<h6 id="在列表中插入元素"><a href="#在列表中插入元素" class="headerlink" title="在列表中插入元素"></a><strong>在列表中插入元素</strong></h6><blockquote>
 <p>insert() 方法可在列表的任何位置添加新元素</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">message = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">message.insert(<span class="number">0</span>,<span class="string">'me'</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果:</span></span><br><span class="line">[<span class="string">'me'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure>
-<p><strong>从列表中删除元素</strong></p>
-<blockquote>
+<h6 id="从列表中删除元素"><a href="#从列表中删除元素" class="headerlink" title="从列表中删除元素"></a><strong>从列表中删除元素</strong></h6><blockquote>
 <p>使用del语句进行删除<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">print(message)</span><br><span class="line"><span class="keyword">del</span> message[<span class="number">0</span>]</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输入结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line">[<span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
@@ -472,12 +462,10 @@ height:50vh;
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用方法pop（）也可以删除指定位置的元素</span></span><br><span class="line">message= [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(message)</span><br><span class="line">pop_message=message.pop(<span class="number">1</span>)</span><br><span class="line">print(message)</span><br><span class="line">print(pop_message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
 <p>要从列表中删除一个元素，且不再以任何方式使用它，就使用del 语句；如果要在删除元 素后还能继续使用它，就使用方法pop() 。 </p>
-<p><strong>根据值删除元素</strong></p>
-<blockquote>
+<h6 id="根据值删除元素"><a href="#根据值删除元素" class="headerlink" title="根据值删除元素"></a><strong>根据值删除元素</strong></h6><blockquote>
 <p>只知道元素值的话，可以用remove（）删除元素<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message= [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(message)</span><br><span class="line">message.remove(<span class="string">'c'</span>)</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'d'</span>]</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p><strong>组织列表</strong></p>
-<blockquote>
+<h6 id="组织列表"><a href="#组织列表" class="headerlink" title="组织列表"></a><strong>组织列表</strong></h6><blockquote>
 <p>方法sort()能够对列表进行排序，按照字母顺序排序，并且是永久性修改<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'k'</span>,<span class="string">'n'</span>,<span class="string">'d'</span>,<span class="string">'a'</span>]</span><br><span class="line">message.sort()</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'d'</span>, <span class="string">'k'</span>, <span class="string">'n'</span>]</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
@@ -487,12 +475,10 @@ height:50vh;
 <p>函数sorted()对列表进行临时排序，函数sorted() 能够按特定顺序显示列表元素，同时不影响它们在列表中的原始排 列顺序。</p>
 </blockquote>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'k'</span>,<span class="string">'c'</span>,<span class="string">'a'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(message)</span><br><span class="line">print(sorted(message))</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'k'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>]</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'k'</span>]</span><br><span class="line">[<span class="string">'k'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>]</span><br></pre></td></tr></table></figure>
-<p><strong>倒着打印列表</strong> </p>
-<blockquote>
+<h6 id="倒着打印列表"><a href="#倒着打印列表" class="headerlink" title="倒着打印列表"></a><strong>倒着打印列表</strong></h6><blockquote>
 <p>使用方法reverse()反转列表元素的排列顺序,也是永久修改，如果要恢复原来的排列顺序，只需再次调用即可<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">message=[<span class="string">'k'</span>,<span class="string">'c'</span>,<span class="string">'a'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(message)</span><br><span class="line">message.reverse()</span><br><span class="line">print(message)</span><br><span class="line">message.reverse()</span><br><span class="line">print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'k'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>]</span><br><span class="line">[<span class="string">'d'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'k'</span>]</span><br><span class="line">[<span class="string">'k'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>]</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p><strong>确实列表的长度</strong></p>
-<blockquote>
+<h6 id="确实列表的长度"><a href="#确实列表的长度" class="headerlink" title="确实列表的长度"></a><strong>确实列表的长度</strong></h6><blockquote>
 <p>使用函数len()可获悉列表长度<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>message = [<span class="string">'a'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'d'</span>,<span class="string">'f'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>len(message)</span><br><span class="line">&gt;<span class="number">5</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>这次先学习到这里，未完待续。。。。。。</p>
@@ -503,6 +489,11 @@ height:50vh;
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/07/12/实验吧—(部分)MISC Write up/" title>
+                    <div class="nextTitle">[Untitled Post]</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -634,7 +625,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、字符串"><span class="toc-number">1.</span> <span class="toc-text">一、字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#修改字符串的大小写"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">修改字符串的大小写</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#合并字符串"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">合并字符串</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#使用制表符和换行符"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">使用制表符和换行符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#删除空白"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">删除空白</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、数字"><span class="toc-number">2.</span> <span class="toc-text">二、数字</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#整数"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#浮点数"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#注释"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">注释</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、列表"><span class="toc-number">3.</span> <span class="toc-text">三、列表</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#修改列表元素"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">修改列表元素</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#在列表添加元素"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">在列表添加元素</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#在空列表中直接插入元素"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">在空列表中直接插入元素</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#在列表中插入元素"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">在列表中插入元素</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#从列表中删除元素"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">从列表中删除元素</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#根据值删除元素"><span class="toc-number">3.0.0.6.</span> <span class="toc-text">根据值删除元素</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#组织列表"><span class="toc-number">3.0.0.7.</span> <span class="toc-text">组织列表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#倒着打印列表"><span class="toc-number">3.0.0.8.</span> <span class="toc-text">倒着打印列表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#确实列表的长度"><span class="toc-number">3.0.0.9.</span> <span class="toc-text">确实列表的长度</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -871,9 +862,42 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 18
+        Total : 19
         </div>
         <!-- search  -->
         
@@ -886,6 +910,11 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2019/07/12/实验吧—(部分)MISC Write up/">[Untitled Post]</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -982,23 +1011,23 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
-    
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
         <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
         <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
     
-        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
