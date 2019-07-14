@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name"></a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/b.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            [Untitled Post]
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/07/14</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,106 +393,106 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/19/C++学习总结（函数、类与对象）/">
-            
-                <span>C++学习总结（函数、类与对象）</span>
-        </a>
-        <div class="abstract-content">
-            前言：时间过的好快，转眼一学期就过去了，期末考试也快到了，所以就复习一遍同时也将自己学习的感悟总结下来。前面几章大多与C语言相似，就不总结了。
-第三章——函数参数传递123456789101112131415161718192021#include &lt;iostream&gt;using namespace std;void swap(int a,int b) &#123;    int t=a;        b=t;        a=b;&#125;int main()&#123;    int x=5,y=10;    cout&lt;&lt;"x= "&lt;&lt;x&l...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="C++">C++</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>前言：密码学涉及一系列的加密算法，虽然自己数学贼烂，但觉得加密这些算法还是蛮好玩的，就通过题来了解一些算法，话不多说，开始做题。</p>
+<p><strong>Substituted</strong><br><img src="http://i1.fuimg.com/690112/d0dd7268dc68def8.png" alt="在这里插入图片描述"><br><strong>方法</strong>：百度翻译题目一下，Substituted（替换），<strong>替换加密</strong>中包含有<strong>简单替换密码</strong>，应该就是简单替换密码，在线网站求解一波。<br><a href="https://quipqiup.com/" target="_blank" rel="noopener">替换密码解密</a><br><img src="http://i2.tiimg.com/690112/43101eee9ea833a0.png" alt="在这里插入图片描述"><br>把头部改成iceCTF即可得出flag。</p>
+<p><strong>做题总结</strong>：通过这道题来了解一下简单替换密码</p>
+<blockquote>
+<p>替换密码属于简单对称加密，即将字母表中一个字符替换成另一个字符，很好理解。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">例如：</span><br><span class="line">	明文 ABDDD</span><br><span class="line">	替换规则：</span><br><span class="line">	A-&gt;C</span><br><span class="line">	B-&gt;T</span><br><span class="line">	D-&gt;F</span><br><span class="line">	密文 CTFFF</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>而攻击方式也有很多种<br>一、<code>暴力破解</code><br>二、<code>字母频率分析</code><br>因为替换密码只不过是从一个字符换成另一个字符，我们只要将出现在密文的所有字符出现的频率统计一下，看频率最高的。由此我们可以推断出，频率高的肯定是英文语言中最常用的一个字母的替换字母。密文中字母的频率分布与给定语言有着紧密的联系，即使在相对较短的密文中也成立。</p>
+</blockquote>
+<p>参考大佬的博客进行学习<a href="https://book.2cto.com/201209/5221.html" target="_blank" rel="noopener">关于替换密码详解</a></p>
+<p><strong>Alien Message</strong><br><img src="http://i1.fuimg.com/690112/7c385c7b8036a2a8.png" alt="在这里插入图片描述"><br>一张外星语言图片<br><img src="http://i2.tiimg.com/690112/c6a696e7907af3f7.png" alt="在这里插入图片描述"><br><strong>方法</strong>：谷歌识图，查到对应的表，手动对照即可，但是flag格式有毒，大小写格式问题<img src="http://i2.tiimg.com/690112/c92a05932696a81e.png" alt="在这里插入图片描述"><img src="http://i2.tiimg.com/690112/4360308ea0f1c739.png" alt="在这里插入图片描述"><br><strong>做题总结</strong>： 一开始拿到这个题，以为是图片会隐藏信息，用做杂项的方法尝试了但都没用，最后又学到了一招，<strong>百度识图或谷歌识图</strong>，有时也可以解决问题，也算了解了一种新的做题方法。</p>
+<p><strong>回旋13踢</strong><br><img src="http://i2.tiimg.com/690112/1ad2b86d598e363a.png" alt="在这里插入图片描述"><br><strong>方法</strong>：根据题目和提供的格式推断出是ROT13(回旋13)，在线解密即可得出flag<br><a href="https://www.qqxiuzi.cn/bianma/ROT5-13-18-47.php" target="_blank" rel="noopener">在线解密</a></p>
+<p><strong>做题总结</strong>：一开始真的是一脸懵，完全没有思路，只能查百度谷歌，查到了ROT13编码，所以就通过这个题来了解一下ROT13加密。</p>
+<blockquote>
+<p><code>ROT13</code>（回转13位）编码是凯撒加密的一种变体，只对字母进行编码（对数字、空格等无影响），用当前字母往前数的第13个字母替换当前字母即可<br>例如：A-&gt;N,B-&gt;O,C-&gt;P等</p>
+</blockquote>
+<p><img src="http://i1.fuimg.com/690112/10b5727c46b75717.png" alt="在这里插入图片描述"><br>除此之外，还有ROT5,ROT47</p>
+<blockquote>
+<p><code>ROT5</code>只对数字有效，用当前数字往前数的第5个数字替换当前数字即可。</p>
+</blockquote>
+<blockquote>
+<p><code>ROT47</code>：对数字、字母、常用符号进行编码，按照它们的ASCII值进行位置替换，用当前字符ASCII值往前数的第47位对应字符替换当前字符，例如：当前为小写字母z，编码后变成大写字母K，当前为数字0，编码后变成符号_ ，用于ROT47编码的字符其ASCII值范围是33－126。</p>
+</blockquote>
+<p><strong>接下来了解一下非对称加密和对称加密</strong></p>
+<p>①：<strong>非对称加密</strong>，即加密和解密不是使用<strong>同一套规则</strong>，之前的对称加密解密中，使用的都是<strong>同一个密匙</strong>，如果在传输中被拦截，破解的几率会很高。<br>②：<strong>非对称加密</strong>，加密和解密使用的<strong>不是同一个密匙</strong>，明文A通过公钥B加密，加密后的明文和公钥一起传输，接收方接收密文后用私钥C(只有接收者才有)解密，这样的加密解密的方式非常安全，即使公钥和密文在传输过程中被拦截了，拦截者没有私钥，就算拿着公钥和密文也无法破解出明文。因此相较于对称加密，非对称加密会更加安全。</p>
+<p>了解完对称加密和非对称加密后，就来学习一下<strong>RSA算法</strong></p>
+<p>在了解RSA算法之前，要先了解一下质数和互质数等数学概念，方便更好的理解RSA算法。</p>
+<blockquote>
+<p><code>质数</code>：一个大于1的自然数，除了1和它本身外，不能被其他自然数整除（除0以外）的数称之为质数(素数)。<br><code>互质数</code>：公约数只有1的两个数。<br>判断互质数：<br>①任意两个质数一定构成互质数<br>②大数是质数的两个数一定是互质数（如97与88）</p>
+</blockquote>
+<blockquote>
+<p><code>欧拉函数</code>：任意给定正整数n，计算在小于等于n的正整数之中，有多少个与n构成互质关系？计算这个值的方法就叫做欧拉函数，以φ(n)表示.（计算互为质数的个数）</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例如：</span><br><span class="line">n为<span class="number">10</span>，则与<span class="number">1</span>、<span class="number">3</span>、<span class="number">5</span>、<span class="number">7</span>、<span class="number">9</span>互质，所以φ(n)=<span class="number">5</span></span><br><span class="line">注意这里<span class="number">10</span>不是质数，只算与其互质的。</span><br></pre></td></tr></table></figure>
+<p>在RSA算法中，欧拉函数对以下定理成立</p>
+<ol>
+<li>如果n可以分解成<strong>两个互质的整数之积</strong>，即n=p×q,则有<code>φ(n)=φ(pq)=φ(p)φ(q)</code>;</li>
+<li>根据“<strong>大数是质数的两个数一定是互质数</strong>”可以知道：一个数如果是质数，则小于它的所有正整数与它都是互质数；所以如果一个数p是质数，则有：<code>φ(p)=p-1</code></li>
+<li><strong>φ(n)=(p-1)(q-1)</strong><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">例如：</span><br><span class="line">定理二：</span><br><span class="line">n=<span class="number">33</span>,q=<span class="number">3</span>,p=<span class="number">11</span>,n=p*q</span><br><span class="line">p、q均为质数，所以只要是小于自己本身的都是互质数，因此才有如下公式</span><br><span class="line">φ(p)=(p<span class="number">-1</span>)<span class="comment">//(-1)是为了去除本身，得出与其互质的个数</span></span><br><span class="line">φ(q)=(q<span class="number">-1</span>)</span><br><span class="line">所以：</span><br><span class="line">φ(<span class="number">33</span>)=（<span class="number">3</span><span class="number">-1</span>）*（<span class="number">11</span><span class="number">-1</span>）=<span class="number">30</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>除此之外，还需了解一下<strong>欧拉定理与模反元素</strong><br><img src="http://i2.tiimg.com/690112/306742106b8007c6.png" alt="在这里插入图片描述"><br>概念清楚过后，就来梳理一下<strong>生成密钥对的流程</strong></p>
+<ol>
+<li><strong>随机选择两个不相等的质数p和q，p与q越大则越安全</strong><code>选取p和q</code></li>
+<li><strong>计算p和q的乘积n</strong> <code>计算出n的值</code></li>
+<li><strong>计算n的欧拉函数值，即φ(n)=(p-1)(q-1)</strong><code>计算出φ(n)的值</code></li>
+<li><strong>随机选择一个整数e，条件是1&lt;e&lt;φ(n)，且e与φ(n)互质</strong><code>得出e的值</code></li>
+<li><strong>计算e对φ(n)的模反元素d</strong><code>计算出d的值</code></li>
+<li><strong>将(n,e)封装为公钥，(n,d)封装为私钥</strong><code>n的长度就是密钥长度</code></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>公钥</th>
+<th>n：质数p和质数q的乘积，e：与φ(n)互质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>私钥</td>
+<td>n：同公钥n，d</td>
+</tr>
+</tbody>
+</table>
+<p>m为明文，c为密文<br><img src="http://i2.tiimg.com/690112/d9019be0d2c63f1a.png" alt="在这里插入图片描述"><br>参考大佬博客学习了一波，真的是学到知识了。<br><a href="https://www.cnblogs.com/hykun/p/RSA.html" target="_blank" rel="noopener">黄映焜的博客园</a><br><a href="https://www.jianshu.com/p/fbb8bf7baa97" target="_blank" rel="noopener">一文搞懂 RSA 算法</a><br><a href="https://www.cnblogs.com/AloneSword/p/3326750.html" target="_blank" rel="noopener">RSA算法使用介绍</a><br><a href="http://blog.chinaunix.net/uid-30592332-id-5759163.html" target="_blank" rel="noopener">RSA算法流程</a><br><a href="https://www.jianshu.com/p/83d1bf4e7da8" target="_blank" rel="noopener">RSA练习</a></p>
+<p>这次就先学习到这里，下次就开始练习RSA题目。</p>
+
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/15/Bugku—MISC题总结/">
-            
-                <span>Bugku—MISC题总结</span>
-        </a>
-        <div class="abstract-content">
-            前言：MISC考脑洞，也考分析和观察能力，总之比较有趣，就总结一下我的做题过程。
-这是一张单纯的图片用winhex打开 Unicode编码转换ASCII即可得出flag
-隐写前四位是宽度，后四位是高度。将A4修改位F4即可得出flag
-telnetwinhex打开就可得出flag
-眼见非实(ISCCCTF)下载之后打不开，根据提示眼见非实，将docx文件改成zip文件即可得出flag
-啊哒用winhex打开，发现隐藏有zip文件，用binwalk进行分离得到一个加密文本，开始以为是伪加密，但用winhex打开后查看不是伪加密，因为不知道是否含字符、或是几位数，所以暴力破解也是不可取的，回...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/09/通过sql-labs进行sql注入学习(一)/">
-            
-                <span>通过sql-labs进行sql注入学习(一)</span>
-        </a>
-        <div class="abstract-content">
-            SQL注入有很多方法，先接触最简单最直观的一种——联合查询注入
-联合查询注入原理联合查询的前提是需要有显示位，而显示位就是通过用户的查询从数据库中返回到页面的数据，是可变化的。 例如：sql-labs前四关都是联合查询注入
-sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不相同。 接下来就开始实战，通过实战来了解联合查询注入的步骤和方法。
- 一、判断注入点 闭合符号一般是&#39;,&quot;,或无闭合符号或&#39;)，&quot;) --+为注释符号 在url框中输入?id=2&#39;，发现 用--+将后面的字符注释掉，发现 正常显示，说明注入点是单引...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/07/12/实验吧—(部分)MISC Write up/" title="实验吧—(部分)MISC Write up">
+                    <div class="prevTitle">实验吧—(部分)MISC Write up</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -528,6 +583,24 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -981,6 +1054,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
