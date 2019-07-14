@@ -346,98 +346,30 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/22/PHP学习总结（数据库概念、DDL语句、DML语句）/">
+        <a class="abstract-title" href="/2019/07/14/I春秋—— Crypto Write up(一)/">
             
-                <span>PHP数据库概念、DDL语句、DML语句</span>
+                <span>I春秋—— Crypto Write up(一)</span>
         </a>
         <div class="abstract-content">
-            自从做完一个简单的登陆注册页面，发现数据库知识真的很重要，所以要详细的学习一下数据库的知识。
-一、数据库基本概念数据库可以理解为用来存储信息的仓库
-表:表是数据的矩阵，在一个数据库中的表看起来像一个简单的电子表格。列: 一列(数据元素) 包含了相同的数据, 例如邮政编码的数据。行：一行（=元组，或记录）是一组相关的数据，例如一条用户订阅的数据。冗余：存储两倍数据，冗余降低了性能，但提高了数据的安全性。主键：主键是唯一的。一个数据表中只能包含一个主键,可以使用主键来查询据。表头(header): 每一列的名称;基本概念可以在菜鸟教程中学习菜鸟教程
-二、DDL语句对数据库的操作
-1).创建数...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/20/PHP学习总结(会话控制)/">
-            
-                <span>PHP会话控制</span>
-        </a>
-        <div class="abstract-content">
-            最近刚做完一个简易的登陆注册小项目，当时做的时候匆忙，现在来详细的了解一下PHP会话控制这方面的知识。
-cookie和seesion技术出现的原因：
-当一个用户请求一个页面时，再请求同一个网站上的另外一个页面时，HTTP协议不能告诉我们两个请求是否来自同一个用户，也不能将两次访问联系到一起！所有出现了cookie和seesion.
+            前言：密码学涉及一系列的加密算法，虽然自己数学贼烂，但觉得加密这些算法还是蛮好玩的，就通过题来了解一些算法，话不多说，开始做题。
+Substituted方法：百度翻译题目一下，Substituted（替换），替换加密中包含有简单替换密码，应该就是简单替换密码，在线网站求解一波。替换密码解密把头部改成iceCTF即可得出flag。
+做题总结：通过这道题来了解一下简单替换密码
 
-一、cookiecookie是用来将网站的资料记录在客户端的技术，让web服务器将一些资料存放在客户端（用户的电脑中）。
-1、向客户端电脑中设置cookie1setcookie();
-2、在服务器端上读取cookie内容1$_COOKIE
-3、将多维数组应用...
+替换密码属于简单对称加密，即将字母表中一个字符替换成另一个字符，很好理解。1234567例如：	明文 ABDDD	替换规则：	A-&gt;C	B-&gt;T	D-&gt;F	密文 CTFFF
+
+
+而攻击方式也有很多种...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/20</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/14</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/18/PHP学习(php概念、基本语法、流程控制)/">
-            
-                <span>PHP概念、基本语法、流程控制</span>
-        </a>
-        <div class="abstract-content">
-            ﻿一、初识PHP1.PHP开始标记
-1&lt;?php
-2.PHP结束标记1?&gt;
- 3.页面最终是通过HTML，CSS，JS来进行展示的
- **4.PHP代码可以嵌入html代码中，可以嵌入到任意位置，并且可以嵌入多个php代码，必须在php文件中嵌入才生效。** 如果建立的是html文件，中间嵌有php代码，apache默认是不会将文件传送到PHP应用服务器，因为建立的是HTML文件，会直接返回给请求方。
-5.文件末尾的？&gt;结束标签可以省略
-6.指令分隔符** ；    1.在一些PHP语句的结尾要加上 ；表示一句话的结束。    2.结束标记?&gt;隐含了一个 ；   ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
     
 </div>
             
