@@ -78,8 +78,6 @@
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -203,8 +201,10 @@
 </head>
 
     
+        <body class="home-body">
     
-<header class="header">
+    
+<header class="header index-header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -220,21 +220,34 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/gg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            Lemon's blog
+            <!-- 文章页  -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
+            
+            
+                Do one thing at a time, and do well.
+            
+            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -346,57 +359,30 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/03/24/HTML学习总结/">
+        <a class="abstract-title" href="/2019/03/12/hexo+githup搭建属于自己的博客/">
             
-                <span>HTML学习总结</span>
+                <span>搭建属于自己的博客</span>
         </a>
         <div class="abstract-content">
-            HTML的基本结构1234567891011&lt;!DOCTYPE html&gt;&lt;!--文档类型--&gt;&lt;html lang="zh"&gt;&lt;!--加上lang属性声明语言--&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;!--利用UTF-8格式来解析--&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;
-HTML——文本文本标签
-12345&lt;p&gt;段落标签&lt;/p&gt;&lt;h...
+            hexo+githup搭建属于自己的博客 第一次搭建博客，遇到不少坑。CSDN、bing、谷歌、百度上都有大神的博客教授如何一步一步搭建属于自己的博客。不过我毕竟属于小白，文字有时给我的感受不是那么的直观，所以我是在B站看视频一步一步做的.话说他们的视频都写无坑视频。。。我却遇到了。。。很多坑，但觉得也很有趣，所以记录一下我的搭建过程。
+
+
+安装node.js
+
+
+官网链接选择10.15.3LTS进行下载。我是一路next,我开始搭的时候不想放入C盘，但后来发现npm命令不能用😂，才发现还要改路径，很麻烦。所以就一路next放进C盘中去。安装好后，打开cmd
+12C:\Users\用户...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/24</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/12</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="HTML">HTML</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/20/HTML+CSS+PHP+COOKIE在本地搭建一个简易的登陆注册网页/">
-            
-                <span>本地搭建简易的登陆注册网页</span>
-        </a>
-        <div class="abstract-content">
-            昨天晚上看了一叶飘零大佬的直播，大佬说：初学者最好自己先动手去做一些项目，这样能更好的了解原理，恰好学长要求做一个简易的登陆注册系统，利用这个机会再学习一波。
-做了两天，搞懂了很多概念，也遇到了很多问题，但是这个过程特别有意思，记录一下，把那些学到的知识也总结一下。
-一：准备工作打开mySQL打开网站根目录这里我直接放在了WWW目录下，有点乱。这样准备工作就做好了，开始奋斗了。
-开始之前把我写的php文件简单描述一下：login.php（登陆页面)logincookie.php（连接数据库+设置cookie页面）welcome.php  (判断是否有cookie以防绕过+登陆后呈现的页面...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="HTML">HTML</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="hexo">hexo</a>
     
 </div>
             
@@ -405,8 +391,115 @@ HTML——文本文本标签
     
     <!-- paginator  -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/page/2/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+    
 </main>
             <!-- profile -->
+            
+            <div class="profile">
+    <img class="profile-avatar" alt="avatar" src="/avatar/1.jpg">
+    <div class="profile-name">Lemon</div>
+    
+    <div class="profile-signature">
+        witness me
+    </div>
+    
+    
+    <div class="profile-social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/bealright" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="//blog.csdn.net/qq_43431158" class="iconfont-archer csdn" target="_blank" title="csdn"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    
+        <div class="friends">
+            <div>FRIENDS</div>
+            
+                
+                    <span>
+                        <a href="//www.baidu.com" target="_black">小白薛</a>
+                    </span>
+                
+            
+                
+                    <span>
+                        <a href="https://qwzf.github.io/" target="_black">Q子枫</a>
+                    </span>
+                
+            
+                
+            
+        </div>
+    
+    
+        <div class="about-me">
+            <a href="/about">ABOUT ME</a>
+        </div>
+    
+</div>
             
         </div>
         <footer class="footer footer-unloaded">
