@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="💗zihao">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="💗zihao">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="Saying and doing are two different things.">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>python学习（操作列表、if语句） · Lemon&#39;s blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">python学习（操作列表、if语句）</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Lemon's blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/sss.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            python学习（操作列表、if语句）
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+                Record my learning process of python.
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/07/22</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p> 前言：继续学习python，接下来学习操作列表等知识</p>
+<h2 id="第四章、操作列表"><a href="#第四章、操作列表" class="headerlink" title="第四章、操作列表"></a><strong>第四章、操作列表</strong></h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">messages=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line"><span class="keyword">for</span> message <span class="keyword">in</span> messages:</span><br><span class="line">    print(message)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>
+<p>格式：<code>for xxx in xxxx :</code></p>
+<blockquote>
+<p>利用for循环，遍历整个列表。使用单数和复数式名称，可帮助判断代码段处理的是单个列表元素还是整个列表</p>
+</blockquote>
+<p>也可以在for循环中执行更多的操作，例如：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">messages=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line"><span class="keyword">for</span> message <span class="keyword">in</span> messages:</span><br><span class="line">    print(message.title() + <span class="string">"we you he"</span>)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">Awe you he</span><br><span class="line">Bwe you he</span><br><span class="line">Cwe you he</span><br><span class="line">Dwe you he</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在python中，for循环没有花括号，区分是否为for循环的语句就是通过<code>缩进</code>来区分。在for循环下没有缩进的只执行一次。</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">messages=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line"><span class="keyword">for</span> message <span class="keyword">in</span> messages:</span><br><span class="line">    print(message.title()+<span class="string">"we"</span>)</span><br><span class="line">    print(<span class="string">"you"</span>+message.title()+<span class="string">".\n"</span>)</span><br><span class="line">print(<span class="string">"he!"</span>)    </span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">Awe</span><br><span class="line">youA.</span><br><span class="line"></span><br><span class="line">Bwe</span><br><span class="line">youB.</span><br><span class="line"></span><br><span class="line">Cwe</span><br><span class="line">youC.</span><br><span class="line"></span><br><span class="line">Dwe</span><br><span class="line">youD.</span><br><span class="line"></span><br><span class="line">he!</span><br></pre></td></tr></table></figure>
+<h6 id="创建数值列表"><a href="#创建数值列表" class="headerlink" title="创建数值列表"></a><strong>创建数值列表</strong></h6><blockquote>
+<p>使用函数range()能够轻松地生成一系列的数字</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</span><br><span class="line">    print(value)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line">函数range()从你指定的第一个值开始数，并在到达你指定的第二个值 后停止，因此输出不包含第二个值</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用<code>range()</code>函数和<code>list()</code>函数创建数字列表，将range() 作为list() 的参数，输出将为一个数字列表。</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers=list(range(<span class="number">1</span>,<span class="number">6</span>))</span><br><span class="line">print(numbers)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用 range()函数还可以指定步长</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求1-10的偶数</span></span><br><span class="line">numbers=list(range(<span class="number">2</span>,<span class="number">11</span>,<span class="number">2</span>))</span><br><span class="line">print(numbers)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实现创建一个列表，其中包含前10个整数（即1~10）的平方</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">squares = []</span><br><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    square = value**<span class="number">2</span></span><br><span class="line">    squares.append(square)</span><br><span class="line">    </span><br><span class="line">print(squares)</span><br><span class="line">输出结果：</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>, <span class="number">100</span>]</span><br><span class="line"><span class="comment">#为使代码更为简介，还可以不使用临时变量</span></span><br><span class="line">squares = []</span><br><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    squares.append(value**<span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">print(squares)</span><br></pre></td></tr></table></figure>
+<h6 id="对数字列表执行简单的统计计算"><a href="#对数字列表执行简单的统计计算" class="headerlink" title="对数字列表执行简单的统计计算"></a><strong>对数字列表执行简单的统计计算</strong></h6><blockquote>
+<p>对数字列表执行简单的统计计算，<code>min(),max(),sum()</code></p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">numbers = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">print(min(numbers))</span><br><span class="line">print(max(numbers))</span><br><span class="line">print(sum(numbers))</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="number">45</span></span><br></pre></td></tr></table></figure>
+<h6 id="列表解析"><a href="#列表解析" class="headerlink" title="列表解析"></a><strong>列表解析</strong></h6><blockquote>
+<p>列表解析 将for 循环和创建新元素的代码合并成一行，并自动 附加新元素。</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">squares = [value**<span class="number">2</span> <span class="keyword">for</span> value <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>)]</span><br><span class="line">print(squares)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>, <span class="number">100</span>]</span><br></pre></td></tr></table></figure>
+<h6 id="使用列表的一部分"><a href="#使用列表的一部分" class="headerlink" title="使用列表的一部分"></a><strong>使用列表的一部分</strong></h6><p><strong>切片(可以处理列表的部分元素)</strong></p>
+<blockquote>
+<p>创建切片，可指定要使用的第一个元素和最后一个元素的索引。与函数range() 一样。</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">players = [<span class="string">'a'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(players[<span class="number">0</span>:<span class="number">3</span>])</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'d'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure>
+<p>没有指定第一个索引，将从列表开头开始</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">players = [<span class="string">'a'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(players[:<span class="number">4</span>])</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'d'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line"><span class="comment">#要让切片终止于列表末尾，也可使用类似的语法。</span></span><br><span class="line">例如：</span><br><span class="line">players = [<span class="string">'a'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(players[<span class="number">2</span>:])</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line"><span class="comment">#负数索引返回离列表末尾相应距离的元素</span></span><br><span class="line">players = [<span class="string">'a'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">print(players[<span class="number">-3</span>:])</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'d'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br></pre></td></tr></table></figure>
+<h6 id="遍历切片"><a href="#遍历切片" class="headerlink" title="遍历切片"></a><strong>遍历切片</strong></h6><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">players = [<span class="string">'a'</span>,<span class="string">'d'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line"><span class="keyword">for</span> player <span class="keyword">in</span> players[:<span class="number">3</span>]:</span><br><span class="line">    print(player.title())</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">A</span><br><span class="line">D</span><br><span class="line">C</span><br></pre></td></tr></table></figure>
+<h6 id="复制列表"><a href="#复制列表" class="headerlink" title="复制列表"></a><strong>复制列表</strong></h6><blockquote>
+<p>要复制列表，可创建一个包含整个列表的切片，方法是同时省略起始索引和终止索引<code>（[:] ）</code></p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">my = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line">you = my[:]</span><br><span class="line">print(my)</span><br><span class="line">print(<span class="string">"\n"</span>)</span><br><span class="line">print(you)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br></pre></td></tr></table></figure>
+<h6 id="元组"><a href="#元组" class="headerlink" title="元组"></a><strong>元组</strong></h6><blockquote>
+<p>定义元组后，可以使用索引来访问其元素，就像访问列表元素一样。而且是用<code>圆括号</code>括起来的</p>
+</blockquote>
+<p>修改元组的操作是被禁止的，不能给元组的元素赋值.<br>例如：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">my=(<span class="number">200</span>,<span class="number">50</span>)</span><br><span class="line">my[<span class="number">0</span>]=<span class="number">210</span></span><br><span class="line">print(my[<span class="number">0</span>])</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">TypeError: <span class="string">'tuple'</span> object does <span class="keyword">not</span> support item assignment</span><br></pre></td></tr></table></figure></p>
+<h6 id="遍历元组中的所有值"><a href="#遍历元组中的所有值" class="headerlink" title="遍历元组中的所有值"></a><strong>遍历元组中的所有值</strong></h6><blockquote>
+<p>与列表一样，也可以使用for 循环来遍历元组中的所有值</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mys=(<span class="number">200</span>,<span class="number">50</span>)</span><br><span class="line"><span class="keyword">for</span> my <span class="keyword">in</span> mys:</span><br><span class="line">    print(my)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line"><span class="number">200</span></span><br><span class="line"><span class="number">50</span></span><br></pre></td></tr></table></figure>
+<h6 id="修改元组变量"><a href="#修改元组变量" class="headerlink" title="修改元组变量"></a><strong>修改元组变量</strong></h6><blockquote>
+<p>不能修改元组的元素，但可以给存储元组的变量赋值<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mys = (<span class="number">200</span>,<span class="number">50</span>)</span><br><span class="line"><span class="keyword">for</span> my <span class="keyword">in</span> mys:</span><br><span class="line">    print(my)</span><br><span class="line">print(<span class="string">"\n"</span>)</span><br><span class="line">mys = (<span class="number">210</span>,<span class="number">60</span>)</span><br><span class="line"><span class="keyword">for</span> my <span class="keyword">in</span> mys:</span><br><span class="line">    print(my)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line"><span class="number">200</span></span><br><span class="line"><span class="number">50</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">210</span></span><br><span class="line"><span class="number">60</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>如果需要存储的一组值在程序的整个生命周期内都不变，可使用元组.</p>
+<h2 id="第五章、if语句"><a href="#第五章、if语句" class="headerlink" title="第五章、if语句"></a>第五章、if语句</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mys = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> my <span class="keyword">in</span> mys:</span><br><span class="line">    <span class="keyword">if</span> my == <span class="string">'a'</span>:</span><br><span class="line">        print(my.title())</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(my)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">A</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>
+<h6 id="条件测试"><a href="#条件测试" class="headerlink" title="条件测试"></a><strong>条件测试</strong></h6><blockquote>
+<p>每条if 语句的核心都是一个值为True 或False 的表达式，这种表达式被称为条件测试 条件测试 。</p>
+</blockquote>
+<p><code>==</code> 相等运算符<br><code>!=</code>判断两个值是否不等</p>
+<h6 id="检查特定值是否包含在列表中"><a href="#检查特定值是否包含在列表中" class="headerlink" title="检查特定值是否包含在列表中"></a><strong>检查特定值是否包含在列表中</strong></h6><blockquote>
+<p>判断特定的值是否已包含在列表中，可使用<code>关键字in</code> </p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mys = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'a'</span> <span class="keyword">in</span> mys</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h6 id="检查特定值是否不包含在列表中"><a href="#检查特定值是否不包含在列表中" class="headerlink" title="检查特定值是否不包含在列表中"></a><strong>检查特定值是否不包含在列表中</strong></h6><blockquote>
+<p><code>使用关键字not in</code> </p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mys = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'d'</span>,<span class="string">'f'</span>]</span><br><span class="line">you = <span class="string">'l'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> you <span class="keyword">not</span> <span class="keyword">in</span> mys:</span><br><span class="line">    print(<span class="string">"no"</span>)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line"> no</span><br></pre></td></tr></table></figure>
+<h6 id="if-elif-else结构"><a href="#if-elif-else结构" class="headerlink" title="if-elif-else结构"></a><strong>if-elif-else结构</strong></h6><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> age &lt; <span class="number">4</span>:</span><br><span class="line">    print(<span class="string">"a"</span>)</span><br><span class="line"><span class="keyword">elif</span> age &lt; <span class="number">18</span>:</span><br><span class="line">    print(<span class="string">"b"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"c"</span>)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">b</span><br></pre></td></tr></table></figure>
+<h6 id="使用多个elif结构"><a href="#使用多个elif结构" class="headerlink" title="使用多个elif结构"></a><strong>使用多个elif结构</strong></h6><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">age=<span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> age&lt;<span class="number">4</span>:</span><br><span class="line">    price = <span class="number">0</span></span><br><span class="line"><span class="keyword">elif</span> age &lt;<span class="number">18</span>:</span><br><span class="line">    price = <span class="number">5</span></span><br><span class="line"><span class="keyword">elif</span> age &lt;<span class="number">40</span>:</span><br><span class="line">    price = <span class="number">10</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    price = <span class="number">5</span></span><br><span class="line">print(price)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h6 id="确定列表不是空的"><a href="#确定列表不是空的" class="headerlink" title="确定列表不是空的"></a><strong>确定列表不是空的</strong></h6><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">messages=[]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> messages:</span><br><span class="line">    <span class="keyword">for</span> message <span class="keyword">in</span> messages:</span><br><span class="line">        print(message + <span class="string">"."</span>)</span><br><span class="line">    print(<span class="string">"yes"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"no"</span>)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">no</span><br></pre></td></tr></table></figure>
+<h6 id="使用多个列表"><a href="#使用多个列表" class="headerlink" title="使用多个列表"></a><strong>使用多个列表</strong></h6><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">people_message = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]</span><br><span class="line"></span><br><span class="line">messages = [<span class="string">'a'</span>,<span class="string">'b'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> message <span class="keyword">in</span> messages:</span><br><span class="line">    <span class="keyword">if</span> message <span class="keyword">in</span> people_message:</span><br><span class="line">        print(<span class="string">"yes"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"no"</span>)</span><br><span class="line">print(<span class="string">"over"</span>)</span><br><span class="line"><span class="comment">#输出结果：</span></span><br><span class="line">yes</span><br><span class="line">yes</span><br><span class="line">over</span><br></pre></td></tr></table></figure>
+<p>这次就先学习到这里，下次继续往后学习。</p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/07/19/XSS学习-XSS挑战之旅(二)/" title="XSS学习-XSS挑战之旅(二)">
+                    <div class="prevTitle">XSS学习-XSS挑战之旅(二)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/bealright" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="//blog.csdn.net/qq_43431158" class="iconfont-archer csdn" target="_blank" title="csdn"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第四章、操作列表"><span class="toc-number">1.</span> <span class="toc-text">第四章、操作列表</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#创建数值列表"><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">创建数值列表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#对数字列表执行简单的统计计算"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">对数字列表执行简单的统计计算</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#列表解析"><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">列表解析</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#使用列表的一部分"><span class="toc-number">1.0.0.0.4.</span> <span class="toc-text">使用列表的一部分</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#遍历切片"><span class="toc-number">1.0.0.0.5.</span> <span class="toc-text">遍历切片</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#复制列表"><span class="toc-number">1.0.0.0.6.</span> <span class="toc-text">复制列表</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#元组"><span class="toc-number">1.0.0.0.7.</span> <span class="toc-text">元组</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#遍历元组中的所有值"><span class="toc-number">1.0.0.0.8.</span> <span class="toc-text">遍历元组中的所有值</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#修改元组变量"><span class="toc-number">1.0.0.0.9.</span> <span class="toc-text">修改元组变量</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五章、if语句"><span class="toc-number">2.</span> <span class="toc-text">第五章、if语句</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#条件测试"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">条件测试</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#检查特定值是否包含在列表中"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">检查特定值是否包含在列表中</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#检查特定值是否不包含在列表中"><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">检查特定值是否不包含在列表中</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#if-elif-else结构"><span class="toc-number">2.0.0.0.4.</span> <span class="toc-text">if-elif-else结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#使用多个elif结构"><span class="toc-number">2.0.0.0.5.</span> <span class="toc-text">使用多个elif结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#确定列表不是空的"><span class="toc-number">2.0.0.0.6.</span> <span class="toc-text">确定列表不是空的</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#使用多个列表"><span class="toc-number">2.0.0.0.7.</span> <span class="toc-text">使用多个列表</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 25
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href="/2019/07/22/python学习（操作列表、if语句）/">python学习（操作列表、if语句）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2019/07/19/XSS学习-XSS挑战之旅(二)/">XSS学习-XSS挑战之旅(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2019/07/18/实验吧— Crypto Write up(一)/">实验吧— Crypto Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href="/2019/07/17/I春秋——web Write up(一)/">I春秋——web Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/16</span><a class="archive-post-title" href="/2019/07/16/2019安恒七月月赛——MISC/">2019安恒七月月赛——MISC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/14</span><a class="archive-post-title" href="/2019/07/14/I春秋—— Crypto Write up(一)/">I春秋—— Crypto Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2019/07/12/实验吧—(部分)MISC Write up/">实验吧—(部分)MISC Write up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/11</span><a class="archive-post-title" href="/2019/07/11/python学习（字符串、整数、列表）/">python学习（字符串、整数、列表）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/10</span><a class="archive-post-title" href="/2019/07/10/XCTF(攻防世界)—新手web题Write Up/">XCTF(攻防世界)—新手web题Write Up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/19</span><a class="archive-post-title" href="/2019/06/19/C++学习总结（函数、类与对象）/">C++学习总结（函数、类与对象）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/2019/06/15/Bugku—MISC题总结/">Bugku—MISC题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2019/06/09/通过sql-labs进行sql注入学习(一)/">通过sql-labs进行sql注入学习(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href="/2019/05/31/ISCC2019杂项题(MISC)总结/">ISCC2019-MISC总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/CTF 关于ZIP解题过程/">CTF关于ZIP解题思路</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/CTF隐写总结/">CTF隐写总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href="/2019/05/08/CTF Crypto(密码学)总结/">CTF密码学总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/web安全—XSS攻击(二)/">XSS学习-XSS挑战之旅(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href="/2019/04/24/web安全-XSS攻击（一)/">XSS理解+练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/PHP学习总结（数据库概念、DDL语句、DML语句）/">PHP数据库概念、DDL语句、DML语句</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/PHP学习总结(会话控制)/">PHP会话控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/PHP学习(php概念、基本语法、流程控制)/">PHP概念、基本语法、流程控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/24</span><a class="archive-post-title" href="/2019/03/24/HTML学习总结/">HTML学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2019/03/20/HTML+CSS+PHP+COOKIE在本地搭建一个简易的登陆注册网页/">本地搭建简易的登陆注册网页</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/CSS学习总结/">CSS学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/hexo+githup搭建属于自己的博客/">搭建属于自己的博客</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
+    
+        <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "💗zihao"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
