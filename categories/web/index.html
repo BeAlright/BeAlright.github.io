@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/07/24/sql注入学习——布尔盲注/">
+            
+                <span>sql注入学习——布尔盲注</span>
+        </a>
+        <div class="abstract-content">
+            前言：之前通过前九关学习到了回显注入、报错注入等一些方法，这次就来详细的学习布尔盲注。
+首先来了解一下盲注的概念
+
+盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。
+
+布尔盲注
+原理：注入的时候只会返回True和False，所以布尔盲注就是根据页面显示的是True还是False进行猜测数据库中的信息。
+布尔盲注需要几个函数的辅助，就先来了解一下这几个函数1234length()函数可返回字符串的长度substring()函数可以截取字符串，可指定开始的位置和截取的长度ord()函数可以返回单个字符的ASCII码char()函数可将ASCII码转...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/07/19/XSS学习-XSS挑战之旅(二)/">
             
                 <span>XSS学习-XSS挑战之旅(二)</span>
@@ -969,9 +1005,26 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 25
+        Total : 26
         </div>
         <!-- search  -->
         
@@ -984,6 +1037,11 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2019/07/24/sql注入学习——布尔盲注/">sql注入学习——布尔盲注</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1123,6 +1181,8 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
@@ -1130,8 +1190,6 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
         <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
     
         <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
-    
-        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
