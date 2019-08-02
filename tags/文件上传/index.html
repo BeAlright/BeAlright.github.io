@@ -346,7 +346,7 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/07/31/文件上传漏洞——upload-labs(1-10) (1)/">
+        <a class="abstract-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">
             
                 <span>文件上传漏洞——upload-labs(1-10)</span>
         </a>
@@ -355,6 +355,42 @@
 第一关上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下抓包修改上传格式的方法看看是否可行
 先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包
 拦截请求包后，将1.png改为1.php，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径路径也知道了，就用菜刀进行连接连接成功观察一下第一关的源码1234567891011121314151617function checkFile() &#123;    var file = document.getEl...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/07/31/文件上传漏洞——DVWA练习/">
+            
+                <span>文件上传漏洞——DVWA练习</span>
+        </a>
+        <div class="abstract-content">
+            前言：文件上传漏洞是很常见的漏洞，也非常有趣，接下来就在DVWA靶场中边学边练。
+文件上传漏洞：
+
+文件上传漏洞是指由于程序员在对用户文件上传部分的控制不足或者处理缺陷，而导致的用户可以越过其本身权限向服务器上上传可执行的动态脚本文件。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，“文件上传”本身没有问题，有问题的是文件上传后，服务器怎么处理、解释文件。如果服务器的处理逻辑做的不够安全，则会导致严重的后果。
+
+具体的原理可以看大师傅的讲解Smi1e_——文件上传漏洞 学习笔记文件上传漏洞low级别
+观察源码
+123456789101112...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -870,9 +906,10 @@
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 30
         </div>
         <!-- search  -->
         
@@ -888,7 +925,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/文件上传漏洞——upload-labs(1-10) (1)/">文件上传漏洞——upload-labs(1-10)</a>
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">文件上传漏洞——upload-labs(1-10)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/文件上传漏洞——DVWA练习/">文件上传漏洞——DVWA练习</a>
         </li>
     
     
