@@ -359,33 +359,7 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/02/文件上传漏洞——upload-labs(1-10) (1)/">
-            
-                <span>[Untitled Post]</span>
-        </a>
-        <div class="abstract-content">
-            前言：文件上传漏洞有很多种绕过技巧，这次就通过upload-labs进行学习
-第一关上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下抓包修改上传格式的方法看看是否可行
-先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包
-拦截请求包后，将1.png改为1.php，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径路径也知道了，就用菜刀进行连接连接成功观察一下第一关的源码1234567891011121314151617function checkFile() &#123;    var file = document.getEl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/02</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/31/文件上传漏洞——upload-labs(1-10)/">
+        <a class="abstract-title" href="/2019/07/31/文件上传漏洞——upload-labs(1-10) (1)/">
             
                 <span>文件上传漏洞——upload-labs(1-10)</span>
         </a>
@@ -670,6 +644,42 @@ height:50vh;
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/07/14/I春秋—— Crypto Write up(一)/">
+            
+                <span>I春秋—— Crypto Write up(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：密码学涉及一系列的加密算法，虽然自己数学贼烂，但觉得加密这些算法还是蛮好玩的，就通过题来了解一些算法，话不多说，开始做题。
+Substituted方法：百度翻译题目一下，Substituted（替换），替换加密中包含有简单替换密码，应该就是简单替换密码，在线网站求解一波。替换密码解密把头部改成iceCTF即可得出flag。
+做题总结：通过这道题来了解一下简单替换密码
+
+替换密码属于简单对称加密，即将字母表中一个字符替换成另一个字符，很好理解。1234567例如：	明文 ABDDD	替换规则：	A-&gt;C	B-&gt;T	D-&gt;F	密文 CTFFF
+
+
+而攻击方式也有很多种...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/14</span>
             </div>
             <!-- tags  -->
             
@@ -1287,38 +1297,9 @@ height:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 30
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -1334,12 +1315,7 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/02</span><a class="archive-post-title" href="/2019/08/02/文件上传漏洞——upload-labs(1-10) (1)/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/文件上传漏洞——upload-labs(1-10)/">文件上传漏洞——upload-labs(1-10)</a>
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/文件上传漏洞——upload-labs(1-10) (1)/">文件上传漏洞——upload-labs(1-10)</a>
         </li>
     
     
