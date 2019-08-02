@@ -406,7 +406,7 @@ height:50vh;
         <p>前言：文件上传漏洞有很多种绕过技巧，这次就通过<strong>upload-labs</strong>进行学习</p>
 <h6 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a><strong>第一关</strong></h6><p><img src="https://i.loli.net/2019/08/02/5d4407f1ef91b64886.png" alt="在这里插入图片描述"><br>上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下<strong>抓包修改上传格式</strong>的方法看看是否可行</p>
 <p>先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包</p>
-<p><img src="https://ws2.sinaimg.cn/large/005AgcRBgy1g5lf52wwv7j30dq06lmxs.jpg" alt="在这里插入图片描述"><br>拦截请求包后，将<code>1.png</code>改为<code>1.php</code>，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径<br><img src="https://ws4.sinaimg.cn/large/005AgcRBgy1g5lf5cnmljj308q018mx0.jpg" alt="在这里插入图片描述"><br>路径也知道了，就用菜刀进行连接<br><img src="https://ws2.sinaimg.cn/large/005AgcRBgy1g5lf5mtm17j30ch06jt91.jpg" alt="在这里插入图片描述"><br>连接成功<br><img src="https://ws3.sinaimg.cn/large/005AgcRBgy1g5lf5wxpvlj30oy04hq38.jpg" alt="在这里插入图片描述"><br>观察一下第一关的源码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkFile</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> file = document.getElementsByName(<span class="string">'upload_file'</span>)[<span class="number">0</span>].value;</span><br><span class="line">    <span class="keyword">if</span> (file == <span class="keyword">null</span> || file == <span class="string">""</span>) &#123;</span><br><span class="line">        alert(<span class="string">"请选择要上传的文件!"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//定义允许上传的文件类型</span></span><br><span class="line">    <span class="keyword">var</span> allow_ext = <span class="string">".jpg|.png|.gif"</span>;</span><br><span class="line">    <span class="comment">//提取上传文件的类型</span></span><br><span class="line">    <span class="keyword">var</span> ext_name = file.substring(file.lastIndexOf(<span class="string">"."</span>));</span><br><span class="line">    <span class="comment">//判断上传文件类型是否允许上传</span></span><br><span class="line">    <span class="keyword">if</span> (allow_ext.indexOf(ext_name + <span class="string">"|"</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> errMsg = <span class="string">"该文件不允许上传，请上传"</span> + allow_ext + <span class="string">"类型的文件,当前文件类型为："</span> + ext_name;</span><br><span class="line">        alert(errMsg);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://wx4.sinaimg.cn/mw690/005Ia9Khly1g5lhpw5mcjj30dq06lmxs.jpg" alt="在这里插入图片描述"><br>拦截请求包后，将<code>1.png</code>改为<code>1.php</code>，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径<br><img src="https://wx2.sinaimg.cn/mw690/005Ia9Khly1g5lhpw3bqfj308q018mx0.jpg" alt="在这里插入图片描述"><br>路径也知道了，就用菜刀进行连接<br><img src="https://ws2.sinaimg.cn/large/005AgcRBgy1g5lf5mtm17j30ch06jt91.jpg" alt="在这里插入图片描述"><br>连接成功<br><img src="https://ws3.sinaimg.cn/large/005AgcRBgy1g5lf5wxpvlj30oy04hq38.jpg" alt="在这里插入图片描述"><br>观察一下第一关的源码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkFile</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> file = document.getElementsByName(<span class="string">'upload_file'</span>)[<span class="number">0</span>].value;</span><br><span class="line">    <span class="keyword">if</span> (file == <span class="keyword">null</span> || file == <span class="string">""</span>) &#123;</span><br><span class="line">        alert(<span class="string">"请选择要上传的文件!"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//定义允许上传的文件类型</span></span><br><span class="line">    <span class="keyword">var</span> allow_ext = <span class="string">".jpg|.png|.gif"</span>;</span><br><span class="line">    <span class="comment">//提取上传文件的类型</span></span><br><span class="line">    <span class="keyword">var</span> ext_name = file.substring(file.lastIndexOf(<span class="string">"."</span>));</span><br><span class="line">    <span class="comment">//判断上传文件类型是否允许上传</span></span><br><span class="line">    <span class="keyword">if</span> (allow_ext.indexOf(ext_name + <span class="string">"|"</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> errMsg = <span class="string">"该文件不允许上传，请上传"</span> + allow_ext + <span class="string">"类型的文件,当前文件类型为："</span> + ext_name;</span><br><span class="line">        alert(errMsg);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>通过观察只是限制了在上传时的类型，所以<strong>中途拦截抓包改格式</strong>的方法是完成可行的。</p>
 <p><strong>方法</strong>：<strong>改包绕过上传</strong></p>
 <h6 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a><strong>第二关</strong></h6><p>做第二关时发现沿用第一关的方法也是可行的，不过应该不会再考同一个点了</p>
@@ -978,6 +978,22 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 29
@@ -1150,9 +1166,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
-    
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
