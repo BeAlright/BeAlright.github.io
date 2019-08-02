@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>XSS学习-XSS挑战之旅(二) · Lemon&#39;s blog</title>
+    <title>Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/">Lemon&#39;s blog</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">XSS学习-XSS挑战之旅(二)</a>
-            </div>
-    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -231,76 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/sss.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            XSS学习-XSS挑战之旅(二)
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-                Record my learning process of XSS.
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class="post-intro-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">938</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/07/19</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -401,68 +338,42 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p>前言：之前打XSS平台时，打到了第11关就没有继续了，现在有空了就继续打咯，再增加点关于XSS的知识。</p>
-<h6 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a><strong>第十一关</strong></h6><p><img src="http://i2.tiimg.com/690112/9517aeedfe45a369.png" alt="在这里插入图片描述"><br>这关坑我好长时间，看了好多博客直接给说修改Referer，给截图中都有自带的Referer值，修改就行，但是我怎么抓都抓不到Referer值。还以为自己设置有问题，去查burp各种的设置。。。</p>
-<p>终于看了一篇很细的大佬博客，才算搞懂，Referer值是自己加上的，这里就详细的介绍一下这关，别让和我一样的小白继续跌坑。</p>
-<p>我们从第十关来到第十一关（不要直接跳到第十一关，否则看不出任何线索）<br><img src="http://i2.tiimg.com/690112/36d2ce451b924ea3.png" alt="在这里插入图片描述"><br>进入第十一关后看源码<br><img src="http://i2.tiimg.com/690112/638e3aea1eed0372.png" alt="在这里插入图片描述"><br>发现t_ref字段中，<strong>value</strong>的值是<strong>http referer</strong>的值，所以这关应该考的就是<code>http头部的xss注入</code>，那只要在Referer值中注入xss,也会出现在value值中，就会注入成功。</p>
-<p><strong>构造Referer</strong>（手动构造的，不是一抓包就有的）<br><img src="http://i2.tiimg.com/690112/6249b2ff81d6b294.png" alt="在这里插入图片描述"><br><strong>注入成功</strong><br><img src="http://i2.tiimg.com/690112/13c70ad72045a3e6.png" alt="在这里插入图片描述"><br><strong>forward发包</strong><br><img src="http://i2.tiimg.com/690112/535e74ba3b61bca3.png" alt="在这里插入图片描述"><br><strong>再关闭即可</strong><br><img src="http://i1.fuimg.com/690112/31cf87d50dc554a1.png" alt="在这里插入图片描述"><br><img src="http://i1.fuimg.com/690112/aadd49a10cde5c3e.png" alt="在这里插入图片描述"></p>
-<p>这里的Referer值是自己构造的，有的大佬一抓包就有，我的怎么抓也没有，这点困扰我很长时间,但其实不论是<strong>本地</strong>还是<strong>在线网站</strong>我都抓不到Referer原来的值，这里应该就是抓不到原来的Referer，也可能是我没修改好的问题吧。<br><strong>附上payload:</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Referer: <span class="string">" onmouseover=alert(/xss/) type="</span>text<span class="string">"</span></span><br><span class="line"><span class="string">#onmouseover 事件属性</span></span><br><span class="line"><span class="string">#当鼠标指针移动到图像上时执行一段 JavaScript</span></span><br></pre></td></tr></table></figure></p>
-<h6 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a><strong>第十二关</strong></h6><p><img src="http://i2.tiimg.com/690112/b30d81d447dfd7c0.png" alt="在这里插入图片描述"><br>查看源码，发现t_ref字段中，<strong>value</strong>的值是<strong>User-Agent</strong>的值，所以和第十一题一样了，我们就抓包修改<strong>User-Agent</strong>即可。<br><img src="http://i2.tiimg.com/690112/468ef7904d8dd012.png" alt="在这里插入图片描述"><img src="http://i2.tiimg.com/690112/853bbfe69f15b3a0.png" alt="在这里插入图片描述"><br>接下来的流程就和第十一关相同了，这里就不阐述了<img src="http://i2.tiimg.com/690112/f1611f659fd38bf2.png" alt="在这里插入图片描述"><br><strong>附上payload:</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User-Agent: <span class="string">" onmouseover=alert(/xss/) type="</span>text<span class="string">"</span></span><br></pre></td></tr></table></figure>
-<h6 id="第十三关"><a href="#第十三关" class="headerlink" title="第十三关"></a><strong>第十三关</strong></h6><p><img src="http://i2.tiimg.com/690112/4cb3f9daac5b8d47.png" alt="在这里插入图片描述"><br>查看源代码<br><img src="http://i2.tiimg.com/690112/05adc4506cbdcadc.png" alt="在这里插入图片描述"><br>抓包发现和<strong>cookie</strong>的值相同<br><img src="http://i2.tiimg.com/690112/c4229751f90dcc8d.png" alt="在这里插入图片描述"><br>那原理和第十关和第十一关就相同了，直接构造playload即可<br><img src="http://i2.tiimg.com/690112/4a0df0145269f240.png" alt="在这里插入图片描述"><br><strong>附上payload:</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie: user=<span class="string">" onmouseover=alert(/xss/) type="</span>text<span class="string">"</span></span><br></pre></td></tr></table></figure>
-<h6 id="第十四关"><a href="#第十四关" class="headerlink" title="第十四关"></a><strong>第十四关</strong></h6><p><strong>这关需要结合漏洞，直接看先知上的wp了解一下exif xss</strong><br><a href="https://xz.aliyun.com/t/1206#toc-12" target="_blank" rel="noopener">XSS挑战之旅—游戏通关攻略</a></p>
-<h6 id="第十五关"><a href="#第十五关" class="headerlink" title="第十五关"></a><strong>第十五关</strong></h6><p><img src="http://i2.tiimg.com/690112/6b1cfe61041b5fc6.png" alt="在这里插入图片描述"><br>查看源码<br><img src="http://i2.tiimg.com/690112/622999ad245b9ed7.png" alt="在这里插入图片描述"><br>发现两处不认识的东西，百度查寻<br><img src="http://i2.tiimg.com/690112/f2f76fc7e05123ff.png" alt="在这里插入图片描述"><br>同时也发现<strong>ng-include</strong>是AngularJS的一个指令<br><img src="http://i2.tiimg.com/690112/fe845e5a1055d3df.png" alt="在这里插入图片描述"><br><img src="http://i2.tiimg.com/690112/4525e118f125795d.png" alt="在这里插入图片描述"><br>那注入点应该就在<code>ng-include</code>这里了，先知博客上用的包含第一关的php文件，然后用标签<code>&lt;img&gt;</code>进行xss.</p>
-<p><img src="http://i2.tiimg.com/690112/101e82719b794e74.png" alt="在这里插入图片描述"><br><strong>附上payload：</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?src='level1.php?name=test&lt;img src=1 onerror=alert(/hacker/)&gt;'</span><br></pre></td></tr></table></figure></p>
-<h6 id="第十六关"><a href="#第十六关" class="headerlink" title="第十六关"></a><strong>第十六关</strong></h6><p><img src="http://i2.tiimg.com/690112/e212654860a96a78.png" alt="在这里插入图片描述"><br>还按照之前的套路，先试一些常见的payload，看看都过滤了什么<br>输入</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//test.xss.tv/level16.php?keyword=&lt;script&gt;alert(/xss/)&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
-<p>发现过滤了<code>script</code>，<code>\</code>,还有空格<br><img src="http://i2.tiimg.com/690112/379cefde3d092212.png" alt="在这里插入图片描述"><br>这里利用<code>%0d、%0a（回车换行）</code>实现xss攻击绕过,代替<code>空格</code>即可<br><img src="http://i2.tiimg.com/690112/5e51197b303c6d63.png" alt="在这里插入图片描述"><br><strong>附上payload：</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?keyword=&lt;img%<span class="number">0</span>dsrc=<span class="number">1</span>%<span class="number">0</span>donerror=alert(/xss/)&gt;</span><br><span class="line">?keyword=&lt;img%<span class="number">0</span>asrc=<span class="number">1</span>%<span class="number">0</span>aonerror=alert(/xss/)&gt;</span><br></pre></td></tr></table></figure></p>
-<h6 id="第十七关"><a href="#第十七关" class="headerlink" title="第十七关"></a><strong>第十七关</strong></h6><p><img src="http://i2.tiimg.com/690112/83865410b0946007.png" alt="在这里插入图片描述"><br>先输入最常见的，看下情况</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?arg01=a&amp;arg02=&lt;script&gt;alert(/xss/)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>发现<br><img src="http://i2.tiimg.com/690112/6ee268dde61c2db8.png" alt="在这里插入图片描述"><br>这里是输出点，过滤了<code>&lt;&gt;</code><br>换<code>onclick</code>事件尝试，发现<code>&quot;</code>被过滤<br><img src="http://i2.tiimg.com/690112/c17ddce22322148a.png" alt="在这里插入图片描述"><br>那就用on事件，反正就是各种尝试，结果确实on事件能过<br><strong>payload：</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?arg01=a&amp;arg02= onmouseover=alert(/xss/)</span><br><span class="line">#onmouseover 事件属性</span><br><span class="line">当鼠标指针移动到图像上时执行一段 JavaScript：</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://i2.tiimg.com/690112/ea3bcbc2a259a5f3.png" alt="在这里插入图片描述"></p>
-<h6 id="第十八关"><a href="#第十八关" class="headerlink" title="第十八关"></a><strong>第十八关</strong></h6><p><img src="http://i2.tiimg.com/690112/aae7a5a9125302a1.png" alt="在这里插入图片描述"><br>刚进去发现<br><img src="http://i2.tiimg.com/690112/1255dae07398329b.png" alt="在这里插入图片描述"><br>这和第十七关挺像的试试刚才的payload<br><img src="http://i2.tiimg.com/690112/2d09c424938db82d.png" alt="在这里插入图片描述"><br>….一模一样<br><strong>payload：</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?arg01=a&amp;arg02= onmouseover=alert(/xss/)</span><br></pre></td></tr></table></figure>
-<p>这次就先学习到这，后面的涉及Flash，待有空再研究。另附上大佬博客<br><a href="https://xz.aliyun.com/t/1206#toc-16" target="_blank" rel="noopener">XSS挑战之旅—游戏通关攻略</a><br><a href="https://www.cnblogs.com/my-mind/p/10696912.html" target="_blank" rel="noopener">XSS练习小游戏</a></p>
-
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/07/31/文件上传漏洞——upload-labs(1-10)/">
+            
+                <span>文件上传漏洞——upload-labs(1-10)</span>
+        </a>
+        <div class="abstract-content">
+            前言：文件上传漏洞有很多种绕过技巧，这次就通过upload-labs进行学习
+第一关上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下抓包修改上传格式的方法看看是否可行
+先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包
+拦截请求包后，将1.png改为1.php，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径路径也知道了，就用菜刀进行连接连接成功观察一下第一关的源码1234567891011121314151617function checkFile() &#123;    var file = document.getEl...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
+    
+</div>
+            
+        </div>
     </article>
-    <!-- license  -->
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/07/22/python学习（操作列表、if语句）/" title="python学习（操作列表、if语句）">
-                    <div class="nextTitle">python学习（操作列表、if语句）</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/07/18/实验吧— Crypto Write up(一)/" title="实验吧— Crypto Write up(一)">
-                    <div class="prevTitle">实验吧— Crypto Write up(一)</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -553,24 +464,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#第十一关"><span class="toc-number">1.</span> <span class="toc-text">第十一关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第十二关"><span class="toc-number">2.</span> <span class="toc-text">第十二关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第十三关"><span class="toc-number">3.</span> <span class="toc-text">第十三关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第十四关"><span class="toc-number">4.</span> <span class="toc-text">第十四关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第十五关"><span class="toc-number">5.</span> <span class="toc-text">第十五关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第十六关"><span class="toc-number">6.</span> <span class="toc-text">第十六关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第十七关"><span class="toc-number">7.</span> <span class="toc-text">第十七关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第十八关"><span class="toc-number">8.</span> <span class="toc-text">第十八关</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1240,8 +1133,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
