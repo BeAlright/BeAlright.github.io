@@ -346,6 +346,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">
+            
+                <span>实验吧——SQL注入 Write up(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：之前学习过了联合注入查询、布尔盲注、时间盲注等，这次就通过SQL注入题来加强一下。
+简单的sql注入方法一输入有回显，且有输入框，那就可以用联合查询的方法来注入
+题中提示已经过滤了一些关键字，那么就先来查看题中过滤的是哪些关键字
+1?id=1 union select order by #
+回显结果：union，select等都被过滤而且没有报错说明#也被过滤可以自己建立一个语句来验证一下如果#没有被过滤，那么上面的语句将会变成这样，语句一定会报错题中将关键字过滤，可以尝试一下双写绕过的方法是否可用输入框中输入?id=1 unionunion selectselect，发现空格也被...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">
             
                 <span>文件上传漏洞——upload-labs(1-10)</span>
@@ -385,12 +418,11 @@
         <div class="abstract-content">
             前言：文件上传漏洞是很常见的漏洞，也非常有趣，接下来就在DVWA靶场中边学边练。
 文件上传漏洞：
-
 文件上传漏洞是指由于程序员在对用户文件上传部分的控制不足或者处理缺陷，而导致的用户可以越过其本身权限向服务器上上传可执行的动态脚本文件。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，“文件上传”本身没有问题，有问题的是文件上传后，服务器怎么处理、解释文件。如果服务器的处理逻辑做的不够安全，则会导致严重的后果。
 
-具体的原理可以看大师傅的讲解Smi1e_——文件上传漏洞 学习笔记文件上传漏洞low级别
-观察源码
-123456789101112...
+具体的原理可以看大师傅的讲解Smi1e_——文件上传漏洞 学习笔记文件上传漏洞
+low级别观察源码
+1234567891011121...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -646,43 +678,11 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/04/24/web安全-XSS攻击（一)/">
-            
-                <span>XSS理解+练习</span>
-        </a>
-        <div class="abstract-content">
-            XSS攻击和SQL注入都是web安全中很常见的攻击方式，最近先学习XSS攻击，待到XSS学完后再去学习SQL注入，哇（感慨一番），这些知识真的太有趣了。
-在开始之前，有必要了解一下概念
-1、XSS跨站脚本攻击定义
-跨站脚本攻击是指攻击者利用网站程序对用户输入过滤不足，输入可以显示在页面上对其他用户造成影响的HTML代码，从而盗取用户资料、利用用户身份进行某种动作或者访问者进行病毒侵害的一种攻击方式。为了与层叠样式表的缩写CSS区分开，跨站脚本攻击通常简写为XSS。
-
-2、XSS类型1)反射型XSS
-
-反射型XSS只是简单地将用户输入的数据直接或未经完善的安全过滤就在浏览器中进行输出，导致...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/categories/web/page/2/">2</a><a class="extend next" rel="next" href="/categories/web/page/2/">NEXT &#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -1181,9 +1181,60 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 30
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1196,6 +1247,11 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/05</span><a class="archive-post-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">实验吧——SQL注入 Write up(一)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1356,11 +1412,11 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
-        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
-    
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
