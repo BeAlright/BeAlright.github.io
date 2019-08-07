@@ -352,10 +352,11 @@
         </a>
         <div class="abstract-content">
             前言：之前学习过了联合注入查询、布尔盲注、时间盲注等，这次就通过SQL注入题来加强一下。
+
 简单的sql注入方法一输入有回显，且有输入框，那就可以用联合查询的方法来注入
 题中提示已经过滤了一些关键字，那么就先来查看题中过滤的是哪些关键字
 1?id=1 union select order by #
-回显结果：union，select等都被过滤而且没有报错说明#也被过滤可以自己建立一个语句来验证一下如果#没有被过滤，那么上面的语句将会变成这样，语句一定会报错题中将关键字过滤，可以尝试一下双写绕过的方法是否可用输入框中输入?id=1 unionunion selectselect，发现空格也被...
+回显结果：union，select等都被过滤而且没有报错说明#也被过滤可以自己建立一个语句来验证一下如果#没有被过滤，那么上面的语句将会变成这样，语句一定会报错题中将关键字过滤，可以尝试一下双写绕过的方法是否可用输入框中输入?id=1 unionunion selectselect，发现空格也...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1199,36 +1200,9 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 31
+        Total : 32
         </div>
         <!-- search  -->
         
@@ -1245,6 +1219,11 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/05</span><a class="archive-post-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">实验吧——SQL注入 Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href="/2019/08/03/文件上传漏洞——upload-labs(11-20)/">文件上传漏洞——upload-labs(11-20)</a>
         </li>
     
     
@@ -1408,9 +1387,9 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
-    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
