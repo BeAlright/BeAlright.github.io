@@ -346,6 +346,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/05/18/CTF 关于ZIP解题过程/">
+            
+                <span>CTF关于ZIP解题思路</span>
+        </a>
+        <div class="abstract-content">
+            CTF 关于ZIP解题1.伪加密类型打开之后是两张图片，一张未加密，一张已加密。利用WinHex打开然后在谷歌上找到大佬关于zip格式的介绍接下来进行对比，看是否属于伪加密通过对比，发现确实属于伪加密。所以将09改为00即可。
+
+总结：从50 4B 01 02 开始数十位数便能查看是否是伪加密。
+
+2.CRC32碰撞总结![在这里插入图片描述](https://github.com/bealright/bealright.github.io/blob/master/CTF%20zip/6.png?raw=true)
+这个题是CRC32碰撞，首先有不会的就百度、谷歌。
+通过查找发现需要CR...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/05/09/CTF隐写总结/">
             
                 <span>CTF隐写总结</span>
@@ -953,9 +988,18 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -968,6 +1012,11 @@
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/密码学——RSA加密算法原理/">密码学——RSA加密算法原理</a>
+        </li>
     
     
         <li class="archive-post-item">

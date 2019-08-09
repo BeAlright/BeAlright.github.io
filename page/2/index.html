@@ -359,6 +359,38 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/07/18/实验吧— Crypto Write up(一)/">
+            
+                <span>实验吧— Crypto Write up(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：最近先做一些关于古典密码的题，了解常见的古典密码。
+变异凯撒1加密密文：afZ_r9VYfScOeO_UL^RWUc
+刚开始以为这道题考的是凯撒加密，就在线求解，结果不行，那就来分析题目，变异凯撒，应该是利用凯撒加密的原理加以变形，观察一波，提示又提示说格式为flag{}，发现a的ascii到f的ascii偏移量为5，f的ascii到l的ascii偏移量为6,Z的ascii到a的ascii偏移量为7，总结出以后的每个字母偏移量都要加1，观察出规律了，就写脚本跑吧。
+附上ASCII表py3脚本123456789101112a = 'afZ_r9VYfScOeO_UL^RWUc'b =...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/07/17/I春秋——web Write up(一)/">
             
                 <span>I春秋——web Write up(一)</span>
@@ -648,36 +680,6 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/31/ISCC2019杂项题(MISC)总结/">
-            
-                <span>ISCC2019-MISC总结</span>
-        </a>
-        <div class="abstract-content">
-            ISCC2019刚刚结束，作为一个萌新我是真的菜，真心菜不过也会几道杂项题，就总结一下做题思路。
-Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张完整的图做到这里没思路了，就回去看题目提示。Aesop’s chest and key lie within .to find it（伊索的胸膛和钥匙都在里面。为了找到它 ）还是一脸懵，用winhex打开我们得到的完整图和gif的图看看会有什么出现。在gif图中发现下面感觉像base64，试试吧发现前面有一个单词，百度翻译（盐），一般这些都是有密钥的加密密文，取在线网站挨个解下，看看那个可以，密钥当然就是ISCC了...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
     
 </div>
             
@@ -1336,9 +1338,18 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1351,6 +1362,11 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href="/2019/08/08/密码学——RSA加密算法原理/">密码学——RSA加密算法原理</a>
+        </li>
     
     
         <li class="archive-post-item">
