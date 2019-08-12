@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Lemon&#39;s blog</title>
+    <title>DVWA——命令执行漏洞学习 · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">DVWA——命令执行漏洞学习</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/sss.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            DVWA——命令执行漏洞学习
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+                Record my learning process of Command Execution.
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="命令执行">命令执行</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/10</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,350 +401,83 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/10/DVWA——命令执行漏洞学习/">
-            
-                <span>DVWA——命令执行漏洞学习</span>
-        </a>
-        <div class="abstract-content">
-            前言：命令执行和代码执行也是web安全中常见的一种漏洞，这次就先来学习一下命令执行漏洞。
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><strong>前言：命令执行和代码执行也是web安全中常见的一种漏洞，这次就先来学习一下命令执行漏洞。</strong></p>
+<hr>
+<h1 id="Command-Execution"><a href="#Command-Execution" class="headerlink" title="Command Execution"></a><strong>Command Execution</strong></h1><h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a><strong>一、简介</strong></h3><blockquote>
+<p>由于开发人员在编写源代码时，没有对源代码中可执行的特殊函数入口做过滤，导致客户端可以提交一些cmd命令，并交由服务器程序执行。导致攻击者可以通过浏览器或者其他客户端软件提交一些cmd命令（或者bash命令）至服务器程序，服务器程序通过system、eval、exec等函数直接或者间接地调用cmd.exe执行攻击者提交的命令。</p>
+</blockquote>
+<h3 id="二、常用的连接符"><a href="#二、常用的连接符" class="headerlink" title="二、常用的连接符"></a><strong>二、常用的连接符</strong></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A;B    先执行A，再执行B</span><br><span class="line">A&amp;B    简单拼接，A B之间无制约关系</span><br><span class="line">A|B    显示B的执行结果</span><br><span class="line">A&amp;&amp;B   A执行成功，然后才会执行B</span><br><span class="line">A||B   A执行失败，然后才会执行B</span><br></pre></td></tr></table></figure>
+<h3 id="三、常用的函数"><a href="#三、常用的函数" class="headerlink" title="三、常用的函数"></a><strong>三、常用的函数</strong></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">exec() — 执行一个外部程序</span><br><span class="line"><span class="meta">#exec 不会主动返回执行结果,且只是返回结果的最后一行;</span></span><br><span class="line">passthru() — 执行外部程序并且显示原始输出</span><br><span class="line"><span class="meta">#passthru()用来执行外部命令,但直接将结果输出到浏览器(未经任何处理的 原始输出),没有返回值;</span></span><br><span class="line">system() — 执行外部程序，并且显示输出</span><br><span class="line"><span class="meta">#system()成功则返回命令输出的最后一行，失败则返回 FALSE;</span></span><br><span class="line">shell_exec() — 通过 shell 环境执行命令，并且将完整的输出以字符串的方式返回。</span><br><span class="line">#当进程执行过程中发生错误，或者进程不产生输出的情况下，都会返回 <span class="literal">NULL</span></span><br><span class="line">eval()：将输入的字符串参数当做PHP程序代码来执行</span><br></pre></td></tr></table></figure>
+<p>具体可以参考<a href="https://www.php.cn/php-weizijiaocheng-407459.html" target="_blank" rel="noopener">php中文网</a></p>
+<h3 id="四、windows-net命令"><a href="#四、windows-net命令" class="headerlink" title="四、windows net命令"></a><strong>四、windows net命令</strong></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Net ViewI</span><br><span class="line">作用：显示域列表、计算机列表或指定计算机的共享资源列表。</span><br><span class="line">Net User</span><br><span class="line">作用：添加或更改用户帐号或显示用户帐号信息。</span><br><span class="line">Net Use</span><br><span class="line">作用：连接计算机或断开计算机与共享资源的连接，或显示计算机的连接信息。</span><br><span class="line">Net Time</span><br><span class="line">作用：使计算机的时钟与另一台计算机或域的时间同步。</span><br><span class="line">Net Config</span><br><span class="line">作用：显示当前运行的可配置服务，或显示并更改某项服务的设置。</span><br></pre></td></tr></table></figure>
+<p>具体可以参考大师傅的博客<a href="https://www.cnblogs.com/YangJieCheng/p/8176358.html" target="_blank" rel="noopener">CMD-NET命令详解</a>这个漏洞是真的恐怖，可以任意修改你的计算机里的内容。</p>
+<p>在了解了基础的知识后，下面就通过DVWA来练习一下<strong>Command Execution</strong>.</p>
+<hr>
+<h1 id="DVWA——Command-Injection"><a href="#DVWA——Command-Injection" class="headerlink" title="DVWA——Command Injection"></a><strong>DVWA——Command Injection</strong></h1><p>在此之前先来<strong>解决乱码</strong>的问题</p>
+<p>在<code>DVWA\dvwa\includes</code>目录下找到<code>dvwaPage.inc.php</code>文件中所有的”<code>charset=utf-8</code>”，修改”<code>charset=gb2312</code>”，即可解决乱码问题。<br><img src="http://img-blog.csdnimg.cn/20190812105653416.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20190812105716579.png" alt="在这里插入图片描述"></p>
+<h3 id="low"><a href="#low" class="headerlink" title="low"></a><strong>low</strong></h3><p>观察源码<br><img src="http://img-blog.csdnimg.cn/20190812104646439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">stristr() 函数搜索字符串在另一字符串中的第一次出现，不区分大小写</span><br><span class="line">php_uname() 返回了运行 PHP 的操作系统的描述。</span><br><span class="line">参数：</span><br><span class="line"><span class="string">'a'</span>：此为默认。</span><br><span class="line"><span class="string">'s'</span>：操作系统名称。</span><br><span class="line"><span class="string">'n'</span>：主机名。</span><br><span class="line"><span class="string">'r'</span>：版本名称。</span><br><span class="line"><span class="string">'v'</span>：版本信息。</span><br><span class="line"><span class="string">'m'</span>：机器类型。</span><br></pre></td></tr></table></figure></p>
+<p>通过源码可以看出，源码只是针对不同的操作系统执行不同的<code>ping命令</code>而已，没有对<code>ip参数</code>并未做任何的过滤，因此存在命令注入漏洞。</p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&amp;&amp;echo &quot;Hello&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190812111134775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>回显结果执行了我输入的<code>echo &quot;Hello&quot;</code>命令</p>
+<p>接下来输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&amp;&amp;net user</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190812111551905.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>命令执行成功，但这个漏洞是真的恐怖，如果攻击者利用这个漏洞修改电脑用户、更改系统配置。。。，可见危害之大。</p>
+<h3 id="medium"><a href="#medium" class="headerlink" title="medium"></a><strong>medium</strong></h3><p>观察源码<br><img src="http://img-blog.csdnimg.cn/20190812112112728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现这段代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$target = str_replace( array_keys( $substitutions ), $substitutions, $target ); </span><br><span class="line">#array_keys() 函数返回包含数组中所有键名的一个新数组。</span><br></pre></td></tr></table></figure>
+<p>过滤了<code>&amp;&amp;</code>、<code>；</code>，但是没有过滤掉<code>&amp;</code>、<code>|</code>,所以依旧有漏洞存在</p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 | net user</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190812112637421.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>也可以输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&amp; net user</span><br></pre></td></tr></table></figure></p>
+<p>一样会执行成功</p>
+<p>除此之外，也可以采用拼接的方法进行绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&amp;;&amp;net user</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190812113016584.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="High"><a href="#High" class="headerlink" title="High"></a><strong>High</strong></h3><p> 观察源码<br> <img src="http://img-blog.csdnimg.cn/20190812113118901.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 这次过滤的更狠，几乎过滤了所有的常用连接符，拼接的方法也是不起作用的，但是观察代码发现<br> <img src="http://img-blog.csdnimg.cn/20190812113435201.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> <code>|+空格</code>多出一个空格，所以不会过滤<code>|</code>那就利用这个漏洞进行命令执行</p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 |net user</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190812113648517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="impossible"><a href="#impossible" class="headerlink" title="impossible"></a><strong>impossible</strong></h3><p> 观察源码<br> <img src="http://img-blog.csdnimg.cn/2019081211380589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">stripslashes(<span class="built_in">string</span>)</span><br><span class="line"><span class="meta">#stripslashes函数会删除字符串string中的反斜杠，返回已剥离反斜杠的字符串。</span></span><br><span class="line">explode(separator,<span class="built_in">string</span>,limit)</span><br><span class="line"><span class="meta">#explode()函数把字符串打散为数组，返回字符串的数组。参数separator规定在哪里分割字符串，参数string是要分割的字符串，可选参数limit规定所返回的数组元素的数目</span></span><br><span class="line">is_numeric(<span class="built_in">string</span>)</span><br><span class="line">#is_numeric()函数检测<span class="built_in">string</span>是否为数字或数字字符串，如果是返回TRUE，否则返回FALSE。</span><br></pre></td></tr></table></figure>
+<p>Impossible级别的代码加入了<code>Anti-CSRF token</code>，同时对<code>参数ip</code>进行了严格的限制，只有“<code>数字.数字.数字.数字</code>”的输入才会被接收执行，因此不存在命令注入漏洞。</p>
+<hr>
+<p><strong>总结：通过这次学校了解了命令执行漏洞的一些知识，确实很有意思，接下来学习代码执行漏洞。</strong></p>
+<hr>
+<p><strong>参考博客：</strong><br><a href="https://www.freebuf.com/articles/web/116714.html" target="_blank" rel="noopener">Command Injection </a><br><a href="https://segmentfault.com/a/1190000016056455" target="_blank" rel="noopener">Web安全 - 命令执行漏洞</a><br><a href="https://www.cnblogs.com/bmjoker/p/9084864.html#autoid-0-1-0" target="_blank" rel="noopener">命令执行漏洞简介</a></p>
 
-Command Execution一、简介
-由于开发人员在编写源代码时，没有对源代码中可执行的特殊函数入口做过滤，导致客户端可以提交一些cmd命令，并交由服务器程序执行。导致攻击者可以通过浏览器或者其他客户端软件提交一些cmd命令（或者bash命令）至服务器程序，服务器程序通过system、eval、exec等函数直接或者间接地调用cmd.exe执行攻击者提交的命令。
-
-二、常用的连接符12345A;B    先执行A，再执行BA&amp;B    简单拼接，A B之间无制约关系A|B    显示...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="命令执行">命令执行</a>
-    
-</div>
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/09/文件包含漏洞——DVWA练习/">
-            
-                <span>文件包含漏洞——DVWA练习</span>
-        </a>
-        <div class="abstract-content">
-            前言：在学习文件上传时，制作的图片马需要我们手动去解析，而解析的方法就算用到了文件包含漏洞，所以这次就来学习一下文件包含漏洞。
-
-文件包含漏洞简介
-（一）文件包含可以分为本地文件包含和远程文件包含两种。文件包含和文件上传一样本身并不是漏洞，而是攻击者利用了包含的特性加上了应用本身对文件控制不严格，对include进来的文件不可控，才导致了一系列危害。（二）本地文件包含就是通过URL将服务器本地的其他文件include进来。远程文件包含就是将远程服务器的文件include进来。（三）最主要的是，包含进来的文件都以当前脚本文件解析，例如，当前测试系统是Apache加php环境，那么被incl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件包含">文件包含</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">
-            
-                <span>实验吧——SQL注入 Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前学习过了联合注入查询、布尔盲注、时间盲注等，这次就通过SQL注入题来加强一下。
-
-简单的sql注入方法一输入有回显，且有输入框，那就可以用联合查询的方法来注入
-题中提示已经过滤了一些关键字，那么就先来查看题中过滤的是哪些关键字
-1?id=1 union select order by #
-回显结果：union，select等都被过滤而且没有报错说明#也被过滤可以自己建立一个语句来验证一下如果#没有被过滤，那么上面的语句将会变成这样，语句一定会报错题中将关键字过滤，可以尝试一下双写绕过的方法是否可用输入框中输入?id=1 unionunion selectselect，发现空格也...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/03/文件上传漏洞——upload-labs(11-20)/">
-            
-                <span>文件上传漏洞——upload-labs(11-20)</span>
-        </a>
-        <div class="abstract-content">
-            前言：上次文件上传漏洞学习到第十关，这次继续学习
-第十一关分析源码前面几行代码都是对后缀名进行限制，最重要的就是这一句代码
-1$img_path = $_GET['save_path']."/".rand(10, 99).date("YmdHis").".".$file_ext;
-发现save_path用户是可控的，那么就利用%00截断来绕过
-在此之前，先来了解一下截断上传的原理
-在url中%00表示ascll码中的0 ，而ascii中0作为特殊字符保留，表示字符串结束，所以当url中出现%00时就会认为读取已结束，而忽略后面上传的文件或图片，只上传截断前的文件或图片
-可以通过一个例子详...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">
-            
-                <span>文件上传漏洞——upload-labs(1-10)</span>
-        </a>
-        <div class="abstract-content">
-            前言：文件上传漏洞有很多种绕过技巧，这次就通过upload-labs进行学习
-第一关上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下抓包修改上传格式的方法看看是否可行
-先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包
-拦截请求包后，将1.png改为1.php，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径路径也知道了，就用菜刀进行连接连接成功观察一下第一关的源码1234567891011121314151617function checkFile() &#123;    var file = document.getEl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/31/文件上传漏洞——DVWA练习/">
-            
-                <span>文件上传漏洞——DVWA练习</span>
-        </a>
-        <div class="abstract-content">
-            前言：文件上传漏洞是很常见的漏洞，也非常有趣，接下来就在DVWA靶场中边学边练。
-文件上传漏洞：
-文件上传漏洞是指由于程序员在对用户文件上传部分的控制不足或者处理缺陷，而导致的用户可以越过其本身权限向服务器上上传可执行的动态脚本文件。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，“文件上传”本身没有问题，有问题的是文件上传后，服务器怎么处理、解释文件。如果服务器的处理逻辑做的不够安全，则会导致严重的后果。
-
-具体的原理可以看大师傅的讲解Smi1e_——文件上传漏洞 学习笔记文件上传漏洞
-low级别观察源码
-1234567891011121...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/25/sql注入学习——时间盲注/">
-            
-                <span>sql注入学习——时间盲注</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前通过前九关学习到了回显注入、报错注入、布尔盲注等一些方法，这次就来详细的学习时间盲注。
-在上一篇博客中，了解了布尔盲注，其实布尔盲注和时间盲注大致相同，注入原理是一致的，区别就是一个还是有回显的，一个彻底没有回显，通过构造语句，通过页面响应的时长，来判断信息，这就是时间盲注。
-先来学习一下时间盲注所需要的函数123sleep()/延迟函数if(condition,true,false)/若条件为真 返回true，若条件为假 返回falsesubstring("string",strart,length)
-主要的也就是这几个了，下面就通过sqli-labs第十关来练习时间盲注
-猜...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/24/sql注入学习——布尔盲注/">
-            
-                <span>sql注入学习——布尔盲注</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前通过前九关学习到了回显注入、报错注入等一些方法，这次就来详细的学习布尔盲注。
-首先来了解一下盲注的概念
-
-盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。
-
-布尔盲注
-原理：注入的时候只会返回True和False，所以布尔盲注就是根据页面显示的是True还是False进行猜测数据库中的信息。
-布尔盲注需要几个函数的辅助，就先来了解一下这几个函数1234length()函数可返回字符串的长度substring()函数可以截取字符串，可指定开始的位置和截取的长度ord()函数可以返回单个字符的ASCII码char()函数可将ASCII码转...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/19/XSS学习-XSS挑战之旅(二)/">
-            
-                <span>XSS学习-XSS挑战之旅(二)</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前打XSS平台时，打到了第11关就没有继续了，现在有空了就继续打咯，再增加点关于XSS的知识。
-第十一关这关坑我好长时间，看了好多博客直接给说修改Referer，给截图中都有自带的Referer值，修改就行，但是我怎么抓都抓不到Referer值。还以为自己设置有问题，去查burp各种的设置。。。
-终于看了一篇很细的大佬博客，才算搞懂，Referer值是自己加上的，这里就详细的介绍一下这关，别让和我一样的小白继续跌坑。
-我们从第十关来到第十一关（不要直接跳到第十一关，否则看不出任何线索）进入第十一关后看源码发现t_ref字段中，value的值是http referer的值，所以这关...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/17/I春秋——web Write up(一)/">
-            
-                <span>I春秋——web Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：总结一下最近做的web题，从题中可以学习到很多知识。
-爆破-1
-123456789&lt;?phpinclude "flag.php";$a = @$_REQUEST['hello'];if(!preg_match('/^\w*$/',$a ))&#123;  die('ERROR');&#125;eval("var_dump($$a);");show_source(__FILE__);?&gt;
-给了一段PHP代码，里面还有简单的正则表达式，那就来分析一下。
-/表示的是正则表达式的开始和结束，^或\A    匹配字符串开始位置，\w匹配任意数字或字母或下划线(a-z,A-Z,0-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/08/09/文件包含漏洞——DVWA练习/" title="文件包含漏洞——DVWA练习">
+                    <div class="prevTitle">文件包含漏洞——DVWA练习</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/categories/web/page/2/">2</a><a class="extend next" rel="next" href="/categories/web/page/2/">NEXT &#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -772,6 +568,24 @@ low级别观察源码
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Command-Execution"><span class="toc-number">1.</span> <span class="toc-text">Command Execution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、简介"><span class="toc-number">1.0.1.</span> <span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、常用的连接符"><span class="toc-number">1.0.2.</span> <span class="toc-text">二、常用的连接符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、常用的函数"><span class="toc-number">1.0.3.</span> <span class="toc-text">三、常用的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、windows-net命令"><span class="toc-number">1.0.4.</span> <span class="toc-text">四、windows net命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DVWA——Command-Injection"><span class="toc-number">2.</span> <span class="toc-text">DVWA——Command Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#low"><span class="toc-number">2.0.1.</span> <span class="toc-text">low</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#medium"><span class="toc-number">2.0.2.</span> <span class="toc-text">medium</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#High"><span class="toc-number">2.0.3.</span> <span class="toc-text">High</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#impossible"><span class="toc-number">2.0.4.</span> <span class="toc-text">impossible</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1531,6 +1345,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
