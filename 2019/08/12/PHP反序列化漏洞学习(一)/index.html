@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Lemon&#39;s blog</title>
+    <title>PHP反序列化漏洞学习(一) · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">PHP反序列化漏洞学习(一)</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/sss.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            PHP反序列化漏洞学习(一)
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+                Record my learning process of 对象注入.
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/12</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,106 +401,88 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/19/C++学习总结（函数、类与对象）/">
-            
-                <span>C++学习总结（函数、类与对象）</span>
-        </a>
-        <div class="abstract-content">
-            前言：时间过的好快，转眼一学期就过去了，期末考试也快到了，所以就复习一遍同时也将自己学习的感悟总结下来。前面几章大多与C语言相似，就不总结了。
-第三章——函数参数传递123456789101112131415161718192021#include &lt;iostream&gt;using namespace std;void swap(int a,int b) &#123;    int t=a;        b=t;        a=b;&#125;int main()&#123;    int x=5,y=10;    cout&lt;&lt;"x= "&lt;&lt;x&l...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="C++">C++</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><strong>前言：PHP反序列化也是web安全中常见的一种漏洞，这次就先来大致了解一下PHP反序列化漏洞的基础知识。</strong></p>
+<hr>
+<h2 id="一、PHP序列化和反序列化"><a href="#一、PHP序列化和反序列化" class="headerlink" title="一、PHP序列化和反序列化"></a><strong>一、PHP序列化和反序列化</strong></h2><p>在学习PHP反序列化漏洞时，先来了解一下基础的知识。</p>
+<h4 id="一-PHP序列化"><a href="#一-PHP序列化" class="headerlink" title="(一)PHP序列化"></a><strong>(一)PHP序列化</strong></h4><p><strong>函数 : serialize()</strong></p>
+<blockquote>
+<p>所有php里面的值都可以使用函数serialize()来返回一个包含字节流的字符串来表示。<br>序列化一个对象将会保存对象的所有变量，但是不会保存对象的方法，只会保存类的名字。 </p>
+</blockquote>
+<p>一开始看这个概念可能有些懵，看了很多大师傅们的博客后，慢慢明白这个概念的道理。</p>
+<p><strong>在程序执行结束时，内存数据便会立即销毁，变量所储存的数据便是内存数据，而文件、数据库是“持久数据”，因此PHP序列化就是将内存的变量数据“保存”到文件中的持久数据的过程。</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$s = serialize($变量); <span class="comment">//该函数将变量数据进行序列化转换为字符串</span></span><br><span class="line">file_put_contents(‘./目标文本文件’, $s); <span class="comment">//将$s保存到指定文件</span></span><br></pre></td></tr></table></figure>
+<p>下面通过一个具体的例子来了解一下序列化：<br><img src="http://img-blog.csdnimg.cn/20190814105836849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输出序列化后的结果：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User lemon is <span class="number">20</span> years old. </span><br><span class="line">O:<span class="number">4</span>:<span class="string">"User"</span>:<span class="number">2</span>:&#123;s:<span class="number">3</span>:<span class="string">"age"</span>;i:<span class="number">20</span>;s:<span class="number">4</span>:<span class="string">"name"</span>;s:<span class="number">5</span>:<span class="string">"lemon"</span>;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到序列化一个对象后将会保存对象的所有变量，并且发现序列化后的结果都有一个字符，这些字符都是以下字母的缩写。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a - <span class="keyword">array</span>                  b - boolean  </span><br><span class="line">d - double                 i - integer</span><br><span class="line">o - common object          r - reference</span><br><span class="line">s - string                 C - custom object</span><br><span class="line">O - <span class="class"><span class="keyword">class</span>                  <span class="title">N</span> - <span class="title">null</span></span></span><br><span class="line"><span class="class"><span class="title">R</span> - <span class="title">pointer</span> <span class="title">reference</span>      <span class="title">U</span> - <span class="title">unicode</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure></p>
+<p>了解了缩写的类型字母，便可以得到PHP序列化格式<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">"User"</span>:<span class="number">2</span>:&#123;s:<span class="number">3</span>:<span class="string">"age"</span>;i:<span class="number">20</span>;s:<span class="number">4</span>:<span class="string">"name"</span>;s:<span class="number">5</span>:<span class="string">"lemon"</span>;&#125;</span><br><span class="line">对象类型:长度:<span class="string">"类名"</span>:类中变量的个数:&#123;类型:长度:<span class="string">"值"</span>;类型:长度:<span class="string">"值"</span>;......&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过以上例子，便可以理解了概念中的<code>通过serialize()函数返回一个包含字节流的字符串</code>这一段话。</p>
+<h4 id="二-PHP反序列化"><a href="#二-PHP反序列化" class="headerlink" title="(二)PHP反序列化"></a><strong>(二)PHP反序列化</strong></h4><p><strong>函数：unserialize()</strong></p>
+<blockquote>
+<p>unserialize() 对单一的已序列化的变量进行操作，将其转换回 PHP 的值。 在解序列化一个对象前，这个对象的类必须在解序列化之前定义。</p>
+</blockquote>
+<p>简单来理解起来就算<strong>将序列化过存储到文件中的数据，恢复到程序代码的变量表示形式的过程</strong>，恢复到变量序列化之前的结果。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$s = file_get_contents(‘./目标文本文件’); <span class="comment">//取得文本文件的内容（之前序列化过的字符串）</span></span><br><span class="line">$变量 = unserialize($s); <span class="comment">//将该文本内容，反序列化到指定的变量中</span></span><br></pre></td></tr></table></figure>
+<p>通过一个例子来了解反序列化：<br><img src="http://img-blog.csdnimg.cn/20190814112534807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输出结果：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User lemon is <span class="number">20</span> years old.</span><br></pre></td></tr></table></figure>
+<p><strong>注意：在解序列化一个对象前，这个对象的类必须在解序列化之前定义。否则会报错</strong></p>
+<p>在先知上看大师傅举得例子对序列化和反序列化的介绍，也很好理解。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> $test = <span class="string">"demo"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$a = <span class="keyword">new</span> A();  <span class="comment">// 生成a对象</span></span><br><span class="line">$b = serialize($a);  <span class="comment">// 序列化a对象为b</span></span><br><span class="line">$c = unserialize($b); <span class="comment">// 反序列化b对象为c</span></span><br><span class="line"></span><br><span class="line">print_r($b);   <span class="comment">// 输出序列化之后的值:O:1:"A":1:&#123;s:4:"test";s:4:"demo";&#125;</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">print_r($c-&gt;test);  <span class="comment">// 输出对象c中test的值:demo</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>二、PHP反序列化漏洞</strong></p>
+<p>在学习漏洞前，先来了解一下PHP魔法函数，对接下来的学习会很有帮助</p>
+<blockquote>
+<p>PHP 将所有以 __（两个下划线）开头的类方法保留为魔术方法</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">__construct   当一个对象创建时被调用，</span><br><span class="line">__destruct   当一个对象销毁时被调用，</span><br><span class="line">__toString   当一个对象被当作一个字符串被调用。</span><br><span class="line">__wakeup()   使用unserialize时触发</span><br><span class="line">__sleep()    使用serialize时触发</span><br><span class="line">__destruct()    对象被销毁时触发</span><br><span class="line">__call()    在对象上下文中调用不可访问的方法时触发</span><br><span class="line">__callStatic()    在静态上下文中调用不可访问的方法时触发</span><br><span class="line">__get()    用于从不可访问的属性读取数据</span><br><span class="line">__set()    用于将数据写入不可访问的属性</span><br><span class="line">__isset()    在不可访问的属性上调用<span class="keyword">isset</span>()或<span class="keyword">empty</span>()触发</span><br><span class="line">__unset()     在不可访问的属性上使用<span class="keyword">unset</span>()时触发</span><br><span class="line">__toString()    把类当作字符串使用时触发,返回值需要为字符串</span><br><span class="line">__invoke()   当脚本尝试将对象调用为函数时触发</span><br></pre></td></tr></table></figure>
+<p>这里只列出了一部分的魔法函数，具体可见<a href="https://www.php.net/manual/zh/language.oop5.magic.php" target="_blank" rel="noopener">PHP 手册 </a></p>
+<p>下面通过一个例子来了解一下魔法函数被自动调用的过程</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line"> <span class="keyword">public</span> $varr1=<span class="string">"abc"</span>;</span><br><span class="line"> <span class="keyword">public</span> $varr2=<span class="string">"123"</span>;</span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">echoP</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;varr1.<span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"__construct&lt;br&gt;"</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"__destruct&lt;br&gt;"</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"__toString&lt;br&gt;"</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"__sleep&lt;br&gt;"</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">'varr1'</span>,<span class="string">'varr2'</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"__wakeup&lt;br&gt;"</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = <span class="keyword">new</span> test();  <span class="comment">//实例化对象，调用__construct()方法，输出__construct</span></span><br><span class="line">$obj-&gt;echoP();   <span class="comment">//调用echoP()方法，输出"abc"</span></span><br><span class="line"><span class="keyword">echo</span> $obj;    <span class="comment">//obj对象被当做字符串输出，调用__toString()方法，输出__toString</span></span><br><span class="line">$s =serialize($obj);  <span class="comment">//obj对象被序列化，调用__sleep()方法，输出__sleep</span></span><br><span class="line"><span class="keyword">echo</span> unserialize($s);  <span class="comment">//$s首先会被反序列化，会调用__wake()方法，被反序列化出来的对象又被当做字符串，就会调用_toString()方法。</span></span><br><span class="line"><span class="comment">// 脚本结束又会调用__destruct()方法，输出__destruct</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>显示结果：<br><img src="https://img-blog.csdnimg.cn/20190815163425400.png" alt="在这里插入图片描述"><br>例子载自于<strong>脚本之家</strong>，通过这个例子就可以清晰的看到魔法函数在符合相应的条件时便会被调用。</p>
+<hr>
+<h2 id="二、对象注入"><a href="#二、对象注入" class="headerlink" title="二、对象注入"></a><strong>二、对象注入</strong></h2><p><strong>当用户的请求在传给反序列化函数<code>unserialize()</code>之前没有被正确的过滤时就会产生漏洞。因为PHP允许对象序列化，攻击者就可以提交特定的序列化的字符串给一个具有该漏洞的<code>unserialize</code>函数，最终导致一个在该应用范围内的任意PHP对象注入。</strong></p>
+<p><strong>对象漏洞</strong>出现得满足两个前提：</p>
+<blockquote>
+<p>一、<code>unserialize</code>的参数可控。<br>二、 代码里有定义一个含有魔术方法的类，并且该方法里出现一些使用类成员变量作为参数的存在安全问题的函数。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> $test = <span class="string">"demo"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;test;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$a = $_GET[<span class="string">'test'</span>];</span><br><span class="line">$a_unser = unserialize($a);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>比如这个列子，直接是用户生成的内容传递给<code>unserialize()函数</code>，那就可以构造这样的语句<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?test=O:<span class="number">1</span>:<span class="string">"A"</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">"test"</span>;s:<span class="number">5</span>:<span class="string">"lemon"</span>;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在脚本运行结束后便会调用<code>_destruct</code>函数，同时会覆盖test变量输出lemon。<br><img src="http://img-blog.csdnimg.cn/20190815172019974.png" alt="在这里插入图片描述"><br>发现这个漏洞，便可以利用这个漏洞点控制输入变量，拼接成一个序列化对象。<br>再看下面这个例子：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> $test = <span class="string">"demo"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span>&#123;</span><br><span class="line">        @<span class="keyword">eval</span>(<span class="keyword">$this</span>-&gt;test);<span class="comment">//_destruct()函数中调用eval执行序列化对象中的语句</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$test = $_POST[<span class="string">'test'</span>];</span><br><span class="line">$len = strlen($test)+<span class="number">1</span>;</span><br><span class="line">$pp = <span class="string">"O:1:\"A\":1:&#123;s:4:\"test\";s:"</span>.$len.<span class="string">":\""</span>.$test.<span class="string">";\";&#125;"</span>; <span class="comment">// 构造序列化对象</span></span><br><span class="line">$test_unser = unserialize($pp); <span class="comment">// 反序列化同时触发_destruct函数</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>其实仔细观察就会发现，其实我们手动构造序列化对象就是为了<code>unserialize()函数</code>能够触发<code>__destruc()</code>函数，然后执行在<code>__destruc()</code>函数里恶意的语句。</p>
+<p>所以我们利用这个漏洞点便可以获取web shell了<br><img src="http://img-blog.csdnimg.cn/2019081517335813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>总结：这次PHP反序列化漏洞的基础大致都了解了，但对于对象注入还是需要继续学习，这次就先学习到这里。</p>
+<hr>
+<p>参考博客：<br><a href="https://xz.aliyun.com/t/2202" target="_blank" rel="noopener">PHP反序列化漏洞与Webshell</a><br><a href="https://www.freebuf.com/column/197496.html" target="_blank" rel="noopener">实战经验丨PHP反序列化漏洞总结 </a></p>
+
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/15/Bugku—MISC题总结/">
-            
-                <span>Bugku—MISC题总结</span>
-        </a>
-        <div class="abstract-content">
-            前言：MISC考脑洞，也考分析和观察能力，总之比较有趣，就总结一下我的做题过程。
-这是一张单纯的图片用winhex打开 Unicode编码转换ASCII即可得出flag
-隐写前四位是宽度，后四位是高度。将A4修改位F4即可得出flag
-telnetwinhex打开就可得出flag
-眼见非实(ISCCCTF)下载之后打不开，根据提示眼见非实，将docx文件改成zip文件即可得出flag
-啊哒用winhex打开，发现隐藏有zip文件，用binwalk进行分离得到一个加密文本，开始以为是伪加密，但用winhex打开后查看不是伪加密，因为不知道是否含字符、或是几位数，所以暴力破解也是不可取的，回...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/09/通过sql-labs进行sql注入学习(一)/">
-            
-                <span>通过sql-labs进行sql注入学习(一)</span>
-        </a>
-        <div class="abstract-content">
-            SQL注入有很多方法，先接触最简单最直观的一种——联合查询注入
-联合查询注入原理联合查询的前提是需要有显示位，而显示位就是通过用户的查询从数据库中返回到页面的数据，是可变化的。 例如：sql-labs前四关都是联合查询注入
-sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不相同。 接下来就开始实战，通过实战来了解联合查询注入的步骤和方法。
- 一、判断注入点 闭合符号一般是&#39;,&quot;,或无闭合符号或&#39;)，&quot;) --+为注释符号 在url框中输入?id=2&#39;，发现 用--+将后面的字符注释掉，发现 正常显示，说明注入点是单引...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/08/10/DVWA——命令执行漏洞学习/" title="DVWA——命令执行漏洞学习">
+                    <div class="prevTitle">DVWA——命令执行漏洞学习</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -528,6 +573,24 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、PHP序列化和反序列化"><span class="toc-number">1.</span> <span class="toc-text">一、PHP序列化和反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-PHP序列化"><span class="toc-number">1.0.1.</span> <span class="toc-text">(一)PHP序列化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-PHP反序列化"><span class="toc-number">1.0.2.</span> <span class="toc-text">(二)PHP反序列化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、对象注入"><span class="toc-number">2.</span> <span class="toc-text">二、对象注入</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1323,6 +1386,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

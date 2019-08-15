@@ -346,6 +346,43 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/12/PHP反序列化漏洞学习(一)/">
+            
+                <span>PHP反序列化漏洞学习(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：PHP反序列化也是web安全中常见的一种漏洞，这次就先来大致了解一下PHP反序列化漏洞的基础知识。
+
+一、PHP序列化和反序列化在学习PHP反序列化漏洞时，先来了解一下基础的知识。
+(一)PHP序列化函数 : serialize()
+
+所有php里面的值都可以使用函数serialize()来返回一个包含字节流的字符串来表示。序列化一个对象将会保存对象的所有变量，但是不会保存对象的方法，只会保存类的名字。 
+
+一开始看这个概念可能有些懵，看了很多大师傅们的博客后，慢慢明白这个概念的道理。
+在程序执行结束时，内存数据便会立即销毁，变量所储存的数据便是内存数据，而文件、数据库是“持久数据...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/10/DVWA——命令执行漏洞学习/">
             
                 <span>DVWA——命令执行漏洞学习</span>
@@ -637,39 +674,6 @@ low级别观察源码
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/17/I春秋——web Write up(一)/">
-            
-                <span>I春秋——web Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：总结一下最近做的web题，从题中可以学习到很多知识。
-爆破-1
-123456789&lt;?phpinclude "flag.php";$a = @$_REQUEST['hello'];if(!preg_match('/^\w*$/',$a ))&#123;  die('ERROR');&#125;eval("var_dump($$a);");show_source(__FILE__);?&gt;
-给了一段PHP代码，里面还有简单的正则表达式，那就来分析一下。
-/表示的是正则表达式的开始和结束，^或\A    匹配字符串开始位置，\w匹配任意数字或字母或下划线(a-z,A-Z,0-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
     
 </div>
             
@@ -1238,9 +1242,40 @@ low级别观察源码
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 35
+        Total : 36
         </div>
         <!-- search  -->
         
@@ -1253,6 +1288,11 @@ low级别观察源码
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href="/2019/08/12/PHP反序列化漏洞学习(一)/">PHP反序列化漏洞学习(一)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1438,6 +1478,8 @@ low级别观察源码
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
+        <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
+    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
@@ -1446,17 +1488,15 @@ low级别观察源码
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
+        <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
+    
         <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
         <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
     
         <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
     
-        <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
-    
         <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
-    
-        <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1495,9 +1535,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
     
-        <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
-    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
