@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Lemon&#39;s blog</title>
+    <title>PHP危险函数总结 · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">PHP危险函数总结</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/sss.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            PHP危险函数总结
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+                Record my learning process of PHP.
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/14</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,139 +401,119 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/31/ISCC2019杂项题(MISC)总结/">
-            
-                <span>ISCC2019-MISC总结</span>
-        </a>
-        <div class="abstract-content">
-            ISCC2019刚刚结束，作为一个萌新我是真的菜，真心菜不过也会几道杂项题，就总结一下做题思路。
-Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张完整的图做到这里没思路了，就回去看题目提示。Aesop’s chest and key lie within .to find it（伊索的胸膛和钥匙都在里面。为了找到它 ）还是一脸懵，用winhex打开我们得到的完整图和gif的图看看会有什么出现。在gif图中发现下面感觉像base64，试试吧发现前面有一个单词，百度翻译（盐），一般这些都是有密钥的加密密文，取在线网站挨个解下，看看那个可以，密钥当然就是ISCC了...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/18/CTF 关于ZIP解题过程/">
-            
-                <span>CTF关于ZIP解题思路</span>
-        </a>
-        <div class="abstract-content">
-            CTF 关于ZIP解题1.伪加密类型打开之后是两张图片，一张未加密，一张已加密。利用WinHex打开然后在谷歌上找到大佬关于zip格式的介绍接下来进行对比，看是否属于伪加密通过对比，发现确实属于伪加密。所以将09改为00即可。
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><strong>前言：PHP中有很多危险函数，如phpinfo() ，这次就来详细总结一下PHP中的危险函数，并借助大师傅们的例子来进行代码审计的练习。</strong></p>
+<h2 id="一、PHP代码执行函数"><a href="#一、PHP代码执行函数" class="headerlink" title="一、PHP代码执行函数"></a><strong>一、PHP代码执行函数</strong></h2><h4 id="eval-函数"><a href="#eval-函数" class="headerlink" title="eval()函数"></a><strong>eval()函数</strong></h4><p>定义和用法：</p>
+<blockquote>
+<p>eval() 函数把字符串按照 PHP 代码来计算.<br>该字符串必须是合法的 PHP 代码，且必须以分号结尾。</p>
+</blockquote>
+<p>这个用法就会产生漏洞，通过一个例子来看一下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$var = <span class="string">"var"</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">"arg"</span>]))</span><br><span class="line">&#123;</span><br><span class="line">        $arg = $_GET[<span class="string">"arg"</span>];</span><br><span class="line">        <span class="keyword">eval</span>(<span class="string">"\$var = $arg;"</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"\$var ="</span>.$var;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输入：<code>http://127.0.0.1/1.php?arg=phpinfo()</code>就会发现已经执行了<code>eval函数</code><br><img src="https://img-blog.csdnimg.cn/20190816111734604.png" alt="在这里插入图片描述"><br>再输入一串字符串，让eval()函数作为命令执行</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/1.php?arg=var_dump(scandir('./'))</span></span><br><span class="line"><span class="meta">#scandir()函数列出./(当前)目录中的文件和目录：</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190816113125805.png" alt="在这里插入图片描述"><br>除此之外，还可以结合<code>system()</code>函数来获取当前运行的服务的信息</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/1.php?a=system("net start");</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190816114143981.png" alt="在这里插入图片描述"><br>这就是为什么这个函数是危险函数的原因了，将只要是<strong>合法并且符号PHP语法的字符串都可以进行解析</strong>，当然这里举的例子都是没有任何防护的，一般<code>eval</code>函数都是被加了黑名单的，但是如果存在这样的漏洞，真的会造成很严重的后果。</p>
+<h4 id="assert-函数"><a href="#assert-函数" class="headerlink" title="assert()函数"></a><strong>assert()函数</strong></h4><p>定义和用法:</p>
+<blockquote>
+<p> assert ( mixed $assertion [, Throwable $exception ] ) : bool<br> assert() 会检查指定的 assertion 并在结果为 FALSE 时采取适当的行动。<br> 判断一个表达式是否成立。返回true or false。<br> 如果 assertion 是字符串，它将会被 assert() 当做 PHP 代码来执行。</p>
+</blockquote>
+<p>一般情况下，黑名单都会禁用<code>eval()</code>函数，所以用assert来代替eval来执行具体操作。</p>
+<p>例如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert(<span class="string">"phpinfo()"</span>)  &lt;=&gt;  &lt;?phpinfo()?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>与eval函数的区别：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert()把整个字符串参数当php代码执行，<span class="keyword">eval</span>()把合法的php代码执行。</span><br></pre></td></tr></table></figure>
+<h4 id="preg-replace-函数"><a href="#preg-replace-函数" class="headerlink" title="preg_replace()函数"></a><strong>preg_replace()函数</strong></h4><p>定义和用法：</p>
+<blockquote>
+<p>preg_replace 函数执行一个正则表达式的搜索和替换。<br> preg_replace ( mixed $pattern , mixed $replacement , mixed $subject [, int $limit = -1 [, int &amp;$count ]] ) : mixed</p>
+</blockquote>
+<p>正常来说<code>preg_replace</code>()函数是用于正则表达式的，但<code>preg_replace</code> 函数也可能会导致命令执行。</p>
+<p>如果<code>subject</code> 中有 <code>pattern</code> 的匹配则<code>preg_replace</code> 的 <code>/e</code> 修正符会将 <code>replacement</code> 参数当作 php 代码，并且以 eval 函数的方式执行。</p>
+<p>通过一个简单的例子来看一下该函数的用法：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190816172705729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入payload：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?pat=/test/e&amp;rep=phpinfo()&amp;sub=jutst test</span><br><span class="line">也可以为</span><br><span class="line">?pat=/test/e&amp;rep=var_dump(`net user`)&amp;sub=jutst test</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190816173034317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="create-function-函数"><a href="#create-function-函数" class="headerlink" title="create_function()函数"></a>create_function()函数</h4><p>定义和用法：</p>
+<blockquote>
+<p>string create_function ( string $args , string $code )<br>函数作用：从创建一个匿名函数传递的参数，并返回一个唯一的名称</p>
+</blockquote>
+<p>下面通过一个例子来了解一下这个函数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">$sort_by = $_GET[<span class="string">'sort_by'</span>];</span><br><span class="line">$sorter = <span class="string">'strnatcasecmp'</span>;</span><br><span class="line">$databases=<span class="keyword">array</span>(<span class="string">'1234'</span>,<span class="string">'4321'</span>);</span><br><span class="line">$sort_function = <span class="string">' return 1 * '</span> . $sorter . <span class="string">'($a["'</span> . $sort_by . <span class="string">'"], $b["'</span> . $sort_by . <span class="string">'"]);'</span>;</span><br><span class="line">usort($databases, create_function(<span class="string">'$a, $b'</span>, $sort_function));</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">#usort() 使用用户自定义的比较函数对数组进行排序</span></span><br></pre></td></tr></table></figure>
+<p>首先构造出匿名函数的原型：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">($a,$b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span> * <span class="string">' . $sorter . '</span>($a[<span class="string">"' . $sort_by . '"</span>], $b[<span class="string">"' . $sort_by . '"</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>构造payload：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//localhost/test/1.php?sort_by='"]);&#125;phpinfo();/*</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://img-blog.csdnimg.cn/2019081617523213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>传入后便可以得到：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="number">1</span> * strnatcasecmp($a[<span class="string">""</span>]);&#125;phpinfo();<span class="comment">/*"], $b[""]);&#125;phpinfo();/*"]);</span></span><br></pre></td></tr></table></figure>
+<p>可以看到构造的语句中注释符<code>/*</code>将后面<code>&quot;], $b[&quot;&quot;]);}phpinfo();/*&quot;]);</code>这一段给注释掉了</p>
+<p>此时匿名函数就变成了</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">($a,$b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span> * strnatcasecmp($a[<span class="string">""</span>]);</span><br><span class="line">&#125;</span><br><span class="line">phpinfo();</span><br></pre></td></tr></table></figure>
+<p>因此可以注入成功</p>
+<h4 id="call-user-func函数"><a href="#call-user-func函数" class="headerlink" title="call_user_func函数"></a><strong>call_user_func函数</strong></h4><p>定义和用法：</p>
+<blockquote>
+<p>mixed call_user_func ( callable $callback [, mixed $parameter [, mixed $… ]] )<br>第一个参数 callback 是被调用的回调函数，其余参数是回调函数的参数。</p>
+</blockquote>
+<p>通过一个例子来了解一下这个函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  $filter= <span class="string">'assert'</span>;</span><br><span class="line">  $value = <span class="string">'phpinfo()'</span>;</span><br><span class="line">  call_user_func($filter, $value);</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里<code>$filter</code>作为回调函数进行调用，<code>phpinfo()</code>则是是回调函数的参数，所以可以执行命令<br><img src="https://img-blog.csdnimg.cn/20190816181904949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="二、命令执行函数"><a href="#二、命令执行函数" class="headerlink" title="二、命令执行函数"></a><strong>二、命令执行函数</strong></h2><h4 id="exec-函数"><a href="#exec-函数" class="headerlink" title="exec()函数"></a><strong>exec()函数</strong></h4><p>定义和用法：</p>
+<blockquote>
+<p>exec — 执行一个外部程序</p>
+</blockquote>
+<h4 id="shell-exec-函数"><a href="#shell-exec-函数" class="headerlink" title="shell_exec()函数"></a><strong>shell_exec()函数</strong></h4><p>定义和用法：</p>
+<blockquote>
+<p>通过 Shell 执行命令，并将执行结果作为字符串返回。 </p>
+</blockquote>
+<h4 id="passthru-函数"><a href="#passthru-函数" class="headerlink" title="passthru()函数"></a><strong>passthru()函数</strong></h4><p>定义和用法：</p>
+<blockquote>
+<p>允许执行一个外部程序并回显输出，类似于 exec()。 </p>
+</blockquote>
+<h4 id="escapeshellcmd-函数"><a href="#escapeshellcmd-函数" class="headerlink" title="escapeshellcmd()函数"></a><strong>escapeshellcmd()函数</strong></h4><p>定义和用法：</p>
+<blockquote>
+<p>escapeshellcmd() 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。<br> escapeshellcmd ( string $command ) : string</p>
+</blockquote>
+<p>在DVWA中练习<strong>命令注入</strong>就会了解以上函数，这里就不再举例。<br><a href="https://bealright.github.io/2019/08/10/DVWA%E2%80%94%E2%80%94%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">DVWA_命令注入</a></p>
+<h2 id="三、包含函数"><a href="#三、包含函数" class="headerlink" title="三、包含函数"></a><strong>三、包含函数</strong></h2><blockquote>
+<p>require()<br>include()<br>require_once()<br>include_once()</p>
+</blockquote>
+<p>这些包含函数在之前的博客中也有过介绍，这里就不阐述了<br><a href="https://bealright.github.io/2019/08/09/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94DVWA%E7%BB%83%E4%B9%A0/#%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB">DVWA——文件包含</a></p>
+<h2 id="四、文件操作函数"><a href="#四、文件操作函数" class="headerlink" title="四、文件操作函数"></a><strong>四、文件操作函数</strong></h2><blockquote>
+<p>copy()————————拷贝文件<br>file_get_contents()———将整个文件读入一个字符串<br>file_put_contents()———将一个字符串写入文件<br>file()—————————-把整个文件读入一个数组中<br>fopen()————————打开文件或者url<br>move_uploaded_file()—-将上传的文件移动到新位置<br>readfile()———————-输出文件<br>rename()———————重命名一个文件或目录<br>rmdir()————————删除目录<br>unlink &amp; delete()———–删除文件</p>
+</blockquote>
+<p>读取：可以读取配置等文件<br>写入：可以写入shell代码相关的内容</p>
+<p><strong>总结：这次了解了PHP常用的一些危险函数，下次就通过做题将这些函数用于实践。</strong></p>
+<p><strong>参考博客：</strong><br><a href="https://www.jianshu.com/p/277294c1a9f8" target="_blank" rel="noopener">常见危险函数及特殊函数</a><br><a href="https://www.freebuf.com/column/166385.html" target="_blank" rel="noopener">PHP代码命令注入小结 </a></p>
 
-总结：从50 4B 01 02 开始数十位数便能查看是否是伪加密。
-
-2.CRC32碰撞总结![在这里插入图片描述](https://github.com/bealright/bealright.github.io/blob/master/CTF%20zip/6.png?raw=true)
-这个题是CRC32碰撞，首先有不会的就百度、谷歌。
-通过查找发现需要CR...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/09/CTF隐写总结/">
-            
-                <span>CTF隐写总结</span>
-        </a>
-        <div class="abstract-content">
-            CTF隐写总结一：LSB隐写
- LSB概念    LSB，英文 least significant bit，中文义最低有效位。    对于一个给定的数据串,其最低有效位就是拥有最小单位数值的那一位.
-
-关于LSB隐写的详细介绍                LSB详细介绍关于LSB隐写的详细算法                LSB详细算法关于LSB隐写的总结博客                 LSB隐写总结隐写技巧：PNG文件中的LSB隐写
-打开以后是一张这样的图片题目已经提醒这道题属于LSB隐写，那么就发动查百度、谷歌大法吧。经过查找，会发现需要用这个神器来处理这种题目。但打开这个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/08/CTF Crypto(密码学)总结/">
-            
-                <span>CTF密码学总结</span>
-        </a>
-        <div class="abstract-content">
-            最近接触了一些密码学的题，感觉特别有意思，写下博客来记录一下，以免忘记
-一：哈夫曼树.png?raw=true)哈夫曼树（也称为最优二叉树），虽然（目前）没学，但是百度、谷歌大法无敌。查查原理，再去做题。经过一番查找，懂了原理，就总结了一下简单说：叶子结点：权值a :  4d ：9g :  1f  :  5l  :  10 :  75 :      9{  :      1}  :      1
-画图时最上面的是根，而最优二叉树的规则则是需要权值大的尽量放在上面例如：叶子结点：权值a 7b 5c 2d 4搞懂了这个，但是这个题中还给了我们一堆数1110001110000010100100...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/08/12/PHP反序列化漏洞学习(一)/" title="PHP反序列化漏洞学习(一)">
+                    <div class="prevTitle">PHP反序列化漏洞学习(一)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -561,6 +604,24 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、PHP代码执行函数"><span class="toc-number">1.</span> <span class="toc-text">一、PHP代码执行函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#eval-函数"><span class="toc-number">1.0.1.</span> <span class="toc-text">eval()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#assert-函数"><span class="toc-number">1.0.2.</span> <span class="toc-text">assert()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#preg-replace-函数"><span class="toc-number">1.0.3.</span> <span class="toc-text">preg_replace()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#create-function-函数"><span class="toc-number">1.0.4.</span> <span class="toc-text">create_function()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call-user-func函数"><span class="toc-number">1.0.5.</span> <span class="toc-text">call_user_func函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、命令执行函数"><span class="toc-number">2.</span> <span class="toc-text">二、命令执行函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exec-函数"><span class="toc-number">2.0.1.</span> <span class="toc-text">exec()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shell-exec-函数"><span class="toc-number">2.0.2.</span> <span class="toc-text">shell_exec()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#passthru-函数"><span class="toc-number">2.0.3.</span> <span class="toc-text">passthru()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#escapeshellcmd-函数"><span class="toc-number">2.0.4.</span> <span class="toc-text">escapeshellcmd()函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、包含函数"><span class="toc-number">3.</span> <span class="toc-text">三、包含函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、文件操作函数"><span class="toc-number">4.</span> <span class="toc-text">四、文件操作函数</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1376,6 +1437,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

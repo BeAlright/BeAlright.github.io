@@ -346,6 +346,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/14/PHP危险函数总结/">
+            
+                <span>PHP危险函数总结</span>
+        </a>
+        <div class="abstract-content">
+            前言：PHP中有很多危险函数，如phpinfo() ，这次就来详细总结一下PHP中的危险函数，并借助大师傅们的例子来进行代码审计的练习。
+一、PHP代码执行函数eval()函数定义和用法：
+
+eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法的 PHP 代码，且必须以分号结尾。
+
+这个用法就会产生漏洞，通过一个例子来看一下：
+123456789&lt;?php$var = "var";if (isset($_GET["arg"]))&#123;        $arg = $_GET["arg"];        eval("\$var = $arg;");     ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/14</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/12/PHP反序列化漏洞学习(一)/">
             
                 <span>PHP反序列化漏洞学习(一)</span>
@@ -1168,9 +1203,24 @@ Command Execution一、简介
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 36
+        Total : 37
         </div>
         <!-- search  -->
         
@@ -1183,6 +1233,11 @@ Command Execution一、简介
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/14</span><a class="archive-post-title" href="/2019/08/14/PHP危险函数总结/">PHP危险函数总结</a>
+        </li>
     
     
         <li class="archive-post-item">
