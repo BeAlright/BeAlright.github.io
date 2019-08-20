@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">
+            
+                <span>XCTF(攻防世界)—进阶web题Write Up(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：这段时间做了一些XCTF的web进阶题，真的是学习到了很多知识，就来总结一下。
+
+Cat一开始以为是命令注入，恰好最近学习了命令注入，就先来测试一下：
+输入127.0.0.1，发现是可以ping通的输入127.0.0.1 | phpinfo() 或127.0.0.1 &amp; net user就会显示：
+1Invalid URL
+看来命令注入的方法是行不通的(其他连接符也被过滤了，如&amp;&amp;、||等)
+没有思路了，就看了大师傅们的Write Up，大意就是在URL那里构造错误的参数，使页面进行报错，通过页面报错从中找出需要的信息。
+当输入?url=%79执行完时变成了...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/14/PHP危险函数总结/">
             
                 <span>PHP危险函数总结</span>
@@ -1268,9 +1304,44 @@ Command Execution一、简介
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 37
+        Total : 38
         </div>
         <!-- search  -->
         
@@ -1283,6 +1354,11 @@ Command Execution一、简介
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/16</span><a class="archive-post-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">XCTF(攻防世界)—进阶web题Write Up(一)</a>
+        </li>
     
     
         <li class="archive-post-item">
