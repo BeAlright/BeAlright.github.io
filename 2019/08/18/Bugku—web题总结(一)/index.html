@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Lemon&#39;s blog</title>
+    <title>Bugku—web题总结(一) · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Bugku—web题总结(一)</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/sss.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            Bugku—web题总结(一)
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+                Record my learning process of CTF.
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/18</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,355 +401,71 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/18/Bugku—web题总结(一)/">
-            
-                <span>Bugku—web题总结(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：最近做了一些Bugku入门的web题目，感觉web题挺有趣的，并非是得出flag，而是可以通过一个题目学习到很多知识。
-域名解析题目说把 flag.baidu.com 解析到123.206.87.240 就能拿到flag，如果了解域名解析的原理和系统文件host的作用，那这道题就很简单了。
-通俗的话说：域名是为了我们方便记忆，但计算机识别的是IP地址，所以要将域名解析为IP地址才能访问到自己想要访问的网站。而host文件中放的是一些网站的DNS(域名系统)缓存,通过本地解析会提高访问速度，如果没有host系统文件，我们发送请求，服务器端DNS接收解析再返回给客户端，这会慢很多，当然...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>前言：最近做了一些Bugku入门的web题目，感觉web题挺有趣的，并非是得出flag，而是可以通过一个题目学习到很多知识。</p>
+<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a><strong>域名解析</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190608231606868.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>题目说<code>把 flag.baidu.com 解析到123.206.87.240 就能拿到flag</code>，如果了解域名解析的原理和系统文件host的作用，那这道题就很简单了。</p>
+<p><strong>通俗的话说</strong>：域名是为了我们方便记忆，但计算机识别的是IP地址，所以要将域名解析为IP地址才能访问到自己想要访问的网站。而host文件中放的是一些网站的DNS(域名系统)缓存,通过本地解析会提高访问速度，如果没有host系统文件，我们发送请求，服务器端DNS接收解析再返回给客户端，这会慢很多，当然也可以用host文件来屏蔽一些垃圾网站，只要将它解析到一个不存在的IP即可屏蔽。</p>
+<p>原理大致就是这样。<br><img src="http://img-blog.csdnimg.cn/20190607233912506.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>用管理员权限添加上题目所说的域名和IP,再次访问域名,即可得出flag</p>
+<h2 id="你必须让他停下"><a href="#你必须让他停下" class="headerlink" title="你必须让他停下"></a><strong>你必须让他停下</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190608110345503.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开之后一直再刷新，查看源代码发现是用JS<code>setTimeout(&#39;myrefresh()&#39;,500)</code>设置刷新，每500毫秒刷新一次页面，有两种方法可以做这到题。<br><strong>一、在浏览器中禁用JS，然后手动刷新，查看源代码就可找到flag</strong><br><strong>二、用burp suite抓包</strong><br><img src="http://img-blog.csdnimg.cn/20190608110928549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>多点击几次go，就可得出flag</p>
+<h2 id="变量1"><a href="#变量1" class="headerlink" title="变量1"></a><strong>变量1</strong></h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">flag In the variable ! <span class="meta">&lt;?php</span>  </span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">"flag1.php"</span>;</span><br><span class="line">highlight_file(<span class="keyword">__file__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'args'</span>]))&#123;</span><br><span class="line">    $args = $_GET[<span class="string">'args'</span>];</span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">"/^\w+$/"</span>,$args))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">"args error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">"var_dump($$args);"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一道关于正则表达式的web题，<code>/</code>表示的是正则表达式的开始和结束，<code>^或\A</code>    匹配字符串开始位置，<code>\w</code>匹配任意数字或字母或下划线(a-z,A-Z,0-9,_)，<code>+</code>匹配1次或多次其前面的字符(相当于可以输入多个字符、数字、或下划线)，<code>$或者\Z</code>匹配字符串的结束位置。</p>
+<p>提示说<code>flag In the variable</code> ,直接用全局数组变量<code>$GLOBALS</code>可以得出所以变量的值，其中有一个变量是<code>$$args</code>那就构造语句，让变量成<code>$GLOBALS</code>即可。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//123.206.87.240:8004/index1.php?args=GLOBALS</span></span><br></pre></td></tr></table></figure></p>
+<p>即可得出flag</p>
+<h2 id="头等舱"><a href="#头等舱" class="headerlink" title="头等舱"></a><strong>头等舱</strong></h2><p>这个没啥好做的，抓一下包就可得出flag</p>
+<h2 id="本地包含"><a href="#本地包含" class="headerlink" title="本地包含"></a><strong>本地包含</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190821103541433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>给了一段PHP代码，首先先来搞清一些函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$_REQUEST</span><br><span class="line">默认情况下包含了 $_GET，$_POST 和 $_COOKIE 的数组。 </span><br><span class="line">show_source() 函数</span><br><span class="line">show_source() 函数对文件进行 PHP 语法高亮显示。</span><br><span class="line">注释：当使用该函数时，整个文件都将被显示，包括密码和其他敏感信息！</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.yuque.com/docs/share/0690a545-49d8-4a2e-960d-9ba76b68dba0" target="_blank" rel="noopener">show_source() 函数</a><br><strong>方法一、eval函数</strong></p>
+<p>前面学习过了命令注入其中<code>eval</code>函数是危险函数，可以将字符串当作PHP进行解析，可以利用这个漏洞构造payload：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?hello=);show_source(<span class="string">"flag.php"</span>);var_dump(</span><br></pre></td></tr></table></figure>
+<p><code>);</code>闭合前面的<code>var_dump(</code>，<code>var_dump(</code>闭合后面的<code>);</code>，构造这样的语句便可以执行我们想要的语句了。<br><img src="http://img-blog.csdnimg.cn/20190821105004360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>但是flag不对，查了一下，发现很多人都遇到这个问题，这里应该是网站的问题，就不管了，过程最重要！</p>
+<p>方法二：</p>
+<p>利用<code>file()</code>或<code>get_file_contents</code>函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file_get_contents() 函数把整个文件读入一个字符串中</span><br><span class="line">file() 函数把整个文件读入一个数组中。</span><br></pre></td></tr></table></figure>
+<p><strong>payload：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?hello=file(<span class="string">'flag.php'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2019082114420426.png" alt="在这里插入图片描述"><br><strong>payload：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?hello=file_get_contents(<span class="string">'flag.php'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190821144230159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>方法三：</p>
+<p>这道题的题目便是本地本地包含，就用本地包含的方法来做一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">include()函数和php:<span class="comment">//filter结合使用</span></span><br><span class="line">php:<span class="comment">//filter可以用与读取文件源代码，结果是源代码base64编码后的结果</span></span><br><span class="line">php:<span class="comment">//filter/convert.base64-encode/resource=文件路径</span></span><br></pre></td></tr></table></figure>
+<p><strong>payload:</strong><br><img src="http://img-blog.csdnimg.cn/20190821145329862.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190821145400894.png" alt="在这里插入图片描述"><br>正常的话，base64解码即可，但这个题有点问题。</p>
+<h2 id="web5"><a href="#web5" class="headerlink" title="web5"></a><strong>web5</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190821150302868.png" alt="在这里插入图片描述"><br> 查看源码，发现是<code>jother编码</code><br> <a href="https://blog.csdn.net/greyfreedom/article/details/45070667" target="_blank" rel="noopener">jother编码详解</a> <img src="https://img-blog.csdnimg.cn/2019082115032854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 粘贴到控制台回车即可解码，注意flag转化成大写，题目中有提示：<br><img src="https://img-blog.csdnimg.cn/20190821150735528.png" alt="在这里插入图片描述"></p>
+<h2 id="网站被黑"><a href="#网站被黑" class="headerlink" title="网站被黑"></a><strong>网站被黑</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190821152346216.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>源码什么也没有，其他也没有观察出什么就用御剑扫描一下<br><img src="http://img-blog.csdnimg.cn/20190821152531424.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>有隐藏目录<code>shell.php</code><br><img src="http://img-blog.csdnimg.cn/20190821152600365.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>需要输入密码才能进入，也没有任何提示，一般就是弱口令爆破了</p>
+<p>加载字典<br><img src="http://img-blog.csdnimg.cn/20190821152646607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>进行爆破，便可得出flag。<br><img src="http://img-blog.csdnimg.cn/2019082115271621.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>打算继续做，发现网站炸了，打不开，算了这次就先总结到这里，下次继续总结学习。</p>
+
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">
-            
-                <span>XCTF(攻防世界)—进阶web题Write Up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：这段时间做了一些XCTF的web进阶题，真的是学习到了很多知识，就来总结一下。
-
-Cat一开始以为是命令注入，恰好最近学习了命令注入，就先来测试一下：
-输入127.0.0.1，发现是可以ping通的输入127.0.0.1 | phpinfo() 或127.0.0.1 &amp; net user就会显示：
-1Invalid URL
-看来命令注入的方法是行不通的(其他连接符也被过滤了，如&amp;&amp;、||等)
-没有思路了，就看了大师傅们的Write Up，大意就是在URL那里构造错误的参数，使页面进行报错，通过页面报错从中找出需要的信息。
-当输入?url=%79执行完时变成了...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/14/PHP危险函数总结/">
-            
-                <span>PHP危险函数总结</span>
-        </a>
-        <div class="abstract-content">
-            前言：PHP中有很多危险函数，如phpinfo() ，这次就来详细总结一下PHP中的危险函数，并借助大师傅们的例子来进行代码审计的练习。
-一、PHP代码执行函数eval()函数定义和用法：
-
-eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法的 PHP 代码，且必须以分号结尾。
-
-这个用法就会产生漏洞，通过一个例子来看一下：
-123456789&lt;?php$var = "var";if (isset($_GET["arg"]))&#123;        $arg = $_GET["arg"];        eval("\$var = $arg;");     ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/12/PHP反序列化漏洞学习(一)/">
-            
-                <span>PHP反序列化漏洞学习(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：PHP反序列化也是web安全中常见的一种漏洞，这次就先来大致了解一下PHP反序列化漏洞的基础知识。
-
-一、PHP序列化和反序列化在学习PHP反序列化漏洞时，先来了解一下基础的知识。
-(一)PHP序列化函数 : serialize()
-
-所有php里面的值都可以使用函数serialize()来返回一个包含字节流的字符串来表示。序列化一个对象将会保存对象的所有变量，但是不会保存对象的方法，只会保存类的名字。 
-
-一开始看这个概念可能有些懵，看了很多大师傅们的博客后，慢慢明白这个概念的道理。
-在程序执行结束时，内存数据便会立即销毁，变量所储存的数据便是内存数据，而文件、数据库是“持久数据...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/10/DVWA——命令执行漏洞学习/">
-            
-                <span>DVWA——命令执行漏洞学习</span>
-        </a>
-        <div class="abstract-content">
-            前言：命令执行和代码执行也是web安全中常见的一种漏洞，这次就先来学习一下命令执行漏洞。
-
-Command Execution一、简介
-由于开发人员在编写源代码时，没有对源代码中可执行的特殊函数入口做过滤，导致客户端可以提交一些cmd命令，并交由服务器程序执行。导致攻击者可以通过浏览器或者其他客户端软件提交一些cmd命令（或者bash命令）至服务器程序，服务器程序通过system、eval、exec等函数直接或者间接地调用cmd.exe执行攻击者提交的命令。
-
-二、常用的连接符12345A;B    先执行A，再执行BA&amp;B    简单拼接，A B之间无制约关系A|B    显示...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="命令执行">命令执行</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/09/文件包含漏洞——DVWA练习/">
-            
-                <span>文件包含漏洞——DVWA练习</span>
-        </a>
-        <div class="abstract-content">
-            前言：在学习文件上传时，制作的图片马需要我们手动去解析，而解析的方法就算用到了文件包含漏洞，所以这次就来学习一下文件包含漏洞。
-
-文件包含漏洞简介
-（一）文件包含可以分为本地文件包含和远程文件包含两种。文件包含和文件上传一样本身并不是漏洞，而是攻击者利用了包含的特性加上了应用本身对文件控制不严格，对include进来的文件不可控，才导致了一系列危害。（二）本地文件包含就是通过URL将服务器本地的其他文件include进来。远程文件包含就是将远程服务器的文件include进来。（三）最主要的是，包含进来的文件都以当前脚本文件解析，例如，当前测试系统是Apache加php环境，那么被incl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件包含">文件包含</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/07/密码学——RSA加密算法原理/">
-            
-                <span>密码学——RSA加密算法原理</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前在做密码学题的时候了解了一下RSA，但总感觉那时总结的过少，而且也理解的不到位，这次就再来详细的了解一下，并通过做题来巩固一下。
-一、对称加密与非对称加密对称加密：
-加密和解密用的是同一密钥，也是最简单、最快速的加密方式，通常使用的密匙相对较小，容易被破解，如果密钥过大，安全性确实可以得到保证，但同样加密和解密的效率将会很低。 因为双方都需要密钥进行加密解密，如果有一方的密钥泄露出去，整个安全性将不复存在，所以这也是对称加密的缺点。
-
-
-非对称加密：
-相较于对称加密，非对称加密使用两个密匙，即公开密钥和私钥密钥。非对称加密很有趣，公钥是任何人都可以请求得到的，但私钥只有一个人持...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">
-            
-                <span>实验吧——SQL注入 Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前学习过了联合注入查询、布尔盲注、时间盲注等，这次就通过SQL注入题来加强一下。
-
-简单的sql注入方法一输入有回显，且有输入框，那就可以用联合查询的方法来注入
-题中提示已经过滤了一些关键字，那么就先来查看题中过滤的是哪些关键字
-1?id=1 union select order by #
-回显结果：union，select等都被过滤而且没有报错说明#也被过滤可以自己建立一个语句来验证一下如果#没有被过滤，那么上面的语句将会变成这样，语句一定会报错题中将关键字过滤，可以尝试一下双写绕过的方法是否可用输入框中输入?id=1 unionunion selectselect，发现空格也...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/03/文件上传漏洞——upload-labs(11-20)/">
-            
-                <span>文件上传漏洞——upload-labs(11-20)</span>
-        </a>
-        <div class="abstract-content">
-            前言：上次文件上传漏洞学习到第十关，这次继续学习
-第十一关分析源码前面几行代码都是对后缀名进行限制，最重要的就是这一句代码
-1$img_path = $_GET['save_path']."/".rand(10, 99).date("YmdHis").".".$file_ext;
-发现save_path用户是可控的，那么就利用%00截断来绕过
-在此之前，先来了解一下截断上传的原理
-在url中%00表示ascll码中的0 ，而ascii中0作为特殊字符保留，表示字符串结束，所以当url中出现%00时就会认为读取已结束，而忽略后面上传的文件或图片，只上传截断前的文件或图片
-可以通过一个例子详...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">
-            
-                <span>文件上传漏洞——upload-labs(1-10)</span>
-        </a>
-        <div class="abstract-content">
-            前言：文件上传漏洞有很多种绕过技巧，这次就通过upload-labs进行学习
-第一关上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下抓包修改上传格式的方法看看是否可行
-先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包
-拦截请求包后，将1.png改为1.php，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径路径也知道了，就用菜刀进行连接连接成功观察一下第一关的源码1234567891011121314151617function checkFile() &#123;    var file = document.getEl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/" title="XCTF(攻防世界)—进阶web题Write Up(一)">
+                    <div class="prevTitle">XCTF(攻防世界)—进阶web题Write Up(一)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="page-number" href="/archives/2019/page/3/">3</a><a class="page-number" href="/archives/2019/page/4/">4</a><a class="extend next" rel="next" href="/archives/2019/page/2/">NEXT &#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -777,6 +556,24 @@ Command Execution一、简介
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#域名解析"><span class="toc-number">1.</span> <span class="toc-text">域名解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#你必须让他停下"><span class="toc-number">2.</span> <span class="toc-text">你必须让他停下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量1"><span class="toc-number">3.</span> <span class="toc-text">变量1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#头等舱"><span class="toc-number">4.</span> <span class="toc-text">头等舱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地包含"><span class="toc-number">5.</span> <span class="toc-text">本地包含</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web5"><span class="toc-number">6.</span> <span class="toc-text">web5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网站被黑"><span class="toc-number">7.</span> <span class="toc-text">网站被黑</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1642,6 +1439,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
