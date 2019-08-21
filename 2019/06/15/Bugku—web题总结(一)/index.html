@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Lemon&#39;s blog</title>
+    <title>Bugku—web题总结(一) · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Bugku—web题总结(一)</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/sss.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            Bugku—web题总结(一)
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+                Record my learning process of CTF.
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/15</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,111 +401,76 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/25/sql注入学习——时间盲注/">
-            
-                <span>sql注入学习——时间盲注</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前通过前九关学习到了回显注入、报错注入、布尔盲注等一些方法，这次就来详细的学习时间盲注。
-在上一篇博客中，了解了布尔盲注，其实布尔盲注和时间盲注大致相同，注入原理是一致的，区别就是一个还是有回显的，一个彻底没有回显，通过构造语句，通过页面响应的时长，来判断信息，这就是时间盲注。
-先来学习一下时间盲注所需要的函数123sleep()/延迟函数if(condition,true,false)/若条件为真 返回true，若条件为假 返回falsesubstring("string",strart,length)
-主要的也就是这几个了，下面就通过sqli-labs第十关来练习时间盲注
-猜...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/24/sql注入学习——布尔盲注/">
-            
-                <span>sql注入学习——布尔盲注</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前通过前九关学习到了回显注入、报错注入等一些方法，这次就来详细的学习布尔盲注。
-首先来了解一下盲注的概念
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>前言：最近做了一些Bugku入门的web题目，感觉web题挺有趣的，并非是得出flag，而是可以通过一个题目学习到很多知识。</p>
+<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a><strong>域名解析</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190608231606868.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>题目说<code>把 flag.baidu.com 解析到123.206.87.240 就能拿到flag</code>，如果了解域名解析的原理和系统文件host的作用，那这道题就很简单了。</p>
+<p><strong>通俗的话说</strong>：域名是为了我们方便记忆，但计算机识别的是IP地址，所以要将域名解析为IP地址才能访问到自己想要访问的网站。而host文件中放的是一些网站的DNS(域名系统)缓存,通过本地解析会提高访问速度，如果没有host系统文件，我们发送请求，服务器端DNS接收解析再返回给客户端，这会慢很多，当然也可以用host文件来屏蔽一些垃圾网站，只要将它解析到一个不存在的IP即可屏蔽。</p>
+<p>原理大致就是这样。<br><img src="http://img-blog.csdnimg.cn/20190607233912506.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>用管理员权限添加上题目所说的域名和IP,再次访问域名,即可得出flag</p>
+<h2 id="你必须让他停下"><a href="#你必须让他停下" class="headerlink" title="你必须让他停下"></a><strong>你必须让他停下</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190608110345503.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开之后一直再刷新，查看源代码发现是用JS<code>setTimeout(&#39;myrefresh()&#39;,500)</code>设置刷新，每500毫秒刷新一次页面，有两种方法可以做这到题。<br><strong>一、在浏览器中禁用JS，然后手动刷新，查看源代码就可找到flag</strong><br><strong>二、用burp suite抓包</strong><br><img src="http://img-blog.csdnimg.cn/20190608110928549.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>多点击几次go，就可得出flag</p>
+<h2 id="变量1"><a href="#变量1" class="headerlink" title="变量1"></a><strong>变量1</strong></h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">flag In the variable ! <span class="meta">&lt;?php</span>  </span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">"flag1.php"</span>;</span><br><span class="line">highlight_file(<span class="keyword">__file__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'args'</span>]))&#123;</span><br><span class="line">    $args = $_GET[<span class="string">'args'</span>];</span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">"/^\w+$/"</span>,$args))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">"args error!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">"var_dump($$args);"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一道关于正则表达式的web题，<code>/</code>表示的是正则表达式的开始和结束，<code>^或\A</code>    匹配字符串开始位置，<code>\w</code>匹配任意数字或字母或下划线(a-z,A-Z,0-9,_)，<code>+</code>匹配1次或多次其前面的字符(相当于可以输入多个字符、数字、或下划线)，<code>$或者\Z</code>匹配字符串的结束位置。</p>
+<p>提示说<code>flag In the variable</code> ,直接用全局数组变量<code>$GLOBALS</code>可以得出所以变量的值，其中有一个变量是<code>$$args</code>那就构造语句，让变量成<code>$GLOBALS</code>即可。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//123.206.87.240:8004/index1.php?args=GLOBALS</span></span><br></pre></td></tr></table></figure></p>
+<p>即可得出flag</p>
+<h2 id="头等舱"><a href="#头等舱" class="headerlink" title="头等舱"></a><strong>头等舱</strong></h2><p>这个没啥好做的，抓一下包就可得出flag</p>
+<h2 id="本地包含"><a href="#本地包含" class="headerlink" title="本地包含"></a><strong>本地包含</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190821103541433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>给了一段PHP代码，首先先来搞清一些函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$_REQUEST</span><br><span class="line">默认情况下包含了 $_GET，$_POST 和 $_COOKIE 的数组。 </span><br><span class="line">show_source() 函数</span><br><span class="line">show_source() 函数对文件进行 PHP 语法高亮显示。</span><br><span class="line">注释：当使用该函数时，整个文件都将被显示，包括密码和其他敏感信息！</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.yuque.com/docs/share/0690a545-49d8-4a2e-960d-9ba76b68dba0" target="_blank" rel="noopener">show_source() 函数</a><br><strong>方法一、eval函数</strong></p>
+<p>前面学习过了命令注入其中<code>eval</code>函数是危险函数，可以将字符串当作PHP进行解析，可以利用这个漏洞构造payload：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?hello=);show_source(<span class="string">"flag.php"</span>);var_dump(</span><br></pre></td></tr></table></figure>
+<p><code>);</code>闭合前面的<code>var_dump(</code>，<code>var_dump(</code>闭合后面的<code>);</code>，构造这样的语句便可以执行我们想要的语句了。<br><img src="http://img-blog.csdnimg.cn/20190821105004360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>但是flag不对，查了一下，发现很多人都遇到这个问题，这里应该是网站的问题，就不管了，过程最重要！</p>
+<p>方法二：</p>
+<p>利用<code>file()</code>或<code>get_file_contents</code>函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file_get_contents() 函数把整个文件读入一个字符串中</span><br><span class="line">file() 函数把整个文件读入一个数组中。</span><br></pre></td></tr></table></figure>
+<p><strong>payload：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?hello=file(<span class="string">'flag.php'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2019082114420426.png" alt="在这里插入图片描述"><br><strong>payload：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?hello=file_get_contents(<span class="string">'flag.php'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190821144230159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>方法三：</p>
+<p>这道题的题目便是本地本地包含，就用本地包含的方法来做一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">include()函数和php:<span class="comment">//filter结合使用</span></span><br><span class="line">php:<span class="comment">//filter可以用与读取文件源代码，结果是源代码base64编码后的结果</span></span><br><span class="line">php:<span class="comment">//filter/convert.base64-encode/resource=文件路径</span></span><br></pre></td></tr></table></figure>
+<p><strong>payload:</strong><br><img src="http://img-blog.csdnimg.cn/20190821145329862.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190821145400894.png" alt="在这里插入图片描述"><br>正常的话，base64解码即可，但这个题有点问题。</p>
+<h2 id="web5"><a href="#web5" class="headerlink" title="web5"></a><strong>web5</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190821150302868.png" alt="在这里插入图片描述"><br> 查看源码，发现是<code>jother编码</code><br> <a href="https://blog.csdn.net/greyfreedom/article/details/45070667" target="_blank" rel="noopener">jother编码详解</a> <img src="https://img-blog.csdnimg.cn/2019082115032854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 粘贴到控制台回车即可解码，注意flag转化成大写，题目中有提示：<br><img src="https://img-blog.csdnimg.cn/20190821150735528.png" alt="在这里插入图片描述"></p>
+<h2 id="网站被黑"><a href="#网站被黑" class="headerlink" title="网站被黑"></a><strong>网站被黑</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190821152346216.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>源码什么也没有，其他也没有观察出什么就用御剑扫描一下<br><img src="http://img-blog.csdnimg.cn/20190821152531424.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>有隐藏目录<code>shell.php</code><br><img src="http://img-blog.csdnimg.cn/20190821152600365.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>需要输入密码才能进入，也没有任何提示，一般就是弱口令爆破了</p>
+<p>加载字典<br><img src="http://img-blog.csdnimg.cn/20190821152646607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>进行爆破，便可得出flag。<br><img src="http://img-blog.csdnimg.cn/2019082115271621.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>打算继续做，发现网站炸了，打不开，算了这次就先总结到这里，下次继续总结学习。</p>
 
-盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。
-
-布尔盲注
-原理：注入的时候只会返回True和False，所以布尔盲注就是根据页面显示的是True还是False进行猜测数据库中的信息。
-布尔盲注需要几个函数的辅助，就先来了解一下这几个函数1234length()函数可返回字符串的长度substring()函数可以截取字符串，可指定开始的位置和截取的长度ord()函数可以返回单个字符的ASCII码char()函数可将ASCII码转...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
-    
-</div>
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/09/通过sql-labs进行sql注入学习(一)/">
-            
-                <span>通过sql-labs进行sql注入学习(一)</span>
-        </a>
-        <div class="abstract-content">
-            SQL注入有很多方法，先接触最简单最直观的一种——联合查询注入
-联合查询注入原理联合查询的前提是需要有显示位，而显示位就是通过用户的查询从数据库中返回到页面的数据，是可变化的。 例如：sql-labs前四关都是联合查询注入
-sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不相同。 接下来就开始实战，通过实战来了解联合查询注入的步骤和方法。
- 一、判断注入点 闭合符号一般是&#39;,&quot;,或无闭合符号或&#39;)，&quot;) --+为注释符号 在url框中输入?id=2&#39;，发现 用--+将后面的字符注释掉，发现 正常显示，说明注入点是单引...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/06/15/Bugku—MISC题总结/" title="Bugku—MISC题总结">
+                    <div class="nextTitle">Bugku—MISC题总结</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/06/09/通过sql-labs进行sql注入学习(一)/" title="通过sql-labs进行sql注入学习(一)">
+                    <div class="prevTitle">通过sql-labs进行sql注入学习(一)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -533,6 +561,24 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#域名解析"><span class="toc-number">1.</span> <span class="toc-text">域名解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#你必须让他停下"><span class="toc-number">2.</span> <span class="toc-text">你必须让他停下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量1"><span class="toc-number">3.</span> <span class="toc-text">变量1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#头等舱"><span class="toc-number">4.</span> <span class="toc-text">头等舱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地包含"><span class="toc-number">5.</span> <span class="toc-text">本地包含</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web5"><span class="toc-number">6.</span> <span class="toc-text">web5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网站被黑"><span class="toc-number">7.</span> <span class="toc-text">网站被黑</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1436,6 +1482,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
