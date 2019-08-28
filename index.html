@@ -359,6 +359,38 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/25/Bugku—web题总结(二)/">
+            
+                <span>Bugku—web题总结(二)</span>
+        </a>
+        <div class="abstract-content">
+            前言：之前没有总结完，这次继续总结！
+输入密码查看flag观察到爆破而且密码是五位数字，那就用burp来爆破设置payload：爆破出来了，提交即可得出flag
+点击一百万次提示是JS，查看一下源代码，发现虽然不太懂JS代码，但是还是可以理解这个代码大意，变量clicks通过点击来自增。但是这里变量也可以通过POST进行传递,那就直接给变量传一个10000000.
+备份是个好习惯发现是MD5加密后的值，而且两段相同，解密一下空密码，看来解题思路应该错了，重新查看题目发现这道题与备份有关，常见的PHP备份后缀名有.php.bak等输入http://123.206.87.240:8002/w...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/18/Bugku—web题总结(一)/">
             
                 <span>Bugku—web题总结(一)</span>
@@ -650,38 +682,6 @@ Command Execution一、简介
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">
-            
-                <span>文件上传漏洞——upload-labs(1-10)</span>
-        </a>
-        <div class="abstract-content">
-            前言：文件上传漏洞有很多种绕过技巧，这次就通过upload-labs进行学习
-第一关上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下抓包修改上传格式的方法看看是否可行
-先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包
-拦截请求包后，将1.png改为1.php，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径路径也知道了，就用菜刀进行连接连接成功观察一下第一关的源码1234567891011121314151617function checkFile() &#123;    var file = document.getEl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
             </div>
             <!-- tags  -->
             
@@ -1451,9 +1451,44 @@ Command Execution一、简介
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 39
+        Total : 40
         </div>
         <!-- search  -->
         
@@ -1466,6 +1501,11 @@ Command Execution一、简介
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/2019/08/25/Bugku—web题总结(二)/">Bugku—web题总结(二)</a>
+        </li>
     
     
         <li class="archive-post-item">
