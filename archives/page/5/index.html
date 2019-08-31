@@ -346,326 +346,30 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/25/Bugku—web题总结(二)/">
+        <a class="abstract-title" href="/2019/03/12/hexo+githup搭建属于自己的博客/">
             
-                <span>Bugku—web题总结(二)</span>
+                <span>搭建属于自己的博客</span>
         </a>
         <div class="abstract-content">
-            前言：之前没有总结完，这次继续总结！
-输入密码查看flag观察到爆破而且密码是五位数字，那就用burp来爆破设置payload：爆破出来了，提交即可得出flag
-点击一百万次提示是JS，查看一下源代码，发现虽然不太懂JS代码，但是还是可以理解这个代码大意，变量clicks通过点击来自增。但是这里变量也可以通过POST进行传递,那就直接给变量传一个10000000.
-备份是个好习惯发现是MD5加密后的值，而且两段相同，解密一下空密码，看来解题思路应该错了，重新查看题目发现这道题与备份有关，常见的PHP备份后缀名有.php.bak等输入http://123.206.87.240:8002/w...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/18/Bugku—web题总结(一)/">
-            
-                <span>Bugku—web题总结(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：最近做了一些Bugku入门的web题目，感觉web题挺有趣的，并非是得出flag，而是可以通过一个题目学习到很多知识。
-域名解析题目说把 flag.baidu.com 解析到123.206.87.240 就能拿到flag，如果了解域名解析的原理和系统文件host的作用，那这道题就很简单了。
-通俗的话说：域名是为了我们方便记忆，但计算机识别的是IP地址，所以要将域名解析为IP地址才能访问到自己想要访问的网站。而host文件中放的是一些网站的DNS(域名系统)缓存,通过本地解析会提高访问速度，如果没有host系统文件，我们发送请求，服务器端DNS接收解析再返回给客户端，这会慢很多，当然...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">
-            
-                <span>XCTF(攻防世界)—进阶web题Write Up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：这段时间做了一些XCTF的web进阶题，真的是学习到了很多知识，就来总结一下。
-
-Cat一开始以为是命令注入，恰好最近学习了命令注入，就先来测试一下：
-输入127.0.0.1，发现是可以ping通的输入127.0.0.1 | phpinfo() 或127.0.0.1 &amp; net user就会显示：
-1Invalid URL
-看来命令注入的方法是行不通的(其他连接符也被过滤了，如&amp;&amp;、||等)
-没有思路了，就看了大师傅们的Write Up，大意就是在URL那里构造错误的参数，使页面进行报错，通过页面报错从中找出需要的信息。
-当输入?url=%79执行完时变成了...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/07/密码学——RSA加密算法原理/">
-            
-                <span>密码学——RSA加密算法原理</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前在做密码学题的时候了解了一下RSA，但总感觉那时总结的过少，而且也理解的不到位，这次就再来详细的了解一下，并通过做题来巩固一下。
-一、对称加密与非对称加密对称加密：
-加密和解密用的是同一密钥，也是最简单、最快速的加密方式，通常使用的密匙相对较小，容易被破解，如果密钥过大，安全性确实可以得到保证，但同样加密和解密的效率将会很低。 因为双方都需要密钥进行加密解密，如果有一方的密钥泄露出去，整个安全性将不复存在，所以这也是对称加密的缺点。
+            hexo+githup搭建属于自己的博客 第一次搭建博客，遇到不少坑。CSDN、bing、谷歌、百度上都有大神的博客教授如何一步一步搭建属于自己的博客。不过我毕竟属于小白，文字有时给我的感受不是那么的直观，所以我是在B站看视频一步一步做的.话说他们的视频都写无坑视频。。。我却遇到了。。。很多坑，但觉得也很有趣，所以记录一下我的搭建过程。
 
 
-非对称加密：
-相较于对称加密，非对称加密使用两个密匙，即公开密钥和私钥密钥。非对称加密很有趣，公钥是任何人都可以请求得到的，但私钥只有一个人持...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">
-            
-                <span>实验吧——SQL注入 Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前学习过了联合注入查询、布尔盲注、时间盲注等，这次就通过SQL注入题来加强一下。
-
-简单的sql注入方法一输入有回显，且有输入框，那就可以用联合查询的方法来注入
-题中提示已经过滤了一些关键字，那么就先来查看题中过滤的是哪些关键字
-1?id=1 union select order by #
-回显结果：union，select等都被过滤而且没有报错说明#也被过滤可以自己建立一个语句来验证一下如果#没有被过滤，那么上面的语句将会变成这样，语句一定会报错题中将关键字过滤，可以尝试一下双写绕过的方法是否可用输入框中输入?id=1 unionunion selectselect，发现空格也...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/18/实验吧— Crypto Write up(一)/">
-            
-                <span>实验吧— Crypto Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：最近先做一些关于古典密码的题，了解常见的古典密码。
-变异凯撒1加密密文：afZ_r9VYfScOeO_UL^RWUc
-刚开始以为这道题考的是凯撒加密，就在线求解，结果不行，那就来分析题目，变异凯撒，应该是利用凯撒加密的原理加以变形，观察一波，提示又提示说格式为flag{}，发现a的ascii到f的ascii偏移量为5，f的ascii到l的ascii偏移量为6,Z的ascii到a的ascii偏移量为7，总结出以后的每个字母偏移量都要加1，观察出规律了，就写脚本跑吧。
-附上ASCII表py3脚本123456789101112a = 'afZ_r9VYfScOeO_UL^RWUc'b =...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/17/I春秋——web Write up(一)/">
-            
-                <span>I春秋——web Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：总结一下最近做的web题，从题中可以学习到很多知识。
-爆破-1
-123456789&lt;?phpinclude "flag.php";$a = @$_REQUEST['hello'];if(!preg_match('/^\w*$/',$a ))&#123;  die('ERROR');&#125;eval("var_dump($$a);");show_source(__FILE__);?&gt;
-给了一段PHP代码，里面还有简单的正则表达式，那就来分析一下。
-/表示的是正则表达式的开始和结束，^或\A    匹配字符串开始位置，\w匹配任意数字或字母或下划线(a-z,A-Z,0-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/16/2019安恒七月月赛——MISC/">
-            
-                <span>2019安恒七月月赛——MISC</span>
-        </a>
-        <div class="abstract-content">
-            前言：作为一个小白，感觉安恒的题是真的难，但也要努力复现出来，也可以多学很多东西。
-真正的CTFer一张图片，还是之前的老思路，winehx查看，binwalk分离等等，但是都没有线索，再仔细观察图片，发现应该是高度被修改了，下面应该还隐藏有图片查看一下被修改过后的高度这里也不知道图片原高度为多少，就往大的方向整我这里直接将05改为了0C,结果过大了下方有空白，改成0A没有空白了，然后再观察图片，ctrl+左键放大图片得出flag，但这没有结束，大师傅告诉我这道题涉及png中CRC检验错误问题，让我拖进Stegsolve就知道有什么问题了，按照大师傅的说法去做，果然打不开百度查找，发现了...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/14/I春秋—— Crypto Write up(一)/">
-            
-                <span>I春秋—— Crypto Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：密码学涉及一系列的加密算法，虽然自己数学贼烂，但觉得加密这些算法还是蛮好玩的，就通过题来了解一些算法，话不多说，开始做题。
-Substituted方法：百度翻译题目一下，Substituted（替换），替换加密中包含有简单替换密码，应该就是简单替换密码，在线网站求解一波。替换密码解密把头部改成iceCTF即可得出flag。
-做题总结：通过这道题来了解一下简单替换密码
-
-替换密码属于简单对称加密，即将字母表中一个字符替换成另一个字符，很好理解。1234567例如：	明文 ABDDD	替换规则：	A-&gt;C	B-&gt;T	D-&gt;F	密文 CTFFF
+安装node.js
 
 
-而攻击方式也有很多种...
+官网链接选择10.15.3LTS进行下载。我是一路next,我开始搭的时候不想放入C盘，但后来发现npm命令不能用😂，才发现还要改路径，很麻烦。所以就一路next放进C盘中去。安装好后，打开cmd
+12C:\Users\用户...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/14</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/12</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/12/实验吧—(部分)MISC Write up/">
-            
-                <span>实验吧—(部分)MISC Write up</span>
-        </a>
-        <div class="abstract-content">
-            前言: 杂项题包含密码学也有很大的脑洞，多练习也可以增强自己的脑洞，话不多说，做题吧。
-欢迎来到地狱三个文件，从地狱伊始开做，打开后发现图片格式有问题，更改jpg文件头为FF D8即可修复好的图片给了一个链接，下载之后得到一个wav音频文件，听一下是摩斯密码，还是利用工具看看传递的是什么信息。根据形状，敲出摩斯密码长的为-，大点为.，小点为停顿/，即可得出
-1-.-/./-.--/.-.././-/..-/.../--./---
-在线摩斯密码解密1K E Y L E T U S G O
-打开第二次地狱需要密码，第一次地狱得出的应该就是密码key不是密码，只试后面的就可以了，最后得出小写的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="hexo">hexo</a>
     
 </div>
             
@@ -675,7 +379,7 @@ Substituted方法：百度翻译题目一下，Substituted（替换），替换�
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/tags/CTF/page/2/">2</a><a class="extend next" rel="next" href="/tags/CTF/page/2/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/page/4/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span>
     </nav>
     
 </main>
