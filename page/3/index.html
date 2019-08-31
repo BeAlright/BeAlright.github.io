@@ -230,7 +230,7 @@ height:50vh;
     <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/205913.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/11111.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
@@ -352,6 +352,39 @@ height:50vh;
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
             <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/07/17/I春秋——web Write up(一)/">
+            
+                <span>I春秋——web Write up(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：总结一下最近做的web题，从题中可以学习到很多知识。
+爆破-1
+123456789&lt;?phpinclude "flag.php";$a = @$_REQUEST['hello'];if(!preg_match('/^\w*$/',$a ))&#123;  die('ERROR');&#125;eval("var_dump($$a);");show_source(__FILE__);?&gt;
+给了一段PHP代码，里面还有简单的正则表达式，那就来分析一下。
+/表示的是正则表达式的开始和结束，^或\A    匹配字符串开始位置，\w匹配任意数字或字母或下划线(a-z,A-Z,0-...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     
     
@@ -639,41 +672,6 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/18/CTF 关于ZIP解题过程/">
-            
-                <span>CTF关于ZIP解题思路</span>
-        </a>
-        <div class="abstract-content">
-            CTF 关于ZIP解题1.伪加密类型打开之后是两张图片，一张未加密，一张已加密。利用WinHex打开然后在谷歌上找到大佬关于zip格式的介绍接下来进行对比，看是否属于伪加密通过对比，发现确实属于伪加密。所以将09改为00即可。
-
-总结：从50 4B 01 02 开始数十位数便能查看是否是伪加密。
-
-2.CRC32碰撞总结![在这里插入图片描述](https://github.com/bealright/bealright.github.io/blob/master/CTF%20zip/6.png?raw=true)
-这个题是CRC32碰撞，首先有不会的就百度、谷歌。
-通过查找发现需要CR...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/18</span>
             </div>
             <!-- tags  -->
             
@@ -1483,9 +1481,60 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 41
+        Total : 42
         </div>
         <!-- search  -->
         
@@ -1502,6 +1551,11 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/了解PHP伪协议/">了解PHP伪协议</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2019/08/28/python学习（函数）/">python学习（函数）</a>
         </li>
     
     
@@ -1715,8 +1769,6 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
         <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
     
-        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
-    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
@@ -1726,6 +1778,8 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
         <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
         <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
     

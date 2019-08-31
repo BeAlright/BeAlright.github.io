@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Lemon&#39;s blog</title>
+    <title>python学习（函数） · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">python学习（函数）</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/973575.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            python学习（函数）
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+                Record my learning process of python.
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/28</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,115 +401,115 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">
-            
-                <span>实验吧——SQL注入 Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前学习过了联合注入查询、布尔盲注、时间盲注等，这次就通过SQL注入题来加强一下。
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><strong>前言：目前先将python的基础语法和知识学完，再去尝试写脚本，这次就学习python中的函数。</strong></p>
+<h2 id="一、定义函数"><a href="#一、定义函数" class="headerlink" title="一、定义函数"></a><strong>一、定义函数</strong></h2><blockquote>
+<p>使用关键字def 来定义一个函数,这就是函数定义，而且定义以冒号结尾。</p>
+</blockquote>
+<p>格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def  函数名 :</span><br><span class="line"></span><br><span class="line">内容</span><br><span class="line"></span><br><span class="line">函数名</span><br></pre></td></tr></table></figure></p>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def message():</span><br><span class="line">	<span class="string">""</span><span class="string">"打印的信息"</span><span class="string">""</span></span><br><span class="line">    print(<span class="string">"hello world"</span>)</span><br><span class="line">message()</span><br><span class="line">输出结果:</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+<p><code>&quot;&quot;&quot;打印的信息&quot;&quot;&quot;</code>被称为<strong>文档字符串</strong>的注释，文档字符串用三引号括起来。</p>
+<h2 id="二、向函数传递信息"><a href="#二、向函数传递信息" class="headerlink" title="二、向函数传递信息"></a><strong>二、向函数传递信息</strong></h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">message</span><span class="params">(username)</span>:</span></span><br><span class="line">    <span class="string">"""打印的信息"""</span></span><br><span class="line">    print(<span class="string">"hello,"</span>+username.title())</span><br><span class="line"><span class="comment">#调用函数</span></span><br><span class="line">message(<span class="string">'lemon'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190813103434390.png" alt="在这里插入图片描述"><br>通过这个例子可以知道，在定义函数时括号内添加了<code>username</code> ，我们在调用的时候可以赋任何值给<code>username</code>。</p>
+<h2 id="三、位置实参"><a href="#三、位置实参" class="headerlink" title="三、位置实参"></a><strong>三、位置实参</strong></h2><blockquote>
+<p>调用函数时，Python必须将函数调用中的每个实参都关联到函数定义中的一个形参。最简单的关联方式是基于实参的顺序，这就算位置参数。</p>
+</blockquote>
+<p><img src="http://img-blog.csdnimg.cn/20190813105852167.png" alt="在这里插入图片描述"><br><strong>调用函数多次</strong>，如：<br><img src="http://img-blog.csdnimg.cn/20190813105926147.png" alt="在这里插入图片描述"><br>应注意在函数调用时实参的顺序与函数定义中形参的顺序是否一致</p>
+<p><strong>关键字实参</strong> </p>
+<blockquote>
+<p>关键字实参是传递给函数的名称—值对,直接在实参中将名称和值关联起来,因此向函数传递实参时不会混淆.</p>
+</blockquote>
+<p><img src="http://img-blog.csdnimg.cn/20190813105757139.png" alt="在这里插入图片描述"><br>关键字实参明确地指出了各个实参对应的形参，因此不会出现因为顺序而混淆的情况。</p>
+<p><strong>默认值</strong></p>
+<blockquote>
+<p>编写函数时，可给每个形参指定默认值。在调用函数中给形参提供了实参时，Python将使用指定的实参值；否则，将使用形参的默认值。</p>
+</blockquote>
+<p><img src="http://img-blog.csdnimg.cn/20190813110436300.png" alt="在这里插入图片描述"><br>使用默认值时，在形参列表中必须先列出没有默认值的形参，再列出有默认值的实参。这样才能够正确地解读位置实参。 </p>
+<h2 id="四、返回值"><a href="#四、返回值" class="headerlink" title="四、返回值"></a><strong>四、返回值</strong></h2><blockquote>
+<p>函数并非总是直接显示输出，相反，它可以处理一些数据，并返回一个或一组值。函数返回的值被称为返回值 。</p>
+</blockquote>
+<p><strong>返回简单的值</strong><br><img src="http://img-blog.csdnimg.cn/20190813111308438.png" alt="在这里插入图片描述"><br>相较于之前，需要再次调用函数并赋值有些麻烦，返回值直接是赋值给一个变量，我们通过打印出这个变量即可得出相应的值。</p>
+<p><strong>让实参变成可选的</strong> </p>
+<blockquote>
+<p>有时候，需要让实参变成可选的，这样使用函数就可以提供额外的信息。<br>可使用默认值来让实参变成可选的。</p>
+</blockquote>
+<p><img src="http://img-blog.csdnimg.cn/20190813112152276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里用一个<code>if</code>语句来进行判断<code>middle_name</code>是否存在，通过这样的判断，就可以打印出不同的情况，这里便是将<code>middle_name</code>变成可选的。</p>
+<p><strong>返回字典</strong></p>
+<blockquote>
+<p>函数可返回任何类型的值，包括列表和字典等较复杂的数据结构。</p>
+</blockquote>
+<p><img src="http://img-blog.csdnimg.cn/20190813174750183.png" alt="在这里插入图片描述"><br><code>full_name</code>接收<code>first_name</code>和<code>last_name</code>,并将这些值封装到字典中.</p>
+<p>同样可以增加一个可选值,如果存在则添加到字典中，并通过返回值赋值给变量<br><img src="http://img-blog.csdnimg.cn/20190813175251589.png" alt="在这里插入图片描述"></p>
+<p><strong>使用函数和while循环</strong><br><img src="http://img-blog.csdnimg.cn/20190813182243979.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="五、传递列表"><a href="#五、传递列表" class="headerlink" title="五、传递列表"></a><strong>五、传递列表</strong></h2><blockquote>
+<p>将列表传递给函数后，函数就能直接访问其内容</p>
+</blockquote>
+<p><img src="http://img-blog.csdnimg.cn/20190831162243176.png" alt="在这里插入图片描述"><br>通过把列表传递给函数，提高效率</p>
+<p><strong>传递任意数量的实参</strong></p>
+<p><img src="http://img-blog.csdnimg.cn/20190831163634357.png" alt="在这里插入图片描述"><br>形参名*toppings 中的星号让Python创建一个名为toppings 的空元组，并将收到的所有值都封装到这个元组中<br><img src="http://img-blog.csdnimg.cn/20190831163844886.png" alt="在这里插入图片描述"><br>不管收到的是一个值还是三个值，函数都能妥善地处理</p>
+<p><strong>结合使用位置实参和任意数量实参</strong> </p>
+<blockquote>
+<p>如果要让函数接受不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。Python先匹配位置实参和关键字实参，再将余下的实参都收集到最后一个形参中。</p>
+</blockquote>
+<p><img src="http://img-blog.csdnimg.cn/20190831164502159.png" alt="在这里插入图片描述"><br>Python将收到的第一个值存储在形参size 中，并将其他的所有值都存储在元组toppings中</p>
+<p><strong>使用任意数量的关键字实参</strong><br><img src="http://img-blog.csdnimg.cn/20190831165253818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>结果：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">'first_name'</span>: <span class="string">'albert'</span>, <span class="string">'last_name'</span>: <span class="string">'einstein'</span>, <span class="string">'location'</span>: <span class="string">'princeton'</span>, <span class="string">'field'</span>: <span class="string">'physics'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>形参<code>**user_info</code> 中的两个星号让Python创建一个名为user_info 的 空字典，并将收到的所有名称—值对都封装到这个字典中。 然后遍历字典user_info 中的键—值对，并将每个键—值对都加入到字典profile 中。</p>
+<h2 id="六、将函数存储在模块中"><a href="#六、将函数存储在模块中" class="headerlink" title="六、将函数存储在模块中"></a><strong>六、将函数存储在模块中</strong></h2><p><strong>导入整个模块</strong></p>
+<blockquote>
+<p>模块 是扩展名为.py的文件，包含要导入到程序中的代码</p>
+</blockquote>
+<p>只需编写一条import 语句并在其中指定模块名，就可在程序中使用该模块中的所有函数。</p>
+<p>例如：<br>使用这种import 语句导入了名为module_name.py 的整个模块，就可使用下面的语法来使用其中任何一个函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">module_name.function_name()</span><br></pre></td></tr></table></figure>
+<p><strong>导入特定的函数</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from module_name <span class="keyword">import</span> function_name</span><br></pre></td></tr></table></figure>
+<p>通过用逗号分隔函数名，可根据需要从模块中导入任意数量的函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from module_name <span class="keyword">import</span> function_0, function_1, function_2</span><br></pre></td></tr></table></figure>
+<p><strong>使用as给函数指定别名</strong><br><img src="http://img-blog.csdnimg.cn/2019083117054419.png" alt="在这里插入图片描述"><br>函数make_pizza() 指定了别名mp() </p>
+<p>指定别名通用语法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from module_name <span class="keyword">import</span> function_name as fn</span><br></pre></td></tr></table></figure>
+<p> <strong>使用as给模块起别名</strong><br> <img src="http://img-blog.csdnimg.cn/20190831170812127.png" alt="在这里插入图片描述"><br> <strong>导入模块中的所有函数</strong><br> 使用星号（* ）运算符可让Python导入模块中的所有函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from module_name import *</span><br></pre></td></tr></table></figure>
 
-简单的sql注入方法一输入有回显，且有输入框，那就可以用联合查询的方法来注入
-题中提示已经过滤了一些关键字，那么就先来查看题中过滤的是哪些关键字
-1?id=1 union select order by #
-回显结果：union，select等都被过滤而且没有报错说明#也被过滤可以自己建立一个语句来验证一下如果#没有被过滤，那么上面的语句将会变成这样，语句一定会报错题中将关键字过滤，可以尝试一下双写绕过的方法是否可用输入框中输入?id=1 unionunion selectselect，发现空格也...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/03/文件上传漏洞——upload-labs(11-20)/">
-            
-                <span>文件上传漏洞——upload-labs(11-20)</span>
-        </a>
-        <div class="abstract-content">
-            前言：上次文件上传漏洞学习到第十关，这次继续学习
-第十一关分析源码前面几行代码都是对后缀名进行限制，最重要的就是这一句代码
-1$img_path = $_GET['save_path']."/".rand(10, 99).date("YmdHis").".".$file_ext;
-发现save_path用户是可控的，那么就利用%00截断来绕过
-在此之前，先来了解一下截断上传的原理
-在url中%00表示ascll码中的0 ，而ascii中0作为特殊字符保留，表示字符串结束，所以当url中出现%00时就会认为读取已结束，而忽略后面上传的文件或图片，只上传截断前的文件或图片
-可以通过一个例子详...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">
-            
-                <span>文件上传漏洞——upload-labs(1-10)</span>
-        </a>
-        <div class="abstract-content">
-            前言：文件上传漏洞有很多种绕过技巧，这次就通过upload-labs进行学习
-第一关上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下抓包修改上传格式的方法看看是否可行
-先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包
-拦截请求包后，将1.png改为1.php，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径路径也知道了，就用菜刀进行连接连接成功观察一下第一关的源码1234567891011121314151617function checkFile() &#123;    var file = document.getEl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/08/31/了解PHP伪协议/" title="了解PHP伪协议">
+                    <div class="nextTitle">了解PHP伪协议</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/08/25/Bugku—web题总结(二)/" title="Bugku—web题总结(二)">
+                    <div class="prevTitle">Bugku—web题总结(二)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2019/08/">&#60; PREV</a><a class="page-number" href="/archives/2019/08/">1</a><span class="page-number current">2</span>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -537,6 +600,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、定义函数"><span class="toc-number">1.</span> <span class="toc-text">一、定义函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、向函数传递信息"><span class="toc-number">2.</span> <span class="toc-text">二、向函数传递信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、位置实参"><span class="toc-number">3.</span> <span class="toc-text">三、位置实参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、返回值"><span class="toc-number">4.</span> <span class="toc-text">四、返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、传递列表"><span class="toc-number">5.</span> <span class="toc-text">五、传递列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、将函数存储在模块中"><span class="toc-number">6.</span> <span class="toc-text">六、将函数存储在模块中</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1508,6 +1589,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

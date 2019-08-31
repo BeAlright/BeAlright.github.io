@@ -346,6 +346,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/05/18/CTF 关于ZIP解题过程/">
+            
+                <span>CTF关于ZIP解题思路</span>
+        </a>
+        <div class="abstract-content">
+            CTF 关于ZIP解题1.伪加密类型打开之后是两张图片，一张未加密，一张已加密。利用WinHex打开然后在谷歌上找到大佬关于zip格式的介绍接下来进行对比，看是否属于伪加密通过对比，发现确实属于伪加密。所以将09改为00即可。
+
+总结：从50 4B 01 02 开始数十位数便能查看是否是伪加密。
+
+2.CRC32碰撞总结![在这里插入图片描述](https://github.com/bealright/bealright.github.io/blob/master/CTF%20zip/6.png?raw=true)
+这个题是CRC32碰撞，首先有不会的就百度、谷歌。
+通过查找发现需要CR...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/05/09/CTF隐写总结/">
             
                 <span>CTF隐写总结</span>
@@ -637,38 +672,6 @@ HTML——文本文本标签
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="HTML">HTML</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/18/CSS学习总结/">
-            
-                <span>CSS学习总结</span>
-        </a>
-        <div class="abstract-content">
-            CSS学习总结CSS定义及三种引入方式
-CSS是一种层叠样式表直接放在div标签里面
-
-第一种：内敛样式表12345678910&lt;!DOCTYPE html&gt;&lt;html lang="zh"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;title&gt;CSS&lt;/title&gt;&lt;/head&gt;&lt;body&gt;	&lt;div style="color:red;width:100px;height:100px;"&gt;文本&lt;/div&gt;&lt;/body&gt;&lt;/html&gt...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CSS">CSS</a>
     
 </div>
             
@@ -1363,9 +1366,60 @@ CSS是一种层叠样式表直接放在div标签里面
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 41
+        Total : 42
         </div>
         <!-- search  -->
         
@@ -1382,6 +1436,11 @@ CSS是一种层叠样式表直接放在div标签里面
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/了解PHP伪协议/">了解PHP伪协议</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2019/08/28/python学习（函数）/">python学习（函数）</a>
         </li>
     
     
@@ -1595,8 +1654,6 @@ CSS是一种层叠样式表直接放在div标签里面
     
         <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
     
-        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
-    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
@@ -1606,6 +1663,8 @@ CSS是一种层叠样式表直接放在div标签里面
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
         <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
         <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
     
