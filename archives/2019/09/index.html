@@ -346,91 +346,26 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/08/07/密码学——RSA加密算法原理/">
+        <a class="abstract-title" href="/2019/09/02/Bugku—web题总结(三)/">
             
-                <span>密码学——RSA加密算法原理</span>
+                <span>Bugku—web题总结(三)</span>
         </a>
         <div class="abstract-content">
-            前言：之前在做密码学题的时候了解了一下RSA，但总感觉那时总结的过少，而且也理解的不到位，这次就再来详细的了解一下，并通过做题来巩固一下。
-一、对称加密与非对称加密对称加密：
-加密和解密用的是同一密钥，也是最简单、最快速的加密方式，通常使用的密匙相对较小，容易被破解，如果密钥过大，安全性确实可以得到保证，但同样加密和解密的效率将会很低。 因为双方都需要密钥进行加密解密，如果有一方的密钥泄露出去，整个安全性将不复存在，所以这也是对称加密的缺点。
+            前言：继续总结，学习知识！！！
+你从哪里来根据提示，可以知道这道题应该是构造referer——伪造来源浏览器，抓包进行伪造
+1Referer:https://www.google.com
 
+程序员本地网站根据提示，这道题考察的是xff——伪造IP地址来源，抓包修改成本地IP地址即可
+1X-Forwarded-For: 127.0.0.1
 
-非对称加密：
-相较于对称加密，非对称加密使用两个密匙，即公开密钥和私钥密钥。非对称加密很有趣，公钥是任何人都可以请求得到的，但私钥只有一个人持...
+md5 collision(NUPT_CTF)简单的MD5碰撞，由==的用法，0 == 字符串是成立的，从而可以绕过MD5检查。之前了解过MD5算法的漏洞，会将0e开头的当作0，所以只要找到常见的一个以oe开头加密过的MD5值即可
+举个例子：
+1234...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/18/实验吧— Crypto Write up(一)/">
-            
-                <span>实验吧— Crypto Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：最近先做一些关于古典密码的题，了解常见的古典密码。
-变异凯撒1加密密文：afZ_r9VYfScOeO_UL^RWUc
-刚开始以为这道题考的是凯撒加密，就在线求解，结果不行，那就来分析题目，变异凯撒，应该是利用凯撒加密的原理加以变形，观察一波，提示又提示说格式为flag{}，发现a的ascii到f的ascii偏移量为5，f的ascii到l的ascii偏移量为6,Z的ascii到a的ascii偏移量为7，总结出以后的每个字母偏移量都要加1，观察出规律了，就写脚本跑吧。
-附上ASCII表py3脚本123456789101112a = 'afZ_r9VYfScOeO_UL^RWUc'b =...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/14/I春秋—— Crypto Write up(一)/">
-            
-                <span>I春秋—— Crypto Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：密码学涉及一系列的加密算法，虽然自己数学贼烂，但觉得加密这些算法还是蛮好玩的，就通过题来了解一些算法，话不多说，开始做题。
-Substituted方法：百度翻译题目一下，Substituted（替换），替换加密中包含有简单替换密码，应该就是简单替换密码，在线网站求解一波。替换密码解密把头部改成iceCTF即可得出flag。
-做题总结：通过这道题来了解一下简单替换密码
-
-替换密码属于简单对称加密，即将字母表中一个字符替换成另一个字符，很好理解。1234567例如：	明文 ABDDD	替换规则：	A-&gt;C	B-&gt;T	D-&gt;F	密文 CTFFF
-
-
-而攻击方式也有很多种...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/14</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/02</span>
             </div>
             <!-- tags  -->
             

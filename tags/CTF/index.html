@@ -346,6 +346,44 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/02/Bugku—web题总结(三)/">
+            
+                <span>Bugku—web题总结(三)</span>
+        </a>
+        <div class="abstract-content">
+            前言：继续总结，学习知识！！！
+你从哪里来根据提示，可以知道这道题应该是构造referer——伪造来源浏览器，抓包进行伪造
+1Referer:https://www.google.com
+
+程序员本地网站根据提示，这道题考察的是xff——伪造IP地址来源，抓包修改成本地IP地址即可
+1X-Forwarded-For: 127.0.0.1
+
+md5 collision(NUPT_CTF)简单的MD5碰撞，由==的用法，0 == 字符串是成立的，从而可以绕过MD5检查。之前了解过MD5算法的漏洞，会将0e开头的当作0，所以只要找到常见的一个以oe开头加密过的MD5值即可
+举个例子：
+1234...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/25/Bugku—web题总结(二)/">
             
                 <span>Bugku—web题总结(二)</span>
@@ -627,39 +665,6 @@ Substituted方法：百度翻译题目一下，Substituted（替换），替换�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/12/实验吧—(部分)MISC Write up/">
-            
-                <span>实验吧—(部分)MISC Write up</span>
-        </a>
-        <div class="abstract-content">
-            前言: 杂项题包含密码学也有很大的脑洞，多练习也可以增强自己的脑洞，话不多说，做题吧。
-欢迎来到地狱三个文件，从地狱伊始开做，打开后发现图片格式有问题，更改jpg文件头为FF D8即可修复好的图片给了一个链接，下载之后得到一个wav音频文件，听一下是摩斯密码，还是利用工具看看传递的是什么信息。根据形状，敲出摩斯密码长的为-，大点为.，小点为停顿/，即可得出
-1-.-/./-.--/.-.././-/..-/.../--./---
-在线摩斯密码解密1K E Y L E T U S G O
-打开第二次地狱需要密码，第一次地狱得出的应该就是密码key不是密码，只试后面的就可以了，最后得出小写的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/12</span>
             </div>
             <!-- tags  -->
             
@@ -1385,9 +1390,20 @@ Substituted方法：百度翻译题目一下，Substituted（替换），替换�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 42
+        Total : 43
         </div>
         <!-- search  -->
         
@@ -1400,6 +1416,11 @@ Substituted方法：百度翻译题目一下，Substituted（替换），替换�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href="/2019/09/02/Bugku—web题总结(三)/">Bugku—web题总结(三)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1675,9 +1696,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
     
-        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
-    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
     
         <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
     

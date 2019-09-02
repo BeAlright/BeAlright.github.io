@@ -346,6 +346,44 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/02/Bugku—web题总结(三)/">
+            
+                <span>Bugku—web题总结(三)</span>
+        </a>
+        <div class="abstract-content">
+            前言：继续总结，学习知识！！！
+你从哪里来根据提示，可以知道这道题应该是构造referer——伪造来源浏览器，抓包进行伪造
+1Referer:https://www.google.com
+
+程序员本地网站根据提示，这道题考察的是xff——伪造IP地址来源，抓包修改成本地IP地址即可
+1X-Forwarded-For: 127.0.0.1
+
+md5 collision(NUPT_CTF)简单的MD5碰撞，由==的用法，0 == 字符串是成立的，从而可以绕过MD5检查。之前了解过MD5算法的漏洞，会将0e开头的当作0，所以只要找到常见的一个以oe开头加密过的MD5值即可
+举个例子：
+1234...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/31/了解PHP伪协议/">
             
                 <span>了解PHP伪协议</span>
@@ -650,45 +688,10 @@ Command Execution一、简介
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/03/文件上传漏洞——upload-labs(11-20)/">
-            
-                <span>文件上传漏洞——upload-labs(11-20)</span>
-        </a>
-        <div class="abstract-content">
-            前言：上次文件上传漏洞学习到第十关，这次继续学习
-第十一关分析源码前面几行代码都是对后缀名进行限制，最重要的就是这一句代码
-1$img_path = $_GET['save_path']."/".rand(10, 99).date("YmdHis").".".$file_ext;
-发现save_path用户是可控的，那么就利用%00截断来绕过
-在此之前，先来了解一下截断上传的原理
-在url中%00表示ascll码中的0 ，而ascii中0作为特殊字符保留，表示字符串结束，所以当url中出现%00时就会认为读取已结束，而忽略后面上传的文件或图片，只上传截断前的文件或图片
-可以通过一个例子详...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/categories/web/page/2/">2</a><a class="extend next" rel="next" href="/categories/web/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/categories/web/page/2/">2</a><a class="page-number" href="/categories/web/page/3/">3</a><a class="extend next" rel="next" href="/categories/web/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1398,9 +1401,20 @@ Command Execution一、简介
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 42
+        Total : 43
         </div>
         <!-- search  -->
         
@@ -1413,6 +1427,11 @@ Command Execution一、简介
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href="/2019/09/02/Bugku—web题总结(三)/">Bugku—web题总结(三)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1688,9 +1707,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
     
-        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
-    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
     
         <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
     
