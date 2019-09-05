@@ -346,6 +346,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/09/文件包含漏洞——DVWA练习/">
+            
+                <span>文件包含漏洞——DVWA练习</span>
+        </a>
+        <div class="abstract-content">
+            前言：在学习文件上传时，制作的图片马需要我们手动去解析，而解析的方法就算用到了文件包含漏洞，所以这次就来学习一下文件包含漏洞。
+
+文件包含漏洞简介
+（一）文件包含可以分为本地文件包含和远程文件包含两种。文件包含和文件上传一样本身并不是漏洞，而是攻击者利用了包含的特性加上了应用本身对文件控制不严格，对include进来的文件不可控，才导致了一系列危害。（二）本地文件包含就是通过URL将服务器本地的其他文件include进来。远程文件包含就是将远程服务器的文件include进来。（三）最主要的是，包含进来的文件都以当前脚本文件解析，例如，当前测试系统是Apache加php环境，那么被incl...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="文件包含">文件包含</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/07/密码学——RSA加密算法原理/">
             
                 <span>密码学——RSA加密算法原理</span>
@@ -649,38 +681,6 @@ low级别观察源码
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/19/XSS学习-XSS挑战之旅(二)/">
-            
-                <span>XSS学习-XSS挑战之旅(二)</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前打XSS平台时，打到了第11关就没有继续了，现在有空了就继续打咯，再增加点关于XSS的知识。
-第十一关这关坑我好长时间，看了好多博客直接给说修改Referer，给截图中都有自带的Referer值，修改就行，但是我怎么抓都抓不到Referer值。还以为自己设置有问题，去查burp各种的设置。。。
-终于看了一篇很细的大佬博客，才算搞懂，Referer值是自己加上的，这里就详细的介绍一下这关，别让和我一样的小白继续跌坑。
-我们从第十关来到第十一关（不要直接跳到第十一关，否则看不出任何线索）进入第十一关后看源码发现t_ref字段中，value的值是http referer的值，所以这关...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
     
 </div>
             
@@ -1437,9 +1437,32 @@ low级别观察源码
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1452,6 +1475,11 @@ low级别观察源码
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">XCTF(攻防世界)—进阶web题Write Up(二)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1732,9 +1760,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
     
-        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
-    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
     
         <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
     

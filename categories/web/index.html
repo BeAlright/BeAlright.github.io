@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">
+            
+                <span>XCTF(攻防世界)—进阶web题Write Up(二)</span>
+        </a>
+        <div class="abstract-content">
+            前言：继续总结学到的新知识
+mfw在about页面发现，搭建网站时用了git,尝试一下是否为git源码泄露输入：1http://111.198.29.45:36544/.git/
+果然是源码泄露，那就查看一下文件，发现并没有找到flag，在Github上下载git源码泄露工具，可以得到其源码。
+输入相应的命令：
+1python2 GitHack.py http://111.198.29.45:36544/.git/
+
+得到源码，发现并没有flag查看index.php发现并没有对GET进去的参数进行过滤，assert函数中参数为表达式可以当作PHP文件来执行，再了解一下以下这两个函数：
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/02/Bugku—web题总结(三)/">
             
                 <span>Bugku—web题总结(三)</span>
@@ -648,40 +684,6 @@ Command Execution一、简介
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="文件包含">文件包含</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">
-            
-                <span>实验吧——SQL注入 Write up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前学习过了联合注入查询、布尔盲注、时间盲注等，这次就通过SQL注入题来加强一下。
-
-简单的sql注入方法一输入有回显，且有输入框，那就可以用联合查询的方法来注入
-题中提示已经过滤了一些关键字，那么就先来查看题中过滤的是哪些关键字
-1?id=1 union select order by #
-回显结果：union，select等都被过滤而且没有报错说明#也被过滤可以自己建立一个语句来验证一下如果#没有被过滤，那么上面的语句将会变成这样，语句一定会报错题中将关键字过滤，可以尝试一下双写绕过的方法是否可用输入框中输入?id=1 unionunion selectselect，发现空格也...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
     
 </div>
             
@@ -1438,9 +1440,32 @@ Command Execution一、简介
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1453,6 +1478,11 @@ Command Execution一、简介
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">XCTF(攻防世界)—进阶web题Write Up(二)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1733,9 +1763,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
     
-        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
-    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
     
         <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
     

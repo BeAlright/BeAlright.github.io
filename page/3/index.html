@@ -359,6 +359,38 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/07/19/XSS学习-XSS挑战之旅(二)/">
+            
+                <span>XSS学习-XSS挑战之旅(二)</span>
+        </a>
+        <div class="abstract-content">
+            前言：之前打XSS平台时，打到了第11关就没有继续了，现在有空了就继续打咯，再增加点关于XSS的知识。
+第十一关这关坑我好长时间，看了好多博客直接给说修改Referer，给截图中都有自带的Referer值，修改就行，但是我怎么抓都抓不到Referer值。还以为自己设置有问题，去查burp各种的设置。。。
+终于看了一篇很细的大佬博客，才算搞懂，Referer值是自己加上的，这里就详细的介绍一下这关，别让和我一样的小白继续跌坑。
+我们从第十关来到第十一关（不要直接跳到第十一关，否则看不出任何线索）进入第十一关后看源码发现t_ref字段中，value的值是http referer的值，所以这关...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/07/18/实验吧— Crypto Write up(一)/">
             
                 <span>实验吧— Crypto Write up(一)</span>
@@ -648,38 +680,6 @@ telnetwinhex打开就可得出flag
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/09/通过sql-labs进行sql注入学习(一)/">
-            
-                <span>通过sql-labs进行sql注入学习(一)</span>
-        </a>
-        <div class="abstract-content">
-            SQL注入有很多方法，先接触最简单最直观的一种——联合查询注入
-联合查询注入原理联合查询的前提是需要有显示位，而显示位就是通过用户的查询从数据库中返回到页面的数据，是可变化的。 例如：sql-labs前四关都是联合查询注入
-sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不相同。 接下来就开始实战，通过实战来了解联合查询注入的步骤和方法。
- 一、判断注入点 闭合符号一般是&#39;,&quot;,或无闭合符号或&#39;)，&quot;) --+为注释符号 在url框中输入?id=2&#39;，发现 用--+将后面的字符注释掉，发现 正常显示，说明注入点是单引...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
     
 </div>
             
@@ -1545,9 +1545,32 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1560,6 +1583,11 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">XCTF(攻防世界)—进阶web题Write Up(二)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1840,9 +1868,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
     
-        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
-    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
     
         <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
     

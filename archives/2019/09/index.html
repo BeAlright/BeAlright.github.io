@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">
+            
+                <span>XCTF(攻防世界)—进阶web题Write Up(二)</span>
+        </a>
+        <div class="abstract-content">
+            前言：继续总结学到的新知识
+mfw在about页面发现，搭建网站时用了git,尝试一下是否为git源码泄露输入：1http://111.198.29.45:36544/.git/
+果然是源码泄露，那就查看一下文件，发现并没有找到flag，在Github上下载git源码泄露工具，可以得到其源码。
+输入相应的命令：
+1python2 GitHack.py http://111.198.29.45:36544/.git/
+
+得到源码，发现并没有flag查看index.php发现并没有对GET进去的参数进行过滤，assert函数中参数为表达式可以当作PHP文件来执行，再了解一下以下这两个函数：
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/02/Bugku—web题总结(三)/">
             
                 <span>Bugku—web题总结(三)</span>
@@ -1124,9 +1160,32 @@ md5 collision(NUPT_CTF)简单的MD5碰撞，由==的用法，0 == 字符串是�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1139,6 +1198,11 @@ md5 collision(NUPT_CTF)简单的MD5碰撞，由==的用法，0 == 字符串是�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">XCTF(攻防世界)—进阶web题Write Up(二)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1419,9 +1483,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
     
-        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
-    
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
     
         <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
     
