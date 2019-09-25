@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>categories · Lemon&#39;s blog</title>
+    <title>I春秋——web Write up(二) · Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">I春秋——web Write up(二)</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/706881.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            I春秋——web Write up(二)
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+                Record my learning process of CTF.
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.8k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/09/25</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -340,7 +403,54 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <p><strong>前言：最近都没有更新过，感觉博客快荒废了，得更新了[]~(￣▽￣)~*，这次总结一下做的一些web题。</strong></p>
+<h2 id="一、Not-Found"><a href="#一、Not-Found" class="headerlink" title="一、Not Found"></a><strong>一、Not Found</strong></h2><p><img src="http://img-blog.csdnimg.cn/20190924114630874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开页面便是404，但是下面有一个404.php，访问一下<br><img src="http://img-blog.csdnimg.cn/20190924114722959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>除下有出题人的haha，没有其他信息了，御剑扫一下<br><img src="http://img-blog.csdnimg.cn/20190924114802812.png" alt="在这里插入图片描述"><br>打开页面，发现也没有有用的信息<br><img src="http://img-blog.csdnimg.cn/20190924114857721.png" alt="在这里插入图片描述"><br>重新回到原点，看看是不是漏掉些什么，看了出题人的提示<br><img src="http://img-blog.csdnimg.cn/20190924114942374.png" alt="在这里插入图片描述"><br>加上一个奇怪的参数<br><img src="http://img-blog.csdnimg.cn/20190924115038358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>是不是和HTTP请求方式有关，百度查下</p>
+<blockquote>
+<p>HTTP请求的方法：<br>HTTP/1.1协议中共定义了八种方法（有时也叫“动作”），来表明Request-URL指定的资源不同的操作方式<br>1、OPTIONS<br>返回服务器针对特定资源所支持的HTTP请求方法，也可以利用向web服务器发送‘*’的请求来测试服务器的功能性<br>2、HEAD<br>向服务器索与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以再不必传输整个响应内容的情况下，就可以获取包含在响应小消息头中的元信息。<br>3、GET<br>向特定的资源发出请求。它本质就是发送一个请求来取得服务器上的某一资源。资源通过一组HTTP头和呈现数据（如HTML文本，或者图片或者视频等）返回给客户端。GET请求中，永远不会包含呈现数据。<br>4、POST<br>向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。 Loadrunner中对应POST请求函数：web_submit_data,web_submit_form<br>5、PUT<br>向指定资源位置上传其最新内容<br>6、DELETE<br>请求服务器删除Request-URL所标识的资源<br>7、TRACE<br>回显服务器收到的请求，主要用于测试或诊断<br>8、CONNECT<br>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</p>
+</blockquote>
+<p>这么多请求方式，挨个试下<br><code>CONNECT</code>请求方式，发现是<code>Apache/2.4.7 (Ubuntu) Server</code><br><img src="http://img-blog.csdnimg.cn/20190924115252851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><code>OPTIONS</code>请求方式，发现有不同的地方<br><img src="http://img-blog.csdnimg.cn/20190924115442199.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>访问1.php,继续使用<code>OPTIONS</code>请求方式<br><img src="http://img-blog.csdnimg.cn/2019092411553575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>没有有用的信息，查询下是否存在<code>flag.php</code><br><img src="http://img-blog.csdnimg.cn/20190924115623401.png" alt="在这里插入图片描述"><br>到这里感觉又没思路了，看了大师傅的博客，发现<code>Apache/2.4.7 (Ubuntu) Server</code>的信息是有用的，Appache搭建的网站中，根目录下会存在<code>.htaccess</code>文件</p>
+<p>简单了解一下<code>.htaccess</code>文件</p>
+<blockquote>
+<p>htaccess文件是Apache服务器中的一个配置文件，它负责相关目录下的网页配置。通过htaccess文件，可以帮我们实现：网页301重定向、自定义404错误页面、改变文件扩展名、允许/阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档等功能。</p>
+</blockquote>
+<p>访问<code>.htaccess</code>文件<br><img src="http://img-blog.csdnimg.cn/20190924120033260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>访问<code>8d829d8568e46455104209db5cd9228d.html</code>，发现flag<br><img src="http://img-blog.csdnimg.cn/20190924120144427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="EXEC"><a href="#EXEC" class="headerlink" title="EXEC"></a>EXEC</h2><p><img src="http://img-blog.csdnimg.cn/20190925195926237.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>一只猫和<code>no sign</code>，提示说了<code>执行、执行、执行</code>，应该是命令执行这一类的，抓包看看是否有线索<br><img src="http://img-blog.csdnimg.cn/20190925200334124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现<code>vim</code>,之前刚做过一个敏感信息泄露，里面就涉及到<code>vim</code>，这样就简单介绍一下</p>
+<blockquote>
+<p>非正常关闭vim编辑器时（比如直接关闭终端或者电脑断电），会生成一个.swp文件，这个文件是一个临时交换文件，用来备份缓冲区中的内容，会导致程序的源码泄漏。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/.index.php.swp</span><br></pre></td></tr></table></figure>
+<p>发现确实有源码被下载了，但是是swp文件，我们需要恢复一下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi -r  文件名</span><br></pre></td></tr></table></figure>
+<p>得到源码<br><img src="http://img-blog.csdnimg.cn/20190925201532611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来就来审计代码，先观察<code>check</code>函数，函数包含的代码很好理解，<code>$number == &#39;11259375&#39;</code>，常规的数字肯定是绕不过去的，我们可以将<code>number</code>转换成十六进制，这样绕过<code>check</code>函数<br>简单解释下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//11259375的十六进制为0xabcdef</span></span><br><span class="line">$digit = ord($number&#123;$i&#125;);<span class="comment">//如果i=0</span></span><br><span class="line">$digit = a <span class="comment">//a的ascll码肯定大于9，所以可以绕过</span></span><br></pre></td></tr></table></figure>
+<p>接下来看下面的代码，发现</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setcookie('auth','tcp tunnel is forbidden!');</span><br></pre></td></tr></table></figure>
+<p>这句话的意思说明TCP被禁止，简单了解一下TCP</p>
+<blockquote>
+<p>传输控制协议（TCP，Transmission Control Protocol）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793 [1]  定义</p>
+</blockquote>
+<p>这个跟我们做的题有什么关系，看了大师傅的博客，TCP被禁止不能用<code>curl</code>，那再来了解一下<code>curl</code></p>
+<blockquote>
+<p>cURL是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传输工具，但按传统，习惯称cURL为下载工具。cURL还包含了用于程序开发的libcurl。</p>
+</blockquote>
+<p><code>POST</code>传输cmd命令，执行后也没有回显，之前的源码中提示了flag所在的文件名，既然禁用了<code>curl</code>，那就用<code>nc</code>命令把flag文件下过来</p>
+<p><img src="http://img-blog.csdnimg.cn/20190925204100156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后在服务器端运行即可得出flag</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -u -l -p <span class="number">20000</span></span><br></pre></td></tr></table></figure>
+<p>（由于我没有一台公网能访问的服务器，所以没做这一步，但是方法没有错）<br>参考博客：<br><a href="https://www.cnblogs.com/jnxb/p/3940593.html" target="_blank" rel="noopener">nc命令</a><br><a href="https://www.jianshu.com/p/07c4dddae43a" target="_blank" rel="noopener">curl命令</a><br><a href="http://www.freesion.com/article/131321994/" target="_blank" rel="noopener">大师傅博客</a><br><a href="https://cloud.tencent.com/developer/article/1148418" target="_blank" rel="noopener">vim源码泄露</a></p>
+<h2 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h2><p><img src="http://img-blog.csdnimg.cn/20190925204956298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>一个简易的登陆框，一开始以为是SQL注入，试了几遍看了源码，发现有账号和密码<br><img src="http://img-blog.csdnimg.cn/20190925205045889.png" alt="在这里插入图片描述"><br>登陆进去<br><img src="http://img-blog.csdnimg.cn/20190925205113321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>一开始以为颜文字解密，结果解不开，那就抓包来看看有什么线索没<br><img src="http://img-blog.csdnimg.cn/20190925205356153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>一开始真的没观察到，看了大师傅的博客才发现<code>show</code>这个参数存在猫腻（show-显示,0代表false，1代表true）<br><img src="http://img-blog.csdnimg.cn/20190925205435889.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>当<code>show</code>值为1时，出现了源码<br><img src="http://img-blog.csdnimg.cn/20190925205546570.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>将源码复制下来，审计代码（注释是自己加的）<br><img src="http://img-blog.csdnimg.cn/20190925210001277.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><code>class db</code>这一段就是检测和执行SQL查询，最重要的是下面这段代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($requset[<span class="string">'token'</span>]))</span><br><span class="line">	&#123;</span><br><span class="line">		$login = unserialize(gzuncompress(base64_decode($requset[<span class="string">'token'</span>])));</span><br><span class="line">		$db = <span class="keyword">new</span> db();<span class="comment">//base64_decode — 对使用 MIME base64 编码的数据进行解码</span></span><br><span class="line">		$row = $db-&gt;select(<span class="string">'user=\''</span>.mysql_real_escape_string($login[<span class="string">'user'</span>]).<span class="string">'\''</span>);<span class="comment">//php gzcompress() 和gzuncompress()函数实现字符串压缩</span></span><br><span class="line">		<span class="keyword">if</span>($login[<span class="string">'user'</span>] === <span class="string">'ichunqiu'</span>)<span class="comment">//mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">echo</span> $flag;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>($row[<span class="string">'pass'</span>] !== $login[<span class="string">'pass'</span>])&#123;</span><br><span class="line">			<span class="keyword">echo</span> <span class="string">'unserialize injection!!'</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">echo</span> <span class="string">"(╯‵□′)╯︵┴─┴ "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		header(<span class="string">'Location: index.php?error=1'</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>只要满足</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>($login[<span class="string">'user'</span>] === <span class="string">'ichunqiu'</span>)</span><br></pre></td></tr></table></figure>
+<p>即可得到flag<br>这里就涉及到php压缩gzcompress和解压gzuncompress字符串的方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">php压缩gzcompress和解压gzuncompress字符串的方法</span><br><span class="line">压缩数据</span><br><span class="line">base64_encode(gzcompress(serialize($data)))</span><br><span class="line">解压数据</span><br><span class="line">unserialize(gzuncompress(base64_decode($search_cache[<span class="string">'data'</span>])))</span><br></pre></td></tr></table></figure>
+<p>那思路就很明显了，题中是解压数据，那我们只需将<code>ichunqiu</code>压缩然后传递即可</p>
+<p>然后写一个简单的php脚本跑一下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$login = <span class="keyword">array</span>(<span class="string">'user'</span>=&gt;<span class="string">'ichunqiu'</span>);</span><br><span class="line">$a = base64_encode(gzcompress(serialize($login)));</span><br><span class="line"><span class="keyword">echo</span> $a</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img-blog.csdnimg.cn/20190925215729164.png" alt="在这里插入图片描述"><br>源码中有一段代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$requset = array_merge($_GET, $_POST, $_SESSION, $_COOKIE);</span><br><span class="line"><span class="comment">//array_merge() 函数把一个或多个数组合并为一个数组</span></span><br></pre></td></tr></table></figure>
+<p>得到token值后传给cookie即可得出flag<br><img src="http://img-blog.csdnimg.cn/20190925221604932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>总结：这次学到很多知识无论是HTTP请求方式，还是源码泄露等，这次就先总结道这里，下次继续总结！！</p>
+
     </article>
     <!-- license  -->
     
@@ -350,6 +460,11 @@
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/" title="XCTF(攻防世界)—进阶web题Write Up(二)">
+                    <div class="prevTitle">XCTF(攻防世界)—进阶web题Write Up(二)</div>
+                </a>
             
         </li>
     </ul>
@@ -457,6 +572,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Not-Found"><span class="toc-number">1.</span> <span class="toc-text">一、Not Found</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EXEC"><span class="toc-number">2.</span> <span class="toc-text">EXEC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Login"><span class="toc-number">3.</span> <span class="toc-text">Login</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1542,6 +1675,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
 	<!-- 雪花特效 -->
 	<script type="text/javascript" src="\lib\snow.js"></script>
