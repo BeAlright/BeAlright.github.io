@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>搭建属于自己的博客 · Lemon&#39;s blog</title>
+    <title>Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/">Lemon&#39;s blog</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">搭建属于自己的博客</a>
-            </div>
-    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -231,76 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/706881.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            搭建属于自己的博客
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-                Record my learning process of Building Blogs.
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class="post-intro-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="hexo">hexo</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/03/12</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -401,99 +338,44 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h2 id="hexo-githup搭建属于自己的博客"><a href="#hexo-githup搭建属于自己的博客" class="headerlink" title="hexo+githup搭建属于自己的博客"></a>hexo+githup搭建属于自己的博客</h2><p> 第一次搭建博客，遇到不少坑。<strong>CSDN</strong>、<strong>bing</strong>、<strong>谷歌</strong>、<strong>百度</strong>上都有大神的博客教授如何一步一步搭建属于自己的博客。不过我毕竟属于小白，文字有时给我的感受不是那么的直观，所以我是在B站看视频一步一步做的.话说他们的视频都写<strong>无坑视频</strong>。。。我却遇到了。。。很多坑，但觉得也很有趣，所以记录一下我的搭建过程。</p>
-<blockquote>
-<ol>
-<li><strong>安装node.js</strong></li>
-</ol>
-</blockquote>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/0.png?raw=true" alt="在这里插入图片描述"><br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">官网链接</a><br>选择10.15.3LTS进行下载。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/1.jpg?raw=true" alt="在这里插入图片描述"><br>我是一路next,我开始搭的时候不想放入C盘，但后来发现npm命令不能用😂，才发现还要改路径，很麻烦。所以就一路next放进C盘中去。安装好后，打开cmd</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\用户名&gt;node -v</span><br><span class="line">v10<span class="number">.15</span><span class="number">.3</span></span><br></pre></td></tr></table></figure>
-<p>即证明已经安装好了。</p>
-<blockquote>
-<p>2 创建github账户</p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/2.jpg?raw=true" alt="在这里插入图片描述"><br><a href="https://github.com/" target="_blank" rel="noopener">github官网</a><br><strong>username不要起中文名，起一个英语名字，也不要太过于长，否则都后面会很麻烦。</strong><br>创建完成后点击<code>start a project</code>,创建一个仓库。<img src="https://github.com/bealright/bealright.github.io/blob/master/photo/3.png?raw=true" alt="在这里插入图片描述"><br>Repository name 要写成这样的格式<code>username.github.io</code>,例如我用户名创建时<code>bealright.github.io</code>,然后将<code>Initialize this repository with a README</code>前面的对勾打上。<br>点击<strong>create repository</strong>就创建好了。<br>接下你可以测试一下，点击<strong>create new file.</strong>,输入index.html，输入<code>&lt;h1&gt; Hello Github &lt;/h1&gt;</code>.然后提交。复制你的链接<code>用户名.github.io</code>，然后转到该页面上去。如果显示出<code>Hello Github</code>，证明你创建的已经成功。如果显示<strong>404</strong>（所请求的页面不存在或已被删除!），不要着急，我当时被困在这里，毕竟刚开始搭，什么都不懂。在这里一直查怎么回事，删除仓库，重新建库。。。😂😂，到最后我明白了一个真理。。。<strong>时间skr伟大的作者，他必将写出最完美的结局</strong></p>
-</blockquote>
-<p><strong>解决方法：问题出在Github服务器上，估计是翻墙什么的缘故吧，会卡一些，你创建的文件不会立即上传过去，要做的就是好好睡一觉明天在搭（因为我是晚上搭的😂），所以遇到这个问题不要着急。</strong></p>
-<blockquote>
-<p>3 安装git for windows</p>
-</blockquote>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/4.png?raw=true" alt="在这里插入图片描述"><br><a href="https://gitforwindows.org/" target="_blank" rel="noopener">git for windows官网</a><br>因为git for windows是输入外国网站，你必须翻墙去下载，但是速度会特别慢，所以推荐去百度网盘什么的下载，会快一些。我当时找了一个很不错的网址，各种版本的都有。<a href="https://npm.taobao.org/mirrors/git-for-windows/v2.21.0.windows.1/" target="_blank" rel="noopener">下载地址</a><br>安装时一路next,我直接放在的C盘中，因为如果出现路径问题会很麻烦，你还得去设置环境变量。在安装的时候，其中有一步要选择<code>Use windows default console window</code>。安装好后打开cmd。输入<code>git 命令</code>。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\赵志豪&gt;git</span><br><span class="line">usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]</span><br><span class="line">           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]</span><br><span class="line">           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]</span><br><span class="line">           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--<span class="keyword">namespace</span>=&lt;name&gt;]</span><br><span class="line">           &lt;command&gt; [&lt;args&gt;]</span><br><span class="line"></span><br><span class="line">These are common Git commands used in various situations:</span><br><span class="line"></span><br><span class="line">start a working area (see also: git help tutorial)</span><br><span class="line">   clone      Clone a repository into a <span class="keyword">new</span> directory</span><br><span class="line">   init       Create an empty Git repository <span class="keyword">or</span> reinitialize an existing one</span><br><span class="line"></span><br><span class="line">work on the current change (see also: git help everyday)</span><br><span class="line">   add        Add file contents to the index</span><br><span class="line">   mv         Move <span class="keyword">or</span> rename a file, a directory, <span class="keyword">or</span> a symlink</span><br><span class="line">   reset      Reset current HEAD to the specified state</span><br><span class="line">   rm         Remove files from the working tree <span class="keyword">and</span> from the index</span><br><span class="line"></span><br><span class="line">examine the history <span class="keyword">and</span> state (see also: git help revisions)</span><br><span class="line">   bisect     Use binary search to find the commit that introduced a bug</span><br><span class="line">   grep       Print lines matching a pattern</span><br><span class="line">   <span class="built_in">log</span>        Show commit logs</span><br><span class="line">   show       Show various types of objects</span><br><span class="line">   status     Show the working tree status</span><br><span class="line"></span><br><span class="line">grow, mark <span class="keyword">and</span> tweak your common history</span><br><span class="line">   branch     List, create, <span class="keyword">or</span> <span class="keyword">delete</span> branches</span><br><span class="line">   checkout   Switch branches <span class="keyword">or</span> restore working tree files</span><br><span class="line">   commit     Record changes to the repository</span><br><span class="line">   diff       Show changes between commits, commit <span class="keyword">and</span> working tree, etc</span><br><span class="line">   merge      Join two <span class="keyword">or</span> more development histories together</span><br><span class="line">   rebase     Reapply commits on top of another base tip</span><br><span class="line">   tag        Create, <span class="built_in">list</span>, <span class="keyword">delete</span> <span class="keyword">or</span> verify a tag object <span class="keyword">signed</span> with GPG</span><br><span class="line"></span><br><span class="line">collaborate (see also: git help workflows)</span><br><span class="line">   fetch      Download objects <span class="keyword">and</span> refs from another repository</span><br><span class="line">   pull       Fetch from <span class="keyword">and</span> integrate with another repository <span class="keyword">or</span> a local branch</span><br><span class="line">   push       Update remote refs along with associated objects</span><br><span class="line"></span><br><span class="line">'git help -a' and 'git help -g' list available subcommands and some</span><br><span class="line">concept guides. See 'git help &lt;command&gt;' or 'git help &lt;concept&gt;'</span><br><span class="line">to read about a specific subcommand <span class="keyword">or</span> concept.</span><br></pre></td></tr></table></figure>
-<p>出现一堆看不懂的就证明已经安装成功了。</p>
-<blockquote>
-<p>4 配置githubSSH</p>
-</blockquote>
-<p>找到下载git fow windows的目录，打开<code>git-bash.exe</code><img src="https://img-blog.csdnimg.cn/20190316152621353.png" alt="在这里插入图片描述"><br>在命令行输入<code>$ ssh-keygen -t rsa -C &quot;你的邮箱&quot;</code><br>输入之后，一直按回车就🆗了。等到出现一个<strong>长方形框</strong>之后，就已经配置好了。<br>然后打开GitHub官网，点击头像，点击<strong>Settings</strong>,再点击<strong>SSH and GOG keys</strong>,点击<strong>NEW SSH KEY</strong> ,这时<strong>title</strong>就起名为你注册的用户名，然后key需要你找到<code>C:\Users\用户名\.ssh</code>这个目录，注意这里用记事本打开<code>id_rsa.pub</code>,复制里面的代码，粘贴到key上即可。这样就配置好了。</p>
-<blockquote>
-<p>5 hexo本地使用</p>
-</blockquote>
-<p>进入hexo官网<img src="https://github.com/bealright/bealright.github.io/blob/master/photo/5.png?raw=true" alt="在这里插入图片描述"><br>注意 这是安装hexo不要在安装到c盘了，因为c盘系统文件太多，不敢乱删，而且找hexo所在文件也不太好找到。<br>我是在D盘建了一个blog文件夹，将hexo安装在这里面。接下来打开<strong>cmd</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\用户名&gt;D:</span><br><span class="line"></span><br><span class="line">D:\&gt;cd blog</span><br><span class="line"></span><br><span class="line">D:\blog&gt;npm install hexo-cil -g</span><br></pre></td></tr></table></figure>
-<p>首先你得先进入对应的目录，然后输入<code>npm install hexo-cil -g</code>命令即可安装hexo.<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/6.png?raw=true" alt="在这里插入图片描述"><br>接下来照着这些命令往下走，第二条命令作用是<strong>初始化</strong>。<br>最好第二条命令 hexo init <strong>博客名</strong>（注册的名字），这样好区分一点。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO    start  博客名 with Hexo!</span><br></pre></td></tr></table></figure>
-<p>显示出这个时，初始化已完成。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd  博客名</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>待安装好后，本地运行一下，看是否成功。<br>输入<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo  s</span><br></pre></td></tr></table></figure></p>
-<p>显示出</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:\blog\bealright&gt;hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:<span class="comment">//localhost:4000/. Press Ctrl+C to stop.</span></span><br></pre></td></tr></table></figure>
-<p>打开<a href="http://localhost:4000/，如果出现这个画面，恭喜创建成功。![在这里插入图片描述](https://github.com/bealright/bealright.github.io/blob/master/photo/7.png?raw=true)" target="_blank" rel="noopener">http://localhost:4000/，如果出现这个画面，恭喜创建成功。![在这里插入图片描述](https://github.com/bealright/bealright.github.io/blob/master/photo/7.png?raw=true)</a><br>因为换了主题的缘故，所以不再是hexo的官方主题，不过只要出现画面就成功了。</p>
-<blockquote>
-<p>六 安装sublime</p>
-</blockquote>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/8.png?raw=true" alt="在这里插入图片描述"><br><a href="https://www.sublimetext.com/" target="_blank" rel="noopener">sublime官网</a><br>下载这个软件有很大用处，无需在记事本了修改配置文件，直接在sublime里修改更方便一些。不过下载这个也要翻墙，所以推荐百度网盘下载。<br>下载好后，找到你安装hexo的目录直接拖进sublime里。就会显示出类似这个的图片。</p>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/9.png?raw=true" alt="在这里插入图片描述"></p>
-<blockquote>
-<p>七 hexo发布到github上</p>
-</blockquote>
-<p>这是最后一步了，看似是胜利女神在向你招手，但你永远也不会知道前面是结束还是会继续掉坑。<br>打开<strong>sublime</strong>,找到这个<img src="/2019/03/12/hexo+githup搭建属于自己的博客/Users\赵志豪\Pictures\Screenshots\20190316160958921.png" alt="在这里插入图片描述"><br>然后将最下面的代码改为这样<img src="https://github.com/bealright/bealright.github.io/blob/master/photo/10.png?raw=true" alt="在这里插入图片描述"><br>注意： repo里的bealright是我的用户名，改成注册时的用户名就好了。还有一处地方也需要改<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/11.png?raw=true" alt="在这里插入图片描述"><br>照这这个格式，把自己的用户名更改了即可（bealright是我自己的用户名）。<br>再打开cmd,输入</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in <span class="number">124</span> ms</span><br><span class="line">INFO  Generated: archives/<span class="number">2019</span>/index.html</span><br><span class="line">INFO  Generated: archives/index.html</span><br><span class="line">INFO  Generated: archives/<span class="number">2019</span>/<span class="number">03</span>/index.html</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">INFO  Generated: <span class="number">2019</span>/<span class="number">03</span>/<span class="number">16</span>/cmd中操作数据库的那些常见命令/index.html</span><br><span class="line">INFO  <span class="number">5</span> files generated in <span class="number">254</span> ms</span><br></pre></td></tr></table></figure>
-<p>会出现类似的东西（我的创建完成所以会不一样），不要管他。<br>继续输入</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>此时会出现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR Deployer <span class="keyword">not</span> found git</span><br></pre></td></tr></table></figure>
-<p>原因在于还少了一个插件<br>到官网下载插件进入hexo文档官网<img src="https://github.com/bealright/bealright.github.io/blob/master/photo/12.png?raw=true" alt="在这里插入图片描述"><br><a href="https://hexo.io/zh-cn/docs/deployment" target="_blank" rel="noopener">hexo文档官网</a><br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/13.png?raw=true" alt="在这里插入图片描述"><br>将命令输入到cmd中即可安装。会有一点慢，等待一会就好。<br>安装好之后，输入</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>这一步就要看你运气了，我在这里卡了一个晚上 + 一个下午😂。<br>如果出现这个的话<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/14.png?raw=true" alt="在这里插入图片描述"><br>恭喜你，运气很好（哈哈），接下只需要输入</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git  config --global user.email <span class="string">"你的邮件"</span></span><br><span class="line">回车</span><br><span class="line">git  config --global user.name <span class="string">"你的用户名"</span></span><br><span class="line">再次输入 hexo d</span><br><span class="line">会弹出这样的窗口</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/15.jpg?raw=true" alt="在这里插入图片描述"><br>输入即可进入你的博客了。（好幸运呀）<br>但我遇到的是这样的😤<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/16.png?raw=true" alt="在这里插入图片描述"><br>马上就成功了，前面却是这个，好让人心急。不过不要着急，互联网这么强大，大佬那么多，总会有解决方法。冷静下来进行分析。咦，发现问题了。<img src="https://github.com/bealright/bealright.github.io/blob/master/photo/17.png?raw=true" alt="在这里插入图片描述"><br>原来是git命令不能用，查了很多文章，我找到了二个解决方法。一：把git for windows 给卸载了重新安装，上文说之所以安装git for windows一路next 不要换路径原因就在这。还有一个就是在这里面输入<img src="https://github.com/bealright/bealright.github.io/blob/master/photo/18.png?raw=true" alt="在这里插入图片描述"><br>这里面自带git命令，<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">重新输入</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
-<p>不过让人郁闷的是😱这个git命令解决后。。。还有问题。。。（我要郁闷死😭）同寝室人一个坑没掉过，我一路跌坑。请看新问题。。。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/19.png?raw=true" alt="在这里插入图片描述"><br>我。。。不会吧，又出现这个问题。。。<img src="https://github.com/bealright/bealright.github.io/blob/master/photo/20.png?raw=true" alt="在这里插入图片描述"><br>怎么办，都到最后一步了。不放弃继续查，bing\谷歌\百度各种查，问学长学姐，加hexo群询问。。。😥<br>不过在耐心快被磨完时，我找到解决方案了。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/21.png?raw=true" alt="在这里插入图片描述"><br>这就是解决方案。当时也不太理解，不过得去尝试，不去尝试怎么知道行不行。<br>首先将<img src="https://github.com/bealright/bealright.github.io/blob/master/photo/22.png?raw=true" alt="在这里插入图片描述"><br>删除<br>新建一个文件夹<br>然后下载<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/23.png?raw=true" alt="在这里插入图片描述"><br>把下载的内容放在你新建的文件夹里面。<br>再次运行</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>当时的心情是快点好吧，大哥求你了😂<br>结果奇迹出现了<br>只不过我的和其他人登陆有点不一样。。。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/24.png?raw=true" alt="在这里插入图片描述"><br>输入的账号，密码全对，结果。。。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/25.png?raw=true" alt="在这里插入图片描述"><br>崩溃的边缘。。。<br>我实在无语，然后输入了自己的用户名bealright（没事的）。。。我遇到的都是事😂<br>突然弹出一个窗口<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/26.png?raw=true" alt="在这里插入图片描述"><br>输入密码后，成功了。。。<br><img src="https://github.com/bealright/bealright.github.io/blob/master/photo/27.png?raw=true" alt="在这里插入图片描述"><br>这个过程完成后，感悟真的很多。也许前方无数的bug\error在等着我，但是只要保持耐心，不断努力，最终会解决他们的。共勉一句我特别喜欢的英语名言<br><strong>No attempt, no success</strong><br><strong>没有尝试，没有成功</strong></p>
-
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/10/04/Jarvis OJ web(一)/">
+            
+                <span>Jarvis OJ web(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：总结一下最近做过的jarvisoj的web题，有的很有意思，能学习到很多新知识
+LOCALHOST 提示很明显，伪造IP地址即可
+抓包进行伪造，即可得出flag
+Login一个提交页面，源码中也没有发现什么线索，抓包来看一下有一句提示1"select * from `admin` where password='".md5($pass,true)."'"
+这里就涉及到MD5函数的一个知识点了这到题我们只需让password后面的语句为真即可，参考了大师傅的博客，提供了这样一个字符串
+123456content: ffifdyophex: 276f722736c95d99e92172...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
     </article>
-    <!-- license  -->
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/03/18/CSS学习总结/" title="CSS学习总结">
-                    <div class="nextTitle">CSS学习总结</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -584,24 +466,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-githup搭建属于自己的博客"><span class="toc-number">1.</span> <span class="toc-text">hexo+githup搭建属于自己的博客</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1725,8 +1589,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
 	<!-- 雪花特效 -->
 	<script type="text/javascript" src="\lib\snow.js"></script>

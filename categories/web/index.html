@@ -346,6 +346,40 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/04/Jarvis OJ web(一)/">
+            
+                <span>Jarvis OJ web(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：总结一下最近做过的jarvisoj的web题，有的很有意思，能学习到很多新知识
+LOCALHOST 提示很明显，伪造IP地址即可
+抓包进行伪造，即可得出flag
+Login一个提交页面，源码中也没有发现什么线索，抓包来看一下有一句提示1"select * from `admin` where password='".md5($pass,true)."'"
+这里就涉及到MD5函数的一个知识点了这到题我们只需让password后面的语句为真即可，参考了大师傅的博客，提供了这样一个字符串
+123456content: ffifdyophex: 276f722736c95d99e92172...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/27/I春秋——web Write up(三)/">
             
                 <span>I春秋——web Write up(三)</span>
@@ -639,43 +673,6 @@ eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/12/PHP反序列化漏洞学习(一)/">
-            
-                <span>PHP反序列化漏洞学习(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：PHP反序列化也是web安全中常见的一种漏洞，这次就先来大致了解一下PHP反序列化漏洞的基础知识。
-
-一、PHP序列化和反序列化在学习PHP反序列化漏洞时，先来了解一下基础的知识。
-(一)PHP序列化函数 : serialize()
-
-所有php里面的值都可以使用函数serialize()来返回一个包含字节流的字符串来表示。序列化一个对象将会保存对象的所有变量，但是不会保存对象的方法，只会保存类的名字。 
-
-一开始看这个概念可能有些懵，看了很多大师傅们的博客后，慢慢明白这个概念的道理。
-在程序执行结束时，内存数据便会立即销毁，变量所储存的数据便是内存数据，而文件、数据库是“持久数据...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/12</span>
             </div>
             <!-- tags  -->
             
@@ -1481,9 +1478,82 @@ eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 46
+        Total : 47
         </div>
         <!-- search  -->
         
@@ -1496,6 +1566,11 @@ eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="/2019/10/04/Jarvis OJ web(一)/">Jarvis OJ web(一)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1740,9 +1815,9 @@ eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法�
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     

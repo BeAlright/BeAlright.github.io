@@ -359,6 +359,41 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/14/PHP危险函数总结/">
+            
+                <span>PHP危险函数总结</span>
+        </a>
+        <div class="abstract-content">
+            前言：PHP中有很多危险函数，如phpinfo() ，这次就来详细总结一下PHP中的危险函数，并借助大师傅们的例子来进行代码审计的练习。
+一、PHP代码执行函数eval()函数定义和用法：
+
+eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法的 PHP 代码，且必须以分号结尾。
+
+这个用法就会产生漏洞，通过一个例子来看一下：
+123456789&lt;?php$var = "var";if (isset($_GET["arg"]))&#123;        $arg = $_GET["arg"];        eval("\$var = $arg;");     ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/14</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/12/PHP反序列化漏洞学习(一)/">
             
                 <span>PHP反序列化漏洞学习(一)</span>
@@ -661,39 +696,6 @@ low级别观察源码
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/25/sql注入学习——时间盲注/">
-            
-                <span>sql注入学习——时间盲注</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前通过前九关学习到了回显注入、报错注入、布尔盲注等一些方法，这次就来详细的学习时间盲注。
-在上一篇博客中，了解了布尔盲注，其实布尔盲注和时间盲注大致相同，注入原理是一致的，区别就是一个还是有回显的，一个彻底没有回显，通过构造语句，通过页面响应的时长，来判断信息，这就是时间盲注。
-先来学习一下时间盲注所需要的函数123sleep()/延迟函数if(condition,true,false)/若条件为真 返回true，若条件为假 返回falsesubstring("string",strart,length)
-主要的也就是这几个了，下面就通过sqli-labs第十关来练习时间盲注
-猜...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
     
 </div>
             
@@ -1602,9 +1604,82 @@ low级别观察源码
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 46
+        Total : 47
         </div>
         <!-- search  -->
         
@@ -1617,6 +1692,11 @@ low级别观察源码
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="/2019/10/04/Jarvis OJ web(一)/">Jarvis OJ web(一)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1861,9 +1941,9 @@ low级别观察源码
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     

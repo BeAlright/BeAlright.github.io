@@ -346,6 +346,40 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/04/Jarvis OJ web(一)/">
+            
+                <span>Jarvis OJ web(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：总结一下最近做过的jarvisoj的web题，有的很有意思，能学习到很多新知识
+LOCALHOST 提示很明显，伪造IP地址即可
+抓包进行伪造，即可得出flag
+Login一个提交页面，源码中也没有发现什么线索，抓包来看一下有一句提示1"select * from `admin` where password='".md5($pass,true)."'"
+这里就涉及到MD5函数的一个知识点了这到题我们只需让password后面的语句为真即可，参考了大师傅的博客，提供了这样一个字符串
+123456content: ffifdyophex: 276f722736c95d99e92172...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/27/I春秋——web Write up(三)/">
             
                 <span>I春秋——web Write up(三)</span>
@@ -647,41 +681,6 @@ Cat一开始以为是命令注入，恰好最近学习了命令注入，就先�
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/14/PHP危险函数总结/">
-            
-                <span>PHP危险函数总结</span>
-        </a>
-        <div class="abstract-content">
-            前言：PHP中有很多危险函数，如phpinfo() ，这次就来详细总结一下PHP中的危险函数，并借助大师傅们的例子来进行代码审计的练习。
-一、PHP代码执行函数eval()函数定义和用法：
-
-eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法的 PHP 代码，且必须以分号结尾。
-
-这个用法就会产生漏洞，通过一个例子来看一下：
-123456789&lt;?php$var = "var";if (isset($_GET["arg"]))&#123;        $arg = $_GET["arg"];        eval("\$var = $arg;");     ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
     
 </div>
             
@@ -1481,9 +1480,82 @@ eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 46
+        Total : 47
         </div>
         <!-- search  -->
         
@@ -1496,6 +1568,11 @@ eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="/2019/10/04/Jarvis OJ web(一)/">Jarvis OJ web(一)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1740,9 +1817,9 @@ eval() 函数把字符串按照 PHP 代码来计算.该字符串必须是合法�
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
