@@ -346,6 +346,40 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">
+            
+                <span>实验吧——SQL注入 Write up(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：之前学习过了联合注入查询、布尔盲注、时间盲注等，这次就通过SQL注入题来加强一下。
+
+简单的sql注入方法一输入有回显，且有输入框，那就可以用联合查询的方法来注入
+题中提示已经过滤了一些关键字，那么就先来查看题中过滤的是哪些关键字
+1?id=1 union select order by #
+回显结果：union，select等都被过滤而且没有报错说明#也被过滤可以自己建立一个语句来验证一下如果#没有被过滤，那么上面的语句将会变成这样，语句一定会报错题中将关键字过滤，可以尝试一下双写绕过的方法是否可用输入框中输入?id=1 unionunion selectselect，发现空格也...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/07/18/实验吧— Crypto Write up(一)/">
             
                 <span>实验吧— Crypto Write up(一)</span>
@@ -627,39 +661,6 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/09/CTF隐写总结/">
-            
-                <span>CTF隐写总结</span>
-        </a>
-        <div class="abstract-content">
-            CTF隐写总结一：LSB隐写
- LSB概念    LSB，英文 least significant bit，中文义最低有效位。    对于一个给定的数据串,其最低有效位就是拥有最小单位数值的那一位.
-
-关于LSB隐写的详细介绍                LSB详细介绍关于LSB隐写的详细算法                LSB详细算法关于LSB隐写的总结博客                 LSB隐写总结隐写技巧：PNG文件中的LSB隐写
-打开以后是一张这样的图片题目已经提醒这道题属于LSB隐写，那么就发动查百度、谷歌大法吧。经过查找，会发现需要用这个神器来处理这种题目。但打开这个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/09</span>
             </div>
             <!-- tags  -->
             
@@ -1538,9 +1539,10 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 47
+        Total : 48
         </div>
         <!-- search  -->
         
@@ -1553,6 +1555,11 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href="/2019/10/15/BUUCTF web(一)/">BUUCTF web(一)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1802,9 +1809,9 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
-    
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     

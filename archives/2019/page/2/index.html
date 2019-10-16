@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">
+            
+                <span>XCTF(攻防世界)—进阶web题Write Up(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：这段时间做了一些XCTF的web进阶题，真的是学习到了很多知识，就来总结一下。
+
+Cat一开始以为是命令注入，恰好最近学习了命令注入，就先来测试一下：
+输入127.0.0.1，发现是可以ping通的输入127.0.0.1 | phpinfo() 或127.0.0.1 &amp; net user就会显示：
+1Invalid URL
+看来命令注入的方法是行不通的(其他连接符也被过滤了，如&amp;&amp;、||等)
+没有思路了，就看了大师傅们的Write Up，大意就是在URL那里构造错误的参数，使页面进行报错，通过页面报错从中找出需要的信息。
+当输入?url=%79执行完时变成了...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/14/PHP危险函数总结/">
             
                 <span>PHP危险函数总结</span>
@@ -643,46 +679,6 @@ low级别观察源码
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/29/python学习（字典、用户输入和while循环）/">
-            
-                <span>python学习（字典、用户输入和while循环）</span>
-        </a>
-        <div class="abstract-content">
-            前言：上次学习到了if语句，这次接着进行学习。
-字典
-字典能够准确地为各种真实物体建模，且能够将相关信息关联起来。
-
-使用字典
-字典是一系列的键——值对，一个建对应一个值，值可以为数字、字符串等在Python中，字典用放在花括号{} 中的一系列键—值对表示。
-
-访问字典中的值1234567score = &#123;'shuxu':'80','yuwen':'90'&#125;print(score['shuxu'])print(score['yuwen'])#输出结果：8090
-添加键——值对
-字典是一种动态结构，可随时在其中添加键—值对添加时值用方括号[]括起来
-
-123456789...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
     
 </div>
             
@@ -1555,9 +1551,10 @@ low级别观察源码
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 47
+        Total : 48
         </div>
         <!-- search  -->
         
@@ -1570,6 +1567,11 @@ low级别观察源码
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href="/2019/10/15/BUUCTF web(一)/">BUUCTF web(一)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1819,9 +1821,9 @@ low级别观察源码
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
-    
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     

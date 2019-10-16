@@ -346,6 +346,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/07/19/XSS学习-XSS挑战之旅(二)/">
+            
+                <span>XSS学习-XSS挑战之旅(二)</span>
+        </a>
+        <div class="abstract-content">
+            前言：之前打XSS平台时，打到了第11关就没有继续了，现在有空了就继续打咯，再增加点关于XSS的知识。
+第十一关这关坑我好长时间，看了好多博客直接给说修改Referer，给截图中都有自带的Referer值，修改就行，但是我怎么抓都抓不到Referer值。还以为自己设置有问题，去查burp各种的设置。。。
+终于看了一篇很细的大佬博客，才算搞懂，Referer值是自己加上的，这里就详细的介绍一下这关，别让和我一样的小白继续跌坑。
+我们从第十关来到第十一关（不要直接跳到第十一关，否则看不出任何线索）进入第十一关后看源码发现t_ref字段中，value的值是http referer的值，所以这关...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="XSS">XSS</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/07/17/I春秋——web Write up(一)/">
             
                 <span>I春秋——web Write up(一)</span>
@@ -1379,9 +1411,10 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 47
+        Total : 48
         </div>
         <!-- search  -->
         
@@ -1394,6 +1427,11 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href="/2019/10/15/BUUCTF web(一)/">BUUCTF web(一)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1643,9 +1681,9 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
-    
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
