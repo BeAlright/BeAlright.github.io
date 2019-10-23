@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">
+            
+                <span>XCTF(攻防世界)—进阶web题Write Up(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：这段时间做了一些XCTF的web进阶题，真的是学习到了很多知识，就来总结一下。
+
+Cat一开始以为是命令注入，恰好最近学习了命令注入，就先来测试一下：
+输入127.0.0.1，发现是可以ping通的输入127.0.0.1 | phpinfo() 或127.0.0.1 &amp; net user就会显示：
+1Invalid URL
+看来命令注入的方法是行不通的(其他连接符也被过滤了，如&amp;&amp;、||等)
+没有思路了，就看了大师傅们的Write Up，大意就是在URL那里构造错误的参数，使页面进行报错，通过页面报错从中找出需要的信息。
+当输入?url=%79执行完时变成了...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/14/PHP危险函数总结/">
             
                 <span>PHP危险函数总结</span>
@@ -635,42 +671,6 @@ low级别观察源码
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/24/sql注入学习——布尔盲注/">
-            
-                <span>sql注入学习——布尔盲注</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前通过前九关学习到了回显注入、报错注入等一些方法，这次就来详细的学习布尔盲注。
-首先来了解一下盲注的概念
-
-盲注是注入的一种，指的是在不知道数据库返回值的情况下对数据中的内容进行猜测，实施SQL注入。
-
-布尔盲注
-原理：注入的时候只会返回True和False，所以布尔盲注就是根据页面显示的是True还是False进行猜测数据库中的信息。
-布尔盲注需要几个函数的辅助，就先来了解一下这几个函数1234length()函数可返回字符串的长度substring()函数可以截取字符串，可指定开始的位置和截取的长度ord()函数可以返回单个字符的ASCII码char()函数可将ASCII码转...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/24</span>
             </div>
             <!-- tags  -->
             
@@ -1534,9 +1534,10 @@ low级别观察源码
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 48
+        Total : 49
         </div>
         <!-- search  -->
         
@@ -1549,6 +1550,11 @@ low级别观察源码
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href="/2019/10/23/从一道题深入HTTP协议与HTTP请求走私/">从一道题深入HTTP协议与HTTP请求走私</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1809,15 +1815,17 @@ low级别观察源码
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
-        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
+        <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
     
         <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
         <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
     
         <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
     
-        <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
+        <span class="sidebar-tag-name" data-tags="HTTP请求走私"><span class="iconfont-archer">&#xe606;</span>HTTP请求走私</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

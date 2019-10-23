@@ -346,6 +346,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/23/从一道题深入HTTP协议与HTTP请求走私/">
+            
+                <span>从一道题深入HTTP协议与HTTP请求走私</span>
+        </a>
+        <div class="abstract-content">
+            前言：最近参加了一次线上赛，发现其中有一道web题蛮有意思，之前是一道国赛题的，这次是加了点WAF，但当时没有仔细学习过HTTP协议和HTTP走私协议，所以也就没有绕过WAF，这次就来弥补这个遗憾
+HTTP/1.1协议定义：HTTP(超文本传输协议)：一种无状态的、应用层的、以请求/应答方式运行的协议，它使用可扩展的语义和自描述消息格式，与基于网络的超文本信息系统灵活的互动
+HTTP协议工作于客户端-服务端架构之上。浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。Web服务器根据接收到的请求后，向客户端发送响应信息。
+之前对于HTTP协议的理解就仅限于此，但...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="HTTP请求走私">HTTP请求走私</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/10/15/BUUCTF web(一)/">
             
                 <span>BUUCTF web(一)</span>
@@ -633,42 +665,6 @@ php://filter 是一种元封装器， 设计用于数据流打开时的筛选过
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">
-            
-                <span>XCTF(攻防世界)—进阶web题Write Up(一)</span>
-        </a>
-        <div class="abstract-content">
-            前言：这段时间做了一些XCTF的web进阶题，真的是学习到了很多知识，就来总结一下。
-
-Cat一开始以为是命令注入，恰好最近学习了命令注入，就先来测试一下：
-输入127.0.0.1，发现是可以ping通的输入127.0.0.1 | phpinfo() 或127.0.0.1 &amp; net user就会显示：
-1Invalid URL
-看来命令注入的方法是行不通的(其他连接符也被过滤了，如&amp;&amp;、||等)
-没有思路了，就看了大师傅们的Write Up，大意就是在URL那里构造错误的参数，使页面进行报错，通过页面报错从中找出需要的信息。
-当输入?url=%79执行完时变成了...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/16</span>
             </div>
             <!-- tags  -->
             
@@ -1532,9 +1528,10 @@ Cat一开始以为是命令注入，恰好最近学习了命令注入，就先�
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 48
+        Total : 49
         </div>
         <!-- search  -->
         
@@ -1547,6 +1544,11 @@ Cat一开始以为是命令注入，恰好最近学习了命令注入，就先�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href="/2019/10/23/从一道题深入HTTP协议与HTTP请求走私/">从一道题深入HTTP协议与HTTP请求走私</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1807,15 +1809,17 @@ Cat一开始以为是命令注入，恰好最近学习了命令注入，就先�
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
-        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
+        <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
     
         <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
         <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
     
         <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
     
-        <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
+        <span class="sidebar-tag-name" data-tags="HTTP请求走私"><span class="iconfont-archer">&#xe606;</span>HTTP请求走私</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
