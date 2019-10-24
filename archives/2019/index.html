@@ -346,6 +346,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/10/24/任意文件下载漏洞/">
+            
+                <span>任意文件下载漏洞简析</span>
+        </a>
+        <div class="abstract-content">
+            前言：之前没有接触过这个知识，恰好这次有一道题考了这方面的知识，就来详细的学习一下任意文件下载漏洞
+任意下载漏洞简介由于业务需求，很多网站往往需要提供文件(附件)下载的功能块，但是如果对下载的文件没有做限制，直接通过绝对路径对其文件进行下载，那么，恶意用户就可以利用这种方式下载服务器的敏感文件，对服务器进行进一步的威胁和攻击。
+任意下载漏洞的危害通过任意文件下载，可以下载服务器的任意文件，web业务的代码，服务器和系统的具体配置信息，也可以下载数据库的配置信息，以及对内网的信息探测等等。
+通过上面的简单介绍，可以看出任意下载漏洞是很常见的，如果对用户查看或下载的文件不做限制，就又可能被利...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="任意文件下载">任意文件下载</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/10/23/从一道题深入HTTP协议与HTTP请求走私/">
             
                 <span>从一道题深入HTTP协议与HTTP请求走私</span>
@@ -645,38 +677,6 @@ php://filter 是一种元封装器， 设计用于数据流打开时的筛选过
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/25/Bugku—web题总结(二)/">
-            
-                <span>Bugku—web题总结(二)</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前没有总结完，这次继续总结！
-输入密码查看flag观察到爆破而且密码是五位数字，那就用burp来爆破设置payload：爆破出来了，提交即可得出flag
-点击一百万次提示是JS，查看一下源代码，发现虽然不太懂JS代码，但是还是可以理解这个代码大意，变量clicks通过点击来自增。但是这里变量也可以通过POST进行传递,那就直接给变量传一个10000000.
-备份是个好习惯发现是MD5加密后的值，而且两段相同，解密一下空密码，看来解题思路应该错了，重新查看题目发现这道题与备份有关，常见的PHP备份后缀名有.php.bak等输入http://123.206.87.240:8002/w...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
     
 </div>
             
@@ -1534,52 +1534,6 @@ php://filter 是一种元封装器， 设计用于数据流打开时的筛选过
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 50
@@ -1595,6 +1549,11 @@ php://filter 是一种元封装器， 设计用于数据流打开时的筛选过
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/任意文件下载漏洞/">任意文件下载漏洞简析</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1669,11 +1628,6 @@ php://filter 是一种元封装器， 设计用于数据流打开时的筛选过
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/DVWA——命令执行漏洞学习/">DVWA——命令执行漏洞学习</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/09</span><a class="archive-post-title" href="/2019/08/09/任意文件下载漏洞/">任意文件下载漏洞简析</a>
         </li>
     
     
@@ -1869,11 +1823,11 @@ php://filter 是一种元封装器， 设计用于数据流打开时的筛选过
     
         <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
     
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
+    
         <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
     
         <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
-    
-        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
         <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
     
@@ -1914,9 +1868,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
     
-        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
-    
         <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
     
