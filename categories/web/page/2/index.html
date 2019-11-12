@@ -346,6 +346,45 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/31/了解PHP伪协议/">
+            
+                <span>了解PHP伪协议</span>
+        </a>
+        <div class="abstract-content">
+            前言：最近做题web题很多都涉及了PHP伪协议，这次就来详细的了解总结一下！
+
+练习每个协议前，相关的配置必须开启或者关闭才不会报错，可以参考这张图片下面就来了解PHP伪协议
+php://说明：
+
+PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符， 内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。 
+
+php://  访问输入输出流，有许多子协议,下面就来学习一下
+(一)php://filter说明：
+
+php://filter 是一种元封装器， 设计用于数据流打开时的筛选过滤应用。 这对于一体式（all-in-o...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/25/Bugku—web题总结(二)/">
             
                 <span>Bugku—web题总结(二)</span>
@@ -634,38 +673,6 @@ Command Execution一、简介
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">
-            
-                <span>文件上传漏洞——upload-labs(1-10)</span>
-        </a>
-        <div class="abstract-content">
-            前言：文件上传漏洞有很多种绕过技巧，这次就通过upload-labs进行学习
-第一关上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下抓包修改上传格式的方法看看是否可行
-先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包
-拦截请求包后，将1.png改为1.php，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径路径也知道了，就用菜刀进行连接连接成功观察一下第一关的源码1234567891011121314151617function checkFile() &#123;    var file = document.getEl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
             </div>
             <!-- tags  -->
             
@@ -1536,8 +1543,6 @@ Command Execution一、简介
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 53
@@ -1556,7 +1561,7 @@ Command Execution一、简介
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/12</span><a class="archive-post-title" href="/2019/11/12/XML外部实体注入/">[Untitled Post]</a>
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href="/2019/11/12/XML外部实体注入/">XML外部实体注入</a>
         </li>
     
     
@@ -1836,11 +1841,13 @@ Command Execution一、简介
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="XML"><span class="iconfont-archer">&#xe606;</span>XML</span>
+    
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     

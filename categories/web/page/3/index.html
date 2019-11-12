@@ -346,6 +346,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">
+            
+                <span>文件上传漏洞——upload-labs(1-10)</span>
+        </a>
+        <div class="abstract-content">
+            前言：文件上传漏洞有很多种绕过技巧，这次就通过upload-labs进行学习
+第一关上传有限制，只让上传JPEG或PNG格式的图片，就先尝试一下抓包修改上传格式的方法看看是否可行
+先将一句话木马PHP文件后缀名改为PNG格式，上传拦截抓包
+拦截请求包后，将1.png改为1.php，再发包，用菜刀进行连接，在此之前需要知道上传的文件上传到哪个目录下，查看源码查出图片上传路径路径也知道了，就用菜刀进行连接连接成功观察一下第一关的源码1234567891011121314151617function checkFile() &#123;    var file = document.getEl...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="文件上传">文件上传</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/07/31/文件上传漏洞——DVWA练习/">
             
                 <span>文件上传漏洞——DVWA练习</span>
@@ -1507,8 +1539,6 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 53
@@ -1527,7 +1557,7 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/12</span><a class="archive-post-title" href="/2019/11/12/XML外部实体注入/">[Untitled Post]</a>
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href="/2019/11/12/XML外部实体注入/">XML外部实体注入</a>
         </li>
     
     
@@ -1807,11 +1837,13 @@ sql-labs(一) 输入id=1或id=2，都会返回数据，而且返回的数据不�
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
+        <span class="sidebar-tag-name" data-tags="XML"><span class="iconfont-archer">&#xe606;</span>XML</span>
+    
         <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
-        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
-    
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
     
         <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
