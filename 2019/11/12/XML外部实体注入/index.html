@@ -414,7 +414,7 @@ height:50vh;
 <h3 id="XML语法、结构与实体引用："><a href="#XML语法、结构与实体引用：" class="headerlink" title="XML语法、结构与实体引用："></a><strong>XML语法、结构与实体引用：</strong></h3><p><strong>语法：</strong><br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>XML元素都必须有关闭标签。</span><br><span class="line"><span class="number">2.</span>XML 标签对大小写敏感。</span><br><span class="line"><span class="number">3.</span>XML 必须正确地嵌套。</span><br><span class="line"><span class="number">4.</span>XML 文档必须有根元素。</span><br><span class="line"><span class="number">5.</span>XML 的属性值须加引号。</span><br></pre></td></tr></table></figure></p>
 <p><strong>结构：</strong></p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>XML 文档声明，在文档的第一行</span><br><span class="line"><span class="number">2.</span>XML 文档类型定义，即DTD，XXE 漏洞所在的地方</span><br><span class="line"><span class="number">3.</span>XML 文档元素</span><br></pre></td></tr></table></figure>
-<p>如：<br>![在这里插入图片描?(<a href="http://img-blog.csdnimg.cn/20191109212025875.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" target="_blank" rel="noopener">http://img-blog.csdnimg.cn/20191109212025875.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70</a>)<br><strong>实体引用：</strong><br>在 XML 中一些字符拥有特殊的意义，如果把字符 <code>&lt;</code> 放在 XML 元素中，便会发生错误，这是因为解析器会把它当作新元素的开始。<br>例如:</p>
+<p>如：<br><img src="http://img-blog.csdnimg.cn/20191109212025875.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描"><br><strong>实体引用：</strong><br>在 XML 中一些字符拥有特殊的意义，如果把字符 <code>&lt;</code> 放在 XML 元素中，便会发生错误，这是因为解析器会把它当作新元素的开始。<br>例如:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;message&gt;hello &lt; world&lt;/message&gt;</span><br></pre></td></tr></table></figure>
 <p>便会报错，为了避免这些错误，可以实体引用来代替 <code>&lt;</code> 字符</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">message</span>&gt;</span>hello &amp;lt; world<span class="tag">&lt;/<span class="name">message</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -650,12 +650,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1693,29 +1687,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
-        <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
-    
         <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+    
+        <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="XML"><span class="iconfont-archer">&#xe606;</span>XML</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
-    
-        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="HTTP请求走私"><span class="iconfont-archer">&#xe606;</span>HTTP请求走私</span>
     
-        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
+    
+        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
     
         <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
     
