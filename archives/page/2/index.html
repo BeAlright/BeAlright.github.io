@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">
+            
+                <span>XCTF(攻防世界)—进阶web题Write Up(二)</span>
+        </a>
+        <div class="abstract-content">
+            前言：继续总结学到的新知识
+mfw在about页面发现，搭建网站时用了git,尝试一下是否为git源码泄露输入：1http://111.198.29.45:36544/.git/
+果然是源码泄露，那就查看一下文件，发现并没有找到flag，在Github上下载git源码泄露工具，可以得到其源码。
+输入相应的命令：
+1python2 GitHack.py http://111.198.29.45:36544/.git/
+
+得到源码，发现并没有flag查看index.php发现并没有对GET进去的参数进行过滤，assert函数中参数为表达式可以当作PHP文件来执行，再了解一下以下这两个函数：
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/09/02/Bugku—web题总结(三)/">
             
                 <span>Bugku—web题总结(三)</span>
@@ -653,38 +689,6 @@ Command Execution一、简介
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="命令执行">命令执行</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/08/09/文件包含漏洞——DVWA练习/">
-            
-                <span>文件包含漏洞——DVWA练习</span>
-        </a>
-        <div class="abstract-content">
-            前言：在学习文件上传时，制作的图片马需要我们手动去解析，而解析的方法就算用到了文件包含漏洞，所以这次就来学习一下文件包含漏洞。
-
-文件包含漏洞简介
-（一）文件包含可以分为本地文件包含和远程文件包含两种。文件包含和文件上传一样本身并不是漏洞，而是攻击者利用了包含的特性加上了应用本身对文件控制不严格，对include进来的文件不可控，才导致了一系列危害。（二）本地文件包含就是通过URL将服务器本地的其他文件include进来。远程文件包含就是将远程服务器的文件include进来。（三）最主要的是，包含进来的文件都以当前脚本文件解析，例如，当前测试系统是Apache加php环境，那么被incl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="文件包含">文件包含</a>
     
 </div>
             
@@ -1543,9 +1547,28 @@ Command Execution一、简介
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 53
+        Total : 54
         </div>
         <!-- search  -->
         
@@ -1555,6 +1578,20 @@ Command Execution一、简介
     
     
     
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/03</span><a class="archive-post-title" href="/2020/01/03/记第一次线下AWD感受及复现/">记第一次线下AWD感受及复现</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
@@ -1831,33 +1868,33 @@ Command Execution一、简介
     
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
-        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
-    
         <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
-        <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
         <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
         <span class="sidebar-tag-name" data-tags="XML"><span class="iconfont-archer">&#xe606;</span>XML</span>
     
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
         <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
         <span class="sidebar-tag-name" data-tags="HTTP请求走私"><span class="iconfont-archer">&#xe606;</span>HTTP请求走私</span>
     
-        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
-    
-        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
     
         <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
     
@@ -1903,6 +1940,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
     
         <span class="sidebar-category-name" data-categories="SQL"><span class="iconfont-archer">&#xe60a;</span>SQL</span>
+    
+        <span class="sidebar-category-name" data-categories="AWD"><span class="iconfont-archer">&#xe60a;</span>AWD</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
