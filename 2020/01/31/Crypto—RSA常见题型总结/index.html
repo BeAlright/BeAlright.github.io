@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="💗zihao">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="💗zihao">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="Saying and doing are two different things.">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Crypto—RSA常见题型总结 · Lemon&#39;s blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Lemon&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Crypto—RSA常见题型总结</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Lemon's blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/744896.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Crypto—RSA常见题型总结
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+                Record my learning process of RSA.
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.6k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/01/31</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>做了很多有关RSA的题，有必要总结一下，题永远做不完的，但是大致的规律都是不变的！</p>
+<h2 id="0x01-基本工具的使用"><a href="#0x01-基本工具的使用" class="headerlink" title="0x01 基本工具的使用"></a>0x01 基本工具的使用</h2><p>经常使用的RSA工具有<code>openssl</code>、分解整数工具等</p>
+<h4 id="openssl"><a href="#openssl" class="headerlink" title="openssl"></a><strong>openssl</strong></h4><p>这里也有必要说一下<code>Openssl</code>，<code>OpenSSL</code> 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。</p>
+<p>而且<code>Openssl</code>可以提供对称加密算法、非对称加密算法、信息摘要算法、密钥和证书管理，实际上<code>OpenSSL</code>提供的CA应用程序就是一个小型的证书管理中心（CA），实现了证书签发的整个流程和证书管理的大部分机制。</p>
+<p><strong>查看公钥文件：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsa -pubin -in pubkey.pem -text -modulus</span><br></pre></td></tr></table></figure>
+<p><strong>解密：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsautl -decrypt -inkey private.pem -in flag.enc -out flag</span><br></pre></td></tr></table></figure>
+<p>详细可以查看<a href="http://linux.51yip.com/search/openssl" target="_blank" rel="noopener">openssl</a></p>
+<h4 id="分解整数工具"><a href="#分解整数工具" class="headerlink" title="分解整数工具"></a>分解整数工具</h4><p>在线网站分解<a href="http://factordb.com/" target="_blank" rel="noopener">factor.db</a></p>
+<p><a href="http://sourceforge.net/projects/yafu/" target="_blank" rel="noopener">yafu</a><br>yafu用于自动整数因式分解，在<code>RSA</code>中，当p、q的取值差异过大或过于相近的时候，使用<code>yafu</code>可以快速的把n值分解出p、q值</p>
+<p>下载好之后，进入yafu目录中输入<code>yafu-x64</code>进入命令行<br>最常用的命令是<code>factor(n)</code>，将n值分解，如：<br><img src="http://img-blog.csdnimg.cn/20200126214749986.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>实践一下：<br><strong>Normal_RSA</strong><br>这道题提供<code>enc</code>和<code>pem</code>文件，解这一类题需要先查看公钥文件中包含的信息，然后通过包含的信息再利用工具生成一个私钥文件用于解密即可<br><img src="http://img-blog.csdnimg.cn/20200126222822934.png" alt="在这里插入图片描述"><br>kail中自带openssl,先查看公钥文件<br><img src="http://img-blog.csdnimg.cn/20200126222920988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Exponent即为<code>e</code>,Modulus即为<code>n</code>,发现n是十六进制,先转换成十进制，再进行分解</p>
+<p><img src="http://img-blog.csdnimg.cn/20200126213849276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>有了p 和 q ,便可以求出d</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d=10866948760844599168252082612378495977388271279679231539839049698621994994673</span><br></pre></td></tr></table></figure>
+<p>接下来就可以生成一个私钥，利用私钥求解密文，但是这里遇到点问题，没有办法使用<code>RSAtool</code>,参考师傅的通用脚本（<code>py2</code>）</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"> </span><br><span class="line">keypair = RSA.generate(<span class="number">1024</span>)</span><br><span class="line">keypair.p =</span><br><span class="line">keypair.q =</span><br><span class="line">keypair.e =</span><br><span class="line">keypair.n = keypair.p * keypair.q</span><br><span class="line">Qn = long((keypair.p - <span class="number">1</span>) * (keypair.q - <span class="number">1</span>))</span><br><span class="line"> </span><br><span class="line">i = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">True</span>):</span><br><span class="line">    x = (Qn * i) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> (x % keypair.e == <span class="number">0</span>):</span><br><span class="line">        keypair.d = x / keypair.e</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">private = open(<span class="string">'private.pem'</span>, <span class="string">'w'</span>)</span><br><span class="line">private.write(keypair.exportKey())</span><br><span class="line">private.close()</span><br></pre></td></tr></table></figure>
+<p>在kail中运行即可生成<code>private.pem</code>文件，运行openssl解密命令即可</p>
+<h4 id="常用的python-库"><a href="#常用的python-库" class="headerlink" title="常用的python 库"></a><strong>常用的python 库</strong></h4><p><strong>gmpy2</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">建议：安装这个库的话不要直接pip，直接下载wheel文件安装会好一些，只要版本对应一般不会出错，具体安装可以自行百度</span><br></pre></td></tr></table></figure>
+<p>这个库用于RSA计算非常方便，如:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#求逆元(模反元素)	d = gmpy2.invert(e,n) </span><br><span class="line">#判断n是不是素数 gmpy2.is_prime(n)</span><br><span class="line">#欧几里得算法 gmpy2.gcd(a,b)</span><br><span class="line">#扩展欧几里得算法 gmpy2.gcdext(a,b)</span><br></pre></td></tr></table></figure>
+<p>就例如这道题：<br><img src="http://img-blog.csdnimg.cn/20200126221034237.png" alt="在这里插入图片描述"><br>便可以利用gmpy2写一个脚本直接计算出d的值<br><img src="http://img-blog.csdnimg.cn/20200126221259634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>pycrypto</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这个库也是经常用于RSA计算，在windows上装会遇到一堆麻烦，kail中自带这个库，直接在kail中运行脚本就可以。</span><br></pre></td></tr></table></figure>
+<h2 id="0x02-RSA考察题型"><a href="#0x02-RSA考察题型" class="headerlink" title="0x02 RSA考察题型"></a>0x02 RSA考察题型</h2><h4 id="一、给出p、q、e、c求明文m"><a href="#一、给出p、q、e、c求明文m" class="headerlink" title="一、给出p、q、e、c求明文m"></a>一、给出p、q、e、c求明文m</h4><p><strong>HGAME 2020——InfantRSA</strong></p>
+<p>题目描述如下：<br><img src="http://img-blog.csdnimg.cn/20200125134358789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>而且给了一个<code>python</code>脚本<br><img src="http://img-blog.csdnimg.cn/20200125134435292.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>分析并结合百度，可以查找出<code>int.from_bytes(x)</code>的含义是把<code>bytes</code>类型的变量<code>x</code>，转化为十进制整数，具体介绍可以查看<a href="http://blog.csdn.net/Clovera/article/details/79293108" target="_blank" rel="noopener">int.from_bytes和int.to_bytes函数介绍</a></p>
+<p>通过观察可以发现是将<code>flag</code>转换成十进制整数，并赋给了<code>m</code>,所以这道题就是让求出m，然后再利用<code>to_bytes()</code>这个函数，将十进制整数转换成字节即可得出<code>flag</code>，既然明白了题目要考察的就写一个<code>python</code>脚本</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2 <span class="keyword">as</span> gp</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">p =  gp.mpz(<span class="number">681782737450022065655472455411</span>)</span><br><span class="line">q =  gp.mpz(<span class="number">675274897132088253519831953441</span>)</span><br><span class="line">e =  gp.mpz(<span class="number">13</span>)</span><br><span class="line">c =  gp.mpz(<span class="number">275698465082361070145173688411496311542172902608559859019841</span>)</span><br><span class="line">n = p*q</span><br><span class="line">phi = (p<span class="number">-1</span>) * (q<span class="number">-1</span>)</span><br><span class="line">d = gp.invert(e, phi)</span><br><span class="line">m = pow(c, d, n)</span><br><span class="line">print(m)</span><br></pre></td></tr></table></figure>
+<p>得出结果：<br><img src="http://img-blog.csdnimg.cn/20200125135324589.png" alt="在这里插入图片描述"><br>接下来就是如何将十进制整数转换成字节了<br>(注意,长度一定要设置长一些,否则会报错）<br><img src="http://img-blog.csdnimg.cn/20200125135540464.png" alt="在这里插入图片描述"><br>这道题就是给出了<code>p、q、e、c</code>，无非就是在转换上做一些变动。</p>
+<h4 id="二、暴力分解-N"><a href="#二、暴力分解-N" class="headerlink" title="二、暴力分解 N"></a>二、暴力分解 N</h4><p><strong>原理：</strong><br>RSA的可靠性就是因为要分解因数是非常困难的，对于<code>p、q、n、φ(n)、e、d</code>这六个数，公钥用到了<code>n、e</code>，其余四个数是不公开的，其中最关键的是<code>d</code>，因为<code>n和d</code>组成了私钥，一旦<code>d</code>泄漏，就等于私钥泄漏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）ed≡1 (mod φ(n)) 只有知道e和φ(n)，才能算出d</span><br><span class="line">（2）φ(n)=(p-1)(q-1) 只有知道p和q，才能算出φ(n)</span><br><span class="line">（3）n=pq 只有将n因数分解，才能算出p和q</span><br></pre></td></tr></table></figure>
+<p>因此如果可以暴力分解N的话，私钥就泄露了</p>
+<p><strong>JarvisOJ - Medium RSA</strong></p>
+<p>题目描述：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">已知一段 RSA 加密的信息为：0xdc2eeeb2782c 且已知加密所用的公钥：</span><br><span class="line">N=322831561921859 e = 23</span><br><span class="line">请解密出明文，提交时请将数字转化为 ascii 码提交</span><br><span class="line">比如你解出的明文是 0x6162，那么请提交字符串 ab</span><br><span class="line">提交格式：PCTF&#123;明文字符串&#125;</span><br></pre></td></tr></table></figure>
+<p>直接暴力分解N<br><img src="http://img-blog.csdnimg.cn/20200127234226663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来就写一个简单的py脚本即可<br><img src="http://img-blog.csdnimg.cn/20200128000410788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得出结果16进制转字符串即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python3 5.py</span><br><span class="line">0x33613559</span><br><span class="line">3a5Y</span><br></pre></td></tr></table></figure></p>
+<p><strong>适用于N较小的时候</strong></p>
+<h4 id="三、共模攻击"><a href="#三、共模攻击" class="headerlink" title="三、共模攻击"></a>三、共模攻击</h4><p> <strong>拓展欧几里得算法：</strong></p>
+<blockquote>
+<p> 给予二整数 a 与 b, 必存在有整数 x 与 y 使得ax + by = gcd(a,b)，其中一个很可能是负数</p>
+</blockquote>
+<p><strong>原理：</strong><br>假设N不变，已知<code>N,e1,e2（公钥）,c1,c2（密文）</code>，且e1和e2互质，由欧几里德算法可知</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">gcd(e1,e2)=<span class="number">1</span></span><br><span class="line">再推出此式：</span><br><span class="line">e1*s1+e2*s2 = <span class="number">1</span></span><br><span class="line">由扩展欧几里德算法，可以得到一组解</span><br><span class="line">(s1,s2)</span><br><span class="line">假设s1为正、s2为负</span><br><span class="line">因</span><br><span class="line">c1 = m^e1 mod N </span><br><span class="line">c2 = m^e2 mod N</span><br><span class="line">故推出此方程式</span><br><span class="line">(c1^s1*c2^s2)mod N= ((m^e1 mod N)^s1*(m^e2 mod N)^s2)mod N</span><br><span class="line">根据模运算性质，可以化简为此方程式</span><br><span class="line">(c1^s1*c2^s2)mod N = ((m^e1)^s1*(m^e2)^s2)mod N</span><br><span class="line">(c1^s1*c2^s2)mod N = (m^(e1^s1+e2^s2))mod N</span><br><span class="line">又因为</span><br><span class="line">e1*s1+e2*s2 = <span class="number">1</span></span><br><span class="line">所以</span><br><span class="line">(c1^s1*c2^s2)mod N = (m^(<span class="number">1</span>))mod N</span><br><span class="line">(c1^s1c2^s2)mod N = m mod N</span><br><span class="line">即</span><br><span class="line">c1^s1*c2^s2 = m</span><br><span class="line">因此可以在不知道d1,d2情况下，解出m</span><br></pre></td></tr></table></figure>
+<p><strong>适用条件：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当两个用户使用相同的模数 N、不同的私钥时，加密同一明文消息时即存在共模攻击</span><br></pre></td></tr></table></figure>
+<p><strong>Jarvis OJ——very hard RSA</strong></p>
+<p> <img src="http://img-blog.csdnimg.cn/20200129205007625.png" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20200129205159170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现题目所给的加密方式是用不同的公钥，相同的模数去加密同一段明文，这道题给了<code>N,e1,e2</code>,也给了<code>flag.enc1,flag.enc2</code>（即密文），因此使用RSA共模攻击即可解出这道题</p>
+<p>了解了原理即可写出脚本：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment">#py2</span></span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> gmpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 扩展欧几里得算法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">egcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> a == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> b, <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        g, y, x = egcd(b % a, a)</span><br><span class="line">        <span class="keyword">return</span> g, x - b // a * y, y</span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'flag.enc1'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f1:</span><br><span class="line">        c1 = f1.read().encode(<span class="string">'hex'</span>)</span><br><span class="line">        c1 = string.atoi(c1, base=<span class="number">16</span>)</span><br><span class="line">        <span class="comment">#string.atoi(s[,base])  字符串转换成数字  base是16那么s就只能是0x23或0X12这种形式的字符串</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'flag.enc2'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f2:</span><br><span class="line">        c2 = f2.read().encode(<span class="string">'hex'</span>)</span><br><span class="line">        c2 = string.atoi(c2, base=<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">    n = <span class="number">0x00b0bee5e3e9e5a7e8d00b493355c618fc8c7d7d03b82e409951c182f398dee3104580e7ba70d383ae5311475656e8a964d380cb157f48c951adfa65db0b122ca40e42fa709189b719a4f0d746e2f6069baf11cebd650f14b93c977352fd13b1eea6d6e1da775502abff89d3a8b3615fd0db49b88a976bc20568489284e181f6f11e270891c8ef80017bad238e363039a458470f1749101bc29949d3a4f4038d463938851579c7525a69984f15b5667f34209b70eb261136947fa123e549dfff00601883afd936fe411e006e4e93d1a00b0fea541bbfc8c5186cb6220503a94b2413110d640c77ea54ba3220fc8f4cc6ce77151e29b3e06578c478bd1bebe04589ef9a197f6f806db8b3ecd826cad24f5324ccdec6e8fead2c2150068602c8dcdc59402ccac9424b790048ccdd9327068095efa010b7f196c74ba8c37b128f9e1411751633f78b7b9e56f71f77a1b4daad3fc54b5e7ef935d9a72fb176759765522b4bbc02e314d5c06b64d5054b7b096c601236e6ccf45b5e611c805d335dbab0c35d226cc208d8ce4736ba39a0354426fae006c7fe52d5267dcfb9c3884f51fddfdf4a9794bcfe0e1557113749e6c8ef421dba263aff68739ce00ed80fd0022ef92d3488f76deb62bdef7bea6026f22a1d25aa2a92d124414a8021fe0c174b9803e6bb5fad75e186a946a17280770f1243f4387446ccceb2222a965cc30b3929L</span></span><br><span class="line">    e1 = <span class="number">17</span></span><br><span class="line">    e2 = <span class="number">65537</span></span><br><span class="line">    s = egcd(e1, e2)</span><br><span class="line">    s1 = s[<span class="number">1</span>]</span><br><span class="line">    s2 = s[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> s1 &lt; <span class="number">0</span>:</span><br><span class="line">        s1 = -s1</span><br><span class="line">        c1 = gmpy.invert(c1, n)</span><br><span class="line">    <span class="keyword">elif</span> s2 &lt; <span class="number">0</span>:</span><br><span class="line">        s2 = -s2</span><br><span class="line">        c2 = gmpy.invert(c2, n)</span><br><span class="line"></span><br><span class="line">    m = pow(c1, s1, n) * pow(c2, s2, n) % n</span><br><span class="line">    <span class="comment">#'&#123;:x&#125;'.format() 数字格式化</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'&#123;:x&#125;'</span>.format(int(m)).decode(<span class="string">'hex'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>即可得出<code>flag</code></p>
+<h4 id="四、小公钥指数攻击"><a href="#四、小公钥指数攻击" class="headerlink" title="四、小公钥指数攻击"></a>四、小公钥指数攻击</h4><p><strong>攻击条件：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当e=3时</span><br></pre></td></tr></table></figure>
+<p><strong>原理：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">当e特别小时，通常为<span class="number">3</span>时，便可利用小公钥指数攻击</span><br><span class="line">因a≡b (mod m)可推出b=a mod m</span><br><span class="line">故</span><br><span class="line">c ≡ m^<span class="number">3</span> mod N</span><br><span class="line">所以</span><br><span class="line">m^<span class="number">3</span> = c+k * N</span><br><span class="line">m =  <span class="number">3</span>√￣c+k x N</span><br><span class="line">#注，这里是开三次根，不是乘<span class="number">3</span></span><br><span class="line">可以从小到大枚举 k，依次开三次根，直到开出整数为止</span><br></pre></td></tr></table></figure>
+<p><strong>Jarvis OJ——Extremely hard RSA</strong><br>题目描述：<br><img src="http://img-blog.csdnimg.cn/20200130105051754.png" alt="在这里插入图片描述"><br> 和之前的一道题相似，不过这里e为3，所以这道题就是小公钥指数进行攻击<br> <img src="http://img-blog.csdnimg.cn/20200130105205804.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 了解了原理，既然自己写不出来脚本也能多少看的懂师傅们写的脚本</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment">#py2</span></span><br><span class="line"><span class="keyword">import</span> gmpy</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc</span><span class="params">(j)</span>:</span></span><br><span class="line">    a, b = gmpy.root(cipher + j * N, <span class="number">3</span>)</span><br><span class="line">    				 <span class="comment">#c+k*N</span></span><br><span class="line">    <span class="comment">#gmpy.root(x,n) # x开n次根</span></span><br><span class="line">    <span class="keyword">if</span> b &gt; <span class="number">0</span>:</span><br><span class="line">        m = a</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'&#123;:x&#125;'</span>.format(int(m)).decode(<span class="string">'hex'</span>)</span><br><span class="line">		<span class="comment">#'&#123;:x&#125;'.format() 数字格式化</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'pubkey.pem'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    key = RSA.importKey(f)</span><br><span class="line">    <span class="comment">#读取公钥信息</span></span><br><span class="line">    N = key.n</span><br><span class="line">    e = key.e</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'flag.enc'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    cipher = f.read().encode(<span class="string">'hex'</span>)</span><br><span class="line">    cipher = int(cipher, <span class="number">16</span>)</span><br><span class="line">    <span class="comment">#将16进制十进制</span></span><br><span class="line"><span class="comment">#需要爆破，所以速度会很慢</span></span><br><span class="line"><span class="comment">#inputs = range(0, 130000000)</span></span><br><span class="line"><span class="comment">#这里师傅在爆破后确定了范围，不要误以为小公钥指数攻击爆破范围就是range(118600000, 118720000)这样</span></span><br><span class="line">inputs = range(<span class="number">118600000</span>, <span class="number">118720000</span>)</span><br><span class="line">result = []</span><br><span class="line">map(calc, inputs)</span><br><span class="line"><span class="comment">#计算列表各个元素的开三次根</span></span><br><span class="line"><span class="keyword">print</span> len(result)</span><br></pre></td></tr></table></figure>
+<p>运行脚本即可得出<code>flag</code></p>
+<h4 id="五、Rabin-算法"><a href="#五、Rabin-算法" class="headerlink" title="五、Rabin 算法"></a>五、Rabin 算法</h4><p><strong>攻击条件：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当e=2时</span><br></pre></td></tr></table></figure>
+<p><strong>原理：</strong><br>在了解<code>Rabin</code> 算法之前，需要了解一些数学知识，如：中国剩余定理、欧拉准则，推荐看大师傅的博客，讲的非常详细。</p>
+<p><a href="http://www.cnblogs.com/MashiroSky/p/5918158.html" target="_blank" rel="noopener">中国剩余定理</a><br><a href="http://www.cnblogs.com/3200Pheathon/p/10800065.html" target="_blank" rel="noopener">欧拉准则</a></p>
+<p><code>Rabin</code>算法是一种基于模平方和模平方根的非对称加密算法<br><img src="http://img-blog.csdnimg.cn/20200130211330486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="http://img-blog.csdnimg.cn/20200130211658811.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果<code>p ≡ q ≡ 3 ( mod 4)</code>,则<br><img src="http://img-blog.csdnimg.cn/20200130213017911.png" alt="在这里插入图片描述"><br>一般情况下<code>p ≡ q ≡ 3 ( mod 4)</code>是满足的</p>
+<p><strong>Jarvis OJ——hard RSA</strong><br><img src="http://img-blog.csdnimg.cn/20200130220218419.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDMxMTU4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><code>e=2</code>，那就是Rabin 算法了，模仿大师傅的脚本</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment">#py2</span></span><br><span class="line"><span class="keyword">import</span> gmpy</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取公钥参数</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'pubkey.pem'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    key = RSA.importKey(f)</span><br><span class="line">    N = key.n</span><br><span class="line">    e = key.e</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'flag.enc'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    cipher = f.read().encode(<span class="string">'hex'</span>)</span><br><span class="line">    cipher = string.atoi(cipher, base=<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"please input p"</span></span><br><span class="line">p = int(raw_input(), <span class="number">10</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'please input q'</span></span><br><span class="line">q = int(raw_input(), <span class="number">10</span>)</span><br><span class="line"><span class="comment"># 计算yp和yq</span></span><br><span class="line">inv_p = gmpy.invert(p, q)</span><br><span class="line">inv_q = gmpy.invert(q, p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算mp和mq</span></span><br><span class="line">mp = pow(cipher, (p + <span class="number">1</span>) / <span class="number">4</span>, p)</span><br><span class="line">mq = pow(cipher, (q + <span class="number">1</span>) / <span class="number">4</span>, q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算a,b,c,d</span></span><br><span class="line">a = (inv_p * p * mq + inv_q * q * mp) % N</span><br><span class="line">b = N - int(a)</span><br><span class="line">c = (inv_p * p * mq - inv_q * q * mp) % N</span><br><span class="line">d = N - int(c)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (a, b, c, d):</span><br><span class="line">    s = <span class="string">'%x'</span> % i</span><br><span class="line">    <span class="keyword">if</span> len(s) % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">        s = <span class="string">'0'</span> + s</span><br><span class="line">    <span class="keyword">print</span> s.decode(<span class="string">'hex'</span>)</span><br></pre></td></tr></table></figure>
+<p>运行脚本即可得出<code>flag</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h2><p>除这些之外，RSA考察的点还有<code>d 泄露攻击</code> 等，之后再进行总结学习，这次先总结到这</p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2020/01/03/记第一次线下AWD感受及复现/" title="记第一次线下AWD感受及复现">
+                    <div class="prevTitle">记第一次线下AWD感受及复现</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/bealright" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/blog.csdn.net/qq_43431158" class="iconfont-archer csdn" target="_blank" title="csdn"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言："><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-基本工具的使用"><span class="toc-number">2.</span> <span class="toc-text">0x01 基本工具的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#openssl"><span class="toc-number">2.0.1.</span> <span class="toc-text">openssl</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分解整数工具"><span class="toc-number">2.0.2.</span> <span class="toc-text">分解整数工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用的python-库"><span class="toc-number">2.0.3.</span> <span class="toc-text">常用的python 库</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-RSA考察题型"><span class="toc-number">3.</span> <span class="toc-text">0x02 RSA考察题型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、给出p、q、e、c求明文m"><span class="toc-number">3.0.1.</span> <span class="toc-text">一、给出p、q、e、c求明文m</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、暴力分解-N"><span class="toc-number">3.0.2.</span> <span class="toc-text">二、暴力分解 N</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、共模攻击"><span class="toc-number">3.0.3.</span> <span class="toc-text">三、共模攻击</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、小公钥指数攻击"><span class="toc-number">3.0.4.</span> <span class="toc-text">四、小公钥指数攻击</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、Rabin-算法"><span class="toc-number">3.0.5.</span> <span class="toc-text">五、Rabin 算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结:</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 55
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/31</span><a class="archive-post-title" href="/2020/01/31/Crypto—RSA常见题型总结/">Crypto—RSA常见题型总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/03</span><a class="archive-post-title" href="/2020/01/03/记第一次线下AWD感受及复现/">记第一次线下AWD感受及复现</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href="/2019/11/12/XML外部实体注入/">XML外部实体注入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/30</span><a class="archive-post-title" href="/2019/10/30/原理+实战掌握SQL注入方法/">原理+实战掌握注入方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span><a class="archive-post-title" href="/2019/10/27/通过sql-labs进行sql注入学习(11-22)/">通过sql-labs进行sql注入学习(11-22)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href="/2019/10/24/任意文件下载漏洞/">任意文件下载漏洞简析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href="/2019/10/23/从一道题深入HTTP协议与HTTP请求走私/">从一道题深入HTTP协议与HTTP请求走私</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href="/2019/10/15/BUUCTF web(一)/">BUUCTF web(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="/2019/10/04/Jarvis OJ web(一)/">Jarvis OJ web(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/27</span><a class="archive-post-title" href="/2019/09/27/I春秋——web Write up(三)/">I春秋——web Write up(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span><a class="archive-post-title" href="/2019/09/25/I春秋——web Write up(二)/">I春秋——web Write up(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href="/2019/09/05/XCTF(攻防世界)—进阶web题Write Up(二)/">XCTF(攻防世界)—进阶web题Write Up(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href="/2019/09/02/Bugku—web题总结(三)/">Bugku—web题总结(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href="/2019/08/31/了解PHP伪协议/">了解PHP伪协议</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/2019/08/28/python学习（函数）/">python学习（函数）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/2019/08/25/Bugku—web题总结(二)/">Bugku—web题总结(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href="/2019/08/18/Bugku—web题总结(一)/">Bugku—web题总结(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/16</span><a class="archive-post-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">XCTF(攻防世界)—进阶web题Write Up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/14</span><a class="archive-post-title" href="/2019/08/14/PHP危险函数总结/">PHP危险函数总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href="/2019/08/12/PHP反序列化漏洞学习(一)/">PHP反序列化漏洞学习(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/2019/08/10/DVWA——命令执行漏洞学习/">DVWA——命令执行漏洞学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href="/2019/08/09/文件包含漏洞——DVWA练习/">文件包含漏洞——DVWA练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/07</span><a class="archive-post-title" href="/2019/08/07/密码学——RSA加密算法原理/">密码学——RSA加密算法原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/05</span><a class="archive-post-title" href="/2019/08/05/实验吧——SQL注入 Write up(一)/">实验吧——SQL注入 Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href="/2019/08/03/文件上传漏洞——upload-labs(11-20)/">文件上传漏洞——upload-labs(11-20)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href="/2019/08/01/文件上传漏洞——upload-labs(1-10)/">文件上传漏洞——upload-labs(1-10)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/2019/07/31/文件上传漏洞——DVWA练习/">文件上传漏洞——DVWA练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href="/2019/07/29/python学习（字典、用户输入和while循环）/">python学习（字典、用户输入和while循环）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href="/2019/07/25/sql注入学习——时间盲注/">sql注入学习——时间盲注</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/2019/07/24/sql注入学习——布尔盲注/">sql注入学习——布尔盲注</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href="/2019/07/22/python学习（操作列表、if语句）/">python学习（操作列表、if语句）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/2019/07/19/XSS学习-XSS挑战之旅(二)/">XSS学习-XSS挑战之旅(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href="/2019/07/18/实验吧— Crypto Write up(一)/">实验吧— Crypto Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href="/2019/07/17/I春秋——web Write up(一)/">I春秋——web Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/16</span><a class="archive-post-title" href="/2019/07/16/2019安恒七月月赛——MISC/">2019安恒七月月赛——MISC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/14</span><a class="archive-post-title" href="/2019/07/14/I春秋—— Crypto Write up(一)/">I春秋—— Crypto Write up(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href="/2019/07/12/实验吧—(部分)MISC Write up/">实验吧—(部分)MISC Write up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/11</span><a class="archive-post-title" href="/2019/07/11/python学习（字符串、整数、列表）/">python学习（字符串、整数、列表）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/10</span><a class="archive-post-title" href="/2019/07/10/XCTF(攻防世界)—新手web题Write Up/">XCTF(攻防世界)—新手web题Write Up</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/19</span><a class="archive-post-title" href="/2019/06/19/C++学习总结（函数、类与对象）/">C++学习总结（函数、类与对象）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/2019/06/15/Bugku—MISC题总结/">Bugku—MISC题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2019/06/09/通过sql-labs进行sql注入学习(1-10)/">通过sql-labs进行sql注入学习(1-10)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href="/2019/05/31/ISCC2019杂项题(MISC)总结/">ISCC2019-MISC总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/CTF 关于ZIP解题过程/">CTF关于ZIP解题思路</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/CTF隐写总结/">CTF隐写总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href="/2019/05/08/CTF Crypto(密码学)总结/">CTF密码学总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2019/04/28/web安全—XSS攻击(二)/">XSS学习-XSS挑战之旅(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href="/2019/04/24/web安全-XSS攻击（一)/">XSS理解+练习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href="/2019/04/22/PHP学习总结（数据库概念、DDL语句、DML语句）/">PHP数据库概念、DDL语句、DML语句</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/PHP学习总结(会话控制)/">PHP会话控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/PHP学习(php概念、基本语法、流程控制)/">PHP概念、基本语法、流程控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/24</span><a class="archive-post-title" href="/2019/03/24/HTML学习总结/">HTML学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2019/03/20/HTML+CSS+PHP+COOKIE在本地搭建一个简易的登陆注册网页/">本地搭建简易的登陆注册网页</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href="/2019/03/18/CSS学习总结/">CSS学习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/2019/03/12/hexo+githup搭建属于自己的博客/">搭建属于自己的博客</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="XML"><span class="iconfont-archer">&#xe606;</span>XML</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTTP请求走私"><span class="iconfont-archer">&#xe606;</span>HTTP请求走私</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
+    
+        <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
+    
+        <span class="sidebar-tag-name" data-tags="文件包含"><span class="iconfont-archer">&#xe606;</span>文件包含</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="MISC"><span class="iconfont-archer">&#xe60a;</span>MISC</span>
+    
+        <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
+    
+        <span class="sidebar-category-name" data-categories="编程语言学习"><span class="iconfont-archer">&#xe60a;</span>编程语言学习</span>
+    
+        <span class="sidebar-category-name" data-categories="Crypto"><span class="iconfont-archer">&#xe60a;</span>Crypto</span>
+    
+        <span class="sidebar-category-name" data-categories="SQL"><span class="iconfont-archer">&#xe60a;</span>SQL</span>
+    
+        <span class="sidebar-category-name" data-categories="AWD"><span class="iconfont-archer">&#xe60a;</span>AWD</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "💗zihao"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+	<!-- 雪花特效 -->
+	<script type="text/javascript" src="\lib\snow.js"></script>
+	<!-- 页面点击小红心 -->
+	<script type="text/javascript" src="\lib\love.js"></script>
+    </body>
+</html>
+
+

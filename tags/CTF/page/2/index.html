@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/08/16/XCTF(攻防世界)—进阶web题Write Up(一)/">
+            
+                <span>XCTF(攻防世界)—进阶web题Write Up(一)</span>
+        </a>
+        <div class="abstract-content">
+            前言：这段时间做了一些XCTF的web进阶题，真的是学习到了很多知识，就来总结一下。
+
+Cat一开始以为是命令注入，恰好最近学习了命令注入，就先来测试一下：
+输入127.0.0.1，发现是可以ping通的输入127.0.0.1 | phpinfo() 或127.0.0.1 &amp; net user就会显示：
+1Invalid URL
+看来命令注入的方法是行不通的(其他连接符也被过滤了，如&amp;&amp;、||等)
+没有思路了，就看了大师傅们的Write Up，大意就是在URL那里构造错误的参数，使页面进行报错，通过页面报错从中找出需要的信息。
+当输入?url=%79执行完时变成了...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/08/07/密码学——RSA加密算法原理/">
             
                 <span>密码学——RSA加密算法原理</span>
@@ -631,36 +667,6 @@ telnetwinhex打开就可得出flag
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/31/ISCC2019杂项题(MISC)总结/">
-            
-                <span>ISCC2019-MISC总结</span>
-        </a>
-        <div class="abstract-content">
-            ISCC2019刚刚结束，作为一个萌新我是真的菜，真心菜不过也会几道杂项题，就总结一下做题思路。
-Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张完整的图做到这里没思路了，就回去看题目提示。Aesop’s chest and key lie within .to find it（伊索的胸膛和钥匙都在里面。为了找到它 ）还是一脸懵，用winhex打开我们得到的完整图和gif的图看看会有什么出现。在gif图中发现下面感觉像base64，试试吧发现前面有一个单词，百度翻译（盐），一般这些都是有密钥的加密密文，取在线网站挨个解下，看看那个可以，密钥当然就是ISCC了...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/31</span>
             </div>
             <!-- tags  -->
             
@@ -1544,9 +1550,28 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 54
+        Total : 55
         </div>
         <!-- search  -->
         
@@ -1559,6 +1584,11 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/31</span><a class="archive-post-title" href="/2020/01/31/Crypto—RSA常见题型总结/">Crypto—RSA常见题型总结</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1846,9 +1876,9 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
-        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
-    
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS"><span class="iconfont-archer">&#xe606;</span>CSS</span>
     
         <span class="sidebar-tag-name" data-tags="命令执行"><span class="iconfont-archer">&#xe606;</span>命令执行</span>
     
@@ -1858,9 +1888,9 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
         <span class="sidebar-tag-name" data-tags="XML"><span class="iconfont-archer">&#xe606;</span>XML</span>
     
-        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
-    
         <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="XSS"><span class="iconfont-archer">&#xe606;</span>XSS</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
@@ -1868,9 +1898,9 @@ Aesop’s secret下载附件，打开一张gif图用PS打开,可以得到一张�
     
         <span class="sidebar-tag-name" data-tags="HTTP请求走私"><span class="iconfont-archer">&#xe606;</span>HTTP请求走私</span>
     
-        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
-    
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="任意文件下载"><span class="iconfont-archer">&#xe606;</span>任意文件下载</span>
     
         <span class="sidebar-tag-name" data-tags="文件上传"><span class="iconfont-archer">&#xe606;</span>文件上传</span>
     
